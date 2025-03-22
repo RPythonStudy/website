@@ -1,0 +1,138 @@
+project:
+  type: website
+  
+profile:
+  default: ko
+  group: 
+    - [ko, en]
+    
+website:
+  title: "RPythonStudy"
+  navbar:
+    style: pinned
+    logo: RPythonStudy_logo.png
+    tools:
+      - icon: github
+        href: https://github.com/RPythonStudy/website
+    left:
+      - text: "Blog"
+        href: index.qmd
+      - text: "R"
+        href: posts/R/introduction_to_R.qmd
+      - text: "Python"
+        href: posts/Python/introduction_to_Python.qmd
+      - text: "Quarto"
+        href: posts/Quarto/introduction_to_Quarto.qmd        
+      - text: "Statistics"
+        href: posts/statistics/introduction_to_statistics.qmd
+      - text: "Quiz"        
+        href: https://rpythonstudy.shinyapps.io/Quiz/
+      - text: "Resources"      
+        href: posts/Resources/introduction_to_resources.qmd
+      - text: "Tools"      
+        href: posts/tools/introduction_to_tools.qmd
+      - text: "IT"      
+        href: posts/IT/introduction_to_IT.qmd
+      - text: "About"      
+        href: posts/about/about.qmd    
+        
+  sidebar:
+    - title: "R"
+      contents:
+        - posts/R/introduction_to_R.qmd
+        - section: "설치"
+          contents:
+            - posts/R/install/R_setup.qmd
+            - posts/R/install/Rtools_setup.qmd            
+            - posts/R/install/RStudio_setup.qmd
+        - section: "문법"
+          contents:        
+            - posts/R/syntax/R_syntax.qmd
+            - posts/R/syntax/RegEx.qmd
+            - posts/R/syntax/regular_expression.qmd
+            - posts/R/syntax/basic.qmd
+        - section: "전처리"
+          contents:             
+            - posts/R/preprocessing/outlier_detection.qmd
+        - section: "데이터셋"
+          contents:             
+            - posts/R/dataset/built_in_dataset.qmd
+        - section: "함수"
+          contents:             
+            - posts/R/function/Chi_square_test_in_R.qmd
+        - text: "R 생존분석 연습"
+          href: "https://rpythongroup.github.io/Survival_Exercise/"        
+        - section: "Shiny"
+          contents:          
+            - posts/R/shiny/shiny_example.qmd
+            - posts/R/shiny/Hands_on_Shiny_website.qmd
+    - title: "Python"
+      contents:
+        - posts/Python/introduction_to_Python.qmd
+        - section: "설치"
+          contents:
+            - posts/Python/install/Python_setup.qmd
+            - posts/Python/install/VSCode_setup.qmd
+        - section: "문법"
+          contents:        
+            - posts/Python/syntax/data_type.qmd        
+    - title: "Quarto"
+      contents:
+        - posts/Quarto/introduction_to_Quarto.qmd
+        - section: "설치"
+          contents:
+            - posts/Quarto/install/Quarto_setup.qmd
+        - section: "Websites"
+          contents:
+            - posts/Quarto/Website/Hands_on_Quarto_Website.qmd
+        - section: "Manuscripts"
+          contents:            
+            - posts/Quarto/Manuscript/manuscript_example.qmd
+        - section: "기능구현"
+          contents:            
+            - posts/Quarto/Functions/tooltip.qmd
+            - posts/Quarto/Functions/color_callout.qmd
+        
+    - title: "Statistics"
+      contents:
+        - posts/statistics/introduction_to_statistics.qmd
+        - posts/statistics/basic_statistics.qmd
+        - posts/statistics/survival_analysis.qmd
+        - posts/statistics/group_comparison.qmd
+        - posts/statistics/Chi_square_test.qmd
+    - title: "Resources"
+      contents:
+        - posts/Resources/introduction_to_resources.qmd
+        - section: "공공데이터포털"
+          contents:
+            - posts/Resources/DataGoKr/DataGoKr.qmd
+            - posts/Resources/DataGoKr/Hands_on_API_Shinyapp.qmd
+    - title: "Tools"
+      contents:
+        - posts/tools/introduction_to_tools.qmd
+        - section: "Git"
+          contents:
+            - posts/tools/git/git_concept.qmd
+            - posts/tools/git/github.qmd            
+            - posts/tools/git/git_install.qmd
+            - posts/tools/git/git_configuration.qmd
+            - posts/tools/git/ssh.qmd            
+            - posts/tools/git/hands_on_git.qmd
+
+
+execute: 
+  freeze: auto
+  
+format:
+  html:
+    theme: cosmo
+    css: styles/styles.css
+    csl: styles/nuclear-medicine-and-molecular-imaging.csl
+    code-copy: true
+    toc: true
+    mathjax: "default"
+    link-external-newwindow: true
+
+resource-paths:
+  - resources/
+  - images/

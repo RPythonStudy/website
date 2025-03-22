@@ -1,0 +1,18 @@
+---
+title: "Introduction to statistics"
+description: "Statistics in R"
+author: "RPythonStudyGroup feat. ChatGPT"
+date: "September 27, 2024"
+date-modified: "September 27, 2024"
+categories:
+  - introduction
+---
+
+
+::: {.content-visible when-profile="ko"}
+R에서 사용되는 통계의 이론에 대해 소개합니다.
+:::
+
+::: {.content-visible when-profile="en"}
+Introduction to statistics used in R.
+:::

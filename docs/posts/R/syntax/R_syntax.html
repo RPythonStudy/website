@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="RPythonStudyGroup feat. ChatGPT">
+<meta name="description" content="Understanding data type and manupulation">
+
+<title>R syntax – RPythonStudy</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-f3c7dabe75a0c4d0cadd41566b53a9a4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../RPythonStudy_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">RPythonStudy</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../posts/R/introduction_to_R.html" aria-current="page"> 
+<span class="menu-text">R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Python/introduction_to_Python.html"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Quarto/introduction_to_Quarto.html"> 
+<span class="menu-text">Quarto</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/statistics/introduction_to_statistics.html"> 
+<span class="menu-text">Statistics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rpythonstudy.shinyapps.io/Quiz/"> 
+<span class="menu-text">Quiz</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Resources/introduction_to_resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/tools/introduction_to_tools.html"> 
+<span class="menu-text">Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/IT/introduction_to_IT.html"> 
+<span class="menu-text">IT</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/about/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../.././en"> 
+<span class="menu-text">English</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/RPythonStudy/website" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/R/syntax/R_syntax.html">문법</a></li><li class="breadcrumb-item"><a href="../../../posts/R/syntax/R_syntax.html">R syntax</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/R/syntax/R_syntax.html">문법</a></li><li class="breadcrumb-item"><a href="../../../posts/R/syntax/R_syntax.html">R syntax</a></li></ol></nav>
+      <h1 class="title">R syntax</h1>
+                  <div>
+        <div class="description">
+          Understanding data type and manupulation
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">syntax</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">저자</div>
+      <div class="quarto-title-meta-contents">
+               <p>RPythonStudyGroup feat. ChatGPT </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">공개</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2024년 8월 31일</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">2024년 8월 31일</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/introduction_to_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduciton</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">설치</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/install/R_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 설치</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/install/Rtools_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rtools 설치</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/install/RStudio_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RStudio</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">문법</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/syntax/R_syntax.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">R syntax</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/syntax/RegEx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RegEx</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/syntax/regular_expression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regular Expression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/syntax/basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Basics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">전처리</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/preprocessing/outlier_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">연속형변수에서 이상치검출</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">데이터셋</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/dataset/built_in_dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Built-in Data sets in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">함수</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/function/Chi_square_test_in_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chi-square test in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://rpythongroup.github.io/Survival_Exercise/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 생존분석 연습</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Shiny</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/shiny/shiny_example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Shiny Application Example</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/shiny/Hands_on_Shiny_website.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hands-on Shiny API Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#prologue" id="toc-prologue" class="nav-link active" data-scroll-target="#prologue">Prologue</a></li>
+  <li><a href="#객체object" id="toc-객체object" class="nav-link" data-scroll-target="#객체object">객체(Object)</a>
+  <ul class="collapse">
+  <li><a href="#기본유형basic-types" id="toc-기본유형basic-types" class="nav-link" data-scroll-target="#기본유형basic-types">기본유형(Basic types)</a>
+  <ul class="collapse">
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors"><strong>Vectors</strong></a></li>
+  <li><a href="#리스트lists" id="toc-리스트lists" class="nav-link" data-scroll-target="#리스트lists">리스트(Lists)</a></li>
+  </ul></li>
+  <li><a href="#속성attribute" id="toc-속성attribute" class="nav-link" data-scroll-target="#속성attribute">속성(Attribute)</a>
+  <ul class="collapse">
+  <li><a href="#names" id="toc-names" class="nav-link" data-scroll-target="#names">Names</a></li>
+  <li><a href="#dimensions" id="toc-dimensions" class="nav-link" data-scroll-target="#dimensions">Dimensions</a></li>
+  <li><a href="#dimnames" id="toc-dimnames" class="nav-link" data-scroll-target="#dimnames">Dimnames</a></li>
+  <li><a href="#classes" id="toc-classes" class="nav-link" data-scroll-target="#classes">Classes</a></li>
+  <li><a href="#time-series-attributes" id="toc-time-series-attributes" class="nav-link" data-scroll-target="#time-series-attributes">Time series attributes</a></li>
+  </ul></li>
+  <li><a href="#special-compound-objects" id="toc-special-compound-objects" class="nav-link" data-scroll-target="#special-compound-objects">Special compound objects</a>
+  <ul class="collapse">
+  <li><a href="#factors" id="toc-factors" class="nav-link" data-scroll-target="#factors">Factors</a></li>
+  <li><a href="#data-frame-objects" id="toc-data-frame-objects" class="nav-link" data-scroll-target="#data-frame-objects">Data frame objects</a></li>
+  <li><a href="#time-objects" id="toc-time-objects" class="nav-link" data-scroll-target="#time-objects">Time objects</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#advanced-techniques" id="toc-advanced-techniques" class="nav-link" data-scroll-target="#advanced-techniques">Advanced Techniques</a>
+  <ul class="collapse">
+  <li><a href="#data-manipulation" id="toc-data-manipulation" class="nav-link" data-scroll-target="#data-manipulation">Data Manipulation</a>
+  <ul class="collapse">
+  <li><a href="#data-reading" id="toc-data-reading" class="nav-link" data-scroll-target="#data-reading">Data reading</a></li>
+  <li><a href="#binding-tables" id="toc-binding-tables" class="nav-link" data-scroll-target="#binding-tables">Binding tables</a></li>
+  <li><a href="#join-merge-tables" id="toc-join-merge-tables" class="nav-link" data-scroll-target="#join-merge-tables">Join (Merge) tables</a></li>
+  <li><a href="#types-of-join-merge" id="toc-types-of-join-merge" class="nav-link" data-scroll-target="#types-of-join-merge">Types of Join merge</a></li>
+  <li><a href="#reshape-data" id="toc-reshape-data" class="nav-link" data-scroll-target="#reshape-data">Reshape data</a></li>
+  </ul></li>
+  <li><a href="#pipeline-operator" id="toc-pipeline-operator" class="nav-link" data-scroll-target="#pipeline-operator">Pipeline operator</a></li>
+  </ul></li>
+  <li><a href="#latex-codes-in-quarto" id="toc-latex-codes-in-quarto" class="nav-link" data-scroll-target="#latex-codes-in-quarto">LaTeX codes in quarto</a>
+  <ul class="collapse">
+  <li><a href="#basic-latex-code" id="toc-basic-latex-code" class="nav-link" data-scroll-target="#basic-latex-code">Basic LaTeX code</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="prologue" class="level1">
+<h1>Prologue</h1>
+<p>심도깊은 이해를 원하시면 R manual 중 R language definition과 번역본 ( <a href="https://translation.r-project.org/man/R-lang/R-lang-ko.html#Objects" class="uri">https://translation.r-project.org/man/R-lang/R-lang-ko.html#Objects</a>)을 참고하시길 바랍니다.</p>
+<p>아래는 위의 내용을 일부 발췌한 것과 이해원회장님의 강의자료를 바탕으로 합니다.</p>
+</section>
+<section id="객체object" class="level1">
+<h1>객체(Object)</h1>
+<p>컴퓨터 언어에서 변수(variable)는 메모리에 저장된 데이터에 접근하는 수단을 제공합니다. R은 컴퓨터 메모리에 직접적인 접근을 제공하지 않지만, 대신 여러가지 특수화되어 있는 데이터 구조 (specialized data structure)를 제공하며, 이들을 객체(object)라고 합니다.&nbsp;이러한 객체들은 심볼 (symbol) 또는 변수를 통해 참조될 수 있습니다. (R에서는 심볼은 그 자체로서 객체이기도 하므로 다른 객체들과 동일한 방식으로 조작 할 수 있습니다.)</p>
+<p>R 객체의 유형(<em>type</em>&nbsp;of R object)을 알려주는&nbsp;<code>typeof</code>&nbsp;이라는 함수를 이용해 반환되는 값들과 그 값들이 무엇인지를 정리하였습니다. (우선은 bolic체만 이해하셔도 됩니다.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><code>NULL"</code></td>
+<td>NULL</td>
+</tr>
+<tr class="even">
+<td><code>"symbol"</code></td>
+<td>변수명 (a variable name)</td>
+</tr>
+<tr class="odd">
+<td><code>"pairlist"</code></td>
+<td>패어리스트 객체 (a pairlist object, 주로 내부용)</td>
+</tr>
+<tr class="even">
+<td><code>"closure"</code></td>
+<td>함수 (a function)</td>
+</tr>
+<tr class="odd">
+<td><code>"environment"</code></td>
+<td>환경 (an environment)</td>
+</tr>
+<tr class="even">
+<td><code>"promise"</code></td>
+<td>지연 평가를 구현하는데 사용된 객체 (an object used to implement lazy evaluation)</td>
+</tr>
+<tr class="odd">
+<td><code>"language"</code></td>
+<td>R 언어구조물 (an R language construct)</td>
+</tr>
+<tr class="even">
+<td><code>"special"</code></td>
+<td>입력인자를 평가하지 않는 내부 함수 (an internal function that does not evaluate its arguments)</td>
+</tr>
+<tr class="odd">
+<td><code>"builtin"</code></td>
+<td>입력인자를 평가하는 내부 함수 (an internal function that evaluates its arguments)</td>
+</tr>
+<tr class="even">
+<td><code>"char"</code></td>
+<td>스칼라 문자열 객체 (a ‘scalar’ string object, 내부전용)</td>
+</tr>
+<tr class="odd">
+<td><strong><code>"logical"</code></strong></td>
+<td>논리값을 가지는 벡터 (a vector containing logical values)</td>
+</tr>
+<tr class="even">
+<td><strong><code>"integer"</code></strong></td>
+<td>정수값을 가지는 벡터 (a vector containing integer values)</td>
+</tr>
+<tr class="odd">
+<td><strong><code>"double"</code></strong></td>
+<td>실수값을 가지는 벡터 (a vector containing real values)</td>
+</tr>
+<tr class="even">
+<td><code>"complex"</code></td>
+<td>복소수를 가지는 벡터 (a vector containing complex values)</td>
+</tr>
+<tr class="odd">
+<td><strong><code>"character"</code></strong></td>
+<td>문자값을 가지는 벡터 (a vector containing character values)</td>
+</tr>
+<tr class="even">
+<td><code>"..."</code></td>
+<td>특수 변수 길이 인자 (the special variable length argument) ***</td>
+</tr>
+<tr class="odd">
+<td><code>"any"</code></td>
+<td>모든 유형에 부합하는 특별한 유형 (a special type that matches all types: there are no objects of this type)</td>
+</tr>
+<tr class="even">
+<td><code>"expression"</code></td>
+<td>표현식 객체 (an expression object)</td>
+</tr>
+<tr class="odd">
+<td><code>"list"</code></td>
+<td>리스트 (a list)</td>
+</tr>
+<tr class="even">
+<td><code>"bytecode"</code></td>
+<td>바이트 코드 (byte code, 내부 전용) ***</td>
+</tr>
+<tr class="odd">
+<td><code>"externalptr"</code></td>
+<td>외부 포인터 객체 (an external pointer object)</td>
+</tr>
+<tr class="even">
+<td><code>"weakref"</code></td>
+<td>약한 참조 객체 (a weak reference object)</td>
+</tr>
+<tr class="odd">
+<td><code>"raw"</code></td>
+<td>바이트를 포함하는 벡터 (a vector containing bytes)</td>
+</tr>
+<tr class="even">
+<td><code>"S4"</code></td>
+<td>단순 객체가 아닌 S4 객체 (an S4 object which is not a simple object)</td>
+</tr>
+</tbody>
+</table>
+<p>함수 <code>mode</code>는 Becker, Chambers &amp; Wilks (1988)에서 설명된 객체의 모드(<em>mode</em>)에 대한 정보를 알려줍니다. 그리고 이는 S 언어를 이용하여 구현된 것들과 더 잘 호환됩니다. 마지막으로, 함수 <code>storage.mode</code>는 Becker et al.&nbsp;(1988)에서 설명된 입력인자의 저장모드(<em>storage mode</em>)를 알려줍니다. 이 함수는 보통 C 또는 FORTRAN 과 같은 다른 언어로 작성된 함수를 호출할때 R 객체들이 호출되어진 루틴에 의하여 입력되어지기를 기대되는 자료형(data type)을 가지고 있는지 확인하기 위하여 사용됩니다. (S 언어에서는 정수 또는 실수를 가지는 벡터는 모두 <code>"numeric"</code> 모드를 가지기 때문에 저장모드가 구분될 필요가 있습니다).</p>
+<pre><code>&gt; x &lt;- 1:3 
+&gt; typeof(x) 
+[1] "integer" 
+&gt; mode(x) 
+[1] "numeric" 
+&gt; storage.mode(x) 
+[1] "integer"</code></pre>
+<p>R&nbsp;R객체들은 연산이 수행되는 도중에 종종 다른 유형(type)으로 강제변환(coercion)이 이루어지기도 합니다.&nbsp;또한, 명시적으로 강제변환을 수행하는 많은 함수들이 있습니다.&nbsp;R을 이용한 프로그래밍에서 객체의 유형 (또는 종류)는 일반적으로 연산(의 결과)에 영향을 미치지 않습니다. 그러나, 외부언어(foreign languages) 또는 운영체제를 함께 다룰 때에는 종종 객체가 올바른 유형을 가지고 있는지 확인하는 것이 필요합니다.</p>
+<blockquote class="blockquote">
+<p><strong>필자주:</strong> R에서는 type과 mode가 혼용될 때도 있어 보입니다. 예를 들어서 data type을 변환하는 함수 중 as.numeric()이 있는데 double type으로 강제변환 시킵니다. 하지만 이는 호환성과 융통성에 도움이 된다 생각됩니다.</p>
+</blockquote>
+<section id="기본유형basic-types" class="level2">
+<h2 class="anchored" data-anchor-id="기본유형basic-types">기본유형(Basic types)</h2>
+<section id="vectors" class="level3">
+<h3 class="anchored" data-anchor-id="vectors"><strong>Vectors</strong></h3>
+<p>벡터들은 데이터를 포함하고 있는 인접한 셀들과 같이 생각될 수 있습니다.셀들은 <code>x[5]</code>와 같이 인덱싱 조작(indexing operation)을 통하여 접근 되어집니다. 더 자세한 사항은 <a href="https://translation.r-project.org/man/R-lang/R-lang-ko.html#Indexing">Indexing</a>에 설명되어 있습니다.</p>
+<p>R은 여섯 가지의 기본 (‘atomic’, 아토믹) 벡터를 가지고 있습니다. 이들은 논리형(logical), 정수형(integer), 실수형(real), 복소수형(complex), 문자열 (string) 또는 문자 (character), 그리고 원형(raw)입니다. 다음의 표는 유형이 다른 벡터들의 모드와 저장모드들을 정리하였습니다.</p>
+<blockquote class="blockquote">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>typeof</th>
+<th>mode</th>
+<th>storage.mode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>logical</code></td>
+<td><code>logical</code></td>
+<td><code>logical</code></td>
+</tr>
+<tr class="even">
+<td><code>integer</code></td>
+<td><code>numeric</code></td>
+<td><code>integer</code></td>
+</tr>
+<tr class="odd">
+<td><code>double</code></td>
+<td><code>numeric</code></td>
+<td><code>double</code></td>
+</tr>
+<tr class="even">
+<td><code>complex</code></td>
+<td><code>complex</code></td>
+<td><code>complex</code></td>
+</tr>
+<tr class="odd">
+<td><code>character</code></td>
+<td><code>character</code></td>
+<td><code>character</code></td>
+</tr>
+<tr class="even">
+<td><code>raw</code></td>
+<td><code>raw</code></td>
+<td><code>raw</code></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<ul>
+<li><strong>double</strong>: 실수형 데이터</li>
+</ul>
+<p>R에서 숫자형 데이터는 기본적으로 실수형 데이터로 인식됩니다. 이는 프로그래밍의 융통성을 부여합니다. 아래의 예시처럼 소수점이 있든, 소수점이 없는 형태를 변수에 할당하든 기본적으로 실수형으로 인식됩니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>numeric_value<span class="ot">&lt;-</span>pi; <span class="fu">print</span>(numeric_value); <span class="fu">typeof</span>(numeric_value); <span class="fu">typeof</span>(<span class="dv">1</span><span class="sc">+</span><span class="dv">1</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.141593</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "double"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "double"</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>integer</strong>: 정수형 데이터</li>
+</ul>
+<p>하지만 소수점이 없는 정수를 명시적으로 변수에 할당할 때(대문자L을 끝에 붙임)와 범위연산자(range operator = colon operator)가 명시적으로 정수를 할당할 때는 정수형이 만들어집니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>integer_value <span class="ot">&lt;-</span><span class="dv">42</span>L; <span class="fu">typeof</span>(integer_value); <span class="fu">typeof</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>); <span class="fu">typeof</span>(<span class="dv">1</span>L<span class="sc">+</span><span class="dv">1</span>L)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>character</strong>: 문자형 데이터</li>
+</ul>
+<p>“abc”, “a”, “a123xz” 등 quotation mark로 된 문자열</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>letters[<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>]; <span class="fu">paste</span>(<span class="st">"ab"</span>,<span class="st">"cde"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "e" "f" "g" "h" "i" "j"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "abcde"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(<span class="dv">345</span>); <span class="fu">as.numeric</span>(<span class="st">"23.5"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "345"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23.5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sub</span>(<span class="st">"a"</span>,<span class="st">"x"</span>, <span class="st">"father and grandpa"</span>); <span class="fu">gsub</span>(<span class="st">"a"</span>,<span class="st">"x"</span>, <span class="st">"father and grandpa"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "fxther and grandpa"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "fxther xnd grxndpx"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(ex2 <span class="ot">&lt;-</span> <span class="st">'The "R" project for statistical computing'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "The \"R\" project for statistical computing"</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>complex</strong>: 복소수형 데이터</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>complex_value<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">+</span><span class="fu">sqrt</span>(<span class="dv">2</span>)<span class="sc">*</span><span class="dv">1</span>i)<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">sqrt</span>(<span class="dv">2</span>)<span class="sc">*</span><span class="dv">1</span>i); <span class="fu">print</span>(complex_value); <span class="fu">typeof</span>(complex_value) <span class="co"># complex 연산</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3+0i</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "complex"</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>raw</strong>: 주로 이진 데이터(binary data)를 표현하는 데 사용됩니다. raw 타입은 주로 파일 입출력 또는 네트워크 통신에서 원시 데이터를 다룰 때 사용됩니다. 이 데이터는 변환 없이 그대로 저장되고 전달됩니다.</li>
+</ul>
+<p>벡터의기본유형에서 typeof 함수와 mode 함수의 반환값들을 비교하면 아래의 그림과 같습니다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-2275707065.png" class="img-fluid figure-img"></p>
+<figcaption>기본벡터에서 type와 mode의 관계</figcaption>
+</figure>
+</div>
+<p>아래서부터는 퀴즈를 풀어보시기 바랍니다</p>
+<p>R에서는 모든 변수가 벡터 (열) 로 되어 있다. 다음 연산결과를 예상해 보시오</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span> ; <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 5 7</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  2  4  4  6  6  8  8 10 10 12</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>],<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">sep =</span> <span class="st">"-"</span>); <span class="fu">paste</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>],<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "A-1" "B-2" "C-3" "D-1" "E-2" "F-3" "G-1" "H-2" "I-3" "J-1"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "A 1"  "B 2"  "C 3"  "A 4"  "B 5"  "C 6"  "A 7"  "B 8"  "C 9"  "A 10"</code></pre>
+</div>
+</div>
+<p>vector의 특징은 모든 요소가 단일한 것이라는 점이다. NA 값을 제외하고는 모든 요소가 같아야 하기 때문에 서로 다른 성질의 것을 입력하게 되면 에러가 생기거나 변형된다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>); <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="st">"a"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1" "2" "3" "a"</code></pre>
+</div>
+</div>
+<ul>
+<li>array : multidimensional vector</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(arr1 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="at">data=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">90</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">3</span>))) <span class="co"># 3Dimensional array</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , 1
+
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    7   13   19   25
+[2,]    2    8   14   20   26
+[3,]    3    9   15   21   27
+[4,]    4   10   16   22   28
+[5,]    5   11   17   23   29
+[6,]    6   12   18   24   30
+
+, , 2
+
+     [,1] [,2] [,3] [,4] [,5]
+[1,]   31   37   43   49   55
+[2,]   32   38   44   50   56
+[3,]   33   39   45   51   57
+[4,]   34   40   46   52   58
+[5,]   35   41   47   53   59
+[6,]   36   42   48   54   60
+
+, , 3
+
+     [,1] [,2] [,3] [,4] [,5]
+[1,]   61   67   73   79   85
+[2,]   62   68   74   80   86
+[3,]   63   69   75   81   87
+[4,]   64   70   76   82   88
+[5,]   65   71   77   83   89
+[6,]   66   72   78   84   90</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>arr1[<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">2</span>] <span class="co"># 3Dimensional indexing</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 54</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(arr1<span class="sc">==</span><span class="dv">54</span>, <span class="at">arr.ind =</span> <span class="cn">TRUE</span> )</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     dim1 dim2 dim3
+[1,]    6    4    2</code></pre>
+</div>
+</div>
+<ul>
+<li>matrix : 2dimensional vector</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>),</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">nrow=</span><span class="dv">2</span>,</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">ncol=</span><span class="dv">3</span>, <span class="co"># nrow=2 하나만 지정해도 ncol=3은 내부적으로 결정됨</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">byrow =</span> <span class="cn">TRUE</span>, <span class="co"># data assign 하는 방향</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"pt_1"</span>, <span class="st">"pt_2"</span>), <span class="co"># row names</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">c</span>(<span class="st">"var1"</span>,<span class="st">"var2"</span>,<span class="st">"var3"</span>)) <span class="co"># col names</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>              )</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     var1 var2 var3
+pt_1    3    4    5
+pt_2    6    7    8</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">9</span> ; <span class="fu">names</span>(x) <span class="ot">&lt;-</span> x <span class="co"># x의 이름을 부여</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%o%</span> x <span class="co"># = outer function : outer(x,x, FUN="*")</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   2  3  4  5  6  7  8  9
+2  4  6  8 10 12 14 16 18
+3  6  9 12 15 18 21 24 27
+4  8 12 16 20 24 28 32 36
+5 10 15 20 25 30 35 40 45
+6 12 18 24 30 36 42 48 54
+7 14 21 28 35 42 49 56 63
+8 16 24 32 40 48 56 64 72
+9 18 27 36 45 54 63 72 81</code></pre>
+</div>
+</div>
+<ul>
+<li>data frame : vector를 구성요소로 한 list의 형태 (외형적으로 보면 2dimension으로 보인다) dataframe의 구성요소는 vector들 (각각의 vector는 동일한 데이터 타입이라야 함)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="do">## dataframe 만들기</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="at">col1 =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"Anyone"</span>, <span class="st">"None"</span>),</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="at">col2 =</span> <span class="fu">c</span>(<span class="dv">160</span>, <span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">200</span>),</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="at">col3 =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    col1 col2  col3
+1      A  160  TRUE
+2      B  170 FALSE
+3 Anyone  180 FALSE
+4   None  200  TRUE</code></pre>
+</div>
+</div>
+<ul>
+<li>데이터프레임 이름 &lt;- data.frame(컬럼이름= c(data_1, …. , data_n), ….. ) 이런 형식으로 데이터 프레임을 만들 수 있다. 데이터프레임이 R의 기본적인 데이터 양식이기 때문에 이를 다루는 방법이 다양하게 존재함</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="do">## dataframe cell 찾기</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>df1[<span class="dv">3</span>,<span class="dv">2</span>] <span class="co">#3행 2열의 데이터</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 180</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="do">## column 이름으로 찾기</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>df1<span class="sc">$</span>col1 ; df1[, <span class="st">"col1"</span>]; df1[<span class="st">"col1"</span>] <span class="do">### df1의 col1 열을 찾는 방법들</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "A"      "B"      "Anyone" "None"  </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "A"      "B"      "Anyone" "None"  </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    col1
+1      A
+2      B
+3 Anyone
+4   None</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>df1[,<span class="dv">1</span>]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "A"      "B"      "Anyone" "None"  </code></pre>
+</div>
+</div>
+</section>
+<section id="리스트lists" class="level3">
+<h3 class="anchored" data-anchor-id="리스트lists">리스트(Lists)</h3>
+<p>리스트 (“generic vectors”)는 데이터 저장(data storage)의 또 다른 종류입니다. 리스트들의 구성요소는 어떠한 유형의 R 객체들이 될 수 있습니다. 즉, 리스트의 구성요소들은 같은 유형일 필요가 없습니다.리스트의 구성요소들은 세가지 다른 인덱싱 조작(indexing operation)에 의하여 접근되어 집니다. 자세한 사항은 <a href="https://translation.r-project.org/man/R-lang/R-lang-ko.html#Indexing">Indexing</a>에 설명되어 있습니다</p>
+<p>리스트도 벡터의 종류이긴 하지만, 리스트 유형을 제외한 기본 벡터의 종류들을 <em>atomic vectors</em>(벡터를 구성하는데 있어 더 이상 하위단계로 분류할 수 최소의 기본구성단위 요소만으로 된 벡터 – 아토믹 벡터)라고 합니다.</p>
+<blockquote class="blockquote">
+<p><strong>필자주:</strong> 데이터구조적인 측면에서 R에서의 vecter와 list 개념을 비교하면 같은 데이터 타입으로 구성된 1차원 구조를 vector라 하고, 2차원 구조는 matrix, 3차원 구조는 array가 됩니다. 데이터타입이 다르면 리스트가 됩니다. 데이터프레임은 2차원이지만 컬럼별로 데이터 타입이 다른 경우로 대부분의 엑셀자료에 해당합니다.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/data_structure.png" class="img-fluid figure-img"></p>
+<figcaption>Vector와 List의 비교</figcaption>
+</figure>
+</div>
+<ul>
+<li>list : R에만 있는 독특한 데이터타입이다. 이것은 모든 데이터 타입을 담을 수 있는 형태이고 자료의 길이가 달라도 같이 담을 수가 있게 되어 있다. 또한 리스트 속에 리스트를 넣을 수 있기에 다단계로 nesting 되는 구조로 만들 수 있다.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>sample_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">data1=</span>df1, <span class="at">data2 =</span> arr1, <span class="at">data3 =</span> x<span class="sc">%o%</span>x)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sample_list)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 3
+ $ data1:'data.frame':  4 obs. of  3 variables:
+  ..$ col1: chr [1:4] "A" "B" "Anyone" "None"
+  ..$ col2: num [1:4] 160 170 180 200
+  ..$ col3: logi [1:4] TRUE FALSE FALSE TRUE
+ $ data2: int [1:6, 1:5, 1:3] 1 2 3 4 5 6 7 8 9 10 ...
+ $ data3: num [1:8, 1:8] 4 6 8 10 12 14 16 18 6 9 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:8] "2" "3" "4" "5" ...
+  .. ..$ : chr [1:8] "2" "3" "4" "5" ...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>sample_list<span class="sc">$</span>data1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    col1 col2  col3
+1      A  160  TRUE
+2      B  170 FALSE
+3 Anyone  180 FALSE
+4   None  200  TRUE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>sample_list<span class="sc">$</span>data1[,<span class="dv">3</span>]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE  TRUE</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="속성attribute" class="level2">
+<h2 class="anchored" data-anchor-id="속성attribute">속성(Attribute)</h2>
+<p>NULL을 제외한 모든 object들은 그들에게 부여된 하나 이상의 attribute들을 가질 수 있습니다. Attribute들은 모든 element들이 이름지어진 곳에 pairlist처럼 저장되지만, name=value pair들의 세트처럼 생각되어야만 합니다. attribute들의 목록은 attributes를 사용하여 얻을 수 있고 attributes&lt;-에 의해 설정됩니다. 각각의 구성요소들은 attr와 attr&lt;-를 사용하여 접근됩니다.</p>
+<p>몇몇의 attribute들은 (예를들어 factor들을 위한 levels&lt;-) 특별한 accessor function들을 가지고있고 이들은 사용가능할 때만 사용되어야만 합니다. 실행의 숨겨진 디테일에 추가적으로, 그들은 추가적인operation들을 실행할 지도 모릅니다. R은 특별한 attribute을 포함하고 일관적인 확인들을 강요하는 attr&lt;-와 attributes&lt;-로의 call들을 가로채려고 시도합니다.</p>
+<p>행렬들과 열들은 간단하게말해서 dim attribute를 가진 벡터들이고 옵션적으로 dimnames가 벡터에 부여되어있습니다.</p>
+<p>Attribute들은 R에 사용된 class structure을 이행하하기위해 사용되었습니다. 만약 object가 class attribute를 가지고 있다면 그 attribute는 평가 도중 검토될 것입니다. R의 class structure은 Object-oriented programming에 자세하게 설명되어있습니다.</p>
+<section id="names" class="level3">
+<h3 class="anchored" data-anchor-id="names">Names</h3>
+<p>Names 속성은, 존재할 때, 벡터나 목록의 각각의 요소들에 label을 합니다. Object가 존재하는 names의 속성을 프린트하려고 할 때, 요소들을 label하기위하여 쓰여집니다. Names 속성은 예를들어quantile(x)[“25%”]와 같은 indexing 목적으로도 쓰여질 수 있습니다.</p>
+<p>names와 names&lt;- 구성들을 사용하여 name들을 얻거나 설정할 수도 있습니다. 뒷쪽 것 (names&lt;-)은 names 속성이 적합한 타입과 길이를 가지고있는지를 확실히 하기 위해 필요한 일관적인 체크를 수행할 것입니다.</p>
+<p>Pairlist들과 일차원 행들은 특별하게 대해집니다. Pairlist object들에는, 가상의 names 속성이 사용되어집니다; names 속성은 사실상 목록 구성요소들의 태그에서부터 구성됩니다. 일차원 행들에서 names 속성은 실제로dimnames[[1]]에 접근합니다.</p>
+</section>
+<section id="dimensions" class="level3">
+<h3 class="anchored" data-anchor-id="dimensions">Dimensions</h3>
+<p>dim 속성은 행들을 이행하기위하여 쓰여집니다. 행의 내용은 열방향순서의 벡터안에 저장되고, 그 dim 속성은 각각의 행의 규모를 명시하는 정수의 벡터입니다. R은 벡터의 길이가dimension 길이의 산출물임을 확실하게 합니다. 하나 이상의 dimension의 길이가 0일 수도 있습니다.</p>
+<p>벡터는 dim 속성이 없는 반면, 일차원 행은 길이가 1인 dim 속성을 가지고 있기때문에, 일차원 행과 같지 않습니다.</p>
+</section>
+<section id="dimnames" class="level3">
+<h3 class="anchored" data-anchor-id="dimnames">Dimnames</h3>
+<p>행은 문자 벡터의 목록인 dimnames 속성을 사용하여 각각의 dimension을 따로 이름지을 수도 있습니다. dimnames 목록이 자기 자신의 이름을 가지고 있을 수 있으며, 그러면 이는 행들을 프린트 할 때 extent heading들로 쓰여집니다.</p>
+</section>
+<section id="classes" class="level3">
+<h3 class="anchored" data-anchor-id="classes">Classes</h3>
+<p>R은class 속성을 통해 주로 컨트롤되는 정교한 class 시스테을 가지고 있습니다. 이 속성은object가 inherit하는 곳의 class들의 목록을 포함하고있는 문자 벡터입니다. 이 형태들은 R의 “일반적인 방법을” 기능의 기초를 형성합니다.</p>
+<p>이 속성은 사용자에의한 제한 없이도 가상적으로 접근되고 조작될 수 있습니다. 여기에는 object가 class 방법들이 예상하는 구성요소들을 확실히 포함하고 있는지를 확인하는 것이 없습니다. 그러므로 class 속성을 대신하는 것은 조심해서 해야만하며, 이들이 사용 가능할 때는 구체적인 창출과 강제 function들이 선호되어야만합니다.</p>
+</section>
+<section id="time-series-attributes" class="level3">
+<h3 class="anchored" data-anchor-id="time-series-attributes">Time series attributes</h3>
+<p>tsp 속성은 시계열 분석, 시작, 끝, 그리고 빈도의 매개변수를 붙잡고 있기위해 사용됩니다. 이 구성은 월간 혹은 분기별 데이터처럼 주기적인 하부구조를 가진 series들을 다루기위해 주로 사용됩니다.</p>
+</section>
+</section>
+<section id="special-compound-objects" class="level2">
+<h2 class="anchored" data-anchor-id="special-compound-objects">Special compound objects</h2>
+<section id="factors" class="level3">
+<h3 class="anchored" data-anchor-id="factors">Factors</h3>
+<p>Factor들은 유한 값들을 가질 수 있는 아이템들 (성별, 사회계층 등)을 설명하기위하여 사용됩니다. Factor는 levels 속성과 “factor” class를 가집니다. 선택적으로, factor이 modeling function들에 사용되었을 때 사용된 parametrisation을 조정하기위한 contrasts 속성도 포함하고 있을 수 있습니다.</p>
+<p>Factor는 순수하게 명목상이거나 순차적인 카테고리일 수도 있습니다. 순차적인 카테고리일 경우, 그렇게 정의되어야만하고 class 벡터c(“ordered”,” factor”)를 가집니다.</p>
+<blockquote class="blockquote">
+<p><strong>필자주:</strong> 순차적인 범주형변수에서 요인화를 할 때 아래와 같이 속성에서 ordered = TRUE로 설정해야 함을 의미하여 class로 확인하면 ordered도 같이 출력됨을 의미합니다.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"중간"</span>, <span class="st">"낮음"</span>, <span class="st">"높음"</span>, <span class="st">"중간"</span>, <span class="st">"낮음"</span>), </span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"낮음"</span>, <span class="st">"중간"</span>, <span class="st">"높음"</span>), </span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(size)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 중간 낮음 높음 중간 낮음
+Levels: 낮음 &lt; 중간 &lt; 높음</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(size)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ordered" "factor" </code></pre>
+</div>
+</div>
+</section>
+<section id="data-frame-objects" class="level3">
+<h3 class="anchored" data-anchor-id="data-frame-objects">Data frame objects</h3>
+<p>데이터 프레임은 SAS 혹은 SPSS 데이터 셋을 가장 비슷하게 흉내내는 R structure들 입니다..</p>
+<p>데이터 프레임은 모두가 같은 길이(행렬일 경우에는 열의 갯수)를 가지고있는 벡터들, factor들, 행렬들의 목록입니다. 추가적으로, 데이터 프레임은 일반적으로 값들을 label하는 names 속성과 행데이터를 label하는 row.names 속성을 가지고 있습니다.</p>
+</section>
+<section id="time-objects" class="level3">
+<h3 class="anchored" data-anchor-id="time-objects">Time objects</h3>
+<p>R에서 시간과 날짜를 다루기 위해 다양한 객체 유형들이 사용됩니다. 각 객체는 특정 용도에 맞춰 설계되었으며, 시계열 데이터 분석, 시간대 처리, 시간 간격 계산 등 다양한 작업에 활용됩니다. <code>Date</code>, <code>POSIXct</code>, <code>POSIXlt</code> 같은 기본 객체들 외에도, <code>lubridate</code>와 <code>hms</code> 패키지에서 제공하는 객체들이 더욱 세분화된 시간 데이터 처리를 가능하게 합니다.</p>
+<section id="date-객체" class="level4">
+<h4 class="anchored" data-anchor-id="date-객체"><strong>Date 객체</strong></h4>
+<ul>
+<li><p><strong>설명</strong>: <code>Date</code> 객체는 날짜를 일 단위로 표현합니다. 시간 정보는 포함하지 않으며, 주로 연도, 월, 일로 구성된 데이터를 다룹니다.</p></li>
+<li><p><strong>주요 용도</strong>: 날짜를 다루고, 날짜 간의 차이를 계산할 때 사용됩니다.</p></li>
+<li><p><strong>예시</strong>:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>today <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>(); <span class="fu">print</span>(today); <span class="fu">class</span>(today); <span class="fu">typeof</span>(today)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-03-23"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Date"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "double"</code></pre>
+</div>
+</div>
+</section>
+<section id="posixct-객체" class="level4">
+<h4 class="anchored" data-anchor-id="posixct-객체"><strong>POSIXct 객체</strong></h4>
+<ul>
+<li><p><strong>설명</strong>: <code>POSIXct</code> 객체는 날짜와 시간을 초 단위로 저장합니다. 이는 유닉스 타임스탬프처럼 시간대(time zone)를 고려하여 시간 데이터를 다룹니다. 숫자 벡터로 저장되며, 시계열 데이터를 처리할 때 유용합니다.</p></li>
+<li><p><strong>주요 용도</strong>: 시계열 데이터 분석, 시간 계산, 시간대 관리.</p></li>
+<li><p><strong>예시</strong></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>current_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(current_time); <span class="fu">class</span>(current_time); <span class="fu">typeof</span>(current_time)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-03-23 00:13:17 KST"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "POSIXct" "POSIXt" </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "double"</code></pre>
+</div>
+</div>
+</section>
+<section id="posixlt-객체" class="level4">
+<h4 class="anchored" data-anchor-id="posixlt-객체"><strong>POSIXlt 객체</strong></h4>
+<ul>
+<li><p><strong>설명</strong>: <code>POSIXlt</code> 객체는 리스트 형태로 날짜와 시간 데이터를 저장하며, 연도, 월, 일, 시, 분, 초 등 각각의 요소로 분리됩니다. 사람이 읽기 쉬운 형태로 데이터가 저장되며, 개별 요소를 쉽게 접근할 수 있습니다.</p></li>
+<li><p><strong>주요 용도</strong>: 날짜와 시간의 세부 요소를 조작할 때 유용.</p></li>
+</ul>
+<p><strong>예시</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>(time1 <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(<span class="st">"1960-01-01"</span>)); <span class="fu">class</span>(time1); <span class="fu">typeof</span>(time1)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1960-01-01 KST"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "POSIXlt" "POSIXt" </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+</div>
+</section>
+<section id="difftime-객체" class="level4">
+<h4 class="anchored" data-anchor-id="difftime-객체"><strong>difftime 객체</strong></h4>
+<ul>
+<li><p><strong>설명</strong>: <code>difftime</code> 객체는 두 날짜 또는 시간 간의 차이를 나타냅니다. 차이는 일(day), 시간(hour), 분(minute), 초(second) 등의 단위로 표현됩니다.</p></li>
+<li><p><strong>주요 용도</strong>: 시간 간격 또는 지속 시간 계산.</p></li>
+<li><p><strong>예시</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>first <span class="ot">&lt;-</span> <span class="st">"2022-08-20 08:15:22"</span> ; second <span class="ot">&lt;-</span> <span class="st">"2022-01-01 20:04:48"</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">difftime</span>(first, second); <span class="fu">difftime</span>(first, second, <span class="at">units =</span> <span class="st">"hours"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 230.5073 days</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 5532.176 hours</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>difftime1<span class="ot">&lt;-</span><span class="fu">difftime</span>(first, second)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(difftime1); <span class="fu">typeof</span>(difftime1)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "difftime"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "double"</code></pre>
+</div>
+</div></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>first2 <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(first); second2 <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(second)</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>second2 <span class="sc">-</span> first2</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of -230.5073 days</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="do">## difftime(first, second, units = "months")</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="do">## match.arg(units)에서 다음과 같은 에러가 발생했습니다:</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 'arg' should be one of “auto”, “secs”, “mins”, “hours”, “days”, “weeks”</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="hms-객체-hms-패키지" class="level4">
+<h4 class="anchored" data-anchor-id="hms-객체-hms-패키지"><strong>hms 객체 (hms 패키지)</strong></h4>
+<ul>
+<li><p><strong>설명</strong>: <code>hms</code> 객체는 시, 분, 초를 저장하고 다루기 위한 객체입니다. 하루 시간을 다루는 데 유용하며, 타임스탬프 없이 시간을 표현할 수 있습니다.</p></li>
+<li><p><strong>주요 용도</strong>: 시, 분, 초 단위의 시간 데이터 관리.</p></li>
+<li><p><strong>예시</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hms)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>time_of_day <span class="ot">&lt;-</span> hms<span class="sc">::</span><span class="fu">as_hms</span>(<span class="st">"12:34:56"</span>)</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(time_of_day)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>12:34:56</code></pre>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="interval-period-duration-객체-lubridate-패키지" class="level4">
+<h4 class="anchored" data-anchor-id="interval-period-duration-객체-lubridate-패키지"><strong>Interval, Period, Duration 객체 (lubridate 패키지)</strong></h4>
+<ul>
+<li><p><strong>설명</strong>: <code>Interval</code>, <code>Period</code>, <code>Duration</code> 객체는 <code>lubridate</code> 패키지에서 제공되며, 각각 시간 간격을 다루는 데 특화되어 있습니다.</p>
+<ul>
+<li><p><strong>Interval</strong>: 시작 시간과 종료 시간을 포함하는 시간 간격.</p></li>
+<li><p><strong>Period</strong>: 달력상의 시간 단위 (예: 월, 일, 년)로 표현된 기간.</p></li>
+<li><p><strong>Duration</strong>: 일정한 시간 간격을 초 단위로 표현.</p></li>
+</ul></li>
+<li><p><strong>주요 용도</strong>: 시간 간격 계산, 특정 기간 동안의 시간 변화 분석.</p></li>
+<li><p><strong>예시</strong></p>
+<div class="cell" data-massage="false">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(lubridate))</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2024-08-08 08:00:00"</span>)</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2024-08-08 12:00:00"</span>)</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>interval <span class="ot">&lt;-</span> <span class="fu">interval</span>(start_time, end_time)</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(interval)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2024-08-08 08:00:00 KST--2024-08-08 12:00:00 KST</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>period <span class="ot">&lt;-</span> <span class="fu">months</span>(<span class="dv">3</span>) <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">10</span>)</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(period)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "3m 10d 0H 0M 0S"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>duration <span class="ot">&lt;-</span> <span class="fu">as.duration</span>(period)</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(duration)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "8753400s (~14.47 weeks)"</code></pre>
+</div>
+</div></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+<section id="section" class="level1">
+<h1></h1>
+</section>
+<section id="advanced-techniques" class="level1">
+<h1>Advanced Techniques</h1>
+<section id="data-manipulation" class="level2">
+<h2 class="anchored" data-anchor-id="data-manipulation">Data Manipulation</h2>
+<section id="data-reading" class="level3">
+<h3 class="anchored" data-anchor-id="data-reading">Data reading</h3>
+<p>data file이 존재하는 디렉토리를 먼저 설정해주어야 합니다. 이를 위한 명령어는 setwd() = set working directory 라는 의미 setwd(“C:/R/projects/R-4.4.1-RPythonStudy_HANJM”) 와 같이 디렉토리를 설정해줄 수도 있지만, 만약 디렉토리를 찾기 어렵다면 setwd( choose.dir() ) 와 같은 명령으로 파일탐색기를 열어서 디렉토리를 선택할 수 있습니다. 현재 사용 할 xlsx 파일들이 다음 디렉토리에 있다고 가정합니다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/R/projects/R-4.4.1-RPythonStudy_HANJM/raw_data"</span>)</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>(<span class="at">pattern =</span> <span class="st">"*.xlsx"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "deidentified_han20230213.xlsx"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>xlsxfiles <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">pattern =</span> <span class="st">"*.xlsx"</span>)</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>ptinfo <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(xlsxfiles[<span class="dv">1</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="binding-tables" class="level3">
+<h3 class="anchored" data-anchor-id="binding-tables">Binding tables</h3>
+<p>데이터프레임 결합 방법들</p>
+<p>rbind(), cbind(), merge()</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-2973070490.png" class="img-fluid figure-img"></p>
+<figcaption>데이터프레임 결합방법</figcaption>
+</figure>
+</div>
+<p>** 당연한 이야기지만 rbind는 컬럼의 갯수가 같아야 하고, cbind는 행의 갯수가 같아야 합니다.</p>
+</section>
+<section id="join-merge-tables" class="level3">
+<h3 class="anchored" data-anchor-id="join-merge-tables">Join (Merge) tables</h3>
+<p>merge function</p>
+<p>merge(x, y, by = intersect(names(x), names(y)), ## 공통된 컬럼하나를 결합용 키로 선택</p>
+<p>by.x = by, by.y = by, all = FALSE, all.x = all, all.y = all, ## x와 y의 결합용 키의 이름이 서로 다를 경우에는 독립적으로 지정</p>
+<p>sort = TRUE, suffixes = c(“.x”,“.y”), no.dups = TRUE,</p>
+<p>incomparables = NULL, …)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">"Lee"</span>,<span class="st">"Kim"</span>,<span class="st">"Park"</span>, <span class="st">"Kang"</span>,</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="st">"Shin"</span>, <span class="st">"Lim"</span>, <span class="st">"Kwon"</span>, <span class="st">"Choi"</span>, <span class="st">"Nam"</span>, <span class="st">"Baek"</span> ),</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="at">Score =</span> <span class="fu">as.integer</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">80</span>,<span class="dv">6</span> ))</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="at">ID =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">9</span>, <span class="at">replace =</span> F),</span>
+<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="at">Department =</span> <span class="fu">sample</span>( <span class="fu">c</span>(<span class="st">"IM"</span>,<span class="st">"GS"</span>,<span class="st">"GY"</span>,<span class="st">"PD"</span> ),<span class="dv">9</span>, <span class="at">replace =</span> T),</span>
+<span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a><span class="at">Age =</span> <span class="fu">as.integer</span>(<span class="fu">rnorm</span>(<span class="dv">9</span>, <span class="dv">40</span>,<span class="dv">6</span> )) )</span>
+<span id="cb95-8"><a href="#cb95-8" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   ID Name Score
+1   1  Lee    76
+2   2  Kim    76
+3   3 Park    79
+4   4 Kang    70
+5   5 Shin    92
+6   6  Lim    80
+7   7 Kwon    79
+8   8 Choi    71
+9   9  Nam    81
+10 10 Baek    88</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>merged_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(df1,df2, <span class="at">by=</span><span class="st">"ID"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>) <span class="co"># full join</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>merged_df</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   ID Name Score Department Age
+1   1  Lee    76       &lt;NA&gt;  NA
+2   2  Kim    76         GY  43
+3   3 Park    79         IM  37
+4   4 Kang    70         GS  36
+5   5 Shin    92         PD  47
+6   6  Lim    80         GS  33
+7   7 Kwon    79         GS  39
+8   8 Choi    71         GY  37
+9   9  Nam    81         GS  35
+10 10 Baek    88         GS  45</code></pre>
+</div>
+</div>
+</section>
+<section id="types-of-join-merge" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-join-merge">Types of Join merge</h3>
+<p>함수를 실행하여 데이터를 결합할 때에는 데이터 join 방법이 다음과 같이 4가지가 있다. 두개의 df에서 모든 데이터가 완전하게 존재하지 않기 때문에 일치하지 않는 부분에 대한 처리규칙이 중요하다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-1003725778.png" class="img-fluid figure-img"></p>
+<figcaption>Types of Join</figcaption>
+</figure>
+</div>
+<p>merge 함수의 옵션에서 all = TRUE 를 선택하면 full join, all.x 는 left join, all.y는 right join이 된다.</p>
+<p>all= FALSE 인 경우에는 당연히 inner join dplyr package에는 개별적인 join 함수가 있는데 그것을 사용해도 됨</p>
+<p>inner_join(df1, df2), left_join(df1, df2), right_join(df1, df2), full_join(df1, df2) left_join(df2, df1) : alternative right join</p>
+</section>
+<section id="reshape-data" class="level3">
+<h3 class="anchored" data-anchor-id="reshape-data">Reshape data</h3>
+</section>
+</section>
+<section id="pipeline-operator" class="level2">
+<h2 class="anchored" data-anchor-id="pipeline-operator">Pipeline operator</h2>
+<p>library magrittr 를 사용하면 pipeline 연산자를 쓸 수 있게 된다. %&gt;% 형식이다.</p>
+<p>만약 c(“A”,“B”,“C”) 라는 데이터를 “ABC” 로 paste 한 다음에 다시 tolower 함수를 적용하여 “abc”로 변환하는 작업을 한다고 하자. 그런 경우에는 다음과 같이 코딩을 해야 한다. 하지만 pipeline operator를 사용하면 함수 중첩을 줄이고 코드를 이해하기 쉽게 사용할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(<span class="fu">paste</span>(<span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>), <span class="at">collapse =</span> <span class="st">""</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "abc"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>) <span class="sc">%&gt;%</span> <span class="fu">paste</span>(., <span class="at">collapse =</span> <span class="st">""</span>) <span class="sc">%&gt;%</span> tolower</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "abc"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 첫번째 인자로 들어가기 위해서 . 을 사용함</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="latex-codes-in-quarto" class="level1">
+<h1>LaTeX codes in quarto</h1>
+<section id="basic-latex-code" class="level2">
+<h2 class="anchored" data-anchor-id="basic-latex-code">Basic LaTeX code</h2>
+<p><img src="images/clipboard-4076726206.png" class="img-fluid"></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

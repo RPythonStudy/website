@@ -1,0 +1,87 @@
+---
+title: "OpenSSH"
+description: "SSH 키를 생성하고 Github에 연결하기"
+author: "BenKorea"
+date: 2024-12-11
+date-modified: last-modified
+categories: [Tools, openSSH] 
+---
+
+### 필요성
+
+GitHub는 한때 아이디와 패스워드만으로 로그인하고 Git 명령어(예: push, pull 등)를 수행할 수 있었지만, 보안 강화를 위해 최근에는 패스워드 대신 personal access token(PAT)이나 OAuth, 2단계 인증(2FA) 등의 인증 방식을 도입했습니다. 이로 인해 단순한 아이디/패스워드 방식이 사라지고, 추가적인 인증 절차가 필수가 되었습니다.
+
+SSH 키 인증 방식은 공개키 암호화 기술을 사용하여 GitHub와의 통신을 자동으로 인증해줍니다. 이 방식의 주요 장점은 다음과 같습니다:
+
+-   자동 로그인: 한 번 SSH 키를 등록해두면, 이후 Git 명령어를 실행할 때마다 패스워드나 토큰을 일일이 입력할 필요 없이 자동으로 인증이 이루어집니다.
+-   보안 강화: SSH 키는 일반 패스워드보다 훨씬 복잡하고 안전하여, 계정 탈취 위험을 줄여줍니다.
+-   개발 효율성 증대: 자동 로그인 덕분에 반복적인 인증 과정 없이 바로 Git 작업을 할 수 있어, 개발 환경에서의 생산성이 향상됩니다.
+
+이처럼 SSH 키를 활용하면 번거로운 인증 절차를 줄이고, 보다 편리하고 안전하게 GitHub와 상호작용할 수 있습니다.
+
+### 핵심개념
+
+두개의 키를 생성하여 하나는 개인키(private key)로, 다른 하나는 공개키(public key)로 구성됩니다. 개인키는 사용자가 소유하고, 공개키는 GitHub에 등록됩니다. GitHub는 공개키를 통해 사용자를 인증하고, 사용자는 개인키를 통해 GitHub에 접속합니다 @fig-github-ssh.
+
+[![](images/SSH%20Connection%20explained.png){#fig-github-ssh}](https://andy6804tw.github.io/2018/03/22/github-ssh/)
+
+### OpenSSH 설치
+
+SSH에는 여러종류가 있지만 여기에서는 Git 설치 시에 bundle로 설치되는 OpenSSH를 사용합니다. 따라서 별도의 설치과정이 필요하지 않습니다.
+
+### 원도우에서 기존키의 제거
+
+-   키를 새로 만드는 경우에는 상관없지만 기존키를 삭제해야 한다면 아래와 같이 진행합니다.
+-   C:\Users\<YourUsername\>.ssh 디렉토리에 있는 개인키(예시 id_rsa) 및 공개키 (예시 id_rsa.pub) 파일들을 수동으로 삭제합니다.
+
+### 새로운 키의 생성
+
+-   Git 설치매뉴얼 중 다음을 참고하였습니다 <https://git-scm.com/book/ko/v2/Git-%ec%84%9c%eb%b2%84-SSH-%ea%b3%b5%ea%b0%9c%ed%82%a4-%eb%a7%8c%eb%93%a4%ea%b8%b0>
+-   C:\\Program Files\\Git\\usr\\bin\\에 위치하는 ssh-keygen.exe를 구동시켜야 하므로 Git Bash를 열어서 먼저 이동하여야 합니다.
+    -   Git 설치 시에 옵션으로 Windows Explorer integration 항목의 Open Git bash heresh가 선택되었다면 윈도우 탐색기에서도 Git Bash가 우클릭으로 열리게 됩니다. 그러한 경우에는 탐색기로 위 경로까지 이동한 후에 우클릭으로 Git Bash를 여시는 것이 더 편리할 수 있습니다.
+-   설치경로는 기본값으로 진행하고
+-   passphrase는 empty로 하면 원격접속시에 비밀번호를 묻지 않게 되므로 empty로 설정하여 진행합니다.
+-   C:\\Users\\\<YourUsername\\\>.ssh가 생성되면서 id_ed25519와 id_ed25519.pub 파일이 생성됩니다.
+    -   이 중 \*.pub가 공개키입니다.
+
+### SSH agent 확인하기
+
+-   원도우의 경우 서비스창에서 OPenSSH Authentication Agent가 시행중인지 확인합니다.
+    -   `Win+R` 실행창을 열어 `services.msc`를 입력하면 서비스창이 열립니다.
+-   Agent 속성을 확인하여 시작유형을 `자동`으로 설정하셔야 하고
+-   복구탭에서 첫째, 둘째, 후속 실패시에 대한 조치를 `서비스 다시 시작`으로 설정해야 합니다.
+
+### Gitgub에 공개키 등록하기
+
+-   GitHub에 로그인한 후 오른쪽 상단의 프로필 아이콘을 클릭하고 Settings를 선택합니다.
+-   왼쪽 메뉴에서 SSH and GPG keys를 선택합니다.
+-   New SSH key 버튼을 클릭합니다.
+-   Title에는 키의 제목을 입력합니다.
+-   Key에는 id_ed25519.pub 파일의 내용을 복사하여 붙여넣습니다.
+-   Add SSH key 버튼을 클릭합니다.
+
+### Gitgub 최초연결 설정
+
+-   bash창에서 아래의 명령을 입력합니다.
+
+```{r git-ssh-connection, eval=FALSE, filename="Git Bash"}
+ssh -T git@github.com
+```
+
+-   처음 연결시에 "This key is not known by any other names"라는 메시지가 나오는데 yes를 입력합니다.
+-   "Hi <username>! You've successfully authenticated, but GitHub does not provide shell access."라는 메시지가 나오면 성공입니다.
+
+### SSH URL로 변경
+만약에 기존의 원격저장소가 있었고 SSH key를 추후 등록하였다면, 로컬컴퓨터의 저장소와 원격저장소의 기존연결 (HTTPs URL)을 SSH 변경을 해야 연결방법이 변경됩니다. 이 방법은 아래와 같습니다.
+-   원격저장소의 <> Code 메뉴 하부의 초록색 <>Code 버튼을 누르면 로컬과 연결하는 방법으로써 HTTPS와 SSH를 선택할 수 있게 나옵니다. SSH를 클릭하면 하부의 주소가 복사 가능한데, 이를 복사한 후, 로컬에서 RStudion의 Terminal Tab (=Git Bash)에서 다음의  git remote add origin 명령을 통하여 원격저장소의 주소를 변경하시면 됩니다.
+
+
+```{r git-set-url, eval=FALSE, filename="Git Bash"}
+git remote set-url origin git@github.com:<username>/<repository>.git
+```
+
+제대로 변경되었는지 확인은 다음의 명령으로 갱신된 주소가 출력되는지 확인하시면 됩니다.
+
+```{r git-set-url_validatino, eval=FALSE, filename="Git Bash"}
+git remote -v
+```

@@ -1,0 +1,46 @@
+---
+title: "Git 설정"
+description: "Git 설정에 대한 안내"
+author: "BenKorea feat. ChatGPT"
+date: "2024-05-06"
+date-modified: last-modified
+categories: [Git, configuration]
+number-sections: true
+---
+
+### 사용자정보 설정
+
+Git에서는 커밋을 할 때마다 누가 했는지를 사용자명과 이메일을 기록해둡니다. 이를 위해 설치 시 아래의 예시와 같이 사용자이름과 이메일 설정합니다.
+
+```{r git_config_user.name, eval=FALSE, filename="Command Prompt"}
+git config --global user.name "RPythonStudy"
+```
+
+```{r eval=FALSE, filename="Command Prompt"}
+git config --global user.email "r.python.study@gmail.com"
+```
+
+### 사용자정보 설정 확인
+
+각각 아래의 명령으로 사용자명과 이메일 주소를 확인할 수 있습니다.
+
+```{r git_config_username_confirm, eval=FALSE, filename="Command Prompt"}
+git config user.name
+```
+
+```{r git_config_useremail_confirm, eval=FALSE, filename="Command Prompt"}
+git config user.email
+```
+
+### 프로젝트에 Git 적용하기
+
+#### RStudio에서 Git 적용하기
+RStudio의 global options에서 Git/SVN을 선택하고, Git executable 경로를 지정해주면 RStudio에서 Git을 사용할 수 있습니다. 이렇게 설정해두면 새로운 프로젝트를 생성할 때마다  Git을 적용할지 물어오거나 자동으로 Git를 적용하여 프로젝트를 생성합니다.
+
+#### Git Bash에서 Git 적용하기
+버전관리를 시작할려면 원하는 폴더 (=프로젝트 폴더)에서 git init 명령어를 실행하면 됩니다. 
+
+```{r git_init, eval=FALSE, filename="Command Prompt"}
+git init
+```
+다른 표현으로는 저장소를 만든다고도 합니다. 실행결과로써 `.git` 이라는 숨김폴더가 생성되며, 이 폴더에는 버전관리에 필요한 파일들이 저장됩니다. 그러나 이 방식은 특수한 경우에만 사용하며, 보통은 RStudio나 다른 GUI 프로그램을 사용합니다.

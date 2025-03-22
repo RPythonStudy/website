@@ -1,0 +1,11 @@
+project:
+  type: website
+  output-dir: docs/en
+
+website:
+  navbar:
+    right:
+      - href: ..
+        text: Korean
+
+lang: en

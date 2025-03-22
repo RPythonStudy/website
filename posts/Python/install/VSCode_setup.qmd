@@ -1,0 +1,275 @@
+---
+title: "VS Code Setup"
+description: "Guidance on Installing and Configuring VS Code"
+author: "RPythonStudyGroup feat. ChatGPT"
+date: "2024-08-31"
+date-modified: "2024-09-29"
+categories:
+  - Python
+  - VS Code
+  - setup
+---
+
+::: {.content-visible when-profile="ko"}
+## Python IDE 추천
+
+Python 개발에 적합한 다양한 통합개발환경(Intergrated Developement Enviroment, IDE) 중에서 PyCharm은 강력한 기능과 Django 통합을 제공하지만 시스템 자원을 많이 소모하며 유료입니다. Jupyter Notebook은 데이터 과학에 최적화되어 있지만, 대규모 코드베이스 관리나 전통적인 IDE 기능에는 제한이 있습니다. Spyder는 과학 계산에 특화되어 있으나, 범용 개발에는 한계가 있습니다. 반면, Visual Studio Code (VS Code)는 확장성이 뛰어나며 다양한 프로그래밍 언어 지원과 시스템 자원 소모가 적은 경량의 IDE로, 필요에 따라 확장 기능을 추가할 수 있어 Python 개발을 포함한 여러 프로젝트를 효과적으로 관리할 수 있습니다.
+
+연구회에서는 Python 개발에 VS Code를 우선 추천합니다.
+
+## 설치 안내
+
+공식문서(<https://code.visualstudio.com/docs/setup/setup-overview>)에서 자신의 운영체제에 맞는 안내를 참고하는 것이 이상적이며, 아래의 요약을 참고하여 설치 하셔도 됩니다.
+
+## 설치 파일
+
+공식 웹사이트(<https://code.visualstudio.com/Download>)에서 운영 체제에 맞는 최신 설치 파일을 다운로드하고 설치합니다. Window 운영체제에서 몇가지 선택이 가능한데 System installer (모든 사용자들이 VS Code가 사용가능한 설치파일)를 추천하며, 2024년 9월 29일 기준으로 Windows 운영 체제에는 VSCodeSetup-1.93.1.exe 파일이 최신입니다.
+
+## 설치 경로
+
+Window 운영체제의 경우 기본 설치경로는 `C:\Users\{Username}\AppData\Local\Programs\Microsoft VS Code`이며 이를 추천합니다.
+
+## VS Code 레이아웃
+
+설정을 설명함에 있어 VS Code 공식문서(<https://code.visualstudio.com/docs>)에서 사용된 용어를 사용하고자 합니다. 레이아웃 구성요소에 대한 용어는 @fig-BasicLayout 을 참고하시길 바랍니다. 그러나 "타이틀 및 메뉴 바"와 같은 용어는 공식 문서에 명시적으로 정의되지 않았지만 명확한 설명을 위해 필요하다고 생각되어 여기에서는 임의적으로 정의하여 사용하겠습니다.
+:::
+
+::: {.content-visible when-profile="en"}
+## Recommended Python Integrated Development Environment
+
+There are various Integrated Development Environments (IDEs) suitable for Python development. PyCharm offers powerful features and Django integration but consumes significant system resources and is a paid tool. Jupyter Notebook is optimized for data science but has limitations in managing large codebases and traditional IDE features. Spyder is specialized for scientific computing but has limitations for general-purpose development. On the other hand, Visual Studio Code (VS Code) is a lightweight IDE with excellent extensibility, supporting various programming languages and consuming fewer system resources. It allows effective management of multiple projects, including Python development, by adding extension features as needed. The study group recommends VS Code for Python development.
+
+## Installation Guidance
+
+It is ideal to refer to the official documentation (https://code.visualstudio.com/docs/setup/setup-overview) for installation instructions tailored to your operating system. However, you can follow the simple guidance below to install VS Code.
+
+## Installation File
+
+Download the latest installation file suitable for your operating system from the official website (https://code.visualstudio.com/Download). For Windows, the System installer (an installation file that makes VS Code available to all users) is recommended. As of September 29, 2024, the latest file for Windows is VSCodeSetup-1.93.1.exe.
+
+## Installation Path
+
+For Windows, the default installation path is `C:\Users\{Username}\AppData\Local\Programs\Microsoft VS Code`, which is recommended.
+
+## VS Code Layout
+
+In explaining the configuration, the terms used in the official VS Code documentation (https://code.visualstudio.com/docs) are adopted. The terms for layout components are referenced in @fig-BasicLayout. However, terms such as "title & menu bar" are not explicitly defined in the official documentation but are used here for clarity.
+:::
+
+![Basic layout of VS Code](image/BasicLayout.png){#fig-BasicLayout}
+
+::: {.content-visible when-profile="ko"}
+## Python 확장(기능) 설치
+
+VS Code에서 Python을 실행코드를 작성 및 실행할려면 Python이라는 확장(기능)을 설치해야 합니다. VS Code를 처음 실행하면 환영 페이지가 표시됩니다. 이 페이지에서 Python 확장을 설치하거나 대신 Ⓐ Activity bar의 확장 메뉴를 사용하여 설치할 수 있습니다. 설치된 확장 프로그램은 확장 프로그램 메뉴의 INSTALLED 섹션에서 확인할 수 있습니다 (@fig-PythonExtension). 이로써 VS code에서 Python을 사용할 수 있는 기본적인 설정을 되었습니다.
+:::
+
+::: {.content-visible when-profile="en"}
+## Installing Python Extensions
+
+To write and execute Python code in VS Code, you need to install the Python extension. When you first launch VS Code, the Welcome page will appear. Install the Python extension from this page, or alternatively, use the Extensions menu in the Activity Bar (Ⓐ). Once installed, the extension can be verified under the INSTALLED section in the Extensions menu (@fig-PythonExtension). This completes the basic setup for using Python in VS Code.
+:::
+
+![Python Extension in VS Code](image/PythonExtension.png){#fig-PythonExtension}
+
+::: {.content-visible when-profile="ko"}
+## 프로젝트 폴더명 추천
+
+R 처럼 Python에서도 프로젝트별 독립관리는 프로젝트 폴더 단위로 구현됩니다. 우리 연구회에서는 R과 Python을 사용하므로 C: 루트 디렉토리 아래에 Projects란 폴더를 만들고 각 실행파일의 버전이 폴더명에 먼저 포함되고 이어서 프로젝트를 상징하는 간결한 이름를 부여할 것을 추천합니다 (@fig-ProjectFolderExample).
+:::
+
+::: {.content-visible when-profile="en"}
+## Creating Project Folders
+
+Like R, Python also implements independent management for each project at the project folder level. Since our study group uses both R and Python, we recommend creating a Projects folder under the C: root directory. We suggest naming each project folder with the version of the executable file first, followed by a concise name representing the project (@fig-ProjectFolderExample).
+:::
+
+::: {#fig-ProjectFolderExample}
+```         
+C:\Projects\R-x'.y'.z'-Project_Name'\            # R project directory and project name example
+         └─ Python-x.y.z-Project_Name\  # Python project directory and project name example
+```
+
+Project folder location and name example
+:::
+
+::: {.content-visible when-profile="ko"}
+## 프로젝트별 가상환경 만들기
+
+파이썬 가상 환경은 개발자가 각기 다른 프로젝트에서 필요로 하는 다양한 라이브러리와 파이썬 버전을 독립적으로 관리할 수 있게 해줍니다. 이는 서로 다른 의존성 요구 사항을 가진 여러 프로젝트를 동일한 시스템에서 충돌 없이 운영할 수 있도록 하며, 개발 환경을 격리시켜 한 프로젝트에서 발생하는 문제가 다른 프로젝트에 영향을 미치지 않도록 합니다. 또한, 가상 환경은 프로젝트의 특정 설정을 쉽게 다른 환경으로 복제하거나 배포할 수 있도록 지원함으로써, 개발과 테스트, 프로덕션 환경 간의 일관성을 유지할 수 있게 해주고, 팀 작업에서도 각 개발자가 동일한 설정에서 작업할 수 있도록 도와줍니다. 이러한 이유로, 가상 환경은 프로젝트의 안정성과 개발 효율성을 크게 향상시키는 중요한 도구입니다. 다음은 VS Code에서 Python 가상 환경을 구현하는 방법을 설명합니다.
+
+### 프로젝트 폴더 생성
+
+앞서의 설명처럼 프로젝트 폴더를 만듭니다. 그러나 VS Code에서는 폴더를 직접 생성할 수 있는 옵션이 없습니다. 따라서 프로젝트 폴더를 만들기 위해 Windows 탐색기를 사용하는 것이 좋습니다. (대신 VS Code의 타이틀 및 메뉴 바에 있는 터미널 탭을 사용하여 프로젝트 폴더를 만들 수 있지만, 이 방법은 Windows 탐색기를 사용하는 것보다 더 번거로울 수 있습니다.) 예를 들어 프로젝트 폴더를 다음과 같이 이름을 지어 만듭니다(예: C:\Projects\Python-x.y.z-Project_Name).
+
+### 프로젝트 폴더 열기
+
+탐색기 메뉴(Ⓐ Activity bar)나 타이틀 및 메뉴 바의 파일 메뉴를 사용하여 프로젝트 폴더를 엽니다. (이는 이후에 터미널을 열 때, 프로젝트 폴더에서 열리게 하기 위함입니다.)
+
+### 새터미널 생성
+
+타이틀 및 메뉴 바에서 터미널(T) 메뉴 하부의 새터미널 메뉴를 선택하여 새로운 터미널을 Ⓓ 패널에 열리게 합니다. 이 때 열린 터미널이 만약 powershell이라면 패널 타이틀 바 우측에 있는 `+(새 터미널)` 기호 옆의 `v(시작 프로필)`메뉴를 선택하고 (@fig-CommandPrompt), 터미널의 종류를 `Command Prompt`를 선택하여 새로운 Command Prompt 터미널을 생성해 줍니다.
+:::
+
+::: {.content-visible when-profile="en"}
+## Creating Virtual Environments for Each Project
+
+Python virtual environments allow developers to manage various libraries and Python versions needed for different projects independently. This enables multiple projects with different dependency requirements to operate on the same system without conflicts, isolates the development environment to prevent issues in one project from affecting others, and supports easy replication or deployment of specific project settings to different environments. Virtual environments help maintain consistency between development, testing, and production environments and enable team members to work in the same settings. For these reasons, virtual environments are essential tools that significantly enhance project stability and development efficiency. The following explains how to implement Python virtual environments in VS Code.
+
+### Creating Project Folders
+
+Create project folders as described earlier. However, there is no option to create folders directly in VS Code. Therefore, it is recommended to use Windows Explorer to create project folders. (Alternatively, you can use the terminal tab in the title & menu bar of VS Code to create project folders, but this method may be more cumbersome than using Windows Explorer.) For example, name and create project folders as follows (e.g., C:\Projects\Python-x.y.z-Project_Name).
+
+### Opening Project Folders
+
+Open project folders using the Explorer menu (Ⓐ Activity bar) or the File menu in the title & menu bar. (This is to ensure that the project folder opens when you open the terminal later.)
+
+### Creating a New Terminal
+
+Select the New Terminal option in the Terminal menu under the title & menu bar to open a new terminal in the Ⓓ panel. If the opened terminal is PowerShell, select the `v(Select Default Profile)` menu next to the `+(New Terminal)` icon on the right side of the panel title bar (@fig-CommandPrompt). Then, choose `Command Prompt` to create a new Command Prompt terminal.
+:::
+
+![Command Prompt Terminal Creating](image/CommandPrompt.png){#fig-CommandPrompt}
+
+::: {.content-visible when-profile="ko"}
+### Python 가상 환경 생성
+
+새롭게 만들어진 터미널 내에서 다음 명령을 입력 및 실행합니다.
+:::
+
+::: {.content-visible when-profile="en"}
+### Creating a Python Virtual Environment
+
+Enter and execute the following command in the newly created terminal.
+:::
+
+```{r Python_virtual_ko, eval=FALSE, filename="Command Prompt Terminal"}
+python -m venv venv
+```
+
+:::: {.content-visible when-profile="ko"}
+::: {.callout-note title="python -m venv venv 의미는 ......" collapse="true" appearance="minimal"}
+Python의 내장 모듈 venv를 사용하여 새로운 가상 환경을 생성하는 명령입니다.
+
+1\. python 이 부분은 시스템에 설치된 Python 인터프리터를 호출합니다. 명령을 실행하는 시스템에서 기본적으로 설정된 Python 버전을 사용하여 다음에 지정된 모듈을 실행합니다.
+
+2\. -m 플래그는 Python에게 명령 라인에서 직접 모듈을 실행하도록 지시합니다. 이 플래그 다음에 오는 모듈 이름(venv 등)에 해당하는 파이썬 모듈을 찾아 그 모듈을 스크립트처럼 실행하게 합니다.
+
+3\. 첫번째 venv는 Python에 내장된 가상 환경 생성 모듈의 이름입니다. 이 모듈은 가상 환경을 생성, 관리, 유지하는 데 사용되며, 이 가상 환경은 독립된 Python 실행 환경을 제공합니다. 이 환경 내에서는 독립된 파이썬 인터프리터, 라이브러리, 스크립트가 포함되어 있습니다.
+
+4\. 두번째 venv는 생성될 가상 환경의 디렉토리 이름입니다. 이 예에서는 현재 디렉토리 내에 'venv'라는 이름의 폴더를 생성하고, 그 안에 가상 환경을 구축합니다. 디렉토리 이름은 사용자가 원하는 어떤 이름으로도 지정할 수 있으며, 이 이름으로 생성된 폴더 안에 가상 환경이 설정됩니다.
+
+따라서 `python -m venv venv` 명령은 현재 작업 중인 디렉토리에 'venv'라는 이름의 폴더를 생성하고, 그 안에 새로운 독립적인 Python 가상 환경을 설정합니다. 이 가상 환경은 다른 프로젝트와 독립적으로 Python 패키지를 설치하고 관리할 수 있는 개별적인 환경을 제공합니다. 이는 의존성 충돌을 방지하고 프로젝트 별로 다른 요구사항을 갖는 라이브러리들을 효과적으로 관리할 수 있게 해 줍니다.
+:::
+
+위 명령의 실행결과로써 프로젝트 폴더아래에 venv 가상화폴더가 생성되었습니다. 이는 탐색기 의 프로젝트폴더 아래에 venv라는 폴더가 보이면 성공한 것입니다 (@fig-VenvValidation).
+::::
+
+:::: {.content-visible when-profile="en"}
+::: {.callout-note title="Meaning of python -m venv venv" collapse="true" appearance="minimal"}
+The command uses the built-in Python module venv to create a new virtual environment.
+
+1\. `python` This part calls the Python interpreter installed on the system. It uses the Python version set as default on the system to execute the module specified next.
+
+2\. The `-m` flag instructs Python to run the module directly from the command line. It finds the Python module corresponding to the module name (venv, etc.) following this flag and executes that module like a script.
+
+3\. The first `venv` is the name of the built-in Python module for creating virtual environments. This module is used to create, manage, and maintain virtual environments, providing an independent Python execution environment. This environment contains an independent Python interpreter, libraries, and scripts.
+
+4\. The second `venv` is the directory name of the virtual environment to be created. In this example, a folder named 'venv' is created within the current directory, and the virtual environment is set up inside it. The directory name can be specified as any name the user desires, and the virtual environment is configured within the folder created with this name.
+
+Therefore, the command `python -m venv venv` creates a folder named 'venv' in the current working directory and sets up a new independent Python virtual environment inside it. This virtual environment provides a separate environment to install and manage Python packages independently from other projects. It prevents dependency conflicts and effectively manages libraries with different requirements for each project.
+:::
+
+The successful execution of the above command will create a venv virtual environment folder under the project folder. If you see a folder named venv under the project folder in the Explorer, the operation was successful (@fig-VenvValidation).
+::::
+
+![Validation of venv Folder Creation](image/VenvValdiation.png){#fig-VenvValidation}
+
+::: {.content-visible when-profile="ko"}
+가상화로 만들어진 venv 폴더하부에는 다음과 같은 폴더와 파일이 생성됩니다 (@fig-VenvDirectory).
+:::
+
+::: {.content-visible when-profile="en"}
+The following folders and files are created under the venv folder generated by the virtual environment (@fig-VenvDirectory).
+:::
+
+::: {#fig-VenvDirectory}
+```         
+(venv)/
+   ├── Include/                  # Folder for C/C++ header files
+   ├── Lib/                      # Folder for standard libraries and third-party packages
+   │      └── site-packages/     # Folder where packages installed via pip are located
+   ├── Scripts/                  # Folder containing executable scripts, such as pip
+   │      ├── activate           # Script to activate the virtual environment
+   │      ├── deactivate         # Script to deactivate the virtual environment
+   │      ├── python.exe         # Python executable for the virtual environment
+   │      └── pip.exe            # pip executable for managing packages in the virtual environment
+   └── pyvenv.cfg                # Configuration file for the virtual environment
+
+```
+(venv) Directory Structure
+:::
+
+::: {.content-visible when-profile="ko"}
+가상화환경 내에서는 pip로 패키지를 설치하면 글로벌에 설치되는 것이 아니라 venv 가상폴더 내의 site-packages 폴더에 설치됩니다. 이로써 프로젝트별로 필요한 패키지를 독립적으로 관리할 수 있게 되며, 이를 통해 프로젝트 간의 의존성 충돌을 방지할 수 있습니다.
+:::
+
+::: {.content-visible when-profile="en"}
+When you install packages using pip in the virtual environment, they are installed in the site-packages folder within the venv virtual folder, rather than globally. This allows you to manage the packages needed for each project independently, preventing dependency conflicts between projects.
+:::
+
+::: {.content-visible when-profile="ko"}
+### 프로젝트와 가상환경 연결
+`타이틀과 메뉴 바`의 `보기(V)` 메뉴에서 `명령 팔레트` 메뉴를 선택하면, 선택가능한 명령들이 리스트로 조회되며 이 중에서 `Python: 인터프리터 선택` 메뉴를 선택합니다 (@fig-SelectInterpreter).
+:::
+
+::: {.content-visible when-profile="en"}
+### Linking Project and Virtual Environment
+Select View from the title menu and choose Command Palette. Then select Python: Select Interpreter from the list of available commands (@fig-SelectInterpreter).
+:::
+
+![Select Interpreter in Command Palette](image/SelectInterpreter.png){#fig-SelectInterpreter}
+
+::: {.content-visible when-profile="ko"}
+위의 선택에 따라 현재 상황에서 선택 가능한 모든 Python 인터프리터가 조회되며, 이중에서 직전에 만든 프로젝트 폴더 아래의 venv 가상화폴더 아래의 Scripts 폴더 내의 python.exe를 선택합니다 (@fig-InterpreterSelection).
+:::
+
+::: {.content-visible when-profile="en"}
+Upon selection, all available Python interpreters will be displayed. Choose the python.exe file located in the Scripts folder under the venv virtual environment folder created in the project folder (@fig-InterpreterSelection).
+:::
+
+![Interpreter Selection](image/InterpreterSelection.png){#fig-InterpreterSelection}
+
+::: {.content-visible when-profile="ko"}
+### 가상환경 검증
+가상환경의 python 인터프리터를 선택하여 특정 프로젝트와 특정 가상환경의 인터프리터를 연결하더라도 화면에서는 아무런 변화가 없습니다. 오류없이 연결이 잘 되었는지 확인은 새 터널을 생성하면 @fig-ValidationVertualization 에서의 같이 터미널의 프롬프트에 `(venv)`의 가상화폴더를 괄호로 둘러싼 것이 보이게 되며, 이를 통해 성공적인 연결을 확인할 수 있으며 현재 가상화가 활성화되어 있음을 알 수 있습니다.
+:::
+
+::: {.content-visible when-profile="en"}
+### Validating the Virtual Environment
+Even after linking the Python interpreter of the virtual environment to a specific project, there will be no visible changes on the screen. To confirm that the connection was successful, open a new terminal. If you see the virtual environment folder `(venv)` enclosed in parentheses in the terminal prompt, as shown in @fig-ValidationVertualization, it indicates a successful connection. This confirms that the virtual environment is currently active.
+:::
+
+![Validation of Virtual Environment Activation](image/ValidationVirtualization.png){#fig-ValidationVertualization}
+
+::: {.content-visible when-profile="ko"}
+## 프로젝트별 설정저장
+프로젝트폴더에 가상환경설정까지 마친 후 이 상태를 저장해 둘 수 있습니다. 이를 위해 `타이틀 및 메뉴 바`의 `파일(F)` 메뉴에서 `작업영역을 다름이름으로 저장` 메뉴를 선택하면 됩니다 (@fig-WorskspaceSaveas).
+:::
+
+::: {.content-visible when-profile="en"}
+## Saving Project Settings
+After completing the virtual environment setup in the project folder, you can save this state. To do this, select Save Workspace As from the File menu in the title & menu bar (@fig-WorskspaceSaveas).
+:::
+
+![Workspaces Save as function in File Menu](image/WorkspaceSaveas.png){#fig-WorskspaceSaveas}
+
+::: {.content-visible when-profile="ko"}
+이 때 프로젝트 폴더에 프로젝트폴더이름.code-workspace 파일이 만들어지면 프로젝트폴더의 설정이 저장됩니다 (@fig-CodeWorkspace). 그리고 프로젝트를 다시 열 때 이 파일을 선택하면 프로젝트폴더의 설정이 자동으로 불러와집니다.
+:::
+
+::: {.content-visible when-profile="en"}
+When this action is taken, a projectfoldername.code-workspace file will be created in the project folder, saving the project settings (@fig-CodeWorkspace). When you reopen the project, selecting this file will automatically load the project folder settings.
+:::
+
+![code-workspace File Creation](image/CodeWorkspace.JPG){#fig-CodeWorkspace}

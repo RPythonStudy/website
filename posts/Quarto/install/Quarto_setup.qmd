@@ -1,0 +1,41 @@
+---
+title: "Quarto setup"
+description: "Guidance on Installing and Configuring Quarto"
+author: "RPythonStudyGroup feat. ChatGPT"
+date: "2024-10-24"
+date-modified: "2024-11-28"
+categories:
+  - Quarto
+  - setup
+---
+
+## 설치안내문서
+Quarto 공식사이트에서 제공하는 공식문서(<https://quarto.org/docs/get-started/>)를 참고하는 것이 이상적이겠지만, 아래의 요약을 참고하여 설치 하셔도 됩니다.
+
+## 설치 파일
+공식 Python 웹사이트(<https://quarto.org/docs/get-started/>)에서 운영체제에 적합한 최신 Quarto 설치파일을 다운로드하고 설치합니다. 이글은 `quarto-1.6.39-win.msi` 설치파일(2024년 11월 28일 release)로 작성되었습니다.
+
+## 설치옵션
+
+### 설치경로
+
+윈도우의 경우 기본 설치경로인 `C:\Program Files\Quarto\`를 추천합니다.
+사용하거나 사용자가 원하는 경로를 선택할 수 있습니다. (시스템의 환경 변수(PATH) 등록은 자동으로 이루어 집니다.)
+
+
+## 설치 확인
+
+::: {.callout-note title="Quarto가 올바르게 설치되었는지 확인하려면," collapse="true" appearance="minimal"}
+Win + R을 눌러 실행 대화창을 열고 `cmd`를 입력하여 명령 프롬프트를 실행합니다.
+
+```{r cmd_kr, eval=FALSE, filename="Command Prompt"}
+cmd
+```
+
+명령 프롬프트에서 다음 명령을 입력하여 설치된 quarto 버전이 예상 버전과 일치하는지 확인합니다.
+
+```{r quarto_version_kr, eval=FALSE, filename="Command Prompt"}
+quarto --version
+```
+
+:::

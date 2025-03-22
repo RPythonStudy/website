@@ -1,0 +1,43 @@
+---
+title: "자료형"
+description: "Python 자료혈"
+author: "RPythonStudyGroup feat. ChatGPT"
+date: "2025-02-23"
+date-modified: "2025-02-23"
+categories: [Python, syntax, data type]
+---
+
+### 개요
+Python과 R은 각각 다른 자료형을 사용하지만, 서로 유사한 개념들이 있습니다. 이 문서에서는 두 언어에서 사용되는 주요 자료형을 비교하여 정리합니다.
+
+---
+
+### 기본 자료형 비교
+Python과 R의 기본 자료형을 비교하면 다음과 같습니다.
+
+| 개념 | Python | R |
+|------|--------|---|
+| **정수형(Integer)** | `int` | `integer` |
+| **실수형(Float, Double)** | `float` | `double` |
+| **문자형(String)** | `str` | `character` |
+| **논리형(Boolean)** | `bool` (`True`, `False`) | `logical` (`TRUE`, `FALSE`) |
+| **결측치(NA, None)** | `None` | `NA` |
+
+### Python과 R의 주요 데이터 구조 비교
+
+
+| 개념 | Python | R |
+|------|--------|---|
+| **벡터(Vector)** | `list` 또는 `numpy.array` | `c()` (벡터) |
+| **리스트(List)** | `list` | `list()` |
+| **튜플(Tuple)** | `tuple` | ❌ (직접적인 대응 없음) |
+| **행렬(Matrix)** | `numpy.array` | `matrix()` |
+| **데이터프레임(DataFrame)** | `pandas.DataFrame` | `data.frame()` 또는 `tibble()` |
+| **딕셔너리(Dictionary)** | `dict` | `list()`를 key-value 형태로 사용 |
+| **요인(Factor)** | ❌ (없음) | `factor()` |
+
+### 튜플
+ 튜플은 변형할 수 없는 리스트라 할 수 있으며, 리스트에 비해 속도가 빠르고 메모리 사용량이 적으며, 함수 반환 값, 여러 변수 할당(Unpacking), for 루프에서 다중 변수 할당 등에 자주 사용된다.
+
+
+

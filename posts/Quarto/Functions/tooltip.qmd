@@ -1,0 +1,241 @@
+---
+title: "Tooltip"
+description: "Quarto에서 tooltip 구현 검토한 것을 정리하였습니다."
+author: "RPythonStudy"
+date: "2024-12-13"
+date-modified: "2024-12-13"
+categories: [Quarto, Bootstrap, Tooltip]
+---
+
+## Pandoc markdown
+-   Tooltip은 원래 html 문서에 구현되지만, 여기에서는 Quarto markdown 문서작성시에  tooltip을 구현하는 방법을 설명코자 합니다.
+-   특히 Quarto 문법은 Pandoc markdown에 기반하기 때문에 RStudio의 visual mode에서 source mode로 전환시 일부 문법이 (Posit사에서 사전에 정해둔) Pandoc markdown 문법으로 자동으로 변환되기 때문에 tooltip의 구현에 있어 Pandoc markdown을 사용하여 자동변환이 되지 않도록 합니다.
+-   참고로 자동변환예시는 아래와 같습니다.
+    -   list `*`는 `-`로 변환
+    -   `<span> </span>`는 `[]`로 변환
+
+
+### Title 속성
+
+-   Pandoc markdown에서는 텍스트에 title 속성을 추가하여 툴팁 내용을 지정할 수 있습니다.
+-   아래는 title 속성을 이용하여 툴팁을 구현한 코드입니다.
+```bash
+This is an example of a word with a tooltip: 
+[`hover me`]{title="This is a tooltip 1st line 1234567890 1234567890 123456780.<br>
+This is a 2nd line"}.
+```
+-   실행결과는 아래와 같습니다.
+
+This is an example of a word with a tooltip: [`hover me`]{title="This is a tooltip 1st line 1234567890 1234567890 123456780.<br>
+This is a 2nd line"}.
+
+-   위 실행결과에서는 툴팁 내용은 text로만 인식되기 때문에 html `<br>` 태그가 작동하지 않습니다.
+-   따라서 저자는 줄바꿈이 필요하지 않는 한줄짜리 tooltip에서 이 방식을 추천합니다.
+
+
+
+## R package
+
+### Tippy
+
+-   아래는 tippy 패키지로 구현한 Quarto 문법과 R코드 예시입니다.
+
+This is a [`normal distribution`]{#normaldist}.
+
+```{r}
+#| label: tooltip
+#| echo: ture
+
+library(tippy)
+
+tippy::tippy_this(
+  elementId = "normaldist", 
+  tooltip = "<p align='left'>
+  This is a tooltip 1st line 1234567890 1234567890 123456780.<br>
+  This is a 2nd line</p>", 
+  placement = "bottom"
+)
+```
+
+-   tippy 패키지는 html 양식으로 툴팁을 지정할 수 있어 `<br>` 태그가 작동하게 됩니다.
+-   툴팁의 메세지를 좌정렬하기 위해 html 문법 align='left'를 사용하였습니다.
+-   tooltip의 위치는 placement = "bottom"으로 지정하면 아래가 됩니다.
+-   그러나 maxwidth 설정하는 법을 알아내지 못해 툴팁의 폭이 약 350 pixel로 제한되고 넘치면 다음줄에 보입니다. 저자는 구글링에서 아직 해결방법을 찾지 못했습니다.
+-   따라서 지금 단계에서 이 방법은 메세지의 가로길이가 350 pixel 이하의 여러줄에서 추천됩니다.
+
+
+## Bootstrap
+
+-   Bootstrap은 html, css, javascript를 이용한 프론트엔드 프레임워크로, 웹 페이지를 쉽게 디자인할 수 있도록 도와줍니다.
+-   Bootstrap의 tooltip을 이용하면 툴팁 내용을 html 양식으로 지정할 수 있으며 툴팁메세지의 가로길이도 지정이 가능합니다.
+
+### Bootstrap tooltip
+
+-   아래는 코드 및 실행결과 예시입니다.
+
+```bash
+This is an example of a word with a tooltip: 
+[`hover me`]{.text-primary data-bs-toggle="tooltip" data-bs-html="true" 
+data-bs-placement="bottom" 
+title="This is a tooltip 1st line 1234567890 1234567890 123456780.<br>
+This is a 2nd line"}
+```
+This is an example of a word with a tooltip: [`hover me`]{.text-primary data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="This is a tooltip 1st line 1234567890 1234567890 123456780.<br> This is a 2nd line"}
+
+-   `data-bs-html="true"` 속성을 추가하여 html 양식으로 툴팁을 지정할 수 있습니다.
+-   `data-bs-placement="bottom""` 속성을 추가하여 툴팁을 아래위치로 지정할 수 있습니다.
+-   `<br>` 태그가 작동하여 줄 바꿈이 됩니다. (하지는 이는 뒤에 설명한 css 설정이 필요합니다.)
+-   그러나 Bootsrap의 경우 위 코드만으로 정상 작동되지 않으며 Quarto 문서를 렌더링한 html 문서에서 Bootstrap 기능을 사용할 수 있도록         
+    - `bootstrap.bundle.min.js`를설치 또는 문서내에서 링크
+    - Tooltip 초기화
+    -   css 설정을 통해 설정을 해야 합니다.
+-   각각의 코드 예시는 아래와 같은며 여기에서는 해당 qmd 파일의 뒷 부분에 아래의 코드들이 추가가 되어 있기 때문에 위의 예시가 구현된 것입니다.
+
+```bash
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+```
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+```bash
+<script>
+  // Initialize tooltips
+  document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  });
+</script>
+```
+
+<script>
+  // Initialize tooltips
+  document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  });
+</script>
+
+```bash
+<style>
+  /* Tooltip text styling */
+  .tooltip-text {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  /* Ensure tooltip width, wrapping, and left alignment */
+  .tooltip-inner {
+    white-space: pre-line; 
+    max-width: 1200px; /* Adjust the maximum width for your tooltip */
+    text-align: left; /* Align text to the left */
+    word-wrap: break-word; /* Break long words if necessary */
+    overflow-wrap: break-word; /* Ensure long words break */
+  }
+</style>
+```
+
+<style>
+  /* Tooltip text styling */
+  .tooltip-text {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  /* Ensure tooltip width, wrapping, and left alignment */
+  .tooltip-inner {
+    white-space: pre-line; 
+    max-width: 1200px; /* Adjust the maximum width for your tooltip */
+    text-align: left; /* Align text to the left */
+    word-wrap: break-word; /* Break long words if necessary */
+    overflow-wrap: break-word; /* Ensure long words break */
+  }
+</style>
+
+-   `style`에서는
+    -   `white-space: pre-line;`는 공백 
+    -   `max-width`는 툴팁의 최대폭을 지정합니다.
+    -   `text-align`은 툴팁의 정렬을 지정합니다.
+    -   `word-wrap`은 긴 단어를 줄바꿈할지 여부를 지정합니다.
+    -   `overflow-wrap`은 긴 단어를 줄바꿈할지 여부를 지정합니다.
+    
+
+## 프로젝트 설정
+
+-   Quarto 프로젝트에서 여러 `.qmd` 파일에서 공통적으로 툴팁 스타일과 스크립트를 사용하고자 한다면, CSS와 JavaScript 파일을 별도로 분리하고 `_quarto.yml` 파일에서 이를 참조하도록 설정하는 것이 효율적입니다. 아래는 설정 방법입니다.
+
+### 디렉토리 구조
+
+-   다음과 같이 디렉토리 구조를 설정하여 CSS와 JavaScript 파일을 관리합니다:
+
+```plaintext
+project/
+├── _quarto.yml       # Quarto 설정 파일
+├── styles/
+│   └── tooltip.css   # Tooltip 스타일 파일
+├── scripts/
+│   └── tooltip.js    # Tooltip 초기화 스크립트
+├── index.qmd         # Quarto 문서 1
+├── about.qmd         # Quarto 문서 2
+```
+
+### CSS 파일
+
+-   `styles/tooltip.css` 파일에 툴팁 스타일을 정의합니다:
+
+```css
+
+/* Tooltip text styling */
+.tooltip-text {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Ensure tooltip width, wrapping, and left alignment */
+.tooltip-inner {
+  white-space: pre-line; 
+  max-width: 1200px; /* Adjust the maximum width for your tooltip */
+  text-align: left; /* Align text to the left */
+  word-wrap: break-word; /* Break long words if necessary */
+  overflow-wrap: break-word; /* Ensure long words break */
+}
+```
+
+### JavaScript 파일
+
+-   `scripts/tooltip.js` 파일에 툴팁 초기화 스크립트를 정의합니다:
+
+```javascript
+
+// Initialize tooltips
+document.addEventListener('DOMContentLoaded', function () {
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+});
+
+```
+
+### `_quarto.yml` 설정
+
+-   `_quarto.yml` 파일의 format 부분에서 CSS와 JavaScript 파일을 참조하도록 추가 설정합니다:
+
+```_quarto.yml
+
+format:
+  html:
+    css: styles/tooltip.css   # Tooltip 스타일 파일 포함
+    include-after-body:
+      - text: |
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js""></script>
+      - text: |
+          <script src="scripts/tooltip.js"></script>
+```
+
+

@@ -1,0 +1,501 @@
+---
+title: "R syntax"
+description: "Understanding data type and manupulation"
+author: "RPythonStudyGroup feat. ChatGPT"
+date: "2024-08-31"
+date-modified: "2024-08-31"
+categories:
+  - R
+  - syntax
+---
+
+# Prologue
+
+심도깊은 이해를 원하시면 R manual 중 R language definition과 번역본 ( <https://translation.r-project.org/man/R-lang/R-lang-ko.html#Objects>)을 참고하시길 바랍니다.
+
+아래는 위의 내용을 일부 발췌한 것과 이해원회장님의 강의자료를 바탕으로 합니다.
+
+# 객체(Object)
+
+컴퓨터 언어에서 변수(variable)는 메모리에 저장된 데이터에 접근하는 수단을 제공합니다. R은 컴퓨터 메모리에 직접적인 접근을 제공하지 않지만, 대신 여러가지 특수화되어 있는 데이터 구조 (specialized data structure)를 제공하며, 이들을 객체(object)라고 합니다. 이러한 객체들은 심볼 (symbol) 또는 변수를 통해 참조될 수 있습니다. (R에서는 심볼은 그 자체로서 객체이기도 하므로 다른 객체들과 동일한 방식으로 조작 할 수 있습니다.)
+
+R 객체의 유형(*type* of R object)을 알려주는 `typeof` 이라는 함수를 이용해 반환되는 값들과 그 값들이 무엇인지를 정리하였습니다. (우선은 bolic체만 이해하셔도 됩니다.
+
+|                   |                                                                                                             |
+|-------------------|-------------------------------------------------------------------------------------------------------------|
+| `NULL"`           | NULL                                                                                                        |
+| `"symbol"`        | 변수명 (a variable name)                                                                                    |
+| `"pairlist"`      | 패어리스트 객체 (a pairlist object, 주로 내부용)                                                            |
+| `"closure"`       | 함수 (a function)                                                                                           |
+| `"environment"`   | 환경 (an environment)                                                                                       |
+| `"promise"`       | 지연 평가를 구현하는데 사용된 객체 (an object used to implement lazy evaluation)                            |
+| `"language"`      | R 언어구조물 (an R language construct)                                                                      |
+| `"special"`       | 입력인자를 평가하지 않는 내부 함수 (an internal function that does not evaluate its arguments)              |
+| `"builtin"`       | 입력인자를 평가하는 내부 함수 (an internal function that evaluates its arguments)                           |
+| `"char"`          | 스칼라 문자열 객체 (a ‘scalar’ string object, 내부전용)                                                     |
+| **`"logical"`**   | 논리값을 가지는 벡터 (a vector containing logical values)                                                   |
+| **`"integer"`**   | 정수값을 가지는 벡터 (a vector containing integer values)                                                   |
+| **`"double"`**    | 실수값을 가지는 벡터 (a vector containing real values)                                                      |
+| `"complex"`       | 복소수를 가지는 벡터 (a vector containing complex values)                                                   |
+| **`"character"`** | 문자값을 가지는 벡터 (a vector containing character values)                                                 |
+| `"..."`           | 특수 변수 길이 인자 (the special variable length argument) \*\*\*                                           |
+| `"any"`           | 모든 유형에 부합하는 특별한 유형 (a special type that matches all types: there are no objects of this type) |
+| `"expression"`    | 표현식 객체 (an expression object)                                                                          |
+| `"list"`          | 리스트 (a list)                                                                                             |
+| `"bytecode"`      | 바이트 코드 (byte code, 내부 전용) \*\*\*                                                                   |
+| `"externalptr"`   | 외부 포인터 객체 (an external pointer object)                                                               |
+| `"weakref"`       | 약한 참조 객체 (a weak reference object)                                                                    |
+| `"raw"`           | 바이트를 포함하는 벡터 (a vector containing bytes)                                                          |
+| `"S4"`            | 단순 객체가 아닌 S4 객체 (an S4 object which is not a simple object)                                        |
+
+함수 `mode`는 Becker, Chambers & Wilks (1988)에서 설명된 객체의 모드(*mode*)에 대한 정보를 알려줍니다. 그리고 이는 S 언어를 이용하여 구현된 것들과 더 잘 호환됩니다. 마지막으로, 함수 `storage.mode`는 Becker et al. (1988)에서 설명된 입력인자의 저장모드(*storage mode*)를 알려줍니다. 이 함수는 보통 C 또는 FORTRAN 과 같은 다른 언어로 작성된 함수를 호출할때 R 객체들이 호출되어진 루틴에 의하여 입력되어지기를 기대되는 자료형(data type)을 가지고 있는지 확인하기 위하여 사용됩니다. (S 언어에서는 정수 또는 실수를 가지는 벡터는 모두 `"numeric"` 모드를 가지기 때문에 저장모드가 구분될 필요가 있습니다).
+
+```         
+> x <- 1:3 
+> typeof(x) 
+[1] "integer" 
+> mode(x) 
+[1] "numeric" 
+> storage.mode(x) 
+[1] "integer"
+```
+
+R R객체들은 연산이 수행되는 도중에 종종 다른 유형(type)으로 강제변환(coercion)이 이루어지기도 합니다. 또한, 명시적으로 강제변환을 수행하는 많은 함수들이 있습니다. R을 이용한 프로그래밍에서 객체의 유형 (또는 종류)는 일반적으로 연산(의 결과)에 영향을 미치지 않습니다. 그러나, 외부언어(foreign languages) 또는 운영체제를 함께 다룰 때에는 종종 객체가 올바른 유형을 가지고 있는지 확인하는 것이 필요합니다.
+
+> **필자주:** R에서는 type과 mode가 혼용될 때도 있어 보입니다. 예를 들어서 data type을 변환하는 함수 중 as.numeric()이 있는데 double type으로 강제변환 시킵니다. 하지만 이는 호환성과 융통성에 도움이 된다 생각됩니다.
+
+## 기본유형(Basic types)
+
+### **Vectors**
+
+벡터들은 데이터를 포함하고 있는 인접한 셀들과 같이 생각될 수 있습니다.셀들은 `x[5]`와 같이 인덱싱 조작(indexing operation)을 통하여 접근 되어집니다. 더 자세한 사항은 [Indexing](https://translation.r-project.org/man/R-lang/R-lang-ko.html#Indexing)에 설명되어 있습니다.
+
+R은 여섯 가지의 기본 (‘atomic’, 아토믹) 벡터를 가지고 있습니다. 이들은 논리형(logical), 정수형(integer), 실수형(real), 복소수형(complex), 문자열 (string) 또는 문자 (character), 그리고 원형(raw)입니다. 다음의 표는 유형이 다른 벡터들의 모드와 저장모드들을 정리하였습니다.
+
+> | typeof      | mode        | storage.mode |
+> |-------------|-------------|--------------|
+> | `logical`   | `logical`   | `logical`    |
+> | `integer`   | `numeric`   | `integer`    |
+> | `double`    | `numeric`   | `double`     |
+> | `complex`   | `complex`   | `complex`    |
+> | `character` | `character` | `character`  |
+> | `raw`       | `raw`       | `raw`        |
+
+-   **double**: 실수형 데이터
+
+R에서 숫자형 데이터는 기본적으로 실수형 데이터로 인식됩니다. 이는 프로그래밍의 융통성을 부여합니다. 아래의 예시처럼 소수점이 있든, 소수점이 없는 형태를 변수에 할당하든 기본적으로 실수형으로 인식됩니다.
+
+```{r double, eval=TRUE}
+numeric_value<-pi; print(numeric_value); typeof(numeric_value); typeof(1+1)
+```
+
+-   **integer**: 정수형 데이터
+
+하지만 소수점이 없는 정수를 명시적으로 변수에 할당할 때(대문자L을 끝에 붙임)와 범위연산자(range operator = colon operator)가 명시적으로 정수를 할당할 때는 정수형이 만들어집니다.
+
+```{r integer, eval=TRUE}
+integer_value <-42L; typeof(integer_value); typeof(1:3); typeof(1L+1L)
+```
+
+-   **character**: 문자형 데이터
+
+“abc”, “a”, “a123xz” 등 quotation mark로 된 문자열
+
+```{r charactor-1, eval=TRUE}
+letters[5:10]; paste("ab","cde", sep = "")
+```
+
+```{r charactor-2, eval=TRUE}
+as.character(345); as.numeric("23.5")
+```
+
+```{r charactor-3, eval=TRUE}
+sub("a","x", "father and grandpa"); gsub("a","x", "father and grandpa")
+```
+
+```{r charactor-4, eval=TRUE}
+(ex2 <- 'The "R" project for statistical computing')
+```
+
+-   **complex**: 복소수형 데이터
+
+```{r complex, eval=TRUE}
+complex_value<-(1+sqrt(2)*1i)*(1-sqrt(2)*1i); print(complex_value); typeof(complex_value) # complex 연산
+```
+
+-   **raw**: 주로 이진 데이터(binary data)를 표현하는 데 사용됩니다. raw 타입은 주로 파일 입출력 또는 네트워크 통신에서 원시 데이터를 다룰 때 사용됩니다. 이 데이터는 변환 없이 그대로 저장되고 전달됩니다.
+
+벡터의기본유형에서 typeof 함수와 mode 함수의 반환값들을 비교하면 아래의 그림과 같습니다.
+
+![기본벡터에서 type와 mode의 관계](images/clipboard-2275707065.png)
+
+아래서부터는 퀴즈를 풀어보시기 바랍니다
+
+R에서는 모든 변수가 벡터 (열) 로 되어 있다. 다음 연산결과를 예상해 보시오
+
+```{r}
+1:3 + 2:4 ; 1:10 + 1:2
+```
+
+```{r}
+paste(LETTERS[1:10],1:3,sep = "-"); paste(LETTERS[1:3],1:10)
+```
+
+vector의 특징은 모든 요소가 단일한 것이라는 점이다. NA 값을 제외하고는 모든 요소가 같아야 하기 때문에 서로 다른 성질의 것을 입력하게 되면 에러가 생기거나 변형된다.
+
+```{r}
+c(1,2,3); c(1,2,3,"a")
+```
+
+-   array : multidimensional vector
+
+```{r}
+(arr1 <- array(data=1:90, dim = c(6,5,3))) # 3Dimensional array
+```
+
+```{r}
+arr1[6,4,2] # 3Dimensional indexing
+```
+
+```{r}
+which(arr1==54, arr.ind = TRUE )
+```
+
+-   matrix : 2dimensional vector
+
+```{r}
+matrix(data = c(3,4,5,6,7,8),
+       nrow=2,
+       ncol=3, # nrow=2 하나만 지정해도 ncol=3은 내부적으로 결정됨
+       byrow = TRUE, # data assign 하는 방향
+       dimnames = list(c("pt_1", "pt_2"), # row names
+                       c("var1","var2","var3")) # col names
+              )
+```
+
+```{r}
+x <- 2:9 ; names(x) <- x # x의 이름을 부여
+x %o% x # = outer function : outer(x,x, FUN="*")
+```
+
+-   data frame : vector를 구성요소로 한 list의 형태 (외형적으로 보면 2dimension으로 보인다) dataframe의 구성요소는 vector들 (각각의 vector는 동일한 데이터 타입이라야 함)
+
+```{r}
+## dataframe 만들기
+df1 <- data.frame( col1 = c("A", "B", "Anyone", "None"),
+col2 = c(160, 170, 180, 200),
+col3 = c(TRUE, FALSE, FALSE, TRUE)
+)
+df1
+```
+
+-   데이터프레임 이름 \<- data.frame(컬럼이름= c(data_1, …. , data_n), ….. ) 이런 형식으로 데이터 프레임을 만들 수 있다. 데이터프레임이 R의 기본적인 데이터 양식이기 때문에 이를 다루는 방법이 다양하게 존재함
+
+```{r}
+## dataframe cell 찾기
+df1[3,2] #3행 2열의 데이터
+```
+
+```{r}
+## column 이름으로 찾기
+df1$col1 ; df1[, "col1"]; df1["col1"] ### df1의 col1 열을 찾는 방법들
+```
+
+```{r}
+df1[,1]
+```
+
+### 리스트(Lists)
+
+리스트 (“generic vectors”)는 데이터 저장(data storage)의 또 다른 종류입니다. 리스트들의 구성요소는 어떠한 유형의 R 객체들이 될 수 있습니다. 즉, 리스트의 구성요소들은 같은 유형일 필요가 없습니다.리스트의 구성요소들은 세가지 다른 인덱싱 조작(indexing operation)에 의하여 접근되어 집니다. 자세한 사항은 [Indexing](https://translation.r-project.org/man/R-lang/R-lang-ko.html#Indexing)에 설명되어 있습니다
+
+리스트도 벡터의 종류이긴 하지만, 리스트 유형을 제외한 기본 벡터의 종류들을 *atomic vectors*(벡터를 구성하는데 있어 더 이상 하위단계로 분류할 수 최소의 기본구성단위 요소만으로 된 벡터 – 아토믹 벡터)라고 합니다.
+
+> **필자주:** 데이터구조적인 측면에서 R에서의 vecter와 list 개념을 비교하면 같은 데이터 타입으로 구성된 1차원 구조를 vector라 하고, 2차원 구조는 matrix, 3차원 구조는 array가 됩니다. 데이터타입이 다르면 리스트가 됩니다. 데이터프레임은 2차원이지만 컬럼별로 데이터 타입이 다른 경우로 대부분의 엑셀자료에 해당합니다.
+
+![Vector와 List의 비교](images/data_structure.png)
+
+-   list : R에만 있는 독특한 데이터타입이다. 이것은 모든 데이터 타입을 담을 수 있는 형태이고 자료의 길이가 달라도 같이 담을 수가 있게 되어 있다. 또한 리스트 속에 리스트를 넣을 수 있기에 다단계로 nesting 되는 구조로 만들 수 있다.
+
+```{r}
+sample_list <- list(data1=df1, data2 = arr1, data3 = x%o%x)
+str(sample_list)
+```
+
+```{r}
+sample_list$data1
+```
+
+```{r}
+sample_list$data1[,3]
+```
+
+## 속성(Attribute)
+
+NULL을 제외한 모든 object들은 그들에게 부여된 하나 이상의 attribute들을 가질 수 있습니다. Attribute들은 모든 element들이 이름지어진 곳에 pairlist처럼 저장되지만, name=value pair들의 세트처럼 생각되어야만 합니다. attribute들의 목록은 attributes를 사용하여 얻을 수 있고 attributes\<-에 의해 설정됩니다. 각각의 구성요소들은 attr와 attr\<-를 사용하여 접근됩니다.
+
+몇몇의 attribute들은 (예를들어 factor들을 위한 levels\<-) 특별한 accessor function들을 가지고있고 이들은 사용가능할 때만 사용되어야만 합니다. 실행의 숨겨진 디테일에 추가적으로, 그들은 추가적인operation들을 실행할 지도 모릅니다. R은 특별한 attribute을 포함하고 일관적인 확인들을 강요하는 attr\<-와 attributes\<-로의 call들을 가로채려고 시도합니다.
+
+행렬들과 열들은 간단하게말해서 dim attribute를 가진 벡터들이고 옵션적으로 dimnames가 벡터에 부여되어있습니다.
+
+Attribute들은 R에 사용된 class structure을 이행하하기위해 사용되었습니다. 만약 object가 class attribute를 가지고 있다면 그 attribute는 평가 도중 검토될 것입니다. R의 class structure은 Object-oriented programming에 자세하게 설명되어있습니다.
+
+### Names
+
+Names 속성은, 존재할 때, 벡터나 목록의 각각의 요소들에 label을 합니다. Object가 존재하는 names의 속성을 프린트하려고 할 때, 요소들을 label하기위하여 쓰여집니다. Names 속성은 예를들어quantile(x)\["25%"\]와 같은 indexing 목적으로도 쓰여질 수 있습니다.
+
+names와 names\<- 구성들을 사용하여 name들을 얻거나 설정할 수도 있습니다. 뒷쪽 것 (names\<-)은 names 속성이 적합한 타입과 길이를 가지고있는지를 확실히 하기 위해 필요한 일관적인 체크를 수행할 것입니다.
+
+Pairlist들과 일차원 행들은 특별하게 대해집니다. Pairlist object들에는, 가상의 names 속성이 사용되어집니다; names 속성은 사실상 목록 구성요소들의 태그에서부터 구성됩니다. 일차원 행들에서 names 속성은 실제로dimnames\[\[1\]\]에 접근합니다.
+
+### Dimensions
+
+dim 속성은 행들을 이행하기위하여 쓰여집니다. 행의 내용은 열방향순서의 벡터안에 저장되고, 그 dim 속성은 각각의 행의 규모를 명시하는 정수의 벡터입니다. R은 벡터의 길이가dimension 길이의 산출물임을 확실하게 합니다. 하나 이상의 dimension의 길이가 0일 수도 있습니다.
+
+벡터는 dim 속성이 없는 반면, 일차원 행은 길이가 1인 dim 속성을 가지고 있기때문에, 일차원 행과 같지 않습니다.
+
+### Dimnames
+
+행은 문자 벡터의 목록인 dimnames 속성을 사용하여 각각의 dimension을 따로 이름지을 수도 있습니다. dimnames 목록이 자기 자신의 이름을 가지고 있을 수 있으며, 그러면 이는 행들을 프린트 할 때 extent heading들로 쓰여집니다.
+
+### Classes
+
+R은class 속성을 통해 주로 컨트롤되는 정교한 class 시스테을 가지고 있습니다. 이 속성은object가 inherit하는 곳의 class들의 목록을 포함하고있는 문자 벡터입니다. 이 형태들은 R의 “일반적인 방법을” 기능의 기초를 형성합니다.
+
+이 속성은 사용자에의한 제한 없이도 가상적으로 접근되고 조작될 수 있습니다. 여기에는 object가 class 방법들이 예상하는 구성요소들을 확실히 포함하고 있는지를 확인하는 것이 없습니다. 그러므로 class 속성을 대신하는 것은 조심해서 해야만하며, 이들이 사용 가능할 때는 구체적인 창출과 강제 function들이 선호되어야만합니다.
+
+### Time series attributes
+
+tsp 속성은 시계열 분석, 시작, 끝, 그리고 빈도의 매개변수를 붙잡고 있기위해 사용됩니다. 이 구성은 월간 혹은 분기별 데이터처럼 주기적인 하부구조를 가진 series들을 다루기위해 주로 사용됩니다.
+
+## Special compound objects
+
+### Factors
+
+Factor들은 유한 값들을 가질 수 있는 아이템들 (성별, 사회계층 등)을 설명하기위하여 사용됩니다. Factor는 levels 속성과 “factor” class를 가집니다. 선택적으로, factor이 modeling function들에 사용되었을 때 사용된 parametrisation을 조정하기위한 contrasts 속성도 포함하고 있을 수 있습니다.
+
+Factor는 순수하게 명목상이거나 순차적인 카테고리일 수도 있습니다. 순차적인 카테고리일 경우, 그렇게 정의되어야만하고 class 벡터c("ordered"," factor")를 가집니다.
+
+> **필자주:** 순차적인 범주형변수에서 요인화를 할 때 아래와 같이 속성에서 ordered = TRUE로 설정해야 함을 의미하여 class로 확인하면 ordered도 같이 출력됨을 의미합니다.
+
+```{r}
+size <- factor(c("중간", "낮음", "높음", "중간", "낮음"), 
+              levels = c("낮음", "중간", "높음"), 
+              ordered = TRUE)
+print(size)
+```
+
+```{r}
+class(size)
+```
+
+### Data frame objects
+
+데이터 프레임은 SAS 혹은 SPSS 데이터 셋을 가장 비슷하게 흉내내는 R structure들 입니다..
+
+데이터 프레임은 모두가 같은 길이(행렬일 경우에는 열의 갯수)를 가지고있는 벡터들, factor들, 행렬들의 목록입니다. 추가적으로, 데이터 프레임은 일반적으로 값들을 label하는 names 속성과 행데이터를 label하는 row.names 속성을 가지고 있습니다.
+
+### Time objects
+
+R에서 시간과 날짜를 다루기 위해 다양한 객체 유형들이 사용됩니다. 각 객체는 특정 용도에 맞춰 설계되었으며, 시계열 데이터 분석, 시간대 처리, 시간 간격 계산 등 다양한 작업에 활용됩니다. `Date`, `POSIXct`, `POSIXlt` 같은 기본 객체들 외에도, `lubridate`와 `hms` 패키지에서 제공하는 객체들이 더욱 세분화된 시간 데이터 처리를 가능하게 합니다.
+
+#### **Date 객체**
+
+-   **설명**: `Date` 객체는 날짜를 일 단위로 표현합니다. 시간 정보는 포함하지 않으며, 주로 연도, 월, 일로 구성된 데이터를 다룹니다.
+
+-   **주요 용도**: 날짜를 다루고, 날짜 간의 차이를 계산할 때 사용됩니다.
+
+-   **예시**:
+
+```{r}
+today <- Sys.Date(); print(today); class(today); typeof(today)
+```
+
+#### **POSIXct 객체**
+
+-   **설명**: `POSIXct` 객체는 날짜와 시간을 초 단위로 저장합니다. 이는 유닉스 타임스탬프처럼 시간대(time zone)를 고려하여 시간 데이터를 다룹니다. 숫자 벡터로 저장되며, 시계열 데이터를 처리할 때 유용합니다.
+
+-   **주요 용도**: 시계열 데이터 분석, 시간 계산, 시간대 관리.
+
+-   **예시**
+
+```{r}
+current_time <- Sys.time()
+print(current_time); class(current_time); typeof(current_time)
+```
+
+#### **POSIXlt 객체**
+
+-   **설명**: `POSIXlt` 객체는 리스트 형태로 날짜와 시간 데이터를 저장하며, 연도, 월, 일, 시, 분, 초 등 각각의 요소로 분리됩니다. 사람이 읽기 쉬운 형태로 데이터가 저장되며, 개별 요소를 쉽게 접근할 수 있습니다.
+
+-   **주요 용도**: 날짜와 시간의 세부 요소를 조작할 때 유용.
+
+**예시**
+
+```{r}
+(time1 <- as.POSIXlt("1960-01-01")); class(time1); typeof(time1)
+```
+
+#### **difftime 객체**
+
+-   **설명**: `difftime` 객체는 두 날짜 또는 시간 간의 차이를 나타냅니다. 차이는 일(day), 시간(hour), 분(minute), 초(second) 등의 단위로 표현됩니다.
+
+-   **주요 용도**: 시간 간격 또는 지속 시간 계산.
+
+-   **예시**
+
+    ```{r}
+    first <- "2022-08-20 08:15:22" ; second <- "2022-01-01 20:04:48"
+    difftime(first, second); difftime(first, second, units = "hours")
+    difftime1<-difftime(first, second)
+    class(difftime1); typeof(difftime1)
+    ```
+
+```{r}
+first2 <- as.POSIXlt(first); second2 <- as.POSIXlt(second)
+second2 - first2
+```
+
+```{r}
+## difftime(first, second, units = "months")
+## match.arg(units)에서 다음과 같은 에러가 발생했습니다:
+## 'arg' should be one of “auto”, “secs”, “mins”, “hours”, “days”, “weeks”
+```
+
+#### **hms 객체 (hms 패키지)**
+
+-   **설명**: `hms` 객체는 시, 분, 초를 저장하고 다루기 위한 객체입니다. 하루 시간을 다루는 데 유용하며, 타임스탬프 없이 시간을 표현할 수 있습니다.
+
+-   **주요 용도**: 시, 분, 초 단위의 시간 데이터 관리.
+
+-   **예시**:
+
+    ```{r}
+    library(hms)
+    time_of_day <- hms::as_hms("12:34:56")
+    print(time_of_day)
+    ```
+
+#### **Interval, Period, Duration 객체 (lubridate 패키지)**
+
+-   **설명**: `Interval`, `Period`, `Duration` 객체는 `lubridate` 패키지에서 제공되며, 각각 시간 간격을 다루는 데 특화되어 있습니다.
+
+    -   **Interval**: 시작 시간과 종료 시간을 포함하는 시간 간격.
+
+    -   **Period**: 달력상의 시간 단위 (예: 월, 일, 년)로 표현된 기간.
+
+    -   **Duration**: 일정한 시간 간격을 초 단위로 표현.
+
+-   **주요 용도**: 시간 간격 계산, 특정 기간 동안의 시간 변화 분석.
+
+-   **예시**
+
+    ```{r massage=FALSE}
+    suppressMessages(library(lubridate))
+
+    start_time <- as.POSIXct("2024-08-08 08:00:00")
+    end_time <- as.POSIXct("2024-08-08 12:00:00")
+    interval <- interval(start_time, end_time)
+    print(interval)
+
+    period <- months(3) + days(10)
+    print(period)
+
+    duration <- as.duration(period)
+    print(duration)
+    ```
+
+# 
+
+# Advanced Techniques
+
+## Data Manipulation
+
+### Data reading
+
+data file이 존재하는 디렉토리를 먼저 설정해주어야 합니다. 이를 위한 명령어는 setwd() = set working directory 라는 의미 setwd(“C:/R/projects/R-4.4.1-RPythonStudy_HANJM”) 와 같이 디렉토리를 설정해줄 수도 있지만, 만약 디렉토리를 찾기 어렵다면 setwd( choose.dir() ) 와 같은 명령으로 파일탐색기를 열어서 디렉토리를 선택할 수 있습니다. 현재 사용 할 xlsx 파일들이 다음 디렉토리에 있다고 가정합니다.
+
+```{r read-raw-data, warning=FALSE}
+setwd("C:/R/projects/R-4.4.1-RPythonStudy_HANJM/raw_data")
+library(readxl)
+dir(pattern = "*.xlsx")
+xlsxfiles <- dir(pattern = "*.xlsx")
+ptinfo <- read_xlsx(xlsxfiles[1])
+```
+
+### Binding tables
+
+데이터프레임 결합 방법들
+
+rbind(), cbind(), merge()
+
+![데이터프레임 결합방법](images/clipboard-2973070490.png)
+
+\*\* 당연한 이야기지만 rbind는 컬럼의 갯수가 같아야 하고, cbind는 행의 갯수가 같아야 합니다.
+
+### Join (Merge) tables
+
+merge function
+
+merge(x, y, by = intersect(names(x), names(y)), \## 공통된 컬럼하나를 결합용 키로 선택
+
+by.x = by, by.y = by, all = FALSE, all.x = all, all.y = all, \## x와 y의 결합용 키의 이름이 서로 다를 경우에는 독립적으로 지정
+
+sort = TRUE, suffixes = c(“.x”,“.y”), no.dups = TRUE,
+
+incomparables = NULL, …)
+
+```{r data-for-merge}
+df1 <- data.frame( ID = 1:10, Name = c("Lee","Kim","Park", "Kang",
+"Shin", "Lim", "Kwon", "Choi", "Nam", "Baek" ),
+Score = as.integer(rnorm(10, 80,6 ))
+)
+df2 <- data.frame( ID = sample(1:10, 9, replace = F),
+Department = sample( c("IM","GS","GY","PD" ),9, replace = T),
+Age = as.integer(rnorm(9, 40,6 )) )
+df1
+```
+
+```{r merge}
+merged_df <- merge(df1,df2, by="ID", all = TRUE) # full join
+merged_df
+```
+
+### Types of Join merge
+
+함수를 실행하여 데이터를 결합할 때에는 데이터 join 방법이 다음과 같이 4가지가 있다. 두개의 df에서 모든 데이터가 완전하게 존재하지 않기 때문에 일치하지 않는 부분에 대한 처리규칙이 중요하다.
+
+![Types of Join](images/clipboard-1003725778.png)
+
+merge 함수의 옵션에서 all = TRUE 를 선택하면 full join, all.x 는 left join, all.y는 right join이 된다.
+
+all= FALSE 인 경우에는 당연히 inner join dplyr package에는 개별적인 join 함수가 있는데 그것을 사용해도 됨
+
+inner_join(df1, df2), left_join(df1, df2), right_join(df1, df2), full_join(df1, df2) left_join(df2, df1) : alternative right join
+
+### Reshape data
+
+## Pipeline operator
+
+library magrittr 를 사용하면 pipeline 연산자를 쓸 수 있게 된다. %\>% 형식이다.
+
+만약 c(“A”,“B”,“C”) 라는 데이터를 “ABC” 로 paste 한 다음에 다시 tolower 함수를 적용하여 “abc”로 변환하는 작업을 한다고 하자. 그런 경우에는 다음과 같이 코딩을 해야 한다. 하지만 pipeline operator를 사용하면 함수 중첩을 줄이고 코드를 이해하기 쉽게 사용할 수 있다.
+
+```{r pipline}
+library(magrittr)
+tolower(paste(c("A","B","C"), collapse = ""))
+```
+
+```{r multi-para-pipeline}
+c("A","B","C") %>% paste(., collapse = "") %>% tolower
+```
+
+```{r explanation-paste, eval=FALSE}
+## 첫번째 인자로 들어가기 위해서 . 을 사용함
+```
+
+# LaTeX codes in quarto
+
+## Basic LaTeX code
+
+![](images/clipboard-4076726206.png)

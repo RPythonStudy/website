@@ -1,0 +1,437 @@
+---
+title: "Hands-on API Shinyapp" 
+description:  "A hands-on step by step tutorial to create ShinyApp using API."
+author: "RPythonStudyGroup feat. ChatGPT"
+date: "2024-11-18"
+date-modified: "2024-11-18"
+categories:
+  - API
+  - Shinyapp
+  - hands-on
+---
+
+-   사전준비:
+    -   아래의 예시들은 사전에 건강보험심사평가원 해당 API 신청 및 승인을 받은 것이므로 API 호출이 오류 없이 실행됩니다.
+    -   Hands-on의 목적상 연구회 여러분들 자신이 직접 선택한 API가 더 바람직하다고 생각합니다.
+        -   이 경우는 해당 API에 대한 활용신청 및 승인이 사전에 되어 있어야 합니다. 이를 통해 아래의 정보들이 확보되어야 합니다.
+            -   일반 인증키 중 Encoding과 Decoding 중 어느 키가 구동되는지
+            -   Base URL
+            -   API 목록형태로 제공되는 End Point URL
+            -   요청변수명 (=Parameter)
+        -   활용신청 및 인증키등의 정보에 대해서는 연구회 웹사이트 중 공공데이터 메뉴(<https://rpythongroup.github.io/Website/posts/DataGoKr/DataGoKr.html>)를 참고하시길 바랍니다.
+
+::: {.callout-note title="1단계: `Shiny Application` 프로젝트 만들기" collapse="true" appearance="minimal"}
+-   RStudio/File 메뉴에서 `New Project...` 메뉴 선택
+-   `New Directory`에 생성되도록 선택
+-   Project type은 `Shiny Application`을 선택
+-   상위폴더가 `C:/Projects`인지 확인 (=Global Options 사전 지정값)
+-   Directory name 지정, 예시 `R-4.4.1-Hands_on_API_Shinyapp`
+-   [x] Create a git repository: 체크 유지하여 버전관리 적용
+-   [x] Use renv with this project: 체크 유지하여 패키지 독립관리 적용
+-   [ ] Open in new session: 다른 프로젝트를 같이 사용할려면 체크
+:::
+
+```{r project_name, eval=FALSE, filename="recommeded project name"}
+R-4.4.1-Hands_on_API_Shinyapp
+```
+
+
+::: {.callout-note title="2단계: API 호출해보기" collapse="true" appearance="minimal"}
+-   새로운 Quaroto Document 파일을 열어서 아래의 코드 chunck를 추가합니다.
+    -   파일이름은 `UntitledQDM.qmd` 그대로 진행해도 무방합니다.
+-   코드 chunk에 `rjson`과 `httr` 패키지가 사용되었으므로 미리 설치해주셔야 합니다.
+
+```{r install_rjson, eval=FALSE, filename="R Console Pane"}
+renv::install("rjson")
+```
+
+```{r install_httr, eval=FALSE, filename="R Console Pane"}
+renv::install("httr")
+```
+
+```{r install_plyr, eval=FALSE, filename="R Console Pane"}
+renv::install("plyr")
+```
+
+-   API URL 및 키 설정
+    -   base_url는 자신의 Base URL로 설정합니다.
+    -   call_url는 자신의 API 목록형태로 제공되는 End Point URL로 설정합니다.
+    -   My_API_Key에는 구동이 되는 자신의 인증키로 설정합니다.
+-   파리미터 설정
+    -   params 리스트는 자신의 요청변명 목록으로, 각 값들은 공공데이터포털의 개발계정상세보기의 활용신청 상세기능정보의 미리보기에서 보이는 기본값등으로 설정해 줍니다.
+        -   미리보기에는 없더라도 resultType은 Json등으로 추가하시면 됩니다.
+
+![](images/RequestedParameters.PNG)
+
+-   url 생성 및 response 회신받기
+    -   url은 base_url과 call_url을 합쳐서 생성합니다.
+    -   GET 함수로 url과 query로 params를 설정하여 response를 받습니다.
+-   parsing하여 데이터 추출
+    -   responses는 리스트 형태이며
+    -   status_code가 200이면 성공을 의미
+    -   content 함수는 아래의 response 구조 그림에서 content 부분을 파싱하며 여기에서는 text로 인자가 들어가 있어 text로 파싱하여 json_text로 반환합니다.
+
+![](images/content.PNG)
+
+```         
+-   fromJSON 함수로 json_text를 R에서 다룰 수 있는 리스트 형태로 변환합니다.
+```
+
+![](images/data_structure.PNG)
+:::
+
+```{{r}}
+#| label: API_call_basic
+#| echo: false
+
+library(rjson)
+library(httr)
+library(plyr)
+
+  # API URL 및 키 설정
+  base_url <- "http://apis.data.go.kr/B551182/mdlrtActionInfoService"
+  call_url <- "getMdlrtActionByClassesStats"
+  My_API_Key <- "DRwFWZ/jfi6551teJKgRhkKgC+XhcjobN+ccY2MQdF9yZdx8xL5Kn4IljljMCWGsl2ObEco/rm21r14CN7iG0g=="
+
+  # 파리미터 설정  
+    params <- list(
+    serviceKey = My_API_Key,
+    pageNo = 1,
+    numOfRows = 10,
+    year = "2022",
+    stdType = "1",
+    st5Cd = "MM302",
+    resultType = "json"
+  )
+  
+  # url 생성 및 response 회신받기  
+  url <- paste0(base_url, "/", call_url)
+  response <- GET(url, query = params)
+
+  # parsing하여 데이터 추출
+  if (status_code(response) == 200) {
+    json_text <- content(response, as = "text", encoding = "UTF-8")
+    data <- fromJSON(json_text)
+  } else {
+    print(paste("API 호출 실패:", status_code(response)))
+  }
+```
+
+::: {.callout-note title="3단계: 다년도자료 호출하기" collapse="true" appearance="minimal"}
+-   공공데이터포털에서 해당 API 미리보기를 하여 시작연도를 어떻게 설정할 지 검토하여 결정합니다.
+    -   2024년도를 입력해보면, heade 하부의 <resultCode>00</resultCode>로 정상적이지만 body 하부의 <totalCount>0</totalCount>는 값이 0임을 알 수 있습니다.
+    -   ![](images/2024.PNG)
+    -   2023년도를 입력해보면, `<header>` 하부의 <resultCode>00</resultCode>로 정상적이지만 `<body>` 하부의 <totalCount>0</totalCount>는 값이 0임을 알 수 있습니다. 또한 `<body>` 하부의 `<items>` 하부의 `<item>` 하부의 `<totUseQty>`에 우리가 원하는 자료인 `총사용량`이 존재하고 있습니다.
+    -   ![](images/2023.PNG)
+    -   2009년도를 입력해보면 <resultCode>00</resultCode>로 정상적이지만 <totalCount>5</totalCount>는 값이 5을 알 수 있습니다. `<body>` 하부의 `<items>` 하부의 `<item>` 하부의 `<totUseQty>`에 우리가 원하는 자료인 `총사용량`이 존재하지 않습니다.
+    -   \-![](images/2009.PNG)
+-   totalCount를 기준으로 알고리즘을 구성하면 아래의 코드 chunk와 같습니다.
+    -   현재 연도를 설정
+        -   system date를 이용하여 my_year에 현재 연도를 설정합니다.
+    -   조건 변수 설정
+        -   while loop를 구현하고, xcondition으로 종료상황을 결정합니다.
+    -   totalCount가 존재하는지 확인 후 출력\
+    -   totalCount가 5인 경우 루프 종료
+    -   연도를 1 감소
+        -   loop 내에서는 my_year는 하나씩 감소하고, totalCount가 5가 되면 종료하도록 구현되어 있습니다.
+:::
+
+```{{r}}
+#| label: API-call-while-loop
+#| echo: false
+ 
+library(rjson)
+library(httr)
+
+# 현재 연도를 설정
+my_year <- as.numeric(format(Sys.Date(), "%Y"))
+
+
+base_url <- "http://apis.data.go.kr/B551182/mdlrtActionInfoService"
+call_url <- "getMdlrtActionByClassesStats"
+My_API_Key <- "DRwFWZ/jfi6551teJKgRhkKgC+XhcjobN+ccY2MQdF9yZdx8xL5Kn4IljljMCWGsl2ObEco/rm21r14CN7iG0g=="
+
+# 조건 변수 설정
+xcondition <- TRUE  
+
+while (xcondition) {
+  params <- list(
+    serviceKey = URLencode(My_API_Key),
+    pageNo = 1,
+    numOfRows = 10,
+    year = as.character(my_year), # 연도를 문자열로 변환
+    stdType = "1",
+    st5Cd = "HK010", # 진료행위코드를 양전자방출단층촬영으로 변경
+    resultType = "json"
+  )
+  
+  url <- paste0(base_url, "/", call_url)
+  response <- GET(url, query = params)
+
+  if (status_code(response) == 200) {
+    json_text <- content(response, as = "text", encoding = "UTF-8")
+    data <- fromJSON(json_text)
+    
+    # totalCount가 존재하는지 확인 후 출력
+    if (!is.null(data$response$body$totalCount)) {
+      print(paste("연도:", my_year, "- totalCount:", data$response$body$totalCount))
+      
+      # totalCount가 5인 경우 루프 종료
+      if (data$response$body$totalCount == 5) {
+        xcondition <- FALSE
+        print("totalCount가 5에 도달하여 루프를 종료합니다.")
+      }
+    } else {
+      print("totalCount 값이 없습니다. 루프 종료.")
+      xcondition <- FALSE
+    }
+  } else {
+    print(paste("API 호출 실패:", status_code(response), "연도:", my_year))
+    xcondition <- FALSE  # 오류 발생 시 루프 종료
+  }
+  
+  # 연도를 1 감소
+  my_year <- my_year - 1
+}
+```
+
+::: {.callout-note title="4단계: 데이터프레임으로 저장해보기" collapse="true" appearance="minimal"}
+-   데이터프레임으로 저장하기 위한 예시코드는 아래와 같습니다.
+    -   데이터프레임을 초기화 합니다.
+    -   while loop 내에서 totalCount가 6이라면 해당데이터 중 일부를 리스트로 변환한고 다시 데이터프레임으로 저장합니다.
+    -   이를 루프가 반복될 때만다 data_frame에 더합니다 (=rbind).
+:::
+
+```{{r}}    
+#| label: API_data.frame
+#| echo: false
+ 
+library(rjson)
+library(httr)
+library(plyr)
+
+# 데이터를 저장할 데이터프레임 초기화
+data_frame<-data.frame()
+
+my_year <- as.numeric(format(Sys.Date(), "%Y"))
+
+
+base_url <- "http://apis.data.go.kr/B551182/mdlrtActionInfoService"
+call_url <- "getMdlrtActionByClassesStats"
+My_API_Key <- "DRwFWZ/jfi6551teJKgRhkKgC+XhcjobN+ccY2MQdF9yZdx8xL5Kn4IljljMCWGsl2ObEco/rm21r14CN7iG0g=="
+
+xcondition <- TRUE  
+
+while (xcondition) {
+  params <- list(
+    serviceKey = URLencode(My_API_Key),
+    pageNo = 1,
+    numOfRows = 10,
+    resultType = "json",
+    year = as.character(my_year),
+    stdType = "1",
+    st5Cd = "HK010"
+  )
+  
+  url <- paste0(base_url, "/", call_url)
+  response <- GET(url, query = params)
+
+  if (status_code(response) == 200) {
+    json_text <- content(response, as = "text", encoding = "UTF-8")
+    data <- fromJSON(json_text)
+    
+    if (!is.null(data$response$body$totalCount)) {
+      print(paste("연도:", my_year, "- totalCount:", data$response$body$totalCount))
+      # totalCount가 6이라면 해당데이터중 일부를 리스트로 변환하고 다시 데이터프레임으로 변환
+      if(data$response$body$totalCount == 6){
+        df <- rbind.fill(lapply(data$response$body$items$item, as.data.frame))
+        data_frame<-rbind(data_frame,df)
+        print("saved")
+      }
+      
+      # totalCount가 5인 경우 루프 종료
+      if (data$response$body$totalCount == 5) {
+        xcondition <- FALSE
+        print("totalCount가 5에 도달하여 루프를 종료합니다.")
+      }
+    } else {
+      print("totalCount 값이 없습니다. 루프 종료.")
+      xcondition <- FALSE
+    }
+  } else {
+    print(paste("API 호출 실패:", status_code(response), "연도:", my_year))
+    xcondition <- FALSE  # 오류 발생 시 루프 종료
+  }
+  
+  # 연도를 1 감소
+  my_year <- my_year - 1
+}
+```
+
+::: {.callout-note title="5단계: Shinyapp으로 만들어보기" collapse="true" appearance="minimal"}
+-   app.R 파일에 아리의 코드 chunk를 붙여 넣기를 합니다.
+-   shinyapp에서의 Render 버튼에 해당하는 Run App 버튼으로 실행해보기에 앞서 코드 chunk에 포함된 패키지들을 설치해야 합니다.
+    -   shiny 패키지의 경우 project type이 Shiny Application으로 설정되어 있기 때문에 설치되어 있습니다.
+
+```{r install_dplyr, eval=FALSE, filename="R Console Pane"}
+renv::install("dplyr")
+```
+
+```{r install_ggplot2, eval=FALSE, filename="R Console Pane"}
+renv::install("ggplot2")
+```
+- RUn App 또는 Reload App 버튼으로 실행하시면 됩니다.
+- 정상작동을 확인한 후 다음 단계를 진행할려면 stop application button을 눌러 주셔야 됩니다.
+:::
+
+```{r shinyapp, eval=FALSE, filename="app.R"}
+
+library(shiny)
+library(httr)
+library(rjson)
+library(plyr)
+library(dplyr)
+library(ggplot2)
+
+# UI 구성
+ui <- fluidPage(
+  titlePanel("Medical Data Chart by Medical Code"),
+  sidebarLayout(
+    sidebarPanel(
+      textInput("st5Cd", "Enter Medical Code (e.g., HK010):", value = "HK010"),
+      actionButton("generate", "Generate Chart")
+    ),
+    mainPanel(
+      plotOutput("chart")
+    )
+  )
+)
+
+# Server 로직 구성
+server <- function(input, output, session) {
+  # 데이터를 저장할 reactiveValues 객체 생성
+  rv <- reactiveValues(data = NULL)
+  
+  observeEvent(input$generate, {
+    my_st5Cd <- input$st5Cd
+    my_year <- as.numeric(format(Sys.Date(), "%Y"))
+    
+    base_url <- "http://apis.data.go.kr/B551182/mdlrtActionInfoService"
+    call_url <- "getMdlrtActionByClassesStats"
+    My_API_Key <- "DRwFWZ/jfi6551teJKgRhkKgC+XhcjobN+ccY2MQdF9yZdx8xL5Kn4IljljMCWGsl2ObEco/rm21r14CN7iG0g=="
+    
+    data_frame <- data.frame()
+    xcondition <- TRUE  
+    
+    while (xcondition) {
+      # API 요청 매개변수 설정
+      params <- list(
+        serviceKey = URLencode(My_API_Key),
+        pageNo = 1,
+        numOfRows = 10,
+        resultType = "json",
+        year = as.character(my_year),
+        stdType = "1",
+        st5Cd = my_st5Cd
+      )
+      
+      # API 호출
+      url <- paste0(base_url, "/", call_url)
+      response <- GET(url, query = params)
+      
+      if (status_code(response) == 200) {
+        json_text <- content(response, as = "text", encoding = "UTF-8")
+        data <- fromJSON(json_text)
+        
+        if (!is.null(data$response$body$totalCount)) {
+          if (data$response$body$totalCount == 6) {
+            data_list <- data$response$body$items$item
+            df <- rbind.fill(lapply(data_list, as.data.frame))
+            data_frame <- rbind(data_frame, df)
+          }
+          
+          if (data$response$body$totalCount == 5) {
+            xcondition <- FALSE
+          }
+        } else {
+          xcondition <- FALSE
+        }
+      } else {
+        xcondition <- FALSE
+      }
+      
+      # 연도를 1 감소
+      my_year <- my_year - 1
+    }
+    
+    # 컬럼명 변경
+    if (nrow(data_frame) > 0) {
+      rv$data <- setNames(data_frame, c("진료금액", "요양기관종별", "환자수", "행위코드", "행위코드명", "총사용량", "연도"))
+    } else {
+      rv$data <- NULL
+    }
+  })
+  
+  output$chart <- renderPlot({
+    if (!is.null(rv$data)) {
+      ggplot(data = rv$data, aes(x = 연도, y = 총사용량, color = 요양기관종별)) +
+        geom_line(size = 1) + 
+        geom_point(size = 2) + 
+        labs(
+          title = paste(input$st5Cd, "연도별 요양기관종별 총사용량"),
+          x = "연도",
+          y = "총사용량"
+        ) +
+        theme_minimal() +
+        theme(legend.title = element_blank())
+    }
+  })
+}
+
+# Shiny 앱 실행
+shinyApp(ui = ui, server = server)
+```
+
+::: {.callout-note title="6단계 shinyapps.io에 연결하기" collapse="true" appearance="minimal"}
+
+-   Shinyapps.io에 로그인
+    -   <https://www.shinyapps.io/>
+-   INSTALL RSCONNECT
+    -   우리는 renv 패키지 독립관리를 사용하고 있으므로 아래와 같이 설치하시면 됩니다.
+-   Authorize Account
+
+    -   사이드메뉴 Dashborad에서 `Account`를 클릭하고 Tokens를 선택합고, Show를 선택하면 아래와 같이 SetAccountInfo가 나타납니다.
+
+- 이를 복사하여 R console에 붙여넣어 실행하면 연결이 됩니다.
+    -   아무런 메세지가 출력되지 않으면 연결된 것입니다.
+
+:::
+
+```{r rsconnect_install, eval=FALSE, filename="R Console"}
+renv::install("rsconnect")
+```
+
+```{r rsconnect_setAccount, eval=FALSE, filename="R Console"}
+rsconnect::setAccountInfo(name='rpythonmember',
+			  token='30C62ECC7B098C7B6B8EFABAF00D8AAE',
+			  secret='<SECRET>')
+```
+
+::: {.callout-note title="7단계 shynyapps.io에 publishing 하기" collapse="true" appearance="minimal"}
+-   Source pane 우측 타이틀바의 `Publish` 버튼을 클릭하면
+-   파일 중 `app.R`만 publish 하도록 선택하고
+-   Account 중 우리가 만든 `rpythonmember`로 선택하고
+-   Title은 원하는데로 기술하면 됩니다. 저는 예제로 \`Hands_on_API_Shinyapp`를 기입하였습니다.
+
+```{r Title_for_publishing, eval=FALSE, filename="Title name within Publish to Server "}
+Hands_on_API_Shinyapp
+```
+-   `Publish` 버튼을 클릭하면 shinyapp.io로 한참을 기다리면 publish가 되며
+    - browse가 클릭된 경우 자신의 web browse에 로딩이 되어 확인할 수 있습니다.
+    - shinyapp.io에서는 Dashboard의 Application에 Running으로 확인할 수 있습니다.
+-   최종확인은 인터넷창에 다음의 주소를 기입하여 확인할 수 있습니다.
+:::
+
+```{r confirm_at_browser, eval=FALSE, filename="internet browser"}
+https://rpythonmember.shinyapps.io/Hands_on_API_Shinyapp/
+```

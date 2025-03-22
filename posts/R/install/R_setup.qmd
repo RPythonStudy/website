@@ -1,0 +1,124 @@
+---
+title: "R 설치"
+description: "R 설치 및 설정"
+author: "RPythonStudyGroup feat. ChatGPT"
+date: "2024-05-06"
+date-modified: "2025-03-01"
+categories: [R, setup]
+---
+
+## R 설치
+
+### R 설치안내문서
+R 공식사이트 CRAN (The Comprehensive R Archive Network, <https://cran.r-project.org/index.html>)에서 Documentation 중 `Manuals` 중 `R Installation and Administration`을 참고하는 것이 이상적이지만, 아래의 요약을 참고하여 설치 하셔도 됩니다.
+
+### R 설치 파일
+CRAN (<https://cran.r-project.org/index.html>)에서 자신의 운영체제에 맞는 최신 버전을 다운로드 받아 설치합니다. 2025년 03월 01일 기준으로 
+- 64 bit 원도우용 설치파일은 `R-4.4.3-win.exe` 이 최신입니다.
+- MacOS용 설치파일은 `R-4.4.3-arm64.pkg` 이 최신입니다.
+
+
+### R 설치경로
+
+#### Window 설치경로
+R 버전이 x.y.z이면 Window 운영체제의 경우 기본 설치폴더는  `C:\Program Files\R\R-x.y.z`로 되지만 연구회에서는 아래와 같이 추천합니다.
+
+```{r R_install_path, eval=FALSE, filename="R Install Option Window"}
+C:\R\R-4.4.3
+```
+
+
+
+::: {.callout-note title="`C:\Program Files\\`와 `C:\\` 경로의 장단점" collapse="true" appearance="minimal"}
+- 대부분의 Windows 애플리케이션은 `program Files` 폴더에 설치되므로 시스템 소프트웨어와 애플리케이션을 관리하는 표준 위치이기 때문에 시스템의 정리가 용이합니다. 또한 `Program Files` 폴더는 특별한 시스템 권한을 요구하므로 일반 사용자가 이 폴더 내의 파일을 쉽게 변경할 수 없으므로, 악의적인 소프트웨어에 의한 변경으로부터 보호할 수 있습니다. 그러나 R 패키지를 설치하거나 업데이트할 때마다 관리자 권한이 필요하여 사용자가 R을 자유롭게 사용하고자 할 때 불편을 초래할 수 있고 \``` Program Files` ``는 경로 내에 공백을 포함하고 있어 일부 오래된 스크립트나 도구에서는 경로 내의 공백을 제대로 처리하지 못할 수 있어 문제가 발생할 수 있습니다.
+
+-   `C:\` 하부에 직접 설치 (예: `C:\R`): 패키지 설치나 업데이트 시 관리자 권한을 요구하지 않고, 경로에 공백이 없기 때문에, 모든 스크립트나 프로그램에서 호환성 문제 없이 이 경로를 사용할 수 있습니다. 그러나 사용자 권한으로 설치된 프로그램은 보안이 상대적으로 약할 수 있으며, 악의적인 소프트웨어에 의해 변경되기 쉽고, 표준 설치 위치를 사용하지 않는 경우, 시스템의 소프트웨어와 애플리케이션이 분산되어 관리가 어려워질 수 있습니다.
+
+-   결론적으로, 설치 위치를 선택할 때는 보안, 사용 편의성, 시스템 관리의 용이성 등을 고려해야 하는데, 개인 사용자나 개발 환경에서는 `C:\R`과 같은 사용자 지정 경로가 더 편리할 수 있으며, 기업 환경이나 보안이 중요한 상황에서는 `C:\Program Files` 폴더 하에 설치하는 것이 더 적합할 수 있습니다.
+:::
+
+#### Window 환경변수설정
+설치완료 후에는 시스템환경변수에 R 실행파일경로를 지정해 두어야 합니다.
+
+-   사용자나 RStdio와 같은 프로그램에서 R을 호출할 때나 package등을 설치할 때 시스템에서 R 실행파일의 설치경로를 알아야 원할히 진행됩니다.
+
+-   Win+R로 실행창을 열고 sysdm.cpl 을 입력하는 방식이 빠르며, 시스템속성 고급탭에서 환경변수를 선택한 후 시스템변수 목록에서 path를 선택한 후 새로만들기 또는 편집으로 R 실행파일의 경로를 지정해 주시면 됩니다.
+
+
+```{r run_dialog, eval=FALSE, filename="Run Dialog Box"}
+sysdm.cpl
+```
+
+#### Window 설치 검증
+
+-   정상적인 설치의 확인을 R을 실행시켜서 버전을 확인하시면 됩니다. 앞서에서 환경변수에 R의 실행파일의 경로를 등록해 두었기 때문에 R의 실행은 실행명령을 하는 폴더와는 무관하게 가능합니다. 구체적인 방법은, Win+R로 실행창을 열고 cmd 입력하여 커맨드창을 열고 "R" 을 입력하여 R을 실행시키고 커맨드창에 출력되는 R version이 일치하는지 확인하시면 됩니다.
+
+
+```{r cmd_kr, eval=FALSE, filename="Run Dialog Box"}
+cmd
+```
+
+```{r R_version_confirm, eval=FALSE, filename="Command Prompt"}
+R
+```
+
+
+#### Window 버전별 설치 폴더
+
+R 새 버전으로 업데이트하면 드물겠지만 기존 코드나 사용 중인 패키지가 예상대로 작동하지 않을 수 있으며, 새 버전에서는 패키지의 지원이 변경될 수 있어 시스템의 안정성을 유지하기 위해 이전 버전의 실행파일을 유지하는 것도 필요합니다. 따라서 윈도우 운영체제의 경우 아래의 #fig-InstallDirectoryWindow 와 같은 폴더구조가 추천됩니다.
+
+::: {#fig-InstallDirectoryWindow}
+```         
+C:\R\
+   ├── R-4.4.2       # 기존 설치 버전
+   └── R-4.4.3       # 새로 설치한 버전 
+```
+
+윈도우에서 버전별 설치파일 폴더 구조
+:::
+
+
+#### MacOS 폴더구조
+MacOS의 일반적인 폴더구조는 아래의 @fig-DirectoryStructureMacOS 와 같습니다.
+
+::: {#fig-DirectoryStructureMacOS}
+```         
+/
+├── Applications     # 애플리케이션 폴더
+├── Library          # 시스템 전역 라이브러리 및 설정
+├── System           # 운영체제 핵심 파일
+├── Users            # 사용자 계정 폴더
+├── Volumes          # 마운트된 외장 디스크 및 네트워크 드라이브
+├── bin              # 기본 명령어 실행 파일 (예: ls, cp, mv)
+├── sbin             # 관리자용 명령어 실행 파일 (예: shutdown, reboot)
+├── etc              # 시스템 설정 파일
+├── dev              # 장치 파일 (예: 디스크, USB, 터미널)
+├── tmp              # 임시 파일 저장 폴더
+├── var              # 로그 및 캐시 파일
+├── usr              # 추가 명령어 및 라이브러리
+└── opt              # 서드파티 소프트웨어 패키지 (예: Homebrew 설치 파일)
+```
+
+MacOS의 디렉토리 구조
+:::
+
+#### MacOS 설치경로
+R 버전이 x.y.z이면 MacOS 운영체제의 경우 기본 설치폴더는   
+`/Library/R.framework/Versions/x.y.z/Resource/bin/R`   
+로 되며, 연구회에서는 기본값을 추천합니다.
+
+
+## R 매뉴얼
+
+R을 심도있게 공부할려면 R 개발자들이 만든 매뉴얼 중 **The R language definition과 R Internals**이 적합할 것 같습니다 (<https://cran.r-project.org/index.html>). 하지만 처음부터 어려운 매뉴얼을 공부하는 것보다 자신의 자료를 분석하는데 필요한 명령과 함수들을 Help 기능 등으로 이해하는 방법으로 진행하는 것도 필요할 것 같습니다.
+
+
+## R 프로젝트 관리
+
+### renv 독립적 패키지관리
+
+원래 R에서 패키지는 해당버전 R의 설치폴더 하부의 library 폴더에 설치됩니다. `renv`는 R 프로젝트에서 패키지 의존성을 관리하기 위해 설계된 도구로써, renv를 설치하고 활성화하면 해당 프로젝트 폴더 하부에 renv 폴더가 만들어지고, 그 하부에 패키지를 설치하게 됩니다. 또한 설치된 패키지들의 정보를 renv.lock 파일에 관리하게 됩니다. 이러한 방법으로 R에서는 프로젝트별로 패키지를 관리할 수 있으므로 필자를 이를 추천합니다.
+
+RStudio에서 새로운 프로젝트를 생성할 때 renv 사용여부를 check하면 자동으로 설정됩니다.
+
+사용법에 대해서는 <https://rstudio.github.io/renv/articles/renv.html> 참고하시길 바랍니다.
