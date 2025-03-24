@@ -34,9 +34,9 @@ my_load_source_files <- function (source_folder) {
   invisible(lapply(r_files, source))
 }
 
-source("C:/Projects/R443_RPythonStudy_website/source/my_histgram_with_outliers.R")
+source("C:/Projects/R443-RPythonStudy_website/source/my_histgram_with_outliers.R")
 
-raw_data <- read_excel("C:/Projects/R443_RPythonStudy_website/raw_data/deidentified_han20230213.xlsx")
+raw_data <- read_excel("C:/Projects/R443-RPythonStudy_website/raw_data/deidentified_han20230213.xlsx")
 
 my_histgram_with_outliers(raw_data, "AGE")
 ```
