@@ -1,13 +1,13 @@
 ---
 title: "R Basics"
-description:  "이해원회장님의 25.01.20까지의 강의록이 PDF로 첨부되어 있습니다."
+description:  "이해원회장님의 25.03.17까지의 강의록이 PDF로 첨부되어 있습니다."
 author: "Haewon LEE"
 date: "2024-12-23"
-date-modified: "2025-01-20"
+date-modified: last-modified
 categories: [R, Syntax]
 ---
 
 ###  R Basics
-- 아래의 링크를 클릭하면 2025-01-20 강의록까지 누적으로 업데이트된 PDF 파일이 열립니다.
+- 아래의 링크를 클릭하면 2025-03-17 강의록까지 누적으로 업데이트된 PDF 파일이 열립니다.
 
 -   [R Basics](/archive/basics.pdf)

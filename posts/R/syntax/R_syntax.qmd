@@ -1,9 +1,9 @@
 ---
-title: "R syntax"
-description: "Understanding data type and manupulation"
-author: "RPythonStudyGroup feat. ChatGPT"
+title: "R 문법"
+description: "R 자료형에 대한 이해"
+author: "BenKorea feat. ChatGPT"
 date: "2024-08-31"
-date-modified: "2024-08-31"
+date-modified: last-modified
 categories:
   - R
   - syntax
@@ -344,12 +344,12 @@ print(current_time); class(current_time); typeof(current_time)
 
 -   **예시**
 
-    ```{r}
-    first <- "2022-08-20 08:15:22" ; second <- "2022-01-01 20:04:48"
-    difftime(first, second); difftime(first, second, units = "hours")
-    difftime1<-difftime(first, second)
-    class(difftime1); typeof(difftime1)
-    ```
+```{r}
+first <- "2022-08-20 08:15:22" ; second <- "2022-01-01 20:04:48"
+difftime(first, second); difftime(first, second, units = "hours")
+difftime1<-difftime(first, second)
+class(difftime1); typeof(difftime1)
+```
 
 ```{r}
 first2 <- as.POSIXlt(first); second2 <- as.POSIXlt(second)
@@ -370,11 +370,13 @@ second2 - first2
 
 -   **예시**:
 
-    ```{r}
-    library(hms)
-    time_of_day <- hms::as_hms("12:34:56")
-    print(time_of_day)
-    ```
+```{r}
+
+library(hms)
+
+time_of_day <- hms::as_hms("12:34:56")
+print(time_of_day)
+```
 
 #### **Interval, Period, Duration 객체 (lubridate 패키지)**
 
@@ -390,20 +392,21 @@ second2 - first2
 
 -   **예시**
 
-    ```{r massage=FALSE}
-    suppressMessages(library(lubridate))
+```{r massage=FALSE}
 
-    start_time <- as.POSIXct("2024-08-08 08:00:00")
-    end_time <- as.POSIXct("2024-08-08 12:00:00")
-    interval <- interval(start_time, end_time)
-    print(interval)
+suppressMessages(library(lubridate))
 
-    period <- months(3) + days(10)
-    print(period)
+start_time <- as.POSIXct("2024-08-08 08:00:00")
+end_time <- as.POSIXct("2024-08-08 12:00:00")
+interval <- interval(start_time, end_time)
+print(interval)
 
-    duration <- as.duration(period)
-    print(duration)
-    ```
+period <- months(3) + days(10)
+print(period)
+
+duration <- as.duration(period)
+print(duration)
+```
 
 # 
 
@@ -415,9 +418,11 @@ second2 - first2
 
 data file이 존재하는 디렉토리를 먼저 설정해주어야 합니다. 이를 위한 명령어는 setwd() = set working directory 라는 의미 setwd(“C:/R/projects/R-4.4.1-RPythonStudy_HANJM”) 와 같이 디렉토리를 설정해줄 수도 있지만, 만약 디렉토리를 찾기 어렵다면 setwd( choose.dir() ) 와 같은 명령으로 파일탐색기를 열어서 디렉토리를 선택할 수 있습니다. 현재 사용 할 xlsx 파일들이 다음 디렉토리에 있다고 가정합니다.
 
-```{r read-raw-data, warning=FALSE}
-setwd("C:/R/projects/R-4.4.1-RPythonStudy_HANJM/raw_data")
+```{r read-raw-data, eval=FALSE, warning=FALSE}
+
 library(readxl)
+
+setwd("C:/R/projects/R-4.4.1-RPythonStudy_HANJM/raw_data")
 dir(pattern = "*.xlsx")
 xlsxfiles <- dir(pattern = "*.xlsx")
 ptinfo <- read_xlsx(xlsxfiles[1])
