@@ -122,3 +122,109 @@ R을 심도있게 공부할려면 R 개발자들이 만든 매뉴얼 중 **The R
 RStudio에서 새로운 프로젝트를 생성할 때 renv 사용여부를 check하면 자동으로 설정됩니다.
 
 사용법에 대해서는 <https://rstudio.github.io/renv/articles/renv.html> 참고하시길 바랍니다.
+
+## Ubuntu에서의 설치
+
+### 단일버전을 설치하는 일반적인 방법
+
+- CRAN에서 제공하는 Ubuntu에서의 R 설치방법은 아래와 같습니다.
+```{r update_indices, eval=FALSE, filename="Ubuntu Bash"}
+sudo apt update -qq
+```
+- 리눅스계열에서 프로그램을 설치할 때, apt의 원격저장소의 프로그램 인덱스를 로컬의 무슨 파일로 업데이트하는 명령입니다.
+- qq인자는 오류가 없다면 화면에 아무것도 출력하지 않는 옵션입니다.
+
+
+```{r helper_packages, eval=FALSE, filename="Ubuntu Bash"}
+sudo apt install --no-install-recommends software-properties-common dirmngr
+```
+
+```{r gnukey, eval=FALSE, filename="Ubuntu Bash"}
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+```
+
+```{r cran_repository, eval=FALSE, filename="Ubuntu Bash"}
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(noble_release -cs)-cran40/"
+```
+- noble은 버전에 맞게 수정해야 합니다.
+
+
+```{r r_bas, eval=FALSE, filename="Ubuntu Bash"}
+sudo apt install --no-install-recommends r-base
+```
+
+- 설치경로는 아래와 같습니다.
+
+::: {#fig-RPathUbuntu}
+```
+/usr/                  # 시스템 전반의 공용 디렉토리
+└── lib/
+    └── R/             # R의 라이브러리 및 core 파일이 설치됨 (기본 R_HOME)
+/usr/bin/              # 실행 가능한 바이너리 파일이 위치
+├── R                  # R 실행 파일 (심볼릭 링크로 연결되어 있음)
+/usr/share/            # 애플리케이션 공용 데이터 저장 디렉토리
+└── R/                 # R 관련 문서, 아이콘 등 공유 리소스
+/etc/                  # 설정 파일이 위치하는 디렉토리
+└── R/                 # Renviron, Rprofile 등의 설정 파일 (기본 설정값 포함)
+/usr/include/          # R 패키지를 컴파일할 때 사용하는 헤더 파일
+└── R/                 # Rmath.h 등 C/C++에서 R을 확장할 때 필요한 헤더 파일
+```
+Ubuntu에서의 R 설치 경로
+:::
+
+### rig로 다중버전을 설치하는 방법
+- 필요성: 수동으로 전환하는 것이 번거롭고, R Installation Manager인 rig를 사용하면 편리해 보여 시도함
+- 설치안내: 웹사이트 (https://github.com/r-lib/rig?tab=readme-ov-file#id-ubuntu-and-debian-deb-package)
+
+#### GPG키 추가
+```{r gpg_key, eval=FALSE, filename="Ubuntu Bash"}
+`which sudo` curl -L https://rig.r-pkg.org/deb/rig.gpg -o /etc/apt/trusted.gpg.d/rig.gpg
+```
+- 위 명령에서 `which sudo`는 sudo 명령의 전체 경로를 출력하여 실행에 사용하는 것입니다. 예를 들어, 시스템에 따라 /usr/bin/sudo처럼 확장되어 아래와 같이 실행됩니다:
+- 결과적으로 curl 명령을 관리자 권한으로 실행하여, rig 패키지를 위한 GPG 키를 APT의 신뢰된 키 디렉터리에 설치하게 됩니다.
+
+#### rig repository 추가
+```{r rig_repository, eval=FALSE, filename="Ubuntu Bash"}
+`which sudo` sh -c 'echo "deb http://rig.r-pkg.org/deb rig main" > /etc/apt/sources.list.d/rig.list'
+```
+- 저장소를 /etc/apt/sources.list.d/rig.list 파일에 기록합니다.
+
+#### rig 설치
+```{r rig_install, eval=FALSE, filename="Ubuntu Bash"}
+`which sudo` apt update
+`which sudo` apt install r-rig
+```
+- 우분투에서는 패키지이름이 r-rig로 되어 있으므로 주의 요함
+
+#### rig 설치 검증
+```{r rig_check, eval=FALSE, filename="Ubuntu Bash"}
+rig --version
+```
+- 버전이 표시되면 성공
+
+
+#### 버전별 R 설치
+- 일단 최신버전 먼저 설치
+```{r r_install, eval=FALSE, filename="Ubuntu Bash"}
+rig add 4.4.3
+```
+
+- 추가 버전 설치
+```{r r_add2, eval=FALSE, filename="Ubuntu Bash"}
+rig add 4.4.2
+```
+
+
+
+
+
+
+
+## Ubuntu에서의 R 제거
+
+- R을 버전별로 별도 설치해야 하는데 위는 그냥 설치했다. 제거는 아래와 같습니다.
+
+```{r remove_r, eval=FALSE, filename="Ubuntu Bash"}
+sudo apt-get remove r-base
+```
+
