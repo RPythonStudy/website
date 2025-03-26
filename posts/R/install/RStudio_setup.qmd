@@ -4,7 +4,7 @@ description: "RStudio 설치 및 설정"
 author: "BenKorea feat. ChatGPT"
 date: "2024-05-06"
 date-modified: last-modified
-categories: [R, RStudio, setup]
+categories: [RStudio, install]
 ---
 
 ## R 통합개발환경 선택
@@ -17,7 +17,7 @@ RStudio와 VS Code는 모두 각자의 특징을 가진 R 프로그래밍을 위
 
 RStudio 공식사이트 (<https://posit.co/>)에 설치에 대한 공식문서는 없어 보입니다. 그러나 설치는 어렵지 않으며 아래의 요약을 참고하여 설치 하셔도 됩니다.
 
-## RStudio 설치파일
+## RStudio Window 설치
 
 자신의 운영체제( (Windows 10+, macOS 13+, and Linux)에 맞는 최신버전의 RStudio를 아래의 공식 다운로드 사이트(<https://posit.co/downloads/>)에서 다운로드 후 (2024년 12월 16일 release된 원도우데스크탑용의 최신설치파일은 RStudio-2024.12.0+467.exe입니다.) 설치합니다.
 
@@ -159,16 +159,58 @@ RStudio 실행 → File → New Project...\
 -   ![RStudio 열린 프로젝트 표시](images/clipboard-3076892332.png)
 
 
-### 우분투에 RStudio 설치
-- POSIT사에서 제시하는 public code signing key는 아래와 같다.
-```{r RStudio_key, eval=FALSE, filename="Ubuntu Bash"}
-gpg --keyserver keys.openpgp.org --search-keys 51C0B5BB19F92D60
-```
+## Ubuntu/WSL2 환경에서 RStudio Server 설치
+
+### 주의사항
+- Ubuntu와는 다르게 WSL2에 설치된 우분투는 GUI를 지원하지 않습니다. 따라서 RStudio Desktop을 설치할 수 없으며, RStudio Server를 설치하여 웹 브라우저를 통해 접속하는 방식으로 사용해야 합니다.
+
+### 설치안내
+https://posit.co/download/rstudio-server/
 
 
-```{r Ubuntu_RStudio, eval=FALSE, filename="Ubuntu Bash"}
+```{r gdebi, eval=FALSE, filename="Ubuntu Bash"}
 sudo apt-get install gdebi-core
-wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1717-amd64.deb
 ```
-- 
+
+
+```{r wget_RStudio_server, eval=FALSE, filename="Ubuntu Bash"}
+wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.12.1-563-amd64.deb
+```
+
+```{r gdebi_RStudio_server, eval=FALSE, filename="Ubuntu Bash"}
+sudo gdebi rstudio-server-2024.12.1-563-amd64.deb
+```
+
+```{r log_in, eval=FALSE, filename="인터넷창"}
+http://localhost:8787
+```
+
+로그인 정보:
+
+사용자명: 현재 Ubuntu 사용자명 (예: ben)
+
+비밀번호: WSL2 Ubuntu 로그인 비밀번호
+
+
+## RStudio Server 설정
+
+### Github Copilot 활성화 방법
+- rstudio server 환경에서 github copilot 을 사용하려고 보니 아래처럼
+Github Copilot integration has been disabled by the administrator 라는 문구가 떴다.
+- Rstudio Server나 Posit Workbench에서는 관리자 설정 이후 사용이 가능하다고 한다.
+
+
+```{r cd_rstudio, eval=FALSE, filename="bash"}
+cd /etc/rstudio/
+```
+
+```{r sudo_vim, eval=FALSE, filename="bash"}
+sudo nano rsession.conf
+```
+
+```{r copilot, eval=FALSE, filename="rsession.conf"}
+copilot-enabled=1
+```
+
+
 

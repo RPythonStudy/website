@@ -1,9 +1,9 @@
 ---
 title: "R 설치"
 description: "R 설치 및 설정"
-author: "RPythonStudyGroup feat. ChatGPT"
+author: "BenKorea feat. ChatGPT"
 date: "2024-05-06"
-date-modified: "2025-03-01"
+date-modified: last-modified
 categories: [R, setup]
 ---
 
