@@ -1,7 +1,7 @@
 ---
 title: "RStudio"
 description: "RStudio 설치 및 설정"
-author: "RPythonStudyGroup feat. ChatGPT"
+author: "BenKorea feat. ChatGPT"
 date: "2024-05-06"
 date-modified: last-modified
 categories: [R, RStudio, setup]
@@ -157,3 +157,18 @@ RStudio 실행 → File → New Project...\
 -   다시 열면 이전 상태가 그대로 복원되어 작업을 중단했다가 쉽게 이어갈 수 있음.
 -   RStudio가 어떤 프로젝트를 열고 있는지 혹은 어떤 프로젝트도 열고 있지 않은지는 좌측 상단에 표시됩니다. (`R442-RPythonStudy_Website - dev - RStudio`라고 표시되어 있으며 dev는 Git 버전관리시스템에서 사용할 목적으로 작성자가 부여한 branch 이름입니다.)
 -   ![RStudio 열린 프로젝트 표시](images/clipboard-3076892332.png)
+
+
+### 우분투에 RStudio 설치
+- POSIT사에서 제시하는 public code signing key는 아래와 같다.
+```{r RStudio_key, eval=FALSE, filename="Ubuntu Bash"}
+gpg --keyserver keys.openpgp.org --search-keys 51C0B5BB19F92D60
+```
+
+
+```{r Ubuntu_RStudio, eval=FALSE, filename="Ubuntu Bash"}
+sudo apt-get install gdebi-core
+wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1717-amd64.deb
+```
+- 
+
