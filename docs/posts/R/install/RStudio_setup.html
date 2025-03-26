@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="RPythonStudyGroup feat. ChatGPT">
+<meta name="author" content="BenKorea feat. ChatGPT">
 <meta name="description" content="RStudio 설치 및 설정">
 
 <title>RStudio – RPythonStudy</title>
@@ -202,9 +202,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">R</div>
                 <div class="quarto-category">RStudio</div>
-                <div class="quarto-category">setup</div>
+                <div class="quarto-category">install</div>
               </div>
                   </div>
   </div>
@@ -215,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">저자</div>
       <div class="quarto-title-meta-contents">
-               <p>RPythonStudyGroup feat. ChatGPT </p>
+               <p>BenKorea feat. ChatGPT </p>
             </div>
     </div>
       
@@ -229,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">2025년 3월 24일</p>
+        <p class="date-modified">2025년 3월 26일</p>
       </div>
     </div>
       
@@ -403,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#r-통합개발환경-선택" id="toc-r-통합개발환경-선택" class="nav-link active" data-scroll-target="#r-통합개발환경-선택">R 통합개발환경 선택</a></li>
   <li><a href="#rstudio-설치안내문서" id="toc-rstudio-설치안내문서" class="nav-link" data-scroll-target="#rstudio-설치안내문서">RStudio 설치안내문서</a></li>
-  <li><a href="#rstudio-설치파일" id="toc-rstudio-설치파일" class="nav-link" data-scroll-target="#rstudio-설치파일">RStudio 설치파일</a>
+  <li><a href="#rstudio-window-설치" id="toc-rstudio-window-설치" class="nav-link" data-scroll-target="#rstudio-window-설치">RStudio Window 설치</a>
   <ul class="collapse">
   <li><a href="#window-운영체제-설치경로" id="toc-window-운영체제-설치경로" class="nav-link" data-scroll-target="#window-운영체제-설치경로">Window 운영체제 설치경로</a></li>
   <li><a href="#macos-폴더구조" id="toc-macos-폴더구조" class="nav-link" data-scroll-target="#macos-폴더구조">MacOS 폴더구조</a></li>
@@ -430,6 +429,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#rstudio-프로젝트-생성-방법" id="toc-rstudio-프로젝트-생성-방법" class="nav-link" data-scroll-target="#rstudio-프로젝트-생성-방법">RStudio 프로젝트 생성 방법</a></li>
   <li><a href="#rstudio-프로젝트의-활용" id="toc-rstudio-프로젝트의-활용" class="nav-link" data-scroll-target="#rstudio-프로젝트의-활용">RStudio 프로젝트의 활용</a></li>
   </ul></li>
+  <li><a href="#ubuntuwsl2-환경에서-rstudio-server-설치" id="toc-ubuntuwsl2-환경에서-rstudio-server-설치" class="nav-link" data-scroll-target="#ubuntuwsl2-환경에서-rstudio-server-설치">Ubuntu/WSL2 환경에서 RStudio Server 설치</a>
+  <ul class="collapse">
+  <li><a href="#주의사항" id="toc-주의사항" class="nav-link" data-scroll-target="#주의사항">주의사항</a></li>
+  <li><a href="#설치안내" id="toc-설치안내" class="nav-link" data-scroll-target="#설치안내">설치안내</a></li>
+  </ul></li>
+  <li><a href="#rstudio-server-설정" id="toc-rstudio-server-설정" class="nav-link" data-scroll-target="#rstudio-server-설정">RStudio Server 설정</a>
+  <ul class="collapse">
+  <li><a href="#github-copilot-활성화-방법" id="toc-github-copilot-활성화-방법" class="nav-link" data-scroll-target="#github-copilot-활성화-방법">Github Copilot 활성화 방법</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -449,8 +457,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="rstudio-설치안내문서">RStudio 설치안내문서</h2>
 <p>RStudio 공식사이트 (<a href="https://posit.co/" class="uri">https://posit.co/</a>)에 설치에 대한 공식문서는 없어 보입니다. 그러나 설치는 어렵지 않으며 아래의 요약을 참고하여 설치 하셔도 됩니다.</p>
 </section>
-<section id="rstudio-설치파일" class="level2">
-<h2 class="anchored" data-anchor-id="rstudio-설치파일">RStudio 설치파일</h2>
+<section id="rstudio-window-설치" class="level2">
+<h2 class="anchored" data-anchor-id="rstudio-window-설치">RStudio Window 설치</h2>
 <p>자신의 운영체제( (Windows 10+, macOS 13+, and Linux)에 맞는 최신버전의 RStudio를 아래의 공식 다운로드 사이트(<a href="https://posit.co/downloads/" class="uri">https://posit.co/downloads/</a>)에서 다운로드 후 (2024년 12월 16일 release된 원도우데스크탑용의 최신설치파일은 RStudio-2024.12.0+467.exe입니다.) 설치합니다.</p>
 <section id="window-운영체제-설치경로" class="level3">
 <h3 class="anchored" data-anchor-id="window-운영체제-설치경로">Window 운영체제 설치경로</h3>
@@ -628,6 +636,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div></li>
 </ul>
+</section>
+</section>
+<section id="ubuntuwsl2-환경에서-rstudio-server-설치" class="level2">
+<h2 class="anchored" data-anchor-id="ubuntuwsl2-환경에서-rstudio-server-설치">Ubuntu/WSL2 환경에서 RStudio Server 설치</h2>
+<section id="주의사항" class="level3">
+<h3 class="anchored" data-anchor-id="주의사항">주의사항</h3>
+<ul>
+<li>Ubuntu와는 다르게 WSL2에 설치된 우분투는 GUI를 지원하지 않습니다. 따라서 RStudio Desktop을 설치할 수 없으며, RStudio Server를 설치하여 웹 브라우저를 통해 접속하는 방식으로 사용해야 합니다.</li>
+</ul>
+</section>
+<section id="설치안내" class="level3">
+<h3 class="anchored" data-anchor-id="설치안내">설치안내</h3>
+<p>https://posit.co/download/rstudio-server/</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Ubuntu Bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="sc">-</span>get install gdebi<span class="sc">-</span>core</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Ubuntu Bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wget https<span class="sc">:</span><span class="er">//</span>download2.rstudio.org<span class="sc">/</span>server<span class="sc">/</span>jammy<span class="sc">/</span>amd64<span class="sc">/</span>rstudio<span class="sc">-</span>server<span class="dv">-2024</span>.<span class="fl">12.1</span><span class="dv">-563</span><span class="sc">-</span>amd64.deb</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Ubuntu Bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sudo gdebi rstudio<span class="sc">-</span>server<span class="dv">-2024</span>.<span class="fl">12.1</span><span class="dv">-563</span><span class="sc">-</span>amd64.deb</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>인터넷창</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>http<span class="sc">:</span><span class="er">//</span>localhost<span class="sc">:</span><span class="dv">8787</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>로그인 정보:</p>
+<p>사용자명: 현재 Ubuntu 사용자명 (예: ben)</p>
+<p>비밀번호: WSL2 Ubuntu 로그인 비밀번호</p>
+</section>
+</section>
+<section id="rstudio-server-설정" class="level2">
+<h2 class="anchored" data-anchor-id="rstudio-server-설정">RStudio Server 설정</h2>
+<section id="github-copilot-활성화-방법" class="level3">
+<h3 class="anchored" data-anchor-id="github-copilot-활성화-방법">Github Copilot 활성화 방법</h3>
+<ul>
+<li>rstudio server 환경에서 github copilot 을 사용하려고 보니 아래처럼 Github Copilot integration has been disabled by the administrator 라는 문구가 떴다.</li>
+<li>Rstudio Server나 Posit Workbench에서는 관리자 설정 이후 사용이 가능하다고 한다.</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cd <span class="sc">/</span>etc<span class="sc">/</span>rstudio<span class="sc">/</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sudo nano rsession.conf</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>rsession.conf</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>copilot<span class="sc">-</span>enabled<span class="ot">=</span><span class="dv">1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 
 
 </section>

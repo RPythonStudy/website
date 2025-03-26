@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="BenKorea feat. ChatGPT">
-<meta name="description" content="R 자료형에 대한 이해">
+<meta name="author" content="RPythonStudyGroup feat. ChatGPT">
+<meta name="description" content="Understanding data type and manupulation">
 
-<title>R 문법 – RPythonStudy</title>
+<title>R syntax – RPythonStudy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -195,10 +195,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/R/syntax/R_syntax.html">문법</a></li><li class="breadcrumb-item"><a href="../../../posts/R/syntax/R_syntax.html">R 문법</a></li></ol></nav>
-      <h1 class="title">R 문법</h1>
+      <h1 class="title">R syntax</h1>
                   <div>
         <div class="description">
-          R 자료형에 대한 이해
+          Understanding data type and manupulation
         </div>
       </div>
                           <div class="quarto-categories">
@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">저자</div>
       <div class="quarto-title-meta-contents">
-               <p>BenKorea feat. ChatGPT </p>
+               <p>RPythonStudyGroup feat. ChatGPT </p>
             </div>
     </div>
       
@@ -228,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">2025년 3월 24일</p>
+        <p class="date-modified">2024년 8월 31일</p>
       </div>
     </div>
       
@@ -1004,7 +1004,7 @@ Levels: 낮음 &lt; 중간 &lt; 높음</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>today <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>(); <span class="fu">print</span>(today); <span class="fu">class</span>(today); <span class="fu">typeof</span>(today)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-03-24"</code></pre>
+<pre><code>[1] "2025-03-23"</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Date"</code></pre>
@@ -1025,7 +1025,7 @@ Levels: 낮음 &lt; 중간 &lt; 높음</code></pre>
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>current_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(current_time); <span class="fu">class</span>(current_time); <span class="fu">typeof</span>(current_time)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-03-24 09:36:37 KST"</code></pre>
+<pre><code>[1] "2025-03-23 00:13:17 KST"</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "POSIXct" "POSIXt" </code></pre>
@@ -1060,8 +1060,7 @@ Levels: 낮음 &lt; 중간 &lt; 높음</code></pre>
 <ul>
 <li><p><strong>설명</strong>: <code>difftime</code> 객체는 두 날짜 또는 시간 간의 차이를 나타냅니다. 차이는 일(day), 시간(hour), 분(minute), 초(second) 등의 단위로 표현됩니다.</p></li>
 <li><p><strong>주요 용도</strong>: 시간 간격 또는 지속 시간 계산.</p></li>
-<li><p><strong>예시</strong></p></li>
-</ul>
+<li><p><strong>예시</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>first <span class="ot">&lt;-</span> <span class="st">"2022-08-20 08:15:22"</span> ; second <span class="ot">&lt;-</span> <span class="st">"2022-01-01 20:04:48"</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">difftime</span>(first, second); <span class="fu">difftime</span>(first, second, <span class="at">units =</span> <span class="st">"hours"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1079,7 +1078,8 @@ Levels: 낮음 &lt; 중간 &lt; 높음</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "double"</code></pre>
 </div>
-</div>
+</div></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>first2 <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(first); second2 <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(second)</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>second2 <span class="sc">-</span> first2</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1098,17 +1098,16 @@ Levels: 낮음 &lt; 중간 &lt; 높음</code></pre>
 <ul>
 <li><p><strong>설명</strong>: <code>hms</code> 객체는 시, 분, 초를 저장하고 다루기 위한 객체입니다. 하루 시간을 다루는 데 유용하며, 타임스탬프 없이 시간을 표현할 수 있습니다.</p></li>
 <li><p><strong>주요 용도</strong>: 시, 분, 초 단위의 시간 데이터 관리.</p></li>
-<li><p><strong>예시</strong>:</p></li>
-</ul>
+<li><p><strong>예시</strong>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hms)</span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>time_of_day <span class="ot">&lt;-</span> hms<span class="sc">::</span><span class="fu">as_hms</span>(<span class="st">"12:34:56"</span>)</span>
-<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(time_of_day)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>time_of_day <span class="ot">&lt;-</span> hms<span class="sc">::</span><span class="fu">as_hms</span>(<span class="st">"12:34:56"</span>)</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(time_of_day)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>12:34:56</code></pre>
 </div>
-</div>
+</div></li>
+</ul>
 </section>
 <section id="interval-period-duration-객체-lubridate-패키지" class="level4">
 <h4 class="anchored" data-anchor-id="interval-period-duration-객체-lubridate-패키지"><strong>Interval, Period, Duration 객체 (lubridate 패키지)</strong></h4>
@@ -1120,8 +1119,7 @@ Levels: 낮음 &lt; 중간 &lt; 높음</code></pre>
 <li><p><strong>Duration</strong>: 일정한 시간 간격을 초 단위로 표현.</p></li>
 </ul></li>
 <li><p><strong>주요 용도</strong>: 시간 간격 계산, 특정 기간 동안의 시간 변화 분석.</p></li>
-<li><p><strong>예시</strong></p></li>
-</ul>
+<li><p><strong>예시</strong></p>
 <div class="cell" data-massage="false">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(lubridate))</span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1142,7 +1140,8 @@ Levels: 낮음 &lt; 중간 &lt; 높음</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "8753400s (~14.47 weeks)"</code></pre>
 </div>
-</div>
+</div></li>
+</ul>
 </section>
 </section>
 </section>
@@ -1158,12 +1157,14 @@ Levels: 낮음 &lt; 중간 &lt; 높음</code></pre>
 <h3 class="anchored" data-anchor-id="data-reading">Data reading</h3>
 <p>data file이 존재하는 디렉토리를 먼저 설정해주어야 합니다. 이를 위한 명령어는 setwd() = set working directory 라는 의미 setwd(“C:/R/projects/R-4.4.1-RPythonStudy_HANJM”) 와 같이 디렉토리를 설정해줄 수도 있지만, 만약 디렉토리를 찾기 어렵다면 setwd( choose.dir() ) 와 같은 명령으로 파일탐색기를 열어서 디렉토리를 선택할 수 있습니다. 현재 사용 할 xlsx 파일들이 다음 디렉토리에 있다고 가정합니다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/R/projects/R-4.4.1-RPythonStudy_HANJM/raw_data"</span>)</span>
-<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>(<span class="at">pattern =</span> <span class="st">"*.xlsx"</span>)</span>
-<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>xlsxfiles <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">pattern =</span> <span class="st">"*.xlsx"</span>)</span>
-<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>ptinfo <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(xlsxfiles[<span class="dv">1</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/R/projects/R-4.4.1-RPythonStudy_HANJM/raw_data"</span>)</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>(<span class="at">pattern =</span> <span class="st">"*.xlsx"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "deidentified_han20230213.xlsx"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>xlsxfiles <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">pattern =</span> <span class="st">"*.xlsx"</span>)</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>ptinfo <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(xlsxfiles[<span class="dv">1</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="binding-tables" class="level3">
@@ -1186,43 +1187,43 @@ Levels: 낮음 &lt; 중간 &lt; 높음</code></pre>
 <p>sort = TRUE, suffixes = c(“.x”,“.y”), no.dups = TRUE,</p>
 <p>incomparables = NULL, …)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">"Lee"</span>,<span class="st">"Kim"</span>,<span class="st">"Park"</span>, <span class="st">"Kang"</span>,</span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="st">"Shin"</span>, <span class="st">"Lim"</span>, <span class="st">"Kwon"</span>, <span class="st">"Choi"</span>, <span class="st">"Nam"</span>, <span class="st">"Baek"</span> ),</span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="at">Score =</span> <span class="fu">as.integer</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">80</span>,<span class="dv">6</span> ))</span>
-<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="at">ID =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">9</span>, <span class="at">replace =</span> F),</span>
-<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a><span class="at">Department =</span> <span class="fu">sample</span>( <span class="fu">c</span>(<span class="st">"IM"</span>,<span class="st">"GS"</span>,<span class="st">"GY"</span>,<span class="st">"PD"</span> ),<span class="dv">9</span>, <span class="at">replace =</span> T),</span>
-<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a><span class="at">Age =</span> <span class="fu">as.integer</span>(<span class="fu">rnorm</span>(<span class="dv">9</span>, <span class="dv">40</span>,<span class="dv">6</span> )) )</span>
-<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">"Lee"</span>,<span class="st">"Kim"</span>,<span class="st">"Park"</span>, <span class="st">"Kang"</span>,</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="st">"Shin"</span>, <span class="st">"Lim"</span>, <span class="st">"Kwon"</span>, <span class="st">"Choi"</span>, <span class="st">"Nam"</span>, <span class="st">"Baek"</span> ),</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="at">Score =</span> <span class="fu">as.integer</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">80</span>,<span class="dv">6</span> ))</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="at">ID =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">9</span>, <span class="at">replace =</span> F),</span>
+<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="at">Department =</span> <span class="fu">sample</span>( <span class="fu">c</span>(<span class="st">"IM"</span>,<span class="st">"GS"</span>,<span class="st">"GY"</span>,<span class="st">"PD"</span> ),<span class="dv">9</span>, <span class="at">replace =</span> T),</span>
+<span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a><span class="at">Age =</span> <span class="fu">as.integer</span>(<span class="fu">rnorm</span>(<span class="dv">9</span>, <span class="dv">40</span>,<span class="dv">6</span> )) )</span>
+<span id="cb95-8"><a href="#cb95-8" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   ID Name Score
-1   1  Lee    75
-2   2  Kim    88
-3   3 Park    82
-4   4 Kang    93
-5   5 Shin    83
-6   6  Lim    83
-7   7 Kwon    87
-8   8 Choi    83
+1   1  Lee    76
+2   2  Kim    76
+3   3 Park    79
+4   4 Kang    70
+5   5 Shin    92
+6   6  Lim    80
+7   7 Kwon    79
+8   8 Choi    71
 9   9  Nam    81
-10 10 Baek    66</code></pre>
+10 10 Baek    88</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>merged_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(df1,df2, <span class="at">by=</span><span class="st">"ID"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>) <span class="co"># full join</span></span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>merged_df</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>merged_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(df1,df2, <span class="at">by=</span><span class="st">"ID"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>) <span class="co"># full join</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>merged_df</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   ID Name Score Department Age
-1   1  Lee    75         PD  31
-2   2  Kim    88         PD  45
-3   3 Park    82         GS  42
-4   4 Kang    93         GY  33
-5   5 Shin    83         GS  41
-6   6  Lim    83         GY  37
-7   7 Kwon    87         PD  42
-8   8 Choi    83       &lt;NA&gt;  NA
-9   9  Nam    81         GY  47
-10 10 Baek    66         IM  43</code></pre>
+1   1  Lee    76       &lt;NA&gt;  NA
+2   2  Kim    76         GY  43
+3   3 Park    79         IM  37
+4   4 Kang    70         GS  36
+5   5 Shin    92         PD  47
+6   6  Lim    80         GS  33
+7   7 Kwon    79         GS  39
+8   8 Choi    71         GY  37
+9   9  Nam    81         GS  35
+10 10 Baek    88         GS  45</code></pre>
 </div>
 </div>
 </section>
@@ -1248,20 +1249,20 @@ Levels: 낮음 &lt; 중간 &lt; 높음</code></pre>
 <p>library magrittr 를 사용하면 pipeline 연산자를 쓸 수 있게 된다. %&gt;% 형식이다.</p>
 <p>만약 c(“A”,“B”,“C”) 라는 데이터를 “ABC” 로 paste 한 다음에 다시 tolower 함수를 적용하여 “abc”로 변환하는 작업을 한다고 하자. 그런 경우에는 다음과 같이 코딩을 해야 한다. 하지만 pipeline operator를 사용하면 함수 중첩을 줄이고 코드를 이해하기 쉽게 사용할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(<span class="fu">paste</span>(<span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>), <span class="at">collapse =</span> <span class="st">""</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(<span class="fu">paste</span>(<span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>), <span class="at">collapse =</span> <span class="st">""</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "abc"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>) <span class="sc">%&gt;%</span> <span class="fu">paste</span>(., <span class="at">collapse =</span> <span class="st">""</span>) <span class="sc">%&gt;%</span> tolower</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>) <span class="sc">%&gt;%</span> <span class="fu">paste</span>(., <span class="at">collapse =</span> <span class="st">""</span>) <span class="sc">%&gt;%</span> tolower</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "abc"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 첫번째 인자로 들어가기 위해서 . 을 사용함</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 첫번째 인자로 들어가기 위해서 . 을 사용함</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
