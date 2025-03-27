@@ -612,7 +612,7 @@
     "href": "index.html",
     "title": "Blog",
     "section": "",
-    "text": "정렬\n       디폴트\n         \n          제목\n        \n         \n          날짜 - 날짜(오름차순)\n        \n         \n          날짜 - 날짜(내림차순)\n        \n         \n          저자\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nR 설치\n\n\n\n\n\n\nR\n\n\nsetup\n\n\n\nR 설치 및 설정\n\n\n\n\n\n2024. 5. 6.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nRStudio\n\n\n\n\n\n\nRStudio\n\n\ninstall\n\n\n\nRStudio 설치 및 설정\n\n\n\n\n\n2024. 5. 6.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nR Basics\n\n\n\n\n\n\nR\n\n\nSyntax\n\n\n\n이해원회장님의 25.03.17까지의 강의록이 PDF로 첨부되어 있습니다.\n\n\n\n\n\n2024. 12. 23.\n\n\nHaewon LEE\n\n\n\n\n\n\n\n\n\n\n\n\nR 문법\n\n\n\n\n\n\nR\n\n\nsyntax\n\n\n\nR 자료형에 대한 이해\n\n\n\n\n\n2024. 8. 31.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\n연속형변수에서 이상치검출\n\n\n\n\n\n\nR\n\n\npreprocessing\n\n\noutlier\n\n\n\n정규분포와 Box-Cox transformation을 이용한 검출\n\n\n\n\n\n2024. 7. 8.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\n공공데이터포털\n\n\n\n\n\n\nResource\n\n\nOpen Goverment Data\n\n\n\nHow to use Open Goverment Data\n\n\n\n\n\n2024. 10. 2.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction\n\n\n\n\n\n\nPython\n\n\nintroduction\n\n\n\nPython 역사와 의학연구에서의 필요성\n\n\n\n\n\n2024. 9. 7.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on Git\n\n\n\n\n\n\nhands-on\n\n\nGit\n\n\n\nRStudio에서 Git 기본 명령어 실습\n\n\n\n\n\n2024. 10. 25.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\n의료빅데이터 분석을 위하여\n\n\n\n\n\n\nintroduction\n\n\n\n이 웹사이틑 R과 Python을 이용하여 의료(빅)데이터를 분석하고자 하는 원내 연구자들에게 도움이 되고자 만들어졌습니다\n\n\n\n\n\n2024. 4. 12.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nGithub 가입\n\n\n\n\n\n\nGithub\n\n\nsign up\n\n\n\nGithub 가입과 기초사용법에 대한 설명\n\n\n\n\n\n2024. 10. 25.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nGit 핵심개념\n\n\n\n\n\n\nGit\n\n\n\n사용에 앞서 도움이 되는 핵심개념을 정리하였습니다.\n\n\n\n\n\n2024. 5. 6.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nGit 설정\n\n\n\n\n\n\nGit\n\n\nconfiguration\n\n\n\nGit 설정에 대한 안내\n\n\n\n\n\n2024. 5. 6.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nGit 설치\n\n\n\n\n\n\nGit\n\n\nsetup\n\n\n\nGit 설치에 대한 안내\n\n\n\n\n\n2024. 5. 6.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nOpenSSH\n\n\n\n\n\n\nTools\n\n\nopenSSH\n\n\n\nSSH 키를 생성하고 Github에 연결하기\n\n\n\n\n\n2024. 12. 11.\n\n\nBenKorea\n\n\n\n\n\n\n\n\n\n\n\n\n자료형\n\n\n\n\n\n\nPython\n\n\nsyntax\n\n\ndata type\n\n\n\nPython 자료혈\n\n\n\n\n\n2025. 2. 23.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\ncallout with background color\n\n\n\n\n\n\nQuarto\n\n\ncallout\n\n\ncolor\n\n\n\ncallout 기능구현시 배경색상을 지정하는 방법을 설명합니다.\n\n\n\n\n\n2025. 2. 3.\n\n\nRPythonStudy\n\n\n\n\n\n\n\n\n\n\n\n\nRegEx\n\n\n\n\n\n\nR\n\n\nsyntax\n\n\nRegular Expression\n\n\n\n이해원회장님의 PDF 강의록을 웹페이지화한 것입니다. 원본과 달라진 부분이 있을 수 있으니 참고하시길 바랍니다.\n\n\n\n\n\n2024. 12. 9.\n\n\nHaewon Lee\n\n\n\n\n\n\n\n\n\n\n\n\nTooltip\n\n\n\n\n\n\nQuarto\n\n\nBootstrap\n\n\nTooltip\n\n\n\nQuarto에서 tooltip 구현 검토한 것을 정리하였습니다.\n\n\n\n\n\n2024. 12. 13.\n\n\nRPythonStudy\n\n\n\n\n\n\n\n\n\n\n\n\nRegular Expression\n\n\n\n\n\n\nR\n\n\nRegular Expression\n\n\nExample\n\n\n\nExample how to use regular expression in R\n\n\n\n\n\n2024. 12. 9.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nQuarto setup\n\n\n\n\n\n\nQuarto\n\n\nsetup\n\n\n\nGuidance on Installing and Configuring Quarto\n\n\n\n\n\n2024. 10. 24.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on Shiny API Application\n\n\n\n\n\n\nR\n\n\nAPI\n\n\nShiny\n\n\nexample\n\n\n\nLearn how to set up Shiny website\n\n\n\n\n\n2024. 11. 18.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on API Shinyapp\n\n\n\n\n\n\nAPI\n\n\nShinyapp\n\n\nhands-on\n\n\n\nA hands-on step by step tutorial to create ShinyApp using API.\n\n\n\n\n\n2024. 11. 18.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on Quarto Website\n\n\n\n\n\n\nQuarto\n\n\nwebsite\n\n\nhands-on\n\n\n\nA hands-on step by step tutorial to create a website using Quarto.\n\n\n\n\n\n2024. 11. 4.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nRtools 설치\n\n\n\n\n\n\nR\n\n\nRtools\n\n\nsetup\n\n\n\nRtools 설치 및 설정”\n\n\n\n\n\n2024. 5. 6.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nShiny Application Example\n\n\n\n\n\n\nR\n\n\nAPI\n\n\nShiny\n\n\nexample\n\n\n\nLearn how to set up and use Shiny\n\n\n\n\n\n2024. 10. 21.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nChi-square test in R\n\n\n\n\n\n\nR\n\n\nChi-square\n\n\n\nBrief introduction on basic statistics functions in R\n\n\n\n\n\n2024. 7. 17.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nChi-Square Test\n\n\n\n\n\n\nstatistics\n\n\nChi-Square\n\n\nCategoical Data\n\n\n\nStatistics concept of Chi-Square test\n\n\n\n\n\n2024. 10. 4.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nVS Code Setup\n\n\n\n\n\n\nPython\n\n\nVS Code\n\n\nsetup\n\n\n\nGuidance on Installing and Configuring VS Code\n\n\n\n\n\n2024. 8. 31.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to IT\n\n\n\n\n\n\nintroduction\n\n\nIT\n\n\n\nIntroducing IT knowledges that are helpful for research groups\n\n\n\n\n\n2024. 9. 27.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Quarto\n\n\n\n\n\n\nintroduction\n\n\n\nQuarto is a modern tool for reproducible research and data-centric reporting, supporting dynamic documentation in multi-language environments and integrating programming workflows.\n\n\n\n\n\n2024. 9. 1.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Resources\n\n\n\n\n\n\nintroduction\n\n\n\nIntroducing medical (big) data resources that are helpful for research\n\n\n\n\n\n2024. 8. 31.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nGroup comparison in continuous variables\n\n\n\n\n\n\nstatistics\n\n\n\nStatistics concept in group comparison in continuous variables\n\n\n\n\n\n2024. 9. 27.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to statistics\n\n\n\n\n\n\nintroduction\n\n\n\nStatistics in R\n\n\n\n\n\n2024. 9. 27.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nSurvival analysis\n\n\n\n\n\n\nR\n\n\nstatistics\n\n\nsurvival analysis\n\n\n\njust copy from other well-organized webpages\n\n\n\n\n\n2024. 8. 31.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Tools\n\n\n\n\n\n\nintroduction\n\n\n\nIntroducing open source programs that are helpful for research groups\n\n\n\n\n\n2024. 9. 27.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nManuscript Example\n\n\n\n\n\n\nR\n\n\nQuarto\n\n\n\nQuarto example how to wwite journal manuscript with unidentified real data\n\n\n\n\n\n2024. 8. 31.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nPython setup\n\n\n\n\n\n\nPython\n\n\nsetup\n\n\n\nGuidance on Installing and Configuring Python\n\n\n\n\n\n2024. 9. 8.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nBuilt-in Data sets in R\n\n\n\n\n\n\nR\n\n\n\nR includes built-in datasets. These datasets are useful for testing, teaching, and practicing.\n\n\n\n\n\n2024. 7. 17.\n\n\nHaewon Lee\n\n\n\n\n\n\n\n\n\n\n\n\nBasic statistics functions\n\n\n\n\n\n\nR\n\n\n\nBrief introduction on basic statistics functions in R\n\n\n\n\n\n2024. 7. 17.\n\n\nHaewon Lee\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduciton\n\n\n\n\n\n\nR\n\n\nintroduction\n\n\n\nR 개발역사와 의학연구에서의 필요성\n\n\n\n\n\n2024. 5. 4.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n일치 없음"
+    "text": "정렬\n       디폴트\n         \n          제목\n        \n         \n          날짜 - 날짜(오름차순)\n        \n         \n          날짜 - 날짜(내림차순)\n        \n         \n          저자\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nOpenSSH\n\n\n\n\n\n\nTools\n\n\nopenSSH\n\n\n\nSSH 키를 생성하고 Github에 연결하기\n\n\n\n\n\n2024. 12. 11.\n\n\nBenKorea\n\n\n\n\n\n\n\n\n\n\n\n\nQuarto 설치\n\n\n\n\n\n\nQuarto\n\n\nsetup\n\n\n\nQuarto 설치안내\n\n\n\n\n\n2024. 10. 24.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nGit 설치\n\n\n\n\n\n\nGit\n\n\nsetup\n\n\n\nGit 설치에 대한 안내\n\n\n\n\n\n2024. 5. 6.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nR 설치\n\n\n\n\n\n\nR\n\n\nsetup\n\n\n\nR 설치 및 설정\n\n\n\n\n\n2024. 5. 6.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nRStudio\n\n\n\n\n\n\nRStudio\n\n\ninstall\n\n\n\nRStudio 설치 및 설정\n\n\n\n\n\n2024. 5. 6.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nR Basics\n\n\n\n\n\n\nR\n\n\nSyntax\n\n\n\n이해원회장님의 25.03.17까지의 강의록이 PDF로 첨부되어 있습니다.\n\n\n\n\n\n2024. 12. 23.\n\n\nHaewon LEE\n\n\n\n\n\n\n\n\n\n\n\n\nR 문법\n\n\n\n\n\n\nR\n\n\nsyntax\n\n\n\nR 자료형에 대한 이해\n\n\n\n\n\n2024. 8. 31.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\n연속형변수에서 이상치검출\n\n\n\n\n\n\nR\n\n\npreprocessing\n\n\noutlier\n\n\n\n정규분포와 Box-Cox transformation을 이용한 검출\n\n\n\n\n\n2024. 7. 8.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\n의료빅데이터 분석을 위하여\n\n\n\n\n\n\nintroduction\n\n\n\n이 웹사이틑 R과 Python을 이용하여 의료(빅)데이터를 분석하고자 하는 원내 연구자들에게 도움이 되고자 만들어졌습니다\n\n\n\n\n\n2024. 4. 12.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction\n\n\n\n\n\n\nPython\n\n\nintroduction\n\n\n\nPython 역사와 의학연구에서의 필요성\n\n\n\n\n\n2024. 9. 7.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\n공공데이터포털\n\n\n\n\n\n\nResource\n\n\nOpen Goverment Data\n\n\n\nHow to use Open Goverment Data\n\n\n\n\n\n2024. 10. 2.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nGithub 가입\n\n\n\n\n\n\nGithub\n\n\nsign up\n\n\n\nGithub 가입과 기초사용법에 대한 설명\n\n\n\n\n\n2024. 10. 25.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nGit 핵심개념\n\n\n\n\n\n\nGit\n\n\n\n사용에 앞서 도움이 되는 핵심개념을 정리하였습니다.\n\n\n\n\n\n2024. 5. 6.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nGit 설정\n\n\n\n\n\n\nGit\n\n\nconfiguration\n\n\n\nGit 설정에 대한 안내\n\n\n\n\n\n2024. 5. 6.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on Git\n\n\n\n\n\n\nhands-on\n\n\nGit\n\n\n\nRStudio에서 Git 기본 명령어 실습\n\n\n\n\n\n2024. 10. 25.\n\n\nBenKorea feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\n자료형\n\n\n\n\n\n\nPython\n\n\nsyntax\n\n\ndata type\n\n\n\nPython 자료혈\n\n\n\n\n\n2025. 2. 23.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\ncallout with background color\n\n\n\n\n\n\nQuarto\n\n\ncallout\n\n\ncolor\n\n\n\ncallout 기능구현시 배경색상을 지정하는 방법을 설명합니다.\n\n\n\n\n\n2025. 2. 3.\n\n\nRPythonStudy\n\n\n\n\n\n\n\n\n\n\n\n\nRegEx\n\n\n\n\n\n\nR\n\n\nsyntax\n\n\nRegular Expression\n\n\n\n이해원회장님의 PDF 강의록을 웹페이지화한 것입니다. 원본과 달라진 부분이 있을 수 있으니 참고하시길 바랍니다.\n\n\n\n\n\n2024. 12. 9.\n\n\nHaewon Lee\n\n\n\n\n\n\n\n\n\n\n\n\nTooltip\n\n\n\n\n\n\nQuarto\n\n\nBootstrap\n\n\nTooltip\n\n\n\nQuarto에서 tooltip 구현 검토한 것을 정리하였습니다.\n\n\n\n\n\n2024. 12. 13.\n\n\nRPythonStudy\n\n\n\n\n\n\n\n\n\n\n\n\nRegular Expression\n\n\n\n\n\n\nR\n\n\nRegular Expression\n\n\nExample\n\n\n\nExample how to use regular expression in R\n\n\n\n\n\n2024. 12. 9.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on Shiny API Application\n\n\n\n\n\n\nR\n\n\nAPI\n\n\nShiny\n\n\nexample\n\n\n\nLearn how to set up Shiny website\n\n\n\n\n\n2024. 11. 18.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on API Shinyapp\n\n\n\n\n\n\nAPI\n\n\nShinyapp\n\n\nhands-on\n\n\n\nA hands-on step by step tutorial to create ShinyApp using API.\n\n\n\n\n\n2024. 11. 18.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on Quarto Website\n\n\n\n\n\n\nQuarto\n\n\nwebsite\n\n\nhands-on\n\n\n\nA hands-on step by step tutorial to create a website using Quarto.\n\n\n\n\n\n2024. 11. 4.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nRtools 설치\n\n\n\n\n\n\nR\n\n\nRtools\n\n\nsetup\n\n\n\nRtools 설치 및 설정”\n\n\n\n\n\n2024. 5. 6.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nShiny Application Example\n\n\n\n\n\n\nR\n\n\nAPI\n\n\nShiny\n\n\nexample\n\n\n\nLearn how to set up and use Shiny\n\n\n\n\n\n2024. 10. 21.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nChi-square test in R\n\n\n\n\n\n\nR\n\n\nChi-square\n\n\n\nBrief introduction on basic statistics functions in R\n\n\n\n\n\n2024. 7. 17.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nChi-Square Test\n\n\n\n\n\n\nstatistics\n\n\nChi-Square\n\n\nCategoical Data\n\n\n\nStatistics concept of Chi-Square test\n\n\n\n\n\n2024. 10. 4.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nVS Code Setup\n\n\n\n\n\n\nPython\n\n\nVS Code\n\n\nsetup\n\n\n\nGuidance on Installing and Configuring VS Code\n\n\n\n\n\n2024. 8. 31.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to IT\n\n\n\n\n\n\nintroduction\n\n\nIT\n\n\n\nIntroducing IT knowledges that are helpful for research groups\n\n\n\n\n\n2024. 9. 27.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Quarto\n\n\n\n\n\n\nintroduction\n\n\n\nQuarto is a modern tool for reproducible research and data-centric reporting, supporting dynamic documentation in multi-language environments and integrating programming workflows.\n\n\n\n\n\n2024. 9. 1.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Resources\n\n\n\n\n\n\nintroduction\n\n\n\nIntroducing medical (big) data resources that are helpful for research\n\n\n\n\n\n2024. 8. 31.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nGroup comparison in continuous variables\n\n\n\n\n\n\nstatistics\n\n\n\nStatistics concept in group comparison in continuous variables\n\n\n\n\n\n2024. 9. 27.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to statistics\n\n\n\n\n\n\nintroduction\n\n\n\nStatistics in R\n\n\n\n\n\n2024. 9. 27.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nSurvival analysis\n\n\n\n\n\n\nR\n\n\nstatistics\n\n\nsurvival analysis\n\n\n\njust copy from other well-organized webpages\n\n\n\n\n\n2024. 8. 31.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Tools\n\n\n\n\n\n\nintroduction\n\n\n\nIntroducing open source programs that are helpful for research groups\n\n\n\n\n\n2024. 9. 27.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nManuscript Example\n\n\n\n\n\n\nR\n\n\nQuarto\n\n\n\nQuarto example how to wwite journal manuscript with unidentified real data\n\n\n\n\n\n2024. 8. 31.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nPython setup\n\n\n\n\n\n\nPython\n\n\nsetup\n\n\n\nGuidance on Installing and Configuring Python\n\n\n\n\n\n2024. 9. 8.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n\n\n\n\n\n\nBuilt-in Data sets in R\n\n\n\n\n\n\nR\n\n\n\nR includes built-in datasets. These datasets are useful for testing, teaching, and practicing.\n\n\n\n\n\n2024. 7. 17.\n\n\nHaewon Lee\n\n\n\n\n\n\n\n\n\n\n\n\nBasic statistics functions\n\n\n\n\n\n\nR\n\n\n\nBrief introduction on basic statistics functions in R\n\n\n\n\n\n2024. 7. 17.\n\n\nHaewon Lee\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduciton\n\n\n\n\n\n\nR\n\n\nintroduction\n\n\n\nR 개발역사와 의학연구에서의 필요성\n\n\n\n\n\n2024. 5. 4.\n\n\nRPythonStudyGroup feat. ChatGPT\n\n\n\n\n\n\n일치 없음"
   },
   {
     "objectID": "posts/about/about.html",
@@ -752,25 +752,25 @@
   {
     "objectID": "posts/Quarto/install/Quarto_setup.html",
     "href": "posts/Quarto/install/Quarto_setup.html",
-    "title": "Quarto setup",
+    "title": "Quarto 설치",
     "section": "",
     "text": "Quarto 공식사이트에서 제공하는 공식문서(https://quarto.org/docs/get-started/)를 참고하는 것이 이상적이겠지만, 아래의 요약을 참고하여 설치 하셔도 됩니다.",
     "crumbs": [
       "Quarto",
       "설치",
-      "Quarto setup"
+      "Quarto 설치"
     ]
   },
   {
     "objectID": "posts/Quarto/install/Quarto_setup.html#설치안내문서",
     "href": "posts/Quarto/install/Quarto_setup.html#설치안내문서",
-    "title": "Quarto setup",
+    "title": "Quarto 설치",
     "section": "",
     "text": "Quarto 공식사이트에서 제공하는 공식문서(https://quarto.org/docs/get-started/)를 참고하는 것이 이상적이겠지만, 아래의 요약을 참고하여 설치 하셔도 됩니다.",
     "crumbs": [
       "Quarto",
       "설치",
-      "Quarto setup"
+      "Quarto 설치"
     ]
   },
   {
@@ -800,13 +800,13 @@
   {
     "objectID": "posts/Quarto/install/Quarto_setup.html#설치-확인",
     "href": "posts/Quarto/install/Quarto_setup.html#설치-확인",
-    "title": "Quarto setup",
+    "title": "Quarto 설치",
     "section": "설치 확인",
     "text": "설치 확인\n\n\n\n\n\n\nQuarto가 올바르게 설치되었는지 확인하려면,\n\n\n\n\n\nWin + R을 눌러 실행 대화창을 열고 cmd를 입력하여 명령 프롬프트를 실행합니다.\n\n\n\nCommand Prompt\n\ncmd\n\n\n명령 프롬프트에서 다음 명령을 입력하여 설치된 quarto 버전이 예상 버전과 일치하는지 확인합니다.\n\n\n\nCommand Prompt\n\nquarto --version",
     "crumbs": [
       "Quarto",
       "설치",
-      "Quarto setup"
+      "Quarto 설치"
     ]
   },
   {
@@ -1507,7 +1507,7 @@
     "href": "posts/tools/git/ssh.html",
     "title": "OpenSSH",
     "section": "",
-    "text": "필요성\nGitHub는 한때 아이디와 패스워드만으로 로그인하고 Git 명령어(예: push, pull 등)를 수행할 수 있었지만, 보안 강화를 위해 최근에는 패스워드 대신 personal access token(PAT)이나 OAuth, 2단계 인증(2FA) 등의 인증 방식을 도입했습니다. 이로 인해 단순한 아이디/패스워드 방식이 사라지고, 추가적인 인증 절차가 필수가 되었습니다.\nSSH 키 인증 방식은 공개키 암호화 기술을 사용하여 GitHub와의 통신을 자동으로 인증해줍니다. 이 방식의 주요 장점은 다음과 같습니다:\n\n자동 로그인: 한 번 SSH 키를 등록해두면, 이후 Git 명령어를 실행할 때마다 패스워드나 토큰을 일일이 입력할 필요 없이 자동으로 인증이 이루어집니다.\n보안 강화: SSH 키는 일반 패스워드보다 훨씬 복잡하고 안전하여, 계정 탈취 위험을 줄여줍니다.\n개발 효율성 증대: 자동 로그인 덕분에 반복적인 인증 과정 없이 바로 Git 작업을 할 수 있어, 개발 환경에서의 생산성이 향상됩니다.\n\n이처럼 SSH 키를 활용하면 번거로운 인증 절차를 줄이고, 보다 편리하고 안전하게 GitHub와 상호작용할 수 있습니다.\n\n\n핵심개념\n두개의 키를 생성하여 하나는 개인키(private key)로, 다른 하나는 공개키(public key)로 구성됩니다. 개인키는 사용자가 소유하고, 공개키는 GitHub에 등록됩니다. GitHub는 공개키를 통해 사용자를 인증하고, 사용자는 개인키를 통해 GitHub에 접속합니다 그림 1.\n\n\n\n\n\n\n그림 1\n\n\n\n\n\nOpenSSH 설치\nSSH에는 여러종류가 있지만 여기에서는 Git 설치 시에 bundle로 설치되는 OpenSSH를 사용합니다. 따라서 별도의 설치과정이 필요하지 않습니다.\n\n\n원도우에서 기존키의 제거\n\n키를 새로 만드는 경우에는 상관없지만 기존키를 삭제해야 한다면 아래와 같이 진행합니다.\nC:&lt;YourUsername&gt;.ssh 디렉토리에 있는 개인키(예시 id_rsa) 및 공개키 (예시 id_rsa.pub) 파일들을 수동으로 삭제합니다.\n\n\n\n새로운 키의 생성\n\nGit 설치매뉴얼 중 다음을 참고하였습니다 https://git-scm.com/book/ko/v2/Git-%ec%84%9c%eb%b2%84-SSH-%ea%b3%b5%ea%b0%9c%ed%82%a4-%eb%a7%8c%eb%93%a4%ea%b8%b0\nC:\\Program Files\\Git\\usr\\bin\\에 위치하는 ssh-keygen.exe를 구동시켜야 하므로 Git Bash를 열어서 먼저 이동하여야 합니다.\n\nGit 설치 시에 옵션으로 Windows Explorer integration 항목의 Open Git bash heresh가 선택되었다면 윈도우 탐색기에서도 Git Bash가 우클릭으로 열리게 됩니다. 그러한 경우에는 탐색기로 위 경로까지 이동한 후에 우클릭으로 Git Bash를 여시는 것이 더 편리할 수 있습니다.\n\n설치경로는 기본값으로 진행하고\npassphrase는 empty로 하면 원격접속시에 비밀번호를 묻지 않게 되므로 empty로 설정하여 진행합니다.\nC:\\Users\\&lt;YourUsername\\&gt;.ssh가 생성되면서 id_ed25519와 id_ed25519.pub 파일이 생성됩니다.\n\n이 중 *.pub가 공개키입니다.\n\n\n\n\nSSH agent 확인하기\n\n원도우의 경우 서비스창에서 OPenSSH Authentication Agent가 시행중인지 확인합니다.\n\nWin+R 실행창을 열어 services.msc를 입력하면 서비스창이 열립니다.\n\nAgent 속성을 확인하여 시작유형을 자동으로 설정하셔야 하고\n복구탭에서 첫째, 둘째, 후속 실패시에 대한 조치를 서비스 다시 시작으로 설정해야 합니다.\n\n\n\nGitgub에 공개키 등록하기\n\nGitHub에 로그인한 후 오른쪽 상단의 프로필 아이콘을 클릭하고 Settings를 선택합니다.\n왼쪽 메뉴에서 SSH and GPG keys를 선택합니다.\nNew SSH key 버튼을 클릭합니다.\nTitle에는 키의 제목을 입력합니다.\nKey에는 id_ed25519.pub 파일의 내용을 복사하여 붙여넣습니다.\nAdd SSH key 버튼을 클릭합니다.\n\n\n\nGitgub 최초연결 설정\n\nbash창에서 아래의 명령을 입력합니다.\n\n\n\n\nGit Bash\n\nssh -T git@github.com\n\n\n\n처음 연결시에 “This key is not known by any other names”라는 메시지가 나오는데 yes를 입력합니다.\n“Hi ! You’ve successfully authenticated, but GitHub does not provide shell access.”라는 메시지가 나오면 성공입니다.\n\n\n\nSSH URL로 변경\n만약에 기존의 원격저장소가 있었고 SSH key를 추후 등록하였다면, 로컬컴퓨터의 저장소와 원격저장소의 기존연결 (HTTPs URL)을 SSH 변경을 해야 연결방법이 변경됩니다. 이 방법은 아래와 같습니다. - 원격저장소의 &lt;&gt; Code 메뉴 하부의 초록색 &lt;&gt;Code 버튼을 누르면 로컬과 연결하는 방법으로써 HTTPS와 SSH를 선택할 수 있게 나옵니다. SSH를 클릭하면 하부의 주소가 복사 가능한데, 이를 복사한 후, 로컬에서 RStudion의 Terminal Tab (=Git Bash)에서 다음의 git remote add origin 명령을 통하여 원격저장소의 주소를 변경하시면 됩니다.\n\n\n\nGit Bash\n\ngit remote set-url origin git@github.com:&lt;username&gt;/&lt;repository&gt;.git\n\n\n제대로 변경되었는지 확인은 다음의 명령으로 갱신된 주소가 출력되는지 확인하시면 됩니다.\n\n\n\nGit Bash\n\ngit remote -v",
+    "text": "GitHub는 한때 아이디와 패스워드만으로 로그인하고 Git 명령어(예: push, pull 등)를 수행할 수 있었지만, 보안 강화를 위해 최근에는 패스워드 대신 personal access token(PAT)이나 OAuth, 2단계 인증(2FA) 등의 인증 방식을 도입했습니다. 이로 인해 단순한 아이디/패스워드 방식이 사라지고, 추가적인 인증 절차가 필수가 되었습니다.\nSSH 키 인증 방식은 공개키 암호화 기술을 사용하여 GitHub와의 통신을 자동으로 인증해줍니다. 이 방식의 주요 장점은 다음과 같습니다:\n\n자동 로그인: 한 번 SSH 키를 등록해두면, 이후 Git 명령어를 실행할 때마다 패스워드나 토큰을 일일이 입력할 필요 없이 자동으로 인증이 이루어집니다.\n보안 강화: SSH 키는 일반 패스워드보다 훨씬 복잡하고 안전하여, 계정 탈취 위험을 줄여줍니다.\n개발 효율성 증대: 자동 로그인 덕분에 반복적인 인증 과정 없이 바로 Git 작업을 할 수 있어, 개발 환경에서의 생산성이 향상됩니다.\n\n이처럼 SSH 키를 활용하면 번거로운 인증 절차를 줄이고, 보다 편리하고 안전하게 GitHub와 상호작용할 수 있습니다.",
     "crumbs": [
       "Tools",
       "Git",
@@ -1608,6 +1608,102 @@
       "R",
       "설치",
       "R 설치"
+    ]
+  },
+  {
+    "objectID": "posts/Quarto/install/Quarto_setup.html#window환경에서의-설치",
+    "href": "posts/Quarto/install/Quarto_setup.html#window환경에서의-설치",
+    "title": "Quarto 설치",
+    "section": "Window환경에서의 설치",
+    "text": "Window환경에서의 설치\n공식 Python 웹사이트(https://quarto.org/docs/get-started/)에서 운영체제에 적합한 최신 Quarto 설치파일을 다운로드하고 설치합니다. 이글은 quarto-1.6.39-win.msi 설치파일(2024년 11월 28일 release)로 작성되었습니다.\n\n설치경로\n윈도우의 경우 기본 설치경로인 C:\\Program Files\\Quarto\\를 추천합니다. 사용하거나 사용자가 원하는 경로를 선택할 수 있습니다. (시스템의 환경 변수(PATH) 등록은 자동으로 이루어 집니다.)",
+    "crumbs": [
+      "Quarto",
+      "설치",
+      "Quarto 설치"
+    ]
+  },
+  {
+    "objectID": "posts/Quarto/install/Quarto_setup.html#wsl2ubuntu-환경에서의-설치",
+    "href": "posts/Quarto/install/Quarto_setup.html#wsl2ubuntu-환경에서의-설치",
+    "title": "Quarto 설치",
+    "section": "WSL2/Ubuntu 환경에서의 설치",
+    "text": "WSL2/Ubuntu 환경에서의 설치\n\n버전확인\nWSL2/Ubuntu 환경에서 R과 RStudio Server를 이미 설치했다면 Quarto가 이미 설치되어 있습니다. 설치된 버전의 를 설치하려면 아래의 명령을 이용하시면 됩니다.\n\n\n\nbash\n\nquarto --version\n\n\n\n\n최신버전 다운로드\nQuarto는 apt 저장소에 등록되어 있지 않기 때문에, 공식 웹사이트에서 최신 .deb 패키지를 다운로드하여 수동 업데이트해야 합니다.\n\n\n\nbash\n\nwget https://quarto.org/download/latest/quarto-linux-amd64.deb\n\n\n\n\n설치 및 업데이트\n기존에 설치된 Quarto가 있더라도, .deb 패키지를 다시 설치하면 자동으로 업데이트됩니다.\n\n\n\nbash\n\nsudo dpkg -i quarto-linux-amd64.deb\n\n\n\n\n필요시 의존성 해결\n만약 설치 중 의존성 문제가 발생한다면, 아래의 명령을 실행하여 의존성을 해결합니다.\n\n\n\nbash\n\nsudo apt-get install -f\n\n\n\n\n설치 확인\n다음 명령을 실행하여 설치된 Quarto 버전을 확인합니다.\n\n\n\nbash\n\nquarto --version",
+    "crumbs": [
+      "Quarto",
+      "설치",
+      "Quarto 설치"
+    ]
+  },
+  {
+    "objectID": "posts/tools/git/git_install.html#wls2ubuntu-환경에-설치하기",
+    "href": "posts/tools/git/git_install.html#wls2ubuntu-환경에-설치하기",
+    "title": "Git 설치",
+    "section": "3 WLS2/Ubuntu 환경에 설치하기",
+    "text": "3 WLS2/Ubuntu 환경에 설치하기\n\n3.1 Git 공식 PPA(Personal Package Archive) 사용 업데이트\n\n3.1.1 기존 Git 버전 확인\n\n\n\nbash\n\ngit --version\n\n\n\n\n3.1.2 필수 패키지 설치\n\n\n\nbash\n\nsudo apt update\nsudo apt install software-properties-common\n\n\n\n\n3.1.3 Git 공식 PPA 추가\n\n\n\nbash\n\nsudo add-apt-repository ppa:git-core/ppa\n\n\n\n\n3.1.4 패키지 목록 업데이트 후 Git 설치/업그레이드\n\n\n\nbash\n\nsudo apt update\nsudo apt install -y git\n\n\n\n\n3.1.5 업데이트 확인\n\n\n\nbash\n\ngit --version",
+    "crumbs": [
+      "Tools",
+      "Git",
+      "Git 설치"
+    ]
+  },
+  {
+    "objectID": "posts/tools/git/ssh.html#필요성",
+    "href": "posts/tools/git/ssh.html#필요성",
+    "title": "OpenSSH",
+    "section": "",
+    "text": "GitHub는 한때 아이디와 패스워드만으로 로그인하고 Git 명령어(예: push, pull 등)를 수행할 수 있었지만, 보안 강화를 위해 최근에는 패스워드 대신 personal access token(PAT)이나 OAuth, 2단계 인증(2FA) 등의 인증 방식을 도입했습니다. 이로 인해 단순한 아이디/패스워드 방식이 사라지고, 추가적인 인증 절차가 필수가 되었습니다.\nSSH 키 인증 방식은 공개키 암호화 기술을 사용하여 GitHub와의 통신을 자동으로 인증해줍니다. 이 방식의 주요 장점은 다음과 같습니다:\n\n자동 로그인: 한 번 SSH 키를 등록해두면, 이후 Git 명령어를 실행할 때마다 패스워드나 토큰을 일일이 입력할 필요 없이 자동으로 인증이 이루어집니다.\n보안 강화: SSH 키는 일반 패스워드보다 훨씬 복잡하고 안전하여, 계정 탈취 위험을 줄여줍니다.\n개발 효율성 증대: 자동 로그인 덕분에 반복적인 인증 과정 없이 바로 Git 작업을 할 수 있어, 개발 환경에서의 생산성이 향상됩니다.\n\n이처럼 SSH 키를 활용하면 번거로운 인증 절차를 줄이고, 보다 편리하고 안전하게 GitHub와 상호작용할 수 있습니다.",
+    "crumbs": [
+      "Tools",
+      "Git",
+      "OpenSSH"
+    ]
+  },
+  {
+    "objectID": "posts/tools/git/ssh.html#핵심개념",
+    "href": "posts/tools/git/ssh.html#핵심개념",
+    "title": "OpenSSH",
+    "section": "핵심개념",
+    "text": "핵심개념\n두개의 키를 생성하여 하나는 개인키(private key)로, 다른 하나는 공개키(public key)로 구성됩니다. 개인키는 사용자가 소유하고, 공개키는 GitHub에 등록됩니다. GitHub는 공개키를 통해 사용자를 인증하고, 사용자는 개인키를 통해 GitHub에 접속합니다 그림 1.\n\n\n\n\n\n\n그림 1",
+    "crumbs": [
+      "Tools",
+      "Git",
+      "OpenSSH"
+    ]
+  },
+  {
+    "objectID": "posts/tools/git/ssh.html#openssh-설치",
+    "href": "posts/tools/git/ssh.html#openssh-설치",
+    "title": "OpenSSH",
+    "section": "OpenSSH 설치",
+    "text": "OpenSSH 설치\nSSH에는 여러종류가 있지만 여기에서는 Git 설치 시에 bundle로 설치되는 OpenSSH를 사용합니다. 따라서 별도의 설치과정이 필요하지 않습니다.",
+    "crumbs": [
+      "Tools",
+      "Git",
+      "OpenSSH"
+    ]
+  },
+  {
+    "objectID": "posts/tools/git/ssh.html#window환경에서의-설치",
+    "href": "posts/tools/git/ssh.html#window환경에서의-설치",
+    "title": "OpenSSH",
+    "section": "Window환경에서의 설치",
+    "text": "Window환경에서의 설치\n\n기존키의 제거\n\n키를 새로 만드는 경우에는 상관없지만 기존키를 삭제해야 한다면 아래와 같이 진행합니다.\nC:&lt;YourUsername&gt;.ssh 디렉토리에 있는 개인키(예시 id_rsa) 및 공개키 (예시 id_rsa.pub) 파일들을 수동으로 삭제합니다.\n\n\n\n새로운 키의 생성\n\nGit 설치매뉴얼 중 다음을 참고하였습니다 https://git-scm.com/book/ko/v2/Git-%ec%84%9c%eb%b2%84-SSH-%ea%b3%b5%ea%b0%9c%ed%82%a4-%eb%a7%8c%eb%93%a4%ea%b8%b0\nC:\\Program Files\\Git\\usr\\bin\\에 위치하는 ssh-keygen.exe를 구동시켜야 하므로 Git Bash를 열어서 먼저 이동하여야 합니다.\n\nGit 설치 시에 옵션으로 Windows Explorer integration 항목의 Open Git bash heresh가 선택되었다면 윈도우 탐색기에서도 Git Bash가 우클릭으로 열리게 됩니다. 그러한 경우에는 탐색기로 위 경로까지 이동한 후에 우클릭으로 Git Bash를 여시는 것이 더 편리할 수 있습니다.\n\n설치경로는 기본값으로 진행하고\npassphrase는 empty로 하면 원격접속시에 비밀번호를 묻지 않게 되므로 empty로 설정하여 진행합니다.\nC:\\Users\\&lt;YourUsername\\&gt;.ssh가 생성되면서 id_ed25519와 id_ed25519.pub 파일이 생성됩니다.\n\n이 중 *.pub가 공개키입니다.\n\n\n\n\nSSH agent 확인하기\n\n원도우의 경우 서비스창에서 OPenSSH Authentication Agent가 시행중인지 확인합니다.\n\nWin+R 실행창을 열어 services.msc를 입력하면 서비스창이 열립니다.\n\nAgent 속성을 확인하여 시작유형을 자동으로 설정하셔야 하고\n복구탭에서 첫째, 둘째, 후속 실패시에 대한 조치를 서비스 다시 시작으로 설정해야 합니다.\n\n\n\nGitgub에 공개키 등록하기\n\nGitHub에 로그인한 후 오른쪽 상단의 프로필 아이콘을 클릭하고 Settings를 선택합니다.\n왼쪽 메뉴에서 SSH and GPG keys를 선택합니다.\nNew SSH key 버튼을 클릭합니다.\nTitle에는 키의 제목을 입력합니다.\nKey에는 id_ed25519.pub 파일의 내용을 복사하여 붙여넣습니다.\nAdd SSH key 버튼을 클릭합니다.\n\n\n\nGitgub 최초연결 설정\n\nbash창에서 아래의 명령을 입력합니다.\n\n\n\n\nbash\n\nssh -T git@github.com\n\n\n\n처음 연결시에 “This key is not known by any other names”라는 메시지가 나오는데 yes를 입력합니다.\n“Hi ! You’ve successfully authenticated, but GitHub does not provide shell access.”라는 메시지가 나오면 성공입니다.\n\n\n\nSSH URL로 변경\n만약에 기존의 원격저장소가 있었고 SSH key를 추후 등록하였다면, 로컬컴퓨터의 저장소와 원격저장소의 기존연결 (HTTPs URL)을 SSH 변경을 해야 연결방법이 변경됩니다. 이 방법은 아래와 같습니다. - 원격저장소의 &lt;&gt; Code 메뉴 하부의 초록색 &lt;&gt;Code 버튼을 누르면 로컬과 연결하는 방법으로써 HTTPS와 SSH를 선택할 수 있게 나옵니다. SSH를 클릭하면 하부의 주소가 복사 가능한데, 이를 복사한 후, 로컬에서 RStudion의 Terminal Tab (=Git Bash)에서 다음의 git remote add origin 명령을 통하여 원격저장소의 주소를 변경하시면 됩니다.\n\n\n\nbash\n\ngit remote set-url origin git@github.com:&lt;username&gt;/&lt;repository&gt;.git\n\n\n제대로 변경되었는지 확인은 다음의 명령으로 갱신된 주소가 출력되는지 확인하시면 됩니다.\n\n\n\nbash\n\ngit remote -v",
+    "crumbs": [
+      "Tools",
+      "Git",
+      "OpenSSH"
+    ]
+  },
+  {
+    "objectID": "posts/tools/git/ssh.html#wsl2ubuntu환경에서의-설치",
+    "href": "posts/tools/git/ssh.html#wsl2ubuntu환경에서의-설치",
+    "title": "OpenSSH",
+    "section": "WSL2/Ubuntu환경에서의 설치",
+    "text": "WSL2/Ubuntu환경에서의 설치\n\n키 생성\n\nWSL2 터미널에서 아래 명령어로 새 SSH 키를 생성합니다.\n\n\n\n\nbash\n\nssh-keygen -t rsa -b 4096 -C \"benkorea.ai@gmail.com\"\n\n\n\n\nSSH 에이전트 실행 및 키 추가\n\n아래 명령어로 SSH 에이전트를 실행한 후 생성한 키를 추가합니다.\n\n\n\n\nbash\n\neval \"$(ssh-agent -s)\"\nssh-add ~/.ssh/id_rsa\n\n\n\n\nGitHub에 공개키 등록:\n\n~/.ssh/id_rsa.pub 파일의 내용을 복사하여 GitHub 계정의 SSH and GPG keys 설정에 추가합니다.\n\n\n\n\nbash\n\ncat ~/.ssh/id_rsa.pub\n\n\n\n\nGitHub 최초연결 설정\n\nWSL2 터미널에서 아래 명령어를 실행하여 GitHub에 연결합니다.\n\n\n\n\nbash\n\nssh -T git@github.com\n\n\n\n\n사용자 확인요청에 대한 응답\n\n처음 연결시에 “This key is not known by any other names”라는 메시지가 나오는데 yes를 입력합니다.\n\n\n\n성공확인\n\n“Hi ! You’ve successfully authenticated, but GitHub does not provide shell access.”라는 메시지가 나오면 성공입니다.",
+    "crumbs": [
+      "Tools",
+      "Git",
+      "OpenSSH"
     ]
   }
 ]

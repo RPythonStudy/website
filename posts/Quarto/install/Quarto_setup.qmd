@@ -1,21 +1,17 @@
 ---
-title: "Quarto setup"
-description: "Guidance on Installing and Configuring Quarto"
-author: "RPythonStudyGroup feat. ChatGPT"
+title: "Quarto 설치"
+description: "Quarto 설치안내"
+author: "BenKorea feat. ChatGPT"
 date: "2024-10-24"
-date-modified: "2024-11-28"
-categories:
-  - Quarto
-  - setup
+date-modified: last-modified
+categories: [Quarto, setup]
 ---
 
 ## 설치안내문서
 Quarto 공식사이트에서 제공하는 공식문서(<https://quarto.org/docs/get-started/>)를 참고하는 것이 이상적이겠지만, 아래의 요약을 참고하여 설치 하셔도 됩니다.
 
-## 설치 파일
+## Window환경에서의 설치
 공식 Python 웹사이트(<https://quarto.org/docs/get-started/>)에서 운영체제에 적합한 최신 Quarto 설치파일을 다운로드하고 설치합니다. 이글은 `quarto-1.6.39-win.msi` 설치파일(2024년 11월 28일 release)로 작성되었습니다.
-
-## 설치옵션
 
 ### 설치경로
 
@@ -39,3 +35,38 @@ quarto --version
 ```
 
 :::
+
+## WSL2/Ubuntu 환경에서의 설치
+
+### 버전확인
+WSL2/Ubuntu 환경에서 R과 RStudio Server를 이미 설치했다면 Quarto가 이미 설치되어 있습니다. 설치된 버전의
+를 설치하려면 아래의 명령을 이용하시면 됩니다.
+```{r quarto_install_ubuntu2, eval=FALSE, filename="bash"}
+quarto --version
+```
+
+### 최신버전 다운로드
+Quarto는 apt 저장소에 등록되어 있지 않기 때문에, 공식 웹사이트에서 최신 .deb 패키지를 다운로드하여 수동 업데이트해야 합니다.
+```{r quarto_update_ubuntu, eval=FALSE, filename="bash"}
+wget https://quarto.org/download/latest/quarto-linux-amd64.deb
+```
+
+### 설치 및 업데이트
+기존에 설치된 Quarto가 있더라도, .deb 패키지를 다시 설치하면 자동으로 업데이트됩니다.
+```{r quarto_install_ubuntu3, eval=FALSE, filename="bash"}
+sudo dpkg -i quarto-linux-amd64.deb
+```
+
+### 필요시 의존성 해결
+만약 설치 중 의존성 문제가 발생한다면, 아래의 명령을 실행하여 의존성을 해결합니다.
+```{r quarto_dependency_ubuntu, eval=FALSE, filename="bash"}
+sudo apt-get install -f
+```
+
+### 설치 확인
+다음 명령을 실행하여 설치된 Quarto 버전을 확인합니다.
+```{r quarto_version_ubuntu, eval=FALSE, filename="bash"}
+quarto --version
+```
+
+

@@ -228,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">2025년 3월 24일</p>
+        <p class="date-modified">2025년 3월 27일</p>
       </div>
     </div>
       
@@ -306,12 +306,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#필요성" id="toc-필요성" class="nav-link active" data-scroll-target="#필요성">필요성</a></li>
   <li><a href="#핵심개념" id="toc-핵심개념" class="nav-link" data-scroll-target="#핵심개념">핵심개념</a></li>
   <li><a href="#openssh-설치" id="toc-openssh-설치" class="nav-link" data-scroll-target="#openssh-설치">OpenSSH 설치</a></li>
-  <li><a href="#원도우에서-기존키의-제거" id="toc-원도우에서-기존키의-제거" class="nav-link" data-scroll-target="#원도우에서-기존키의-제거">원도우에서 기존키의 제거</a></li>
+  <li><a href="#window환경에서의-설치" id="toc-window환경에서의-설치" class="nav-link" data-scroll-target="#window환경에서의-설치">Window환경에서의 설치</a>
+  <ul class="collapse">
+  <li><a href="#기존키의-제거" id="toc-기존키의-제거" class="nav-link" data-scroll-target="#기존키의-제거">기존키의 제거</a></li>
   <li><a href="#새로운-키의-생성" id="toc-새로운-키의-생성" class="nav-link" data-scroll-target="#새로운-키의-생성">새로운 키의 생성</a></li>
   <li><a href="#ssh-agent-확인하기" id="toc-ssh-agent-확인하기" class="nav-link" data-scroll-target="#ssh-agent-확인하기">SSH agent 확인하기</a></li>
   <li><a href="#gitgub에-공개키-등록하기" id="toc-gitgub에-공개키-등록하기" class="nav-link" data-scroll-target="#gitgub에-공개키-등록하기">Gitgub에 공개키 등록하기</a></li>
   <li><a href="#gitgub-최초연결-설정" id="toc-gitgub-최초연결-설정" class="nav-link" data-scroll-target="#gitgub-최초연결-설정">Gitgub 최초연결 설정</a></li>
   <li><a href="#ssh-url로-변경" id="toc-ssh-url로-변경" class="nav-link" data-scroll-target="#ssh-url로-변경">SSH URL로 변경</a></li>
+  </ul></li>
+  <li><a href="#wsl2ubuntu환경에서의-설치" id="toc-wsl2ubuntu환경에서의-설치" class="nav-link" data-scroll-target="#wsl2ubuntu환경에서의-설치">WSL2/Ubuntu환경에서의 설치</a>
+  <ul class="collapse">
+  <li><a href="#키-생성" id="toc-키-생성" class="nav-link" data-scroll-target="#키-생성">키 생성</a></li>
+  <li><a href="#ssh-에이전트-실행-및-키-추가" id="toc-ssh-에이전트-실행-및-키-추가" class="nav-link" data-scroll-target="#ssh-에이전트-실행-및-키-추가">SSH 에이전트 실행 및 키 추가</a></li>
+  <li><a href="#github에-공개키-등록" id="toc-github에-공개키-등록" class="nav-link" data-scroll-target="#github에-공개키-등록">GitHub에 공개키 등록:</a></li>
+  <li><a href="#github-최초연결-설정" id="toc-github-최초연결-설정" class="nav-link" data-scroll-target="#github-최초연결-설정">GitHub 최초연결 설정</a></li>
+  <li><a href="#사용자-확인요청에-대한-응답" id="toc-사용자-확인요청에-대한-응답" class="nav-link" data-scroll-target="#사용자-확인요청에-대한-응답">사용자 확인요청에 대한 응답</a></li>
+  <li><a href="#성공확인" id="toc-성공확인" class="nav-link" data-scroll-target="#성공확인">성공확인</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -322,8 +334,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="필요성" class="level3">
-<h3 class="anchored" data-anchor-id="필요성">필요성</h3>
+<section id="필요성" class="level2">
+<h2 class="anchored" data-anchor-id="필요성">필요성</h2>
 <p>GitHub는 한때 아이디와 패스워드만으로 로그인하고 Git 명령어(예: push, pull 등)를 수행할 수 있었지만, 보안 강화를 위해 최근에는 패스워드 대신 personal access token(PAT)이나 OAuth, 2단계 인증(2FA) 등의 인증 방식을 도입했습니다. 이로 인해 단순한 아이디/패스워드 방식이 사라지고, 추가적인 인증 절차가 필수가 되었습니다.</p>
 <p>SSH 키 인증 방식은 공개키 암호화 기술을 사용하여 GitHub와의 통신을 자동으로 인증해줍니다. 이 방식의 주요 장점은 다음과 같습니다:</p>
 <ul>
@@ -333,8 +345,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>이처럼 SSH 키를 활용하면 번거로운 인증 절차를 줄이고, 보다 편리하고 안전하게 GitHub와 상호작용할 수 있습니다.</p>
 </section>
-<section id="핵심개념" class="level3">
-<h3 class="anchored" data-anchor-id="핵심개념">핵심개념</h3>
+<section id="핵심개념" class="level2">
+<h2 class="anchored" data-anchor-id="핵심개념">핵심개념</h2>
 <p>두개의 키를 생성하여 하나는 개인키(private key)로, 다른 하나는 공개키(public key)로 구성됩니다. 개인키는 사용자가 소유하고, 공개키는 GitHub에 등록됩니다. GitHub는 공개키를 통해 사용자를 인증하고, 사용자는 개인키를 통해 GitHub에 접속합니다 <a href="#fig-github-ssh" class="quarto-xref">그림&nbsp;1</a>.</p>
 <div id="fig-github-ssh" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -347,12 +359,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </section>
-<section id="openssh-설치" class="level3">
-<h3 class="anchored" data-anchor-id="openssh-설치">OpenSSH 설치</h3>
+<section id="openssh-설치" class="level2">
+<h2 class="anchored" data-anchor-id="openssh-설치">OpenSSH 설치</h2>
 <p>SSH에는 여러종류가 있지만 여기에서는 Git 설치 시에 bundle로 설치되는 OpenSSH를 사용합니다. 따라서 별도의 설치과정이 필요하지 않습니다.</p>
 </section>
-<section id="원도우에서-기존키의-제거" class="level3">
-<h3 class="anchored" data-anchor-id="원도우에서-기존키의-제거">원도우에서 기존키의 제거</h3>
+<section id="window환경에서의-설치" class="level2">
+<h2 class="anchored" data-anchor-id="window환경에서의-설치">Window환경에서의 설치</h2>
+<section id="기존키의-제거" class="level3">
+<h3 class="anchored" data-anchor-id="기존키의-제거">기존키의 제거</h3>
 <ul>
 <li>키를 새로 만드는 경우에는 상관없지만 기존키를 삭제해야 한다면 아래와 같이 진행합니다.</li>
 <li>C:&lt;YourUsername&gt;.ssh 디렉토리에 있는 개인키(예시 id_rsa) 및 공개키 (예시 id_rsa.pub) 파일들을 수동으로 삭제합니다.</li>
@@ -404,7 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>Git Bash</strong></pre>
+<pre><strong>bash</strong></pre>
 </div>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ssh <span class="sc">-</span>T git<span class="sc">@</span>github.com</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -420,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>Git Bash</strong></pre>
+<pre><strong>bash</strong></pre>
 </div>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git remote set<span class="sc">-</span>url origin git<span class="sc">@</span>github.com<span class="sc">:</span><span class="er">&lt;</span>username<span class="sc">&gt;</span><span class="er">/&lt;</span>repository<span class="sc">&gt;</span>.git</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -429,13 +443,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>Git Bash</strong></pre>
+<pre><strong>bash</strong></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>git remote <span class="sc">-</span>v</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
+</section>
+</section>
+<section id="wsl2ubuntu환경에서의-설치" class="level2">
+<h2 class="anchored" data-anchor-id="wsl2ubuntu환경에서의-설치">WSL2/Ubuntu환경에서의 설치</h2>
+<section id="키-생성" class="level3">
+<h3 class="anchored" data-anchor-id="키-생성">키 생성</h3>
+<ul>
+<li>WSL2 터미널에서 아래 명령어로 새 SSH 키를 생성합니다.</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ssh<span class="sc">-</span>keygen <span class="sc">-</span>t rsa <span class="sc">-</span>b <span class="dv">4096</span> <span class="sc">-</span>C <span class="st">"benkorea.ai@gmail.com"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="ssh-에이전트-실행-및-키-추가" class="level3">
+<h3 class="anchored" data-anchor-id="ssh-에이전트-실행-및-키-추가">SSH 에이전트 실행 및 키 추가</h3>
+<ul>
+<li>아래 명령어로 SSH 에이전트를 실행한 후 생성한 키를 추가합니다.</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>eval <span class="st">"$(ssh-agent -s)"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ssh<span class="sc">-</span>add <span class="sc">~</span><span class="er">/</span>.ssh<span class="sc">/</span>id_rsa</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="github에-공개키-등록" class="level3">
+<h3 class="anchored" data-anchor-id="github에-공개키-등록">GitHub에 공개키 등록:</h3>
+<ul>
+<li>~/.ssh/id_rsa.pub 파일의 내용을 복사하여 GitHub 계정의 SSH and GPG keys 설정에 추가합니다.</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cat <span class="sc">~</span><span class="er">/</span>.ssh<span class="sc">/</span>id_rsa.pub</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="github-최초연결-설정" class="level3">
+<h3 class="anchored" data-anchor-id="github-최초연결-설정">GitHub 최초연결 설정</h3>
+<ul>
+<li>WSL2 터미널에서 아래 명령어를 실행하여 GitHub에 연결합니다.</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ssh <span class="sc">-</span>T git<span class="sc">@</span>github.com</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="사용자-확인요청에-대한-응답" class="level3">
+<h3 class="anchored" data-anchor-id="사용자-확인요청에-대한-응답">사용자 확인요청에 대한 응답</h3>
+<ul>
+<li>처음 연결시에 “This key is not known by any other names”라는 메시지가 나오는데 yes를 입력합니다.</li>
+</ul>
+</section>
+<section id="성공확인" class="level3">
+<h3 class="anchored" data-anchor-id="성공확인">성공확인</h3>
+<ul>
+<li>“Hi <username>! You’ve successfully authenticated, but GitHub does not provide shell access.”라는 메시지가 나오면 성공입니다.</username></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

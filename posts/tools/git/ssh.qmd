@@ -7,7 +7,7 @@ date-modified: last-modified
 categories: [Tools, openSSH] 
 ---
 
-### 필요성
+## 필요성
 
 GitHub는 한때 아이디와 패스워드만으로 로그인하고 Git 명령어(예: push, pull 등)를 수행할 수 있었지만, 보안 강화를 위해 최근에는 패스워드 대신 personal access token(PAT)이나 OAuth, 2단계 인증(2FA) 등의 인증 방식을 도입했습니다. 이로 인해 단순한 아이디/패스워드 방식이 사라지고, 추가적인 인증 절차가 필수가 되었습니다.
 
@@ -19,17 +19,19 @@ SSH 키 인증 방식은 공개키 암호화 기술을 사용하여 GitHub와의
 
 이처럼 SSH 키를 활용하면 번거로운 인증 절차를 줄이고, 보다 편리하고 안전하게 GitHub와 상호작용할 수 있습니다.
 
-### 핵심개념
+## 핵심개념
 
 두개의 키를 생성하여 하나는 개인키(private key)로, 다른 하나는 공개키(public key)로 구성됩니다. 개인키는 사용자가 소유하고, 공개키는 GitHub에 등록됩니다. GitHub는 공개키를 통해 사용자를 인증하고, 사용자는 개인키를 통해 GitHub에 접속합니다 @fig-github-ssh.
 
 [![](images/SSH%20Connection%20explained.png){#fig-github-ssh}](https://andy6804tw.github.io/2018/03/22/github-ssh/)
 
-### OpenSSH 설치
+## OpenSSH 설치
 
 SSH에는 여러종류가 있지만 여기에서는 Git 설치 시에 bundle로 설치되는 OpenSSH를 사용합니다. 따라서 별도의 설치과정이 필요하지 않습니다.
 
-### 원도우에서 기존키의 제거
+## Window환경에서의 설치
+
+### 기존키의 제거
 
 -   키를 새로 만드는 경우에는 상관없지만 기존키를 삭제해야 한다면 아래와 같이 진행합니다.
 -   C:\Users\<YourUsername\>.ssh 디렉토리에 있는 개인키(예시 id_rsa) 및 공개키 (예시 id_rsa.pub) 파일들을 수동으로 삭제합니다.
@@ -64,7 +66,7 @@ SSH에는 여러종류가 있지만 여기에서는 Git 설치 시에 bundle로 
 
 -   bash창에서 아래의 명령을 입력합니다.
 
-```{r git-ssh-connection, eval=FALSE, filename="Git Bash"}
+```{r git-ssh-connection, eval=FALSE, filename="bash"}
 ssh -T git@github.com
 ```
 
@@ -76,12 +78,50 @@ ssh -T git@github.com
 -   원격저장소의 <> Code 메뉴 하부의 초록색 <>Code 버튼을 누르면 로컬과 연결하는 방법으로써 HTTPS와 SSH를 선택할 수 있게 나옵니다. SSH를 클릭하면 하부의 주소가 복사 가능한데, 이를 복사한 후, 로컬에서 RStudion의 Terminal Tab (=Git Bash)에서 다음의  git remote add origin 명령을 통하여 원격저장소의 주소를 변경하시면 됩니다.
 
 
-```{r git-set-url, eval=FALSE, filename="Git Bash"}
+```{r git-set-url, eval=FALSE, filename="bash"}
 git remote set-url origin git@github.com:<username>/<repository>.git
 ```
 
 제대로 변경되었는지 확인은 다음의 명령으로 갱신된 주소가 출력되는지 확인하시면 됩니다.
 
-```{r git-set-url_validatino, eval=FALSE, filename="Git Bash"}
+```{r git-set-url_validatino, eval=FALSE, filename="bash"}
 git remote -v
 ```
+
+## WSL2/Ubuntu환경에서의 설치
+
+### 키 생성
+- WSL2 터미널에서 아래 명령어로 새 SSH 키를 생성합니다.
+```{r ssh-keygen, eval=FALSE, filename="bash"}
+ssh-keygen -t rsa -b 4096 -C "benkorea.ai@gmail.com"
+```
+
+
+### SSH 에이전트 실행 및 키 추가
+- 아래 명령어로 SSH 에이전트를 실행한 후 생성한 키를 추가합니다.
+```{r ssh-agent, eval=FALSE, filename="bash"}
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+```
+
+### GitHub에 공개키 등록:
+- ~/.ssh/id_rsa.pub 파일의 내용을 복사하여 GitHub 계정의 SSH and GPG keys 설정에 추가합니다.
+
+```{r github-ssh-key, eval=FALSE, filename="bash"}
+cat ~/.ssh/id_rsa.pub
+```
+
+
+### GitHub 최초연결 설정
+- WSL2 터미널에서 아래 명령어를 실행하여 GitHub에 연결합니다.
+```{r git-ssh-connection2, eval=FALSE, filename="bash"}
+ssh -T git@github.com
+```
+
+### 사용자 확인요청에 대한 응답
+- 처음 연결시에 "This key is not known by any other names"라는 메시지가 나오는데 yes를 입력합니다.
+
+### 성공확인
+- "Hi <username>! You've successfully authenticated, but GitHub does not provide shell access."라는 메시지가 나오면 성공입니다.
+
+

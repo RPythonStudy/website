@@ -157,3 +157,34 @@ Git Credential Manager는 Git에서 원격 저장소에 대한 인증 정보를 
 ```{r git_installation, eval=FALSE, filename="Command Prompt"}
 git --version
 ```
+
+## WLS2/Ubuntu 환경에 설치하기
+
+### Git 공식 PPA(Personal Package Archive) 사용 업데이트
+
+#### 기존 Git 버전 확인
+```{r git_version, eval=FALSE, filename="bash"}
+git --version
+```
+
+#### 필수 패키지 설치
+```{r git_install, eval=FALSE, filename="bash"}
+sudo apt update
+sudo apt install software-properties-common
+```
+
+#### Git 공식 PPA 추가
+```{r git_ppa, eval=FALSE, filename="bash"}
+sudo add-apt-repository ppa:git-core/ppa
+```
+
+#### 패키지 목록 업데이트 후 Git 설치/업그레이드
+```{r git_install_upgrade, eval=FALSE, filename="bash"}
+sudo apt update
+sudo apt install -y git
+```
+
+#### 업데이트 확인
+```{r git_version_check, eval=FALSE, filename="bash"}
+git --version
+```
