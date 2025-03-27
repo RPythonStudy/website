@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="RPythonStudy">
+<meta name="author" content="BenKorea feat chatGPT">
 <meta name="description" content="Quarto에서 tooltip 구현 검토한 것을 정리하였습니다.">
 
 <title>Tooltip – RPythonStudy</title>
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-f3c7dabe75a0c4d0cadd41566b53a9a4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -103,21 +103,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <link href="../../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-
 <script src="../../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-
 <link href="../../../site_libs/tippyjs-3.2.0/themes/google.css" rel="stylesheet">
-
 <link href="../../../site_libs/tippyjs-3.2.0/themes/light-border.css" rel="stylesheet">
-
 <link href="../../../site_libs/tippyjs-3.2.0/themes/light.css" rel="stylesheet">
-
 <link href="../../../site_libs/tippyjs-3.2.0/themes/translucent.css" rel="stylesheet">
-
 <script src="../../../site_libs/tippyjs-3.2.0/tippy.all.min.js"></script>
-
 <script src="../../../site_libs/tippy-binding-0.1.0/tippy.js"></script>
-
 
 
 <link rel="stylesheet" href="styles/styles.css">
@@ -231,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">저자</div>
       <div class="quarto-title-meta-contents">
-               <p>RPythonStudy </p>
+               <p>BenKorea feat chatGPT </p>
             </div>
     </div>
       
@@ -245,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">2024년 12월 13일</p>
+        <p class="date-modified">2025년 3월 27일</p>
       </div>
     </div>
       
@@ -275,7 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../posts/Quarto/install/Quarto_setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quarto setup</span></a>
+ <span class="menu-text">Quarto 설치</span></a>
   </div>
 </li>
       </ul>
@@ -425,8 +417,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">placement =</span> <span class="st">"bottom"</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<span class="tippy html-widget html-fill-item" height="464px" id="htmlwidget-eb0ec06ab0e7eeef7c29" width="100%"></span>
-<script type="application/json" data-for="htmlwidget-eb0ec06ab0e7eeef7c29">{"x":{"element":"normaldist","opts":{"content":"<p align='left'>\n  This is a tooltip 1st line 1234567890 1234567890 123456780.<br>\n  This is a 2nd line<\/p>","placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item" height="464px" id="htmlwidget-051a270170ca1277f14f" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-051a270170ca1277f14f">{"x":{"element":"normaldist","opts":{"content":"<p align='left'>\n  This is a tooltip 1st line 1234567890 1234567890 123456780.<br>\n  This is a 2nd line<\/p>","placement":"bottom"}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <ul>
@@ -690,6 +682,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -805,6 +799,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

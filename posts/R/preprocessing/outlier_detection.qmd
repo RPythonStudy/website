@@ -4,10 +4,7 @@ description: "정규분포와 Box-Cox transformation을 이용한 검출"
 author: "BenKorea feat. ChatGPT"
 date: "July 8, 2024"
 date-modified: last-modified
-categories:
-  - R
-  - preprocessing
-  - outlier
+categories: [R, preprocessing, outlier]
 ---
 
 ## 연속형변수 이상치(outlier) 검출
@@ -25,18 +22,20 @@ categories:
 #| fig.height: 6
 #| fig.width: 10
 
-library(readxl)
+project_root <- rprojroot::find_root(rprojroot::is_rstudio_project)
 
 my_load_source_files <- function (source_folder) {
 
-  source_path <- file.path(getwd(), source_folder)
+  source_path <- file.path(project_root, source_folder)
   r_files <- list.files(source_path, pattern = "\\.R$", full.names = TRUE)
   invisible(lapply(r_files, source))
 }
 
-source("C:/Projects/R443-RPythonStudy_website/source/my_histgram_with_outliers.R")
+my_load_source_files("source")
 
-raw_data <- read_excel("C:/Projects/R443-RPythonStudy_website/raw_data/deidentified_han20230213.xlsx")
+
+
+raw_data <- my_read_excel("raw_data", "deidentified_han20230213.xlsx")
 
 my_histgram_with_outliers(raw_data, "AGE")
 ```

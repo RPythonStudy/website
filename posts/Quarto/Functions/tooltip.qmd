@@ -1,9 +1,9 @@
 ---
 title: "Tooltip"
 description: "Quarto에서 tooltip 구현 검토한 것을 정리하였습니다."
-author: "RPythonStudy"
+author: "BenKorea feat chatGPT"
 date: "2024-12-13"
-date-modified: "2024-12-13"
+date-modified: last-modified
 categories: [Quarto, Bootstrap, Tooltip]
 ---
 
@@ -44,7 +44,7 @@ This is a [`normal distribution`]{#normaldist}.
 
 ```{r}
 #| label: tooltip
-#| echo: ture
+#| echo: true
 
 library(tippy)
 
@@ -237,5 +237,6 @@ format:
       - text: |
           <script src="scripts/tooltip.js"></script>
 ```
+
 
 
