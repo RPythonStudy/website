@@ -179,7 +179,7 @@ ben@kimbi-laptop:~$ rig list
 - 아래의 명령으로 원하는 R 버전으로 설정할 수 있습니다.
 
 ```{r rig_use, eval=FALSE, filename="bash"}
-rig use 4.4.2
+rig default 4.4.2
 ```
 
 ### rig에 의한 버전별 설치 경로

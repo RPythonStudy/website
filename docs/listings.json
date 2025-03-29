@@ -2,10 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/R/install/R_setup.html",
       "/posts/Quarto/Functions/tooltip.html",
       "/posts/R/preprocessing/outlier_detection.html",
       "/posts/R/install/RStudio_setup.html",
-      "/posts/R/install/R_setup.html",
       "/posts/Quarto/install/Quarto_setup.html",
       "/posts/tools/git/git_install.html",
       "/posts/tools/git/ssh.html",
