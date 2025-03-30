@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="BenKorea feat. ChatGPT">
-<meta name="description" content="사용에 앞서 도움이 되는 핵심개념을 정리하였습니다.">
+<meta name="description" content="RStudio에서 Git clone 실습">
 
-<title>Git 핵심개념 – RPythonStudy</title>
+<title>Hands-on git clone – RPythonStudy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -151,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git</a></li><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git 핵심개념</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git</a></li><li class="breadcrumb-item"><a href="../../../posts/tools/git/hands_on_git_clone.html">Hands-on git clone</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -160,15 +194,17 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git</a></li><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git 핵심개념</a></li></ol></nav>
-      <h1 class="title">Git 핵심개념</h1>
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git</a></li><li class="breadcrumb-item"><a href="../../../posts/tools/git/hands_on_git_clone.html">Hands-on git clone</a></li></ol></nav>
+      <h1 class="title">Hands-on git clone</h1>
                   <div>
         <div class="description">
-          사용에 앞서 도움이 되는 핵심개념을 정리하였습니다.
+          RStudio에서 Git clone 실습
         </div>
       </div>
                           <div class="quarto-categories">
+                <div class="quarto-category">hands-on</div>
                 <div class="quarto-category">Git</div>
+                <div class="quarto-category">clone</div>
               </div>
                   </div>
   </div>
@@ -186,14 +222,14 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">공개</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2024년 5월 6일</p>
+        <p class="date">2023년 3월 29일</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">2025년 3월 27일</p>
+        <p class="date-modified">2025년 3월 30일</p>
       </div>
     </div>
       
@@ -222,7 +258,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tools/git/git_concept.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../posts/tools/git/git_concept.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Git 핵심개념</span></a>
   </div>
 </li>
@@ -258,7 +294,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tools/git/hands_on_git_clone.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../posts/tools/git/hands_on_git_clone.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Hands-on git clone</span></a>
   </div>
 </li>
@@ -274,12 +310,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#prologue" id="toc-prologue" class="nav-link active" data-scroll-target="#prologue"><span class="header-section-number">1</span> Prologue</a></li>
-  <li><a href="#git-버전관리" id="toc-git-버전관리" class="nav-link" data-scroll-target="#git-버전관리"><span class="header-section-number">2</span> Git 버전관리</a></li>
-  <li><a href="#git-branch-관리" id="toc-git-branch-관리" class="nav-link" data-scroll-target="#git-branch-관리"><span class="header-section-number">3</span> Git branch 관리</a></li>
-  <li><a href="#git-원격저장소" id="toc-git-원격저장소" class="nav-link" data-scroll-target="#git-원격저장소"><span class="header-section-number">4</span> Git 원격저장소</a></li>
-  <li><a href="#핵심개념-이외의-사항들" id="toc-핵심개념-이외의-사항들" class="nav-link" data-scroll-target="#핵심개념-이외의-사항들"><span class="header-section-number">5</span> 핵심개념 이외의 사항들</a></li>
-  <li><a href="#추가로-공부하면-좋은-사이트" id="toc-추가로-공부하면-좋은-사이트" class="nav-link" data-scroll-target="#추가로-공부하면-좋은-사이트"><span class="header-section-number">6</span> 추가로 공부하면 좋은 사이트</a></li>
+  <li><a href="#rstudio또는-server-실행" id="toc-rstudio또는-server-실행" class="nav-link active" data-scroll-target="#rstudio또는-server-실행"><span class="header-section-number">1</span> RStudio(또는 server) 실행</a></li>
+  <li><a href="#git-설치확인" id="toc-git-설치확인" class="nav-link" data-scroll-target="#git-설치확인"><span class="header-section-number">2</span> Git 설치확인</a></li>
+  <li><a href="#원격저장소-url-복사하기" id="toc-원격저장소-url-복사하기" class="nav-link" data-scroll-target="#원격저장소-url-복사하기"><span class="header-section-number">3</span> 원격저장소 url 복사하기</a></li>
+  <li><a href="#원격저장소-프로젝트의-r버전-확인하기" id="toc-원격저장소-프로젝트의-r버전-확인하기" class="nav-link" data-scroll-target="#원격저장소-프로젝트의-r버전-확인하기"><span class="header-section-number">4</span> 원격저장소 프로젝트의 R버전 확인하기</a></li>
+  <li><a href="#git-clone하기" id="toc-git-clone하기" class="nav-link" data-scroll-target="#git-clone하기"><span class="header-section-number">5</span> Git clone하기</a></li>
+  <li><a href="#rstudio-프로젝트로-만들기" id="toc-rstudio-프로젝트로-만들기" class="nav-link" data-scroll-target="#rstudio-프로젝트로-만들기"><span class="header-section-number">6</span> RStudio 프로젝트로 만들기</a></li>
+  <li><a href="#renv-설치-확인하기" id="toc-renv-설치-확인하기" class="nav-link" data-scroll-target="#renv-설치-확인하기"><span class="header-section-number">7</span> renv 설치 확인하기</a></li>
+  <li><a href="#renv로-패키지-복원하기" id="toc-renv로-패키지-복원하기" class="nav-link" data-scroll-target="#renv로-패키지-복원하기"><span class="header-section-number">8</span> renv로 패키지 복원하기</a></li>
+  <li><a href="#패키지-복원-확인하기" id="toc-패키지-복원-확인하기" class="nav-link" data-scroll-target="#패키지-복원-확인하기"><span class="header-section-number">9</span> 패키지 복원 확인하기</a></li>
+  <li><a href="#hands-on-완료" id="toc-hands-on-완료" class="nav-link" data-scroll-target="#hands-on-완료"><span class="header-section-number">10</span> Hands-on 완료</a></li>
   </ul>
 </nav>
     </div>
@@ -290,65 +330,289 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="prologue" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="prologue"><span class="header-section-number">1</span> Prologue</h2>
-<p>Git은 PC에서 개인 프로젝트의 버전을 단순히 관리하는 것을 넘어, 분산 환경에서 로컬(자신의 PC)과 원격 저장소(예: GitHub)를 활용하여 협업을 지원하는 오픈소스 분산형 버전 관리 시스템입니다. 그 결과, Git은 개발자에게 필수적인 도구가 됩니다.</p>
-<p>하지만 초보자에게는 사용법이 다소 복잡해 보일 수 있습니다. 제 경험에 따르면, 초보자분들은 개인 프로젝트를 로컬 백업하고 GitHub 클라우드에 백업한다는 마음가짐으로 최소한의 기능만 사용해도 충분합니다.</p>
-<p>물론, 때때로 최소한의 기능조차 원활하게 작동하지 않는 상황이 발생할 수 있습니다. 그러나 그런 경우 ChatGPT에 오류 메시지를 입력해 해결 방법을 찾아보는 과정을 통해 문제를 쉽게 해결할 수 있을 것입니다.</p>
-<p>이 글은 Git의 설치, 설정, 기초 사용법, 그리고 Hands-on 실습에 앞서 Git의 핵심 개념을 이해하는 데 도움을 드리고자 작성되었습니다.</p>
-</section>
-<section id="git-버전관리" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="git-버전관리"><span class="header-section-number">2</span> Git 버전관리</h2>
-<p>Git 버전관리는 다양한 방식으로 구현될 수 있지만, 대표적인 방법은 각 버전을 기록하는 데이터베이스를 구성하는 것입니다. 여기서 **스냅샷(snapshot)**이라는 개념은, 특정 시점의 파일 전체 상태를 한 장의 사진처럼 기록하는 것을 의미합니다. Git은 빠른 개발 속도를 목표로 하므로, 각 버전의 파일 전체를 데이터베이스에 보관하되, 이전 버전과 중복되는 부분은 링크 등을 통해 재사용하여 최종 버전의 상태를 구성하는 방식을 채택했습니다. 이러한 재사용 메커니즘 덕분에 저장 공간이 절약되고, 작업 속도 또한 효율적으로 향상됩니다.</p>
-<p>구체적으로, 버전 관리 대상으로 지정된 파일들의 스냅샷이 프로젝트 디렉토리 하부의 <strong>.git</strong> 숨김 디렉토리 내부의 <strong>objects</strong> 디렉토리에 저장됩니다. 이때 각 파일의 버전 이름은 SHA-1 해시값으로 생성되어, 이를 통해 파일의 버전이 식별되고 관리됩니다.</p>
-<p>Git 버전관리의 특징 중 하나는 버전 관리를 위해 몇 가지 가상적인 단계를 도입했다는 점입니다. 일반적으로 개발자들은 프로젝트를 디렉토리 단위로 관리하며, Git 역시 디렉토리 단위로 작동합니다. 다만, 프로젝트의 모든 파일을 버전 관리 대상으로 포함하는 것이 아니라, 지정한 파일들만 관리합니다. 이를 구분하기 위해 Git은 <strong>working directory</strong>와 <strong>staging area</strong>라는 개념을 사용합니다.</p>
+<section id="rstudio또는-server-실행" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="rstudio또는-server-실행"><span class="header-section-number">1</span> RStudio(또는 server) 실행</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="RStudio(또는 server) 실행 설명">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+RStudio(또는 server) 실행 설명
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
-<li><p><strong>Working Directory:</strong> 현재 프로젝트 파일들이 실제로 위치한 물리적 디렉토리를 의미합니다.</p></li>
-<li><p><strong>Staging Area:</strong> 버전 관리 대상으로 지정된 파일들의 가상적인 집합 공간입니다. 즉, 파일을 버전 관리 대상으로 지정하면 해당 파일들이 staging area로 옮겨진다고 표현할 수 있습니다.</p></li>
+<li>RStudo(또는 server)가 실행되었지만 만약 다른 프로젝트들이 자동으로 로딩되었다면 이들은 모두 닫아둡니다.</li>
+<li>우하단의 Output pane의 Files tab에서 <a href="https://rpythonstudy.github.io/website/posts/R/install/RStudio_setup.html" target="_blank">연구회 웹사이트 RStudio 설정</a>에서 설정한 default working directory를 보여주면 정상입니다.</li>
 </ul>
-<p>Git의 <strong>.git 디렉토리</strong> 개념은 다음과 같이 이해할 수 있습니다. Staging area에 버전 관리 대상으로 지정된 파일들이 실제로 수정 작업이 완료되면, 개발자는 이를 버전 관리하기로 결정하고 해당 파일들의 스냅샷을 물리적으로 별도의 저장소로 옮깁니다.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="git-설치확인" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="git-설치확인"><span class="header-section-number">2</span> Git 설치확인</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Git 설치확인 예시">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Git 설치확인 예시
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
-<li><strong>.git 디렉토리:</strong> 버전 관리 시점과 각 버전에 대한 설명 등 메타데이터와 함께 버전들의 스냅샷이 저장되는 물리적인 디렉토리입니다. 이 과정은 마치 데이터베이스처럼 각 파일의 상태와 변경 이력을 체계적으로 관리하는 역할을 하며, 이를 저장소(repository)라는 이름으로도 부릅니다.</li>
+<li>RStudio(또는 server) Console pane의 Terminal tab에서 아래의 git 명령어를 실행하여 설치된 최신 version이 맞는지 확인합니다.</li>
 </ul>
-<p>이러한 가상적인 단계들로 옮겨가기 위해 사용하는 Git 명령어들은 다음과 같습니다.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStdio Terminal tab</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>git <span class="sc">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 <ul>
-<li><strong><code>git add &lt;file&gt;</code></strong><br>
-Working Directory에 있는 변경된 파일들을 Staging Area로 옮겨, 버전 관리 대상으로 지정하는 명령어입니다.</li>
-<li><strong><code>git commit -m "메시지"</code></strong><br>
-Staging Area에 있는 파일들을 스냅샷으로 기록하여, .git 디렉토리 내의 objects 디렉토리에 저장하는 명령어입니다. 이때 메시지를 통해 해당 버전에 대한 설명을 추가할 수 있습니다.</li>
-</ul>
-<p><a href="https://geo-python-site.readthedocs.io/en/2018.1/lessons/L2/git-basics.html"><img src="images/git_local.png" class="img-fluid"></a></p>
-</section>
-<section id="git-branch-관리" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="git-branch-관리"><span class="header-section-number">3</span> Git branch 관리</h2>
-<p>Git은 여러 개발자들이 동시에 프로젝트를 진행할 수 있도록 지원하는 도구입니다. 이를 위해 Git은 <strong>branch</strong>라는 개념을 도입했습니다. 첨부된 그림을 보면, 메인 개발 흐름을 담당하는 <strong>main branch</strong>에서 특정 기능만 추가로 개발하기 위해 <strong>feature branch</strong>가 파생되고 있습니다.</p>
+<li>오류가 있다면
 <ul>
-<li><p><strong>main branch</strong>는 기존 흐름대로 계속 개발을 진행합니다.</p></li>
-<li><p><strong>feature branch</strong>에서는 특정 기능을 독립적으로 개발할 수 있습니다.</p></li>
-<li><p>필요하다면 <strong>hotfix commit</strong>처럼 main branch에서 긴급 수정이 이뤄지기도 합니다.</p></li>
-<li><p>이후 기능 개발이 완료되면, feature branch를 <strong>merge</strong>하여 main branch에 변경 사항을 통합합니다.</p></li>
+<li>Tools &gt; Global Options… &gt; Git/SVM 메뉴에서 version control interface for RStudio가 check 되어있는지,</li>
+<li>git 실행파일의 경로가 제대로 인식되어 있는지</li>
+</ul></li>
+<li>등을 확인하여 오류를 해결하고 진행 하시길 바랍니다.</li>
 </ul>
-<p>그림 속 빨간 화살표(<strong>before merge</strong>)는 병합 전의 시점을 나타냅니다. 이처럼 Git의 branch 구조를 활용하면, 여러 명이 동시에 다른 작업을 진행해도 충돌을 최소화하며 각각의 작업을 독립적으로 수행하고, 최종적으로 main branch로 병합하여 전체 프로젝트에 반영할 수 있습니다.</p>
-<p><a href="https://www.reddit.com/r/git/comments/ziqpcs/merge_best_practices/"><img src="images/merge-best-practices-v0-yo6f0hx3m95a1.webp" class="img-fluid"></a></p>
-<p>이러한 branch들이 파생시키고 main으로 병합하는 Git 명령어들은 다음과 같습니다.</p>
-<p>이러한 branch들을 파생시키고 main으로 병합하기 위해서는, 보통 <strong><code>git branch</code></strong>, <strong><code>git checkout</code></strong>, <strong><code>git merge</code></strong> 등의 명령어가 사용됩니다. 예를 들어, **<code>git branch feature</code>**를 통해 새 브랜치를 생성하고, **<code>git checkout feature</code>**로 해당 브랜치로 전환하여 작업한 뒤, 작업이 완료되면 **<code>git checkout main</code>**으로 돌아와 **<code>git merge feature</code>**를 통해 main 브랜치로 병합할 수 있습니다.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="git-원격저장소" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="git-원격저장소"><span class="header-section-number">4</span> Git 원격저장소</h2>
-<p>신입 연구회 회원 여러분도 이제 Git 저장소의 기본 개념을 이해하셨으리라 생각합니다. 다음 단계로는 원격 저장소(Remote Repository)의 개념을 익히는 것이 중요합니다. 협업을 위해서는 클라우드 상에 프로젝트 파일이 공유되어야 하는데, 이는 여러분의 로컬에 있는 <strong>.git 디렉토리</strong>와 유사한 저장소가 중앙에 위치해 있다고 생각하면 이해하기 쉽습니다.</p>
-<p>예를 들어, GitHub, GitLab, Bitbucket과 같은 플랫폼이 대표적인 원격 저장소입니다. 이들 플랫폼은 로컬 저장소에서 작업한 내용을 중앙 저장소에 업로드(<strong>git push</strong>)하거나, 다른 사람이 작업한 최신 변경 사항을 다운로드(<strong>git pull</strong>)하는 방식으로 협업을 지원합니다.</p>
-<p><a href="https://geo-python-site.readthedocs.io/en/2018.1/lessons/L2/git-basics.html"><img src="images/Git_illustration.webp" class="img-fluid"></a></p>
-<p>이처럼 원격 저장소는 개인의 <strong>.git 디렉토리</strong>와 동일한 기능을 수행하는 중앙 저장소 역할을 하며, 협업 환경에서 필수적인 도구로 활용됩니다. 초보자들은 협업의 기회가 사실상 없겠지만, 원격저장소는 최소한 클라우드 백업 역할도 하게 됩니다. (저자의 경우는 연구실 PC와 노트북을 오가며 RStudio 프로젝트를 진행하고 있는데, 동기화를 원격저장소를 거쳐서 하고 있습니다.)<br>
-</p>
+<section id="원격저장소-url-복사하기" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="원격저장소-url-복사하기"><span class="header-section-number">3</span> 원격저장소 url 복사하기</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="원격저장소 url 복사하기 예시">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+원격저장소 url 복사하기 예시
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Clone하고픈 원격저장소의 url을 이용하여 로컬(=자신의 PC 원하는 경로)로 다운로드 하는 개념입니다.</li>
+<li>원격저장소 주소 예시 <a href="https://github.com/RPythonGroup/Survival_Exercise" target="_blank">https://github.com/RPythonGroup/Survival_Exercise</a>로 이동합니다.</li>
+<li>아래의 그림과 같이 초록색 &lt;&gt;Code 버튼을 클릭하면 주소가 나타납니다.</li>
+</ul>
+<p><img src="images/RemoteRepositoryURL.JPG" class="img-fluid"></p>
+<ul>
+<li>팝업창 &gt; Local &gt; HTTPS를 선택하면 이래의 그림처럼 web URL이 나타나며 복사버튼을 이용할 수도 있습니다.</li>
+</ul>
+<p><img src="images/RemoteRepositoryURL_https.JPG" class="img-fluid"></p>
+</div>
+</div>
+</div>
 </section>
-<section id="핵심개념-이외의-사항들" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="핵심개념-이외의-사항들"><span class="header-section-number">5</span> 핵심개념 이외의 사항들</h2>
-<p>실제 Git을 사용하다 보면, 핵심 개념에서 다룬 명령어들만으로 모든 상황을 해결할 수 없다는 점을 당연히 경험하게 됩니다. 예를 들어, 로컬 저장소와 원격 저장소 간의 파일 버전이 일치하지 않아 강제로 동기화해야 하는 경우가 발생할 수 있고, branch의 히스토리가 달라 병합이 원활하게 이루어지지 않는 상황도 종종 있습니다.</p>
-<p>이러한 문제들에 직면했을 때는, 기본 개념을 넘어 추가적인 학습이 필요하며, ChatGPT와 같은 도구를 활용하여 문제 해결 방법을 찾아보시는 것을 추천드립니다.</p>
+<section id="원격저장소-프로젝트의-r버전-확인하기" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="원격저장소-프로젝트의-r버전-확인하기"><span class="header-section-number">4</span> 원격저장소 프로젝트의 R버전 확인하기</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="원격저장소 프로젝트의 R버전 확인하기 예시">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+원격저장소 프로젝트의 R버전 확인하기 예시
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>원격저장소의 프로젝트에는 R버전이 프로젝트명에 반영되어 있으면 직관적으로 알 수 있습니다.
+<ul>
+<li>예시: <code>r443-survival_exercise</code></li>
+</ul></li>
+<li>우리 연구회처럼 renv로 패키지관리가 된 원격저장소 프로젝트라면 renv.lock 파일을 열어보면 첫머리에 R버전이 기록되어 있습니다.</li>
+<li>만약 RStudio에서 실행 중인 R과 버전이 다르다면 RStudio(또는 server)에서 해당버전의 R실행파일로 설정을 변경하시면 됩니다. (필요시 해당버전의 R 추가 설치시 및 RStudio(또는 server)에서 R버전 변경은 연구회 웹사이트 해당부분을 참고하시길 바랍니다.)</li>
+</ul>
+</div>
+</div>
+</div>
 </section>
-<section id="추가로-공부하면-좋은-사이트" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="추가로-공부하면-좋은-사이트"><span class="header-section-number">6</span> 추가로 공부하면 좋은 사이트</h2>
-<p>Git 초기 설정에 앞서 Git에서 사용되는 개념과 용어를 이해하는 것이 좋습니다. Git 공식사이트의 한글매뉴얼(<a href="https://git-scm.com/book/ko/v2/%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0-Git-%ea%b8%b0%ec%b4%88" class="uri">https://git-scm.com/book/ko/v2/%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0-Git-%ea%b8%b0%ec%b4%88</a>)을 학습하시길 추천합니다.</p>
+<section id="git-clone하기" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="git-clone하기"><span class="header-section-number">5</span> Git clone하기</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Git clone하기 예시">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Git clone하기 예시
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>RStudio Console pane Terminal tab에서 아래의 git 명령어를 실행하여 원격저장소를 로컬로 복사합니다.</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStdio Console pane Terminal tab</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git clone <span class="sc">&lt;</span>remote repository URL<span class="sc">&gt;</span> <span class="er">&lt;</span>local directory<span class="sc">&gt;</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<ul>
+<li><remote repository="" url="">은 복사해두었던 원격저장소url을 붙여넣기 하면 오타를 줄일 수 있습니다.</remote></li>
+<li><local directory="">은 r443-survival_exercise와 같이 r 실행파일의 버전과 프로젝트명으로 만들면 좋습니다.</local></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="rstudio-프로젝트로-만들기" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="rstudio-프로젝트로-만들기"><span class="header-section-number">6</span> RStudio 프로젝트로 만들기</h2>
+<ul>
+<li>물리적인 폴더는 만들어졌지만 RSytudio 프로젝트는 아니므로 만들어야 합니다.</li>
+</ul>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="RStudio 프로젝트로 만들기 예시">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+RStudio 프로젝트로 만들기 예시
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>RStudio&gt;File</code> 메뉴에서 <code>New Project</code>를 선택</li>
+<li><code>Existing Directory</code>를 선택</li>
+<li>Project working directory로 clone 시에 만들어졌던 디렉토리를 browsing하여 선택합니다.</li>
+<li><label><input type="checkbox" checked="">Open in new session: 다른 session을 열어두고자 한다면 체크를 해야함. RStudio server에서는 이 check가 없습니다. 이는 RStudio server에서는 session을 여러개 열 수 없기 때문입니다.</label></li>
+<li><code>Create Project</code> 버튼클릭</li>
+<li>RStudio 프로젝트가 되었으면 우측 상단에 Project (None)이 설정한 프로젝트명으로 바뀌게 됩니다.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="renv-설치-확인하기" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="renv-설치-확인하기"><span class="header-section-number">7</span> renv 설치 확인하기</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="renv 설치버전 확인하기 예시">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+renv 설치버전 확인하기 예시
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>연구회에서 만든 프로젝트는 renv로 독립적인 패키지관리를 하고 있습니다. 프로젝트 파일들을 clone 으로 local로 가져올 때, 패키지목록이 기록되어 있는 renv.lock 파일만 local로 가져오도록 설정되어 있습니다.</li>
+<li>따라서 원격저장소를 만들었을 때와 같은 패키지버전들로 설치할려면 renv.lock 파일에 기록된 버전들로 설치하는 것이 필요합니다. (renv를 사용하지 않고 프로젝트를 실행할 때 R에서 해당 패키지가 없다고 인식하는 것을 설치하면 최신 패키지들이 설치되어 버전이 달라질 수도 있습니다.)</li>
+<li>renv를 적용할려면 renv가 설치되어 있어야 하므로 확인하는 방법은 아래와 같이 버전을 확인하는 것도 한가지 방법입니다.</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStdio Console pane Console tab</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"renv"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>만약에 설치되어 있지 않다는 오류가 나온다면 아래의 명령으로 설치하시면 됩니다.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStdio Console pane Console tab</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="renv로-패키지-복원하기" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="renv로-패키지-복원하기"><span class="header-section-number">8</span> renv로 패키지 복원하기</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="renv로 패키지 복원하기 예시">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+renv로 패키지 복원하기 예시
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>패키지들을 renv.lock 파일에 기록된 버전으로 설치하는 명령어는 아래와 같습니다.</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStdio Console pane Console tab</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<ul>
+<li>복원과정에서 renv가 아직 적용되지 않은 상태라서 activation 할지는 물어보는 메시지가 나오게 되는데 activate를 진행하시면 됩니다.</li>
+<li>activate가 되면 프로젝트 폴더내에 renv 폴더가 생성되고 기본 패키지들이 설치됩니다.</li>
+<li>아직은 renv.lock 파일에 기록된 패키지들이 설치된 것이 아니므로 위의 renv::restore() 명령어를 다시 실행하시면 됩니다.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="패키지-복원-확인하기" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="패키지-복원-확인하기"><span class="header-section-number">9</span> 패키지 복원 확인하기</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="패키지 복원 확인하기 예시">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+패키지 복원 확인하기 예시
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>복원이 완료되었느자 확인은 renv.lock 파일에 기록된 패키지들과 실제 설치된 패키지들이 현황을 비교하는 명령을 이용합니다.</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>RStdio Console pane Console tab</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<ul>
+<li>실행결과 메세지가 <code>No issues found -- the project is in a consistent state.</code>이면 복원이 완료된 것입니다.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="hands-on-완료" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="hands-on-완료"><span class="header-section-number">10</span> Hands-on 완료</h2>
 
 
 </section>

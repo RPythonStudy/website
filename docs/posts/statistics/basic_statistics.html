@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-b0d589d17ab6c3eb5f580629f8475471.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -279,12 +279,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#t-test" id="toc-t-test" class="nav-link active" data-scroll-target="#t-test">t-test</a></li>
-  <li><a href="#𝜒2-chi-square-test" id="toc-𝜒2-chi-square-test" class="nav-link" data-scroll-target="#𝜒2-chi-square-test">𝜒2 (chi-square) test</a></li>
-  <li><a href="#generalized-linear-regression-and-loess-smoothing-local-regression" id="toc-generalized-linear-regression-and-loess-smoothing-local-regression" class="nav-link" data-scroll-target="#generalized-linear-regression-and-loess-smoothing-local-regression">Generalized linear regression and Loess smoothing (LOcal regrESSion)</a></li>
-  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link" data-scroll-target="#one-way-anova">One-way ANOVA</a></li>
-  <li><a href="#correlation-tests" id="toc-correlation-tests" class="nav-link" data-scroll-target="#correlation-tests">Correlation tests</a></li>
-  <li><a href="#survival-analysis" id="toc-survival-analysis" class="nav-link" data-scroll-target="#survival-analysis">Survival analysis</a></li>
+  <li><a href="#t-test" id="toc-t-test" class="nav-link active" data-scroll-target="#t-test"><span class="header-section-number">0.1</span> t-test</a></li>
+  <li><a href="#𝜒2-chi-square-test" id="toc-𝜒2-chi-square-test" class="nav-link" data-scroll-target="#𝜒2-chi-square-test"><span class="header-section-number">0.2</span> 𝜒2 (chi-square) test</a></li>
+  <li><a href="#generalized-linear-regression-and-loess-smoothing-local-regression" id="toc-generalized-linear-regression-and-loess-smoothing-local-regression" class="nav-link" data-scroll-target="#generalized-linear-regression-and-loess-smoothing-local-regression"><span class="header-section-number">0.3</span> Generalized linear regression and Loess smoothing (LOcal regrESSion)</a></li>
+  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link" data-scroll-target="#one-way-anova"><span class="header-section-number">0.4</span> One-way ANOVA</a></li>
+  <li><a href="#correlation-tests" id="toc-correlation-tests" class="nav-link" data-scroll-target="#correlation-tests"><span class="header-section-number">0.5</span> Correlation tests</a></li>
+  <li><a href="#survival-analysis" id="toc-survival-analysis" class="nav-link" data-scroll-target="#survival-analysis"><span class="header-section-number">0.6</span> Survival analysis</a></li>
   </ul>
 </nav>
     </div>
@@ -295,8 +295,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="t-test" class="level3">
-<h3 class="anchored" data-anchor-id="t-test">t-test</h3>
+<section id="t-test" class="level3" data-number="0.1">
+<h3 data-number="0.1" class="anchored" data-anchor-id="t-test"><span class="header-section-number">0.1</span> t-test</h3>
 <p>R function : t.test -</p>
 <p>option arguments : alternative = c(“two.sided”, “less”, “greater”), formula (종속변수~ 독립변수)</p>
 <p>help files : ?t.test 를 치면 함수의 argument, values(results), detail에 대해서 설명이 나옴</p>
@@ -340,8 +340,8 @@ mean in group 0 mean in group 1
 </div>
 </div>
 </section>
-<section id="𝜒2-chi-square-test" class="level3">
-<h3 class="anchored" data-anchor-id="𝜒2-chi-square-test">𝜒2 (chi-square) test</h3>
+<section id="𝜒2-chi-square-test" class="level3" data-number="0.2">
+<h3 data-number="0.2" class="anchored" data-anchor-id="𝜒2-chi-square-test"><span class="header-section-number">0.2</span> 𝜒2 (chi-square) test</h3>
 <p>R function : chisq.test</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rotterdam[,<span class="fu">c</span>(<span class="st">"hormon"</span>,<span class="st">"size"</span>)])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -390,12 +390,12 @@ X-squared = 29.771, df = 1, p-value = 4.862e-08</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(x, <span class="at">simulate.p.value =</span> <span class="cn">TRUE</span>, <span class="at">B =</span> <span class="dv">10000</span>)<span class="sc">$</span>p.value</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2931707</code></pre>
+<pre><code>[1] 0.289871</code></pre>
 </div>
 </div>
 </section>
-<section id="generalized-linear-regression-and-loess-smoothing-local-regression" class="level3">
-<h3 class="anchored" data-anchor-id="generalized-linear-regression-and-loess-smoothing-local-regression">Generalized linear regression and Loess smoothing (LOcal regrESSion)</h3>
+<section id="generalized-linear-regression-and-loess-smoothing-local-regression" class="level3" data-number="0.3">
+<h3 data-number="0.3" class="anchored" data-anchor-id="generalized-linear-regression-and-loess-smoothing-local-regression"><span class="header-section-number">0.3</span> Generalized linear regression and Loess smoothing (LOcal regrESSion)</h3>
 <p>R function : glm (generalized linear models) 다중 선형회귀</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(ggplot2))</span>
@@ -514,8 +514,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </section>
-<section id="one-way-anova" class="level3">
-<h3 class="anchored" data-anchor-id="one-way-anova">One-way ANOVA</h3>
+<section id="one-way-anova" class="level3" data-number="0.4">
+<h3 data-number="0.4" class="anchored" data-anchor-id="one-way-anova"><span class="header-section-number">0.4</span> One-way ANOVA</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(psych))</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>PlantGrowth <span class="do">## 내장 dataset</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -603,8 +603,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </section>
-<section id="correlation-tests" class="level3">
-<h3 class="anchored" data-anchor-id="correlation-tests">Correlation tests</h3>
+<section id="correlation-tests" class="level3" data-number="0.5">
+<h3 data-number="0.5" class="anchored" data-anchor-id="correlation-tests"><span class="header-section-number">0.5</span> Correlation tests</h3>
 <p>Pearson correlation formula</p>
 <p><img src="images/clipboard-348828287.png" class="img-fluid"></p>
 <p>Spearman correlation formula : non-parametric</p>
@@ -678,8 +678,8 @@ sample estimates:
 </div>
 </div>
 </section>
-<section id="survival-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="survival-analysis">Survival analysis</h3>
+<section id="survival-analysis" class="level3" data-number="0.6">
+<h3 data-number="0.6" class="anchored" data-anchor-id="survival-analysis"><span class="header-section-number">0.6</span> Survival analysis</h3>
 <ul>
 <li>Kaplan Meier Analysis - Basic survival model survival::Surv</li>
 </ul>
@@ -1046,8 +1046,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1163,7 +1161,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-b0d589d17ab6c3eb5f580629f8475471.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -367,10 +367,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#연속형변수-이상치outlier-검출" id="toc-연속형변수-이상치outlier-검출" class="nav-link active" data-scroll-target="#연속형변수-이상치outlier-검출">연속형변수 이상치(outlier) 검출</a>
+  <li><a href="#연속형변수-이상치outlier-검출" id="toc-연속형변수-이상치outlier-검출" class="nav-link active" data-scroll-target="#연속형변수-이상치outlier-검출"><span class="header-section-number">1</span> 연속형변수 이상치(outlier) 검출</a>
   <ul class="collapse">
-  <li><a href="#z--점수-방법" id="toc-z--점수-방법" class="nav-link" data-scroll-target="#z--점수-방법">Z -점수 방법</a></li>
-  <li><a href="#정규분포로의-변환" id="toc-정규분포로의-변환" class="nav-link" data-scroll-target="#정규분포로의-변환">정규분포로의 변환</a></li>
+  <li><a href="#z--점수-방법" id="toc-z--점수-방법" class="nav-link" data-scroll-target="#z--점수-방법"><span class="header-section-number">1.1</span> Z -점수 방법</a></li>
+  <li><a href="#정규분포로의-변환" id="toc-정규분포로의-변환" class="nav-link" data-scroll-target="#정규분포로의-변환"><span class="header-section-number">1.2</span> 정규분포로의 변환</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -382,10 +382,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="연속형변수-이상치outlier-검출" class="level2">
-<h2 class="anchored" data-anchor-id="연속형변수-이상치outlier-검출">연속형변수 이상치(outlier) 검출</h2>
-<section id="z--점수-방법" class="level3">
-<h3 class="anchored" data-anchor-id="z--점수-방법">Z -점수 방법</h3>
+<section id="연속형변수-이상치outlier-검출" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="연속형변수-이상치outlier-검출"><span class="header-section-number">1</span> 연속형변수 이상치(outlier) 검출</h2>
+<section id="z--점수-방법" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="z--점수-방법"><span class="header-section-number">1.1</span> Z -점수 방법</h3>
 <p>데이터가 정규분포를 보인다면 평균으로부터 3 표준편차 이상 떨어져 있으면 이상치로 판단할 수 있습니다.</p>
 <p>아래 <a href="#fig-AGE" class="quarto-xref">그림&nbsp;1</a> 는 제가 만든 시각화의 예시입니다. 히스토그램에 평균과 3 표준편차를 표시하고, 이상치를 붉은색 원으로 표시해 보았습니다 (소스코드는 프로젝트 원격저장소 source 폴더의 my_histogram_for_outlier_detection.R에 있습니다.)</p>
 <div class="cell">
@@ -418,8 +418,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p><a href="#fig-AGE" class="quarto-xref">그림&nbsp;1</a> 는 나이 데이터를 히스토그램으로 만든 것이며 이상치가 보이지 않는 경우입니다. <a href="#fig-CA199" class="quarto-xref">그림&nbsp;2</a> 는 종양표지자 CA 19-9를 히스토그램으로 만든 것이며 빨간원으로 표시된 이상치가 3개 있는 경우입니다.</p>
 </section>
-<section id="정규분포로의-변환" class="level3">
-<h3 class="anchored" data-anchor-id="정규분포로의-변환">정규분포로의 변환</h3>
+<section id="정규분포로의-변환" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="정규분포로의-변환"><span class="header-section-number">1.2</span> 정규분포로의 변환</h3>
 <p><strong>박스-콕스 변환(Box-Cox Transformation)은</strong> 정규분포가 아닌 데이터를 다음의 식을 이용하여 정규분포에 가깝게 변환시켜 줍니다.</p>
 <p><img src="images/박스코스JPG.png" class="img-fluid"></p>
 <p>박스-콕스 변환을 취하기 위해서는 데이터가 모두 양수여야 된다는 조건이 필요하며 보통 원 데이터의 최소값이 양수가 되도록 어떤 값을 더하는 shift주는 식으로 해결할 수 있습니다 (<a href="https://blog.naver.com/pmw9440/221713858254" class="uri">https://blog.naver.com/pmw9440/221713858254</a>). 특정 데이터의 최적의 정규화 식을 찾는 과정은 최적의 λ 을 찾는 것이라 할 수 있습니다. 여기서 특기할만한 λ 의 값은 0, 1 인데, λ = 0이면 log(x) 로그변환을 의미하고 λ = 1이면 g(x) = x-1이 되므로 이는 항등변환과 같게 됩니다.</p>
@@ -527,8 +527,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -644,7 +642,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

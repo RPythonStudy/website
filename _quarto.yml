@@ -117,7 +117,8 @@ website:
             - posts/tools/git/git_install.qmd
             - posts/tools/git/git_configuration.qmd
             - posts/tools/git/ssh.qmd            
-            - posts/tools/git/hands_on_git.qmd
+            - posts/tools/git/hands_on_git_push.qmd
+            - posts/tools/git/hands_on_git_clone.qmd            
 
 
 execute: 
@@ -132,6 +133,7 @@ format:
     toc: true
     mathjax: "default"
     link-external-newwindow: true
+    number-sections: true
 
 resource-paths:
   - resources/

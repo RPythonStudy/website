@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="BenKorea feat. ChatGPT">
-<meta name="description" content="RStudio에서 Git 기본 명령어 실습">
+<meta name="description" content="RStudio에서 Git 기본 명령어 push 실습">
 
-<title>Hands-on Git – RPythonStudy</title>
+<title>Hands-on git push – RPythonStudy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-b0d589d17ab6c3eb5f580629f8475471.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -185,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git</a></li><li class="breadcrumb-item"><a href="../../../posts/tools/git/hands_on_git.html">Hands-on Git</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git</a></li><li class="breadcrumb-item"><a href="../../../posts/tools/git/hands_on_git_push.html">Hands-on git push</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -194,16 +194,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git</a></li><li class="breadcrumb-item"><a href="../../../posts/tools/git/hands_on_git.html">Hands-on Git</a></li></ol></nav>
-      <h1 class="title">Hands-on Git</h1>
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git</a></li><li class="breadcrumb-item"><a href="../../../posts/tools/git/hands_on_git_push.html">Hands-on git push</a></li></ol></nav>
+      <h1 class="title">Hands-on git push</h1>
                   <div>
         <div class="description">
-          RStudio에서 Git 기본 명령어 실습
+          RStudio에서 Git 기본 명령어 push 실습
         </div>
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">hands-on</div>
                 <div class="quarto-category">Git</div>
+                <div class="quarto-category">push</div>
               </div>
                   </div>
   </div>
@@ -228,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">2025년 3월 27일</p>
+        <p class="date-modified">2025년 3월 30일</p>
       </div>
     </div>
       
@@ -287,8 +288,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tools/git/hands_on_git.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Hands-on Git</span></a>
+  <a href="../../../posts/tools/git/hands_on_git_push.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Hands-on git push</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tools/git/hands_on_git_clone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hands-on git clone</span></a>
   </div>
 </li>
       </ul>
@@ -298,8 +305,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#rstudio또는-server-실행" id="toc-rstudio또는-server-실행" class="nav-link active" data-scroll-target="#rstudio또는-server-실행"><span class="header-section-number">1</span> RStudio(또는 server) 실행</a></li>
+  <li><a href="#git-설치확인" id="toc-git-설치확인" class="nav-link" data-scroll-target="#git-설치확인"><span class="header-section-number">2</span> Git 설치확인</a></li>
+  <li><a href="#quarto-website-프로젝트-만들기" id="toc-quarto-website-프로젝트-만들기" class="nav-link" data-scroll-target="#quarto-website-프로젝트-만들기"><span class="header-section-number">3</span> Quarto Website 프로젝트 만들기</a></li>
+  <li><a href="#git-버전관리-시작하기" id="toc-git-버전관리-시작하기" class="nav-link" data-scroll-target="#git-버전관리-시작하기"><span class="header-section-number">4</span> Git 버전관리 시작하기</a></li>
+  <li><a href="#git-버전관리-상태확인" id="toc-git-버전관리-상태확인" class="nav-link" data-scroll-target="#git-버전관리-상태확인"><span class="header-section-number">5</span> Git 버전관리 상태확인</a></li>
+  <li><a href="#git-버전관리-제외대상-결정하기" id="toc-git-버전관리-제외대상-결정하기" class="nav-link" data-scroll-target="#git-버전관리-제외대상-결정하기"><span class="header-section-number">6</span> Git 버전관리 제외대상 결정하기</a></li>
+  <li><a href="#staging-해보기" id="toc-staging-해보기" class="nav-link" data-scroll-target="#staging-해보기"><span class="header-section-number">7</span> staging 해보기</a></li>
+  <li><a href="#커밋하기" id="toc-커밋하기" class="nav-link" data-scroll-target="#커밋하기"><span class="header-section-number">8</span> 커밋하기</a></li>
+  <li><a href="#원격저장소-만들기" id="toc-원격저장소-만들기" class="nav-link" data-scroll-target="#원격저장소-만들기"><span class="header-section-number">9</span> 원격저장소 만들기</a>
+  <ul class="collapse">
+  <li><a href="#원격저장소와-로컬저장소-연결하기" id="toc-원격저장소와-로컬저장소-연결하기" class="nav-link" data-scroll-target="#원격저장소와-로컬저장소-연결하기"><span class="header-section-number">9.1</span> 원격저장소와 로컬저장소 연결하기</a></li>
+  </ul></li>
+  <li><a href="#원격저장소로-push하기" id="toc-원격저장소로-push하기" class="nav-link" data-scroll-target="#원격저장소로-push하기"><span class="header-section-number">10</span> 원격저장소로 push하기</a></li>
+  <li><a href="#원격저장소-확인하기" id="toc-원격저장소-확인하기" class="nav-link" data-scroll-target="#원격저장소-확인하기"><span class="header-section-number">11</span> 원격저장소 확인하기</a></li>
+  <li><a href="#hands-on-완료" id="toc-hands-on-완료" class="nav-link" data-scroll-target="#hands-on-완료"><span class="header-section-number">12</span> Hands-on 완료</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -308,21 +335,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>1단계: Git이 RStudio에서 사용가능한지 확인하기</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="1단계 예시">
+<section id="rstudio또는-server-실행" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="rstudio또는-server-실행"><span class="header-section-number">1</span> RStudio(또는 server) 실행</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="RStudio(또는 server) 실행 설명">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-1단계 예시
+RStudio(또는 server) 실행 설명
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
-<li>RStudio Terminal tab에서 아래의 git 명령어를 실행하여 설치된 최신 version이 맞는지 확인합니다.</li>
+<li>RStudo(또는 server)가 실행되었지만 만약 다른 프로젝트들이 자동으로 로딩되었다면 이들은 모두 닫아둡니다.</li>
+<li>우하단의 Output pane의 Files tab에서 [연구회 웹사이트 RStudio 설정] (<a href="https://rpythonstudy.github.io/website/posts/R/install/RStudio_setup.html" class="uri">https://rpythonstudy.github.io/website/posts/R/install/RStudio_setup.html</a>){target=“_blank”}에서 설정한 default working directory를 보여주면 정상입니다.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="git-설치확인" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="git-설치확인"><span class="header-section-number">2</span> Git 설치확인</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Git 설치확인 예시">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Git 설치확인 예시
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>RStudio(또는 server) Console pane의 Terminal tab에서 아래의 git 명령어를 실행하여 설치된 최신 version이 맞는지 확인합니다.</li>
 </ul>
 <div class="cell">
 <div class="code-with-filename">
@@ -335,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>오류가 있다면
 <ul>
-<li>Global Options… Git/SVM 메뉴에서 version control interface for RStudio가 check 되어있는지,</li>
+<li>Tools &gt; Global Options… &gt; Git/SVM 메뉴에서 version control interface for RStudio가 check 되어있는지,</li>
 <li>git 실행파일의 경로가 제대로 인식되어 있는지</li>
 </ul></li>
 <li>등을 확인하여 오류를 해결하고 진행 하시길 바랍니다.</li>
@@ -343,24 +393,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>2단계: <code>R</code> 버전이 <code>x.y.z</code>일때 <code>Git_Exercise</code>가 프로젝트명에 포함되도록 Quarto Website 프로젝트 만들기</p>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="2단계 예시">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+</section>
+<section id="quarto-website-프로젝트-만들기" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="quarto-website-프로젝트-만들기"><span class="header-section-number">3</span> Quarto Website 프로젝트 만들기</h2>
+<ul>
+<li><code>R</code> 버전이 <code>x.y.z</code>일때 <code>git_exercise</code>가 프로젝트명에 포함되도록 Quarto Website 프로젝트 만들기</li>
+</ul>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Quarto Website 프로젝트 만들기 예시">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-2단계 예시
+Quarto Website 프로젝트 만들기 예시
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><code>RStudio&gt;File</code> 메뉴에서 <code>New Project</code>를 선택</li>
 <li><code>New Directory</code>를 선택</li>
 <li><code>Project type</code>으로서 <code>Quarto Website</code>를 선택</li>
-<li><a href="#fig-NewProject" class="quarto-xref">그림&nbsp;1</a> 처럼 <code>C:/Projects</code> 하부에 생성되는지 확인</li>
+<li>윈도우의 경우 <a href="#fig-NewProject" class="quarto-xref">그림&nbsp;1</a> 처럼 <code>C:/Projects</code> 하부에 생성되는지 확인</li>
+<li>wsl2 ubuntu의 경우 <code>~/projects</code> 하부에 생성되는지 확인</li>
 <li>Directory name으로 <code>Rxyz-Quarto_Website_Git_Exercise</code> 입력</li>
 <li><label><input type="checkbox" checked="">Create a git repository: 이 프로젝트에 Git 버전관리 적용하기 위해서는 체크를 해야함</label></li>
 <li><label><input type="checkbox" checked="">Use renv with this project: 독립적인 패키지 관리를 적용하기 위해서는 체크를 해야함</label></li>
@@ -389,9 +445,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+<section id="git-버전관리-시작하기" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="git-버전관리-시작하기"><span class="header-section-number">4</span> Git 버전관리 시작하기</h2>
 <p>3단계: <code>.gitignore</code> 파일을 열어서 Git 버전관리 예외로 설정된 파일/폴더 목록 확인하기</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="3단계 예시">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -400,7 +459,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>Git 버전관리를 할 때, 프로젝트파일들에서 무조건 제외하면 좋은 파일들이 있습니다. 예를 들어서 RStudio에서 생성되는 <code>.Rproj.user</code>, <code>.Rhistory</code>, <code>.RData</code>, <code>.Ruserdata</code> 파일들의 경우는 버전관리를 할 필요가 당연히 없기 때문입니다. 이러한 경우를 위해서 Git에서는 버전관리에서 무조건 제외하는 파일들을 .gitignore라는 숨김파일로 관리하고 있습니다. 실제적으로는 매우 중요한 파일이므로 잘 설정해서 버전관리를 효율적으로 해야 하므로 반드시 이해하고 넘어가야 할 파일입니다.</p></li>
@@ -420,9 +479,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+<section id="git-버전관리-상태확인" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="git-버전관리-상태확인"><span class="header-section-number">5</span> Git 버전관리 상태확인</h2>
 <p>4단계: <code>git status</code> 실행하여 branch 이름과 untracked file 목록을 확인하기</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="4단계 예시">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -431,7 +493,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="code-with-filename">
@@ -487,9 +549,12 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 </div>
 </div>
+</section>
+<section id="git-버전관리-제외대상-결정하기" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="git-버전관리-제외대상-결정하기"><span class="header-section-number">6</span> Git 버전관리 제외대상 결정하기</h2>
 <p>5단계: .Rprofile, Rproj 확장자인 모든 파일, renv 폴더를 버전관리대상에서 제외하기</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="5단계 예시">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -498,7 +563,7 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>RStudio에서 <code>.gitignore</code> 파일을 열어서 아래의 내용을 추가합니다.</li>
@@ -546,9 +611,12 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 </div>
 </div>
+</section>
+<section id="staging-해보기" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="staging-해보기"><span class="header-section-number">7</span> staging 해보기</h2>
 <p>6단계: untracked file들을 staged 상태로 만들기</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="6단계 예시">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -557,7 +625,7 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>RStudio Terminal tab에서 <code>git add .</code> 명령어를 실행합니다.</li>
@@ -616,9 +684,12 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 </div>
 </div>
+</section>
+<section id="커밋하기" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="커밋하기"><span class="header-section-number">8</span> 커밋하기</h2>
 <p>7단계: <code>git commit -m "first commit"</code>를 실행하여 committed 상태로 만들기</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="7단계 예시">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -627,7 +698,7 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>RStudio Terminal pane에서 아래의 명령어를 실행하고 결과를 확인합니다.</li>
@@ -714,9 +785,12 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 </div>
 </div>
+</section>
+<section id="원격저장소-만들기" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="원격저장소-만들기"><span class="header-section-number">9</span> 원격저장소 만들기</h2>
 <p>8단계: Github에 <code>Quarto_Website_Git_Exercise</code>이란 원격저장소 만들기</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="8단계 예시">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -725,7 +799,7 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Github 공식사이트(<a href="https://github.com/" class="uri">https://github.com/</a>)로 접속합니다.</li>
@@ -743,9 +817,11 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 </div>
 </div>
+<section id="원격저장소와-로컬저장소-연결하기" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="원격저장소와-로컬저장소-연결하기"><span class="header-section-number">9.1</span> 원격저장소와 로컬저장소 연결하기</h3>
 <p>9단계: 로컬과 원격저장소를 연결하기</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="9단계 예시">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -754,7 +830,7 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Github &lt;&gt; code 메뉴에서 Quick setup 내에 있는 URL이 원격저장소 주소입니다. 이를 이용하여 Terminal pane에서 아래의 git 명령어를 실행하여 원격저장소를 연결합니다. (아래는 저자의 예시이므로 실습자는 반드시 자신의 주소로 아래의 명령을 해야 합니다.)</li>
@@ -797,9 +873,13 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="원격저장소로-push하기" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="원격저장소로-push하기"><span class="header-section-number">10</span> 원격저장소로 push하기</h2>
 <p>10단계: 로컬에 커밋된 사항들을 원격저장소로 push 하기</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled" title="10단계 예시">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -808,7 +888,7 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Terminal tab에서 아래의 git 명령어를 실행하여 원격저장소를 연결합니다.</li>
@@ -855,13 +935,34 @@ Git이 아직 추적하지 않는 파일들이 있다는 뜻입니다.
 </div>
 </div>
 </div>
+</section>
+<section id="원격저장소-확인하기" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="원격저장소-확인하기"><span class="header-section-number">11</span> 원격저장소 확인하기</h2>
 <p>11단계: Github에서 upload된 프로젝트 파일들을 확인해보기</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled" title="원격저장소 확인하기 예시">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+원격저장소 확인하기 예시
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
 <li>Gitgub 원격저장소의 &lt;&gt;Code 메뉴를 확인해보면 프로젝트 파일들이 보이면 성공입니다.</li>
 </ul>
-<p>-끝-</p>
+</div>
+</div>
+</div>
+</section>
+<section id="hands-on-완료" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="hands-on-완료"><span class="header-section-number">12</span> Hands-on 완료</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -946,8 +1047,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1063,7 +1162,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

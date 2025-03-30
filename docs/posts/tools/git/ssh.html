@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-b0d589d17ab6c3eb5f580629f8475471.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -287,8 +287,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/tools/git/hands_on_git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Hands-on Git</span></a>
+  <a href="../../../posts/tools/git/hands_on_git_push.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hands-on git push</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tools/git/hands_on_git_clone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hands-on git clone</span></a>
   </div>
 </li>
       </ul>
@@ -303,26 +309,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#필요성" id="toc-필요성" class="nav-link active" data-scroll-target="#필요성">필요성</a></li>
-  <li><a href="#핵심개념" id="toc-핵심개념" class="nav-link" data-scroll-target="#핵심개념">핵심개념</a></li>
-  <li><a href="#openssh-설치" id="toc-openssh-설치" class="nav-link" data-scroll-target="#openssh-설치">OpenSSH 설치</a></li>
-  <li><a href="#window환경에서의-설치" id="toc-window환경에서의-설치" class="nav-link" data-scroll-target="#window환경에서의-설치">Window환경에서의 설치</a>
+  <li><a href="#필요성" id="toc-필요성" class="nav-link active" data-scroll-target="#필요성"><span class="header-section-number">1</span> 필요성</a></li>
+  <li><a href="#핵심개념" id="toc-핵심개념" class="nav-link" data-scroll-target="#핵심개념"><span class="header-section-number">2</span> 핵심개념</a></li>
+  <li><a href="#openssh-설치" id="toc-openssh-설치" class="nav-link" data-scroll-target="#openssh-설치"><span class="header-section-number">3</span> OpenSSH 설치</a></li>
+  <li><a href="#window환경에서의-설치" id="toc-window환경에서의-설치" class="nav-link" data-scroll-target="#window환경에서의-설치"><span class="header-section-number">4</span> Window환경에서의 설치</a>
   <ul class="collapse">
-  <li><a href="#기존키의-제거" id="toc-기존키의-제거" class="nav-link" data-scroll-target="#기존키의-제거">기존키의 제거</a></li>
-  <li><a href="#새로운-키의-생성" id="toc-새로운-키의-생성" class="nav-link" data-scroll-target="#새로운-키의-생성">새로운 키의 생성</a></li>
-  <li><a href="#ssh-agent-확인하기" id="toc-ssh-agent-확인하기" class="nav-link" data-scroll-target="#ssh-agent-확인하기">SSH agent 확인하기</a></li>
-  <li><a href="#gitgub에-공개키-등록하기" id="toc-gitgub에-공개키-등록하기" class="nav-link" data-scroll-target="#gitgub에-공개키-등록하기">Gitgub에 공개키 등록하기</a></li>
-  <li><a href="#gitgub-최초연결-설정" id="toc-gitgub-최초연결-설정" class="nav-link" data-scroll-target="#gitgub-최초연결-설정">Gitgub 최초연결 설정</a></li>
-  <li><a href="#ssh-url로-변경" id="toc-ssh-url로-변경" class="nav-link" data-scroll-target="#ssh-url로-변경">SSH URL로 변경</a></li>
+  <li><a href="#기존키의-제거" id="toc-기존키의-제거" class="nav-link" data-scroll-target="#기존키의-제거"><span class="header-section-number">4.1</span> 기존키의 제거</a></li>
+  <li><a href="#새로운-키의-생성" id="toc-새로운-키의-생성" class="nav-link" data-scroll-target="#새로운-키의-생성"><span class="header-section-number">4.2</span> 새로운 키의 생성</a></li>
+  <li><a href="#ssh-agent-확인하기" id="toc-ssh-agent-확인하기" class="nav-link" data-scroll-target="#ssh-agent-확인하기"><span class="header-section-number">4.3</span> SSH agent 확인하기</a></li>
+  <li><a href="#gitgub에-공개키-등록하기" id="toc-gitgub에-공개키-등록하기" class="nav-link" data-scroll-target="#gitgub에-공개키-등록하기"><span class="header-section-number">4.4</span> Gitgub에 공개키 등록하기</a></li>
+  <li><a href="#gitgub-최초연결-설정" id="toc-gitgub-최초연결-설정" class="nav-link" data-scroll-target="#gitgub-최초연결-설정"><span class="header-section-number">4.5</span> Gitgub 최초연결 설정</a></li>
+  <li><a href="#ssh-url로-변경" id="toc-ssh-url로-변경" class="nav-link" data-scroll-target="#ssh-url로-변경"><span class="header-section-number">4.6</span> SSH URL로 변경</a></li>
   </ul></li>
-  <li><a href="#wsl2ubuntu환경에서의-설치" id="toc-wsl2ubuntu환경에서의-설치" class="nav-link" data-scroll-target="#wsl2ubuntu환경에서의-설치">WSL2/Ubuntu환경에서의 설치</a>
+  <li><a href="#wsl2ubuntu환경에서의-설치" id="toc-wsl2ubuntu환경에서의-설치" class="nav-link" data-scroll-target="#wsl2ubuntu환경에서의-설치"><span class="header-section-number">5</span> WSL2/Ubuntu환경에서의 설치</a>
   <ul class="collapse">
-  <li><a href="#키-생성" id="toc-키-생성" class="nav-link" data-scroll-target="#키-생성">키 생성</a></li>
-  <li><a href="#ssh-에이전트-실행-및-키-추가" id="toc-ssh-에이전트-실행-및-키-추가" class="nav-link" data-scroll-target="#ssh-에이전트-실행-및-키-추가">SSH 에이전트 실행 및 키 추가</a></li>
-  <li><a href="#github에-공개키-등록" id="toc-github에-공개키-등록" class="nav-link" data-scroll-target="#github에-공개키-등록">GitHub에 공개키 등록:</a></li>
-  <li><a href="#github-최초연결-설정" id="toc-github-최초연결-설정" class="nav-link" data-scroll-target="#github-최초연결-설정">GitHub 최초연결 설정</a></li>
-  <li><a href="#사용자-확인요청에-대한-응답" id="toc-사용자-확인요청에-대한-응답" class="nav-link" data-scroll-target="#사용자-확인요청에-대한-응답">사용자 확인요청에 대한 응답</a></li>
-  <li><a href="#성공확인" id="toc-성공확인" class="nav-link" data-scroll-target="#성공확인">성공확인</a></li>
+  <li><a href="#키-생성" id="toc-키-생성" class="nav-link" data-scroll-target="#키-생성"><span class="header-section-number">5.1</span> 키 생성</a></li>
+  <li><a href="#ssh-에이전트-실행-및-키-추가" id="toc-ssh-에이전트-실행-및-키-추가" class="nav-link" data-scroll-target="#ssh-에이전트-실행-및-키-추가"><span class="header-section-number">5.2</span> SSH 에이전트 실행 및 키 추가</a></li>
+  <li><a href="#github에-공개키-등록" id="toc-github에-공개키-등록" class="nav-link" data-scroll-target="#github에-공개키-등록"><span class="header-section-number">5.3</span> GitHub에 공개키 등록:</a></li>
+  <li><a href="#github-최초연결-설정" id="toc-github-최초연결-설정" class="nav-link" data-scroll-target="#github-최초연결-설정"><span class="header-section-number">5.4</span> GitHub 최초연결 설정</a></li>
+  <li><a href="#사용자-확인요청에-대한-응답" id="toc-사용자-확인요청에-대한-응답" class="nav-link" data-scroll-target="#사용자-확인요청에-대한-응답"><span class="header-section-number">5.5</span> 사용자 확인요청에 대한 응답</a></li>
+  <li><a href="#성공확인" id="toc-성공확인" class="nav-link" data-scroll-target="#성공확인"><span class="header-section-number">5.6</span> 성공확인</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -334,8 +340,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="필요성" class="level2">
-<h2 class="anchored" data-anchor-id="필요성">필요성</h2>
+<section id="필요성" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="필요성"><span class="header-section-number">1</span> 필요성</h2>
 <p>GitHub는 한때 아이디와 패스워드만으로 로그인하고 Git 명령어(예: push, pull 등)를 수행할 수 있었지만, 보안 강화를 위해 최근에는 패스워드 대신 personal access token(PAT)이나 OAuth, 2단계 인증(2FA) 등의 인증 방식을 도입했습니다. 이로 인해 단순한 아이디/패스워드 방식이 사라지고, 추가적인 인증 절차가 필수가 되었습니다.</p>
 <p>SSH 키 인증 방식은 공개키 암호화 기술을 사용하여 GitHub와의 통신을 자동으로 인증해줍니다. 이 방식의 주요 장점은 다음과 같습니다:</p>
 <ul>
@@ -345,8 +351,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>이처럼 SSH 키를 활용하면 번거로운 인증 절차를 줄이고, 보다 편리하고 안전하게 GitHub와 상호작용할 수 있습니다.</p>
 </section>
-<section id="핵심개념" class="level2">
-<h2 class="anchored" data-anchor-id="핵심개념">핵심개념</h2>
+<section id="핵심개념" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="핵심개념"><span class="header-section-number">2</span> 핵심개념</h2>
 <p>두개의 키를 생성하여 하나는 개인키(private key)로, 다른 하나는 공개키(public key)로 구성됩니다. 개인키는 사용자가 소유하고, 공개키는 GitHub에 등록됩니다. GitHub는 공개키를 통해 사용자를 인증하고, 사용자는 개인키를 통해 GitHub에 접속합니다 <a href="#fig-github-ssh" class="quarto-xref">그림&nbsp;1</a>.</p>
 <div id="fig-github-ssh" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -359,21 +365,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </section>
-<section id="openssh-설치" class="level2">
-<h2 class="anchored" data-anchor-id="openssh-설치">OpenSSH 설치</h2>
+<section id="openssh-설치" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="openssh-설치"><span class="header-section-number">3</span> OpenSSH 설치</h2>
 <p>SSH에는 여러종류가 있지만 여기에서는 Git 설치 시에 bundle로 설치되는 OpenSSH를 사용합니다. 따라서 별도의 설치과정이 필요하지 않습니다.</p>
 </section>
-<section id="window환경에서의-설치" class="level2">
-<h2 class="anchored" data-anchor-id="window환경에서의-설치">Window환경에서의 설치</h2>
-<section id="기존키의-제거" class="level3">
-<h3 class="anchored" data-anchor-id="기존키의-제거">기존키의 제거</h3>
+<section id="window환경에서의-설치" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="window환경에서의-설치"><span class="header-section-number">4</span> Window환경에서의 설치</h2>
+<section id="기존키의-제거" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="기존키의-제거"><span class="header-section-number">4.1</span> 기존키의 제거</h3>
 <ul>
 <li>키를 새로 만드는 경우에는 상관없지만 기존키를 삭제해야 한다면 아래와 같이 진행합니다.</li>
 <li>C:&lt;YourUsername&gt;.ssh 디렉토리에 있는 개인키(예시 id_rsa) 및 공개키 (예시 id_rsa.pub) 파일들을 수동으로 삭제합니다.</li>
 </ul>
 </section>
-<section id="새로운-키의-생성" class="level3">
-<h3 class="anchored" data-anchor-id="새로운-키의-생성">새로운 키의 생성</h3>
+<section id="새로운-키의-생성" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="새로운-키의-생성"><span class="header-section-number">4.2</span> 새로운 키의 생성</h3>
 <ul>
 <li>Git 설치매뉴얼 중 다음을 참고하였습니다 <a href="https://git-scm.com/book/ko/v2/Git-%ec%84%9c%eb%b2%84-SSH-%ea%b3%b5%ea%b0%9c%ed%82%a4-%eb%a7%8c%eb%93%a4%ea%b8%b0" class="uri">https://git-scm.com/book/ko/v2/Git-%ec%84%9c%eb%b2%84-SSH-%ea%b3%b5%ea%b0%9c%ed%82%a4-%eb%a7%8c%eb%93%a4%ea%b8%b0</a></li>
 <li>C:\Program Files\Git\usr\bin\에 위치하는 ssh-keygen.exe를 구동시켜야 하므로 Git Bash를 열어서 먼저 이동하여야 합니다.
@@ -388,8 +394,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="ssh-agent-확인하기" class="level3">
-<h3 class="anchored" data-anchor-id="ssh-agent-확인하기">SSH agent 확인하기</h3>
+<section id="ssh-agent-확인하기" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="ssh-agent-확인하기"><span class="header-section-number">4.3</span> SSH agent 확인하기</h3>
 <ul>
 <li>원도우의 경우 서비스창에서 OPenSSH Authentication Agent가 시행중인지 확인합니다.
 <ul>
@@ -399,8 +405,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>복구탭에서 첫째, 둘째, 후속 실패시에 대한 조치를 <code>서비스 다시 시작</code>으로 설정해야 합니다.</li>
 </ul>
 </section>
-<section id="gitgub에-공개키-등록하기" class="level3">
-<h3 class="anchored" data-anchor-id="gitgub에-공개키-등록하기">Gitgub에 공개키 등록하기</h3>
+<section id="gitgub에-공개키-등록하기" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="gitgub에-공개키-등록하기"><span class="header-section-number">4.4</span> Gitgub에 공개키 등록하기</h3>
 <ul>
 <li>GitHub에 로그인한 후 오른쪽 상단의 프로필 아이콘을 클릭하고 Settings를 선택합니다.</li>
 <li>왼쪽 메뉴에서 SSH and GPG keys를 선택합니다.</li>
@@ -410,8 +416,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Add SSH key 버튼을 클릭합니다.</li>
 </ul>
 </section>
-<section id="gitgub-최초연결-설정" class="level3">
-<h3 class="anchored" data-anchor-id="gitgub-최초연결-설정">Gitgub 최초연결 설정</h3>
+<section id="gitgub-최초연결-설정" class="level3" data-number="4.5">
+<h3 data-number="4.5" class="anchored" data-anchor-id="gitgub-최초연결-설정"><span class="header-section-number">4.5</span> Gitgub 최초연결 설정</h3>
 <ul>
 <li>bash창에서 아래의 명령을 입력합니다.</li>
 </ul>
@@ -428,8 +434,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>“Hi <username>! You’ve successfully authenticated, but GitHub does not provide shell access.”라는 메시지가 나오면 성공입니다.</username></li>
 </ul>
 </section>
-<section id="ssh-url로-변경" class="level3">
-<h3 class="anchored" data-anchor-id="ssh-url로-변경">SSH URL로 변경</h3>
+<section id="ssh-url로-변경" class="level3" data-number="4.6">
+<h3 data-number="4.6" class="anchored" data-anchor-id="ssh-url로-변경"><span class="header-section-number">4.6</span> SSH URL로 변경</h3>
 <p>만약에 기존의 원격저장소가 있었고 SSH key를 추후 등록하였다면, 로컬컴퓨터의 저장소와 원격저장소의 기존연결 (HTTPs URL)을 SSH 변경을 해야 연결방법이 변경됩니다. 이 방법은 아래와 같습니다. - 원격저장소의 &lt;&gt; Code 메뉴 하부의 초록색 &lt;&gt;Code 버튼을 누르면 로컬과 연결하는 방법으로써 HTTPS와 SSH를 선택할 수 있게 나옵니다. SSH를 클릭하면 하부의 주소가 복사 가능한데, 이를 복사한 후, 로컬에서 RStudion의 Terminal Tab (=Git Bash)에서 다음의 git remote add origin 명령을 통하여 원격저장소의 주소를 변경하시면 됩니다.</p>
 <div class="cell">
 <div class="code-with-filename">
@@ -450,10 +456,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="wsl2ubuntu환경에서의-설치" class="level2">
-<h2 class="anchored" data-anchor-id="wsl2ubuntu환경에서의-설치">WSL2/Ubuntu환경에서의 설치</h2>
-<section id="키-생성" class="level3">
-<h3 class="anchored" data-anchor-id="키-생성">키 생성</h3>
+<section id="wsl2ubuntu환경에서의-설치" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="wsl2ubuntu환경에서의-설치"><span class="header-section-number">5</span> WSL2/Ubuntu환경에서의 설치</h2>
+<section id="키-생성" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="키-생성"><span class="header-section-number">5.1</span> 키 생성</h3>
 <ul>
 <li>WSL2 터미널에서 아래 명령어로 새 SSH 키를 생성합니다.</li>
 </ul>
@@ -466,8 +472,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="ssh-에이전트-실행-및-키-추가" class="level3">
-<h3 class="anchored" data-anchor-id="ssh-에이전트-실행-및-키-추가">SSH 에이전트 실행 및 키 추가</h3>
+<section id="ssh-에이전트-실행-및-키-추가" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="ssh-에이전트-실행-및-키-추가"><span class="header-section-number">5.2</span> SSH 에이전트 실행 및 키 추가</h3>
 <ul>
 <li>아래 명령어로 SSH 에이전트를 실행한 후 생성한 키를 추가합니다.</li>
 </ul>
@@ -481,8 +487,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="github에-공개키-등록" class="level3">
-<h3 class="anchored" data-anchor-id="github에-공개키-등록">GitHub에 공개키 등록:</h3>
+<section id="github에-공개키-등록" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="github에-공개키-등록"><span class="header-section-number">5.3</span> GitHub에 공개키 등록:</h3>
 <ul>
 <li>~/.ssh/id_rsa.pub 파일의 내용을 복사하여 GitHub 계정의 SSH and GPG keys 설정에 추가합니다.</li>
 </ul>
@@ -495,8 +501,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="github-최초연결-설정" class="level3">
-<h3 class="anchored" data-anchor-id="github-최초연결-설정">GitHub 최초연결 설정</h3>
+<section id="github-최초연결-설정" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="github-최초연결-설정"><span class="header-section-number">5.4</span> GitHub 최초연결 설정</h3>
 <ul>
 <li>WSL2 터미널에서 아래 명령어를 실행하여 GitHub에 연결합니다.</li>
 </ul>
@@ -509,14 +515,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="사용자-확인요청에-대한-응답" class="level3">
-<h3 class="anchored" data-anchor-id="사용자-확인요청에-대한-응답">사용자 확인요청에 대한 응답</h3>
+<section id="사용자-확인요청에-대한-응답" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="사용자-확인요청에-대한-응답"><span class="header-section-number">5.5</span> 사용자 확인요청에 대한 응답</h3>
 <ul>
 <li>처음 연결시에 “This key is not known by any other names”라는 메시지가 나오는데 yes를 입력합니다.</li>
 </ul>
 </section>
-<section id="성공확인" class="level3">
-<h3 class="anchored" data-anchor-id="성공확인">성공확인</h3>
+<section id="성공확인" class="level3" data-number="5.6">
+<h3 data-number="5.6" class="anchored" data-anchor-id="성공확인"><span class="header-section-number">5.6</span> 성공확인</h3>
 <ul>
 <li>“Hi <username>! You’ve successfully authenticated, but GitHub does not provide shell access.”라는 메시지가 나오면 성공입니다.</username></li>
 </ul>
@@ -608,8 +614,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -725,7 +729,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-b0d589d17ab6c3eb5f580629f8475471.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -401,14 +401,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#정규표현식" id="toc-정규표현식" class="nav-link active" data-scroll-target="#정규표현식">정규표현식?</a></li>
-  <li><a href="#관련함수" id="toc-관련함수" class="nav-link" data-scroll-target="#관련함수">관련함수</a></li>
-  <li><a href="#기본패턴" id="toc-기본패턴" class="nav-link" data-scroll-target="#기본패턴">기본패턴</a></li>
-  <li><a href="#텍스트예시" id="toc-텍스트예시" class="nav-link" data-scroll-target="#텍스트예시">텍스트예시</a></li>
-  <li><a href="#strsplit-함수" id="toc-strsplit-함수" class="nav-link" data-scroll-target="#strsplit-함수">strsplit 함수</a></li>
-  <li><a href="#tstrsplit-함수" id="toc-tstrsplit-함수" class="nav-link" data-scroll-target="#tstrsplit-함수">tstrsplit 함수</a></li>
-  <li><a href="#한줄씩-분리하기" id="toc-한줄씩-분리하기" class="nav-link" data-scroll-target="#한줄씩-분리하기">한줄씩 분리하기</a></li>
-  <li><a href="#공백으로-분리하기" id="toc-공백으로-분리하기" class="nav-link" data-scroll-target="#공백으로-분리하기">공백으로 분리하기</a></li>
+  <li><a href="#정규표현식" id="toc-정규표현식" class="nav-link active" data-scroll-target="#정규표현식"><span class="header-section-number">0.1</span> 정규표현식?</a></li>
+  <li><a href="#관련함수" id="toc-관련함수" class="nav-link" data-scroll-target="#관련함수"><span class="header-section-number">0.2</span> 관련함수</a></li>
+  <li><a href="#기본패턴" id="toc-기본패턴" class="nav-link" data-scroll-target="#기본패턴"><span class="header-section-number">0.3</span> 기본패턴</a></li>
+  <li><a href="#텍스트예시" id="toc-텍스트예시" class="nav-link" data-scroll-target="#텍스트예시"><span class="header-section-number">0.4</span> 텍스트예시</a></li>
+  <li><a href="#strsplit-함수" id="toc-strsplit-함수" class="nav-link" data-scroll-target="#strsplit-함수"><span class="header-section-number">0.5</span> strsplit 함수</a></li>
+  <li><a href="#tstrsplit-함수" id="toc-tstrsplit-함수" class="nav-link" data-scroll-target="#tstrsplit-함수"><span class="header-section-number">0.6</span> tstrsplit 함수</a></li>
+  <li><a href="#한줄씩-분리하기" id="toc-한줄씩-분리하기" class="nav-link" data-scroll-target="#한줄씩-분리하기"><span class="header-section-number">0.7</span> 한줄씩 분리하기</a></li>
+  <li><a href="#공백으로-분리하기" id="toc-공백으로-분리하기" class="nav-link" data-scroll-target="#공백으로-분리하기"><span class="header-section-number">0.8</span> 공백으로 분리하기</a></li>
   </ul>
 </nav>
     </div>
@@ -419,16 +419,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="정규표현식" class="level3">
-<h3 class="anchored" data-anchor-id="정규표현식">정규표현식?</h3>
+<section id="정규표현식" class="level3" data-number="0.1">
+<h3 data-number="0.1" class="anchored" data-anchor-id="정규표현식"><span class="header-section-number">0.1</span> 정규표현식?</h3>
 <ul>
 <li>문자열에서 특정 패턴을 찾거나 조작하기 위해 사용되는 문자와 기호의 조합입니다.</li>
 <li>텍스트 데이터 처리를 효율적으로 수행할 수 있게 합니다.</li>
 <li>주로 stringr 패키지와 base R의 문자열 관련 함수에서 지원됩니다.</li>
 </ul>
 </section>
-<section id="관련함수" class="level3">
-<h3 class="anchored" data-anchor-id="관련함수">관련함수</h3>
+<section id="관련함수" class="level3" data-number="0.2">
+<h3 data-number="0.2" class="anchored" data-anchor-id="관련함수"><span class="header-section-number">0.2</span> 관련함수</h3>
 <ul>
 <li>Base R 함수
 <ul>
@@ -450,8 +450,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="기본패턴" class="level3">
-<h3 class="anchored" data-anchor-id="기본패턴">기본패턴</h3>
+<section id="기본패턴" class="level3" data-number="0.3">
+<h3 data-number="0.3" class="anchored" data-anchor-id="기본패턴"><span class="header-section-number">0.3</span> 기본패턴</h3>
 <ul>
 <li>아래의 예시와 매칭이 되지 않아 수정이 필요합니다</li>
 </ul>
@@ -545,8 +545,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>아래구엳에서부터는 R에서의 regular expression의 활용에 대한 이해를 돕기 위해 실제 사용 예시를 제시하였습니다.</li>
 </ul>
 </section>
-<section id="텍스트예시" class="level3">
-<h3 class="anchored" data-anchor-id="텍스트예시">텍스트예시</h3>
+<section id="텍스트예시" class="level3" data-number="0.4">
+<h3 data-number="0.4" class="anchored" data-anchor-id="텍스트예시"><span class="header-section-number">0.4</span> 텍스트예시</h3>
 <ul>
 <li>다음은 갑상선암 외래 진료시 EMR의 일부를 보여 드리고 이이어 이를 정규식을 이용해서 어떻게 paesing 하였는지 저자가 작성한 코드를 제시하였습니다.</li>
 </ul>
@@ -632,8 +632,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>아래에는 저자가 작성한 코드를 이해하기 위해 함수에 대한 설명을 하였습니다.</p></li>
 </ul>
 </section>
-<section id="strsplit-함수" class="level3">
-<h3 class="anchored" data-anchor-id="strsplit-함수">strsplit 함수</h3>
+<section id="strsplit-함수" class="level3" data-number="0.5">
+<h3 data-number="0.5" class="anchored" data-anchor-id="strsplit-함수"><span class="header-section-number">0.5</span> strsplit 함수</h3>
 <p>character vector 만을 인자로 받는 base 함수입니다. character type의 data.frame 열로 내부적으로는 character vertor로 처리되므로 인자로 받아서 결과를 반환할 수 있지만 이는 리스트 형식임을 잘 이해해야 합니다. 아래의 구체적인 예시가 이해에 도움이 될 수 있을 것 같습니다.</p>
 <div class="cell">
 <div class="code-with-filename">
@@ -698,8 +698,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="tstrsplit-함수" class="level3">
-<h3 class="anchored" data-anchor-id="tstrsplit-함수">tstrsplit 함수</h3>
+<section id="tstrsplit-함수" class="level3" data-number="0.6">
+<h3 data-number="0.6" class="anchored" data-anchor-id="tstrsplit-함수"><span class="header-section-number">0.6</span> tstrsplit 함수</h3>
 <ul>
 <li>tstrsplit 함수는 strsplit 함수와 유사하게 작동하지만 data.frame의 열로 직접 파생시킬 수 있습니다. (그리고 data.table의 함수답게 자료의 크기가 클 때 빠르게 처리할 수 있습니다.)</li>
 </ul>
@@ -739,8 +739,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="한줄씩-분리하기" class="level3">
-<h3 class="anchored" data-anchor-id="한줄씩-분리하기">한줄씩 분리하기</h3>
+<section id="한줄씩-분리하기" class="level3" data-number="0.7">
+<h3 data-number="0.7" class="anchored" data-anchor-id="한줄씩-분리하기"><span class="header-section-number">0.7</span> 한줄씩 분리하기</h3>
 <ul>
 <li>수술관련예후인자를 data.table로 만들었으며 당연히 <code>특기사항</code> 열(=항목)에는 2줄 또는 3줄로 구성된 데이터가 있습니다.</li>
 <li>이 data.table을 인자로 받아서 특기사항의 한줄씩 분리하고 새로운 항목명을 부여한 data.table을 반환하는 함수를 만들어 진행하였습니다.</li>
@@ -807,8 +807,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>반환되는 값은 op_line 항목이 숫자로 시작되는 것들만 반환하도록 하였습니다.</p></li>
 </ul>
 </section>
-<section id="공백으로-분리하기" class="level3">
-<h3 class="anchored" data-anchor-id="공백으로-분리하기">공백으로 분리하기</h3>
+<section id="공백으로-분리하기" class="level3" data-number="0.8">
+<h3 data-number="0.8" class="anchored" data-anchor-id="공백으로-분리하기"><span class="header-section-number">0.8</span> 공백으로 분리하기</h3>
 <ul>
 <li>cN_line열을 공백으로 분리하여 새로운 열로 퍄생하여 반환하는 함수를 만들었습니다.</li>
 </ul>
@@ -952,8 +952,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1069,7 +1067,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
