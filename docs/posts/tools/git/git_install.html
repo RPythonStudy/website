@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-b0d589d17ab6c3eb5f580629f8475471.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-c8a01258441097d17a999774078ed729.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -228,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">2025년 3월 27일</p>
+        <p class="date-modified">2025년 3월 28일</p>
       </div>
     </div>
       
@@ -328,10 +328,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#git-credential-manager-원격저장소-인증정보-저장도구-사용여부" id="toc-git-credential-manager-원격저장소-인증정보-저장도구-사용여부" class="nav-link" data-scroll-target="#git-credential-manager-원격저장소-인증정보-저장도구-사용여부"><span class="header-section-number">2.14</span> Git Credential Manager (원격저장소 인증정보 저장도구 사용여부)</a></li>
   <li><a href="#configuring-extra-options" id="toc-configuring-extra-options" class="nav-link" data-scroll-target="#configuring-extra-options"><span class="header-section-number">2.15</span> Configuring extra options</a></li>
   <li><a href="#설치확인" id="toc-설치확인" class="nav-link" data-scroll-target="#설치확인"><span class="header-section-number">2.16</span> 설치확인</a></li>
-  </ul></li>
-  <li><a href="#wls2ubuntu-환경에-설치하기" id="toc-wls2ubuntu-환경에-설치하기" class="nav-link" data-scroll-target="#wls2ubuntu-환경에-설치하기"><span class="header-section-number">3</span> WLS2/Ubuntu 환경에 설치하기</a>
-  <ul class="collapse">
-  <li><a href="#git-공식-ppapersonal-package-archive-사용-업데이트" id="toc-git-공식-ppapersonal-package-archive-사용-업데이트" class="nav-link" data-scroll-target="#git-공식-ppapersonal-package-archive-사용-업데이트"><span class="header-section-number">3.1</span> Git 공식 PPA(Personal Package Archive) 사용 업데이트</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -612,71 +608,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>git <span class="sc">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-</section>
-</section>
-<section id="wls2ubuntu-환경에-설치하기" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="wls2ubuntu-환경에-설치하기"><span class="header-section-number">3</span> WLS2/Ubuntu 환경에 설치하기</h2>
-<section id="git-공식-ppapersonal-package-archive-사용-업데이트" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="git-공식-ppapersonal-package-archive-사용-업데이트"><span class="header-section-number">3.1</span> Git 공식 PPA(Personal Package Archive) 사용 업데이트</h3>
-<section id="기존-git-버전-확인" class="level4" data-number="3.1.1">
-<h4 data-number="3.1.1" class="anchored" data-anchor-id="기존-git-버전-확인"><span class="header-section-number">3.1.1</span> 기존 Git 버전 확인</h4>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>bash</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git <span class="sc">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section>
-<section id="필수-패키지-설치" class="level4" data-number="3.1.2">
-<h4 data-number="3.1.2" class="anchored" data-anchor-id="필수-패키지-설치"><span class="header-section-number">3.1.2</span> 필수 패키지 설치</h4>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>bash</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sudo apt update</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sudo apt install software<span class="sc">-</span>properties<span class="sc">-</span>common</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section>
-<section id="git-공식-ppa-추가" class="level4" data-number="3.1.3">
-<h4 data-number="3.1.3" class="anchored" data-anchor-id="git-공식-ppa-추가"><span class="header-section-number">3.1.3</span> Git 공식 PPA 추가</h4>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>bash</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sudo add<span class="sc">-</span>apt<span class="sc">-</span>repository ppa<span class="sc">:</span>git<span class="sc">-</span>core<span class="sc">/</span>ppa</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section>
-<section id="패키지-목록-업데이트-후-git-설치업그레이드" class="level4" data-number="3.1.4">
-<h4 data-number="3.1.4" class="anchored" data-anchor-id="패키지-목록-업데이트-후-git-설치업그레이드"><span class="header-section-number">3.1.4</span> 패키지 목록 업데이트 후 Git 설치/업그레이드</h4>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>bash</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sudo apt update</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sudo apt install <span class="sc">-</span>y git</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section>
-<section id="업데이트-확인" class="level4" data-number="3.1.5">
-<h4 data-number="3.1.5" class="anchored" data-anchor-id="업데이트-확인"><span class="header-section-number">3.1.5</span> 업데이트 확인</h4>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>bash</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>git <span class="sc">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
 
 
-</section>
 </section>
 </section>
 

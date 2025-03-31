@@ -7,6 +7,8 @@ date-modified: last-modified
 categories: [Git, configuration]
 number-sections: true
 ---
+## 공통 설정
+- 운영체제와 무관한 공통설정에 대한 설명입니다.
 
 ### 사용자정보 설정
 
@@ -32,12 +34,15 @@ git config user.name
 git config user.email
 ```
 
-### 프로젝트에 Git 적용하기
 
-#### RStudio에서 Git 적용하기
+
+
+## 프로젝트에 Git 적용하기
+
+### RStudio에서 Git 적용하기
 RStudio의 global options에서 Git/SVN을 선택하고, Git executable 경로를 지정해주면 RStudio에서 Git을 사용할 수 있습니다. 이렇게 설정해두면 새로운 프로젝트를 생성할 때마다  Git을 적용할지 물어오거나 자동으로 Git를 적용하여 프로젝트를 생성합니다.
 
-#### Git Bash에서 Git 적용하기
+### Git Bash에서 Git 적용하기
 버전관리를 시작할려면 원하는 폴더 (=프로젝트 폴더)에서 git init 명령어를 실행하면 됩니다. 
 
 ```{r git_init, eval=FALSE, filename="Command Prompt"}
