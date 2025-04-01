@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/tools/git/git_install.html",
+      "/posts/tools/git/git_configuration.html",
       "/posts/Quarto/install/Quarto_setup.html",
       "/posts/R/preprocessing/outlier_detection.html",
       "/posts/R/install/RStudio_setup.html",
@@ -9,7 +11,6 @@
       "/posts/tools/git/hands_on_git_push.html",
       "/posts/tools/git/hands_on_git_clone.html",
       "/posts/Quarto/Functions/tooltip.html",
-      "/posts/tools/git/git_install.html",
       "/posts/tools/git/ssh.html",
       "/posts/R/syntax/basic.html",
       "/posts/R/syntax/R_syntax.html",
@@ -17,7 +18,6 @@
       "/posts/about/about.html",
       "/posts/tools/git/github.html",
       "/posts/tools/git/git_concept.html",
-      "/posts/tools/git/git_configuration.html",
       "/posts/Resources/DataGoKr/DataGoKr.html",
       "/posts/Python/syntax/data_type.html",
       "/posts/Quarto/Functions/color_callout.html",
