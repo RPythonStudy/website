@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Python/install/VSCode_setup.html",
+      "/posts/Python/install/Python_setup.html",
       "/posts/tools/git/git_install.html",
       "/posts/tools/git/git_configuration.html",
       "/posts/Quarto/install/Quarto_setup.html",
@@ -30,7 +32,6 @@
       "/posts/R/shiny/shiny_example.html",
       "/posts/R/function/Chi_square_test_in_R.html",
       "/posts/statistics/Chi_square_test.html",
-      "/posts/Python/install/VSCode_setup.html",
       "/posts/Quarto/introduction_to_Quarto.html",
       "/posts/IT/introduction_to_IT.html",
       "/posts/statistics/group_comparison.html",
@@ -39,7 +40,6 @@
       "/posts/tools/introduction_to_tools.html",
       "/posts/Resources/introduction_to_resources.html",
       "/posts/Quarto/Manuscript/manuscript_example.html",
-      "/posts/Python/install/Python_setup.html",
       "/posts/R/dataset/built_in_dataset.html",
       "/posts/statistics/basic_statistics.html",
       "/posts/R/introduction_to_R.html"
