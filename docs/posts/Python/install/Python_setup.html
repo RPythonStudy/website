@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-c8a01258441097d17a999774078ed729.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-b0d589d17ab6c3eb5f580629f8475471.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -308,10 +308,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#wsl2-ubuntu-운영체제에서의-설치" id="toc-wsl2-ubuntu-운영체제에서의-설치" class="nav-link" data-scroll-target="#wsl2-ubuntu-운영체제에서의-설치"><span class="header-section-number">3</span> WSL2 Ubuntu 운영체제에서의 설치</a>
   <ul class="collapse">
   <li><a href="#필수-패키지-설치" id="toc-필수-패키지-설치" class="nav-link" data-scroll-target="#필수-패키지-설치"><span class="header-section-number">3.1</span> 필수 패키지 설치</a></li>
-  <li><a href="#pyenv-설치" id="toc-pyenv-설치" class="nav-link" data-scroll-target="#pyenv-설치"><span class="header-section-number">3.2</span> pyenv 설치</a></li>
-  <li><a href="#pyenv-환경변수-설정" id="toc-pyenv-환경변수-설정" class="nav-link" data-scroll-target="#pyenv-환경변수-설정"><span class="header-section-number">3.3</span> pyenv 환경변수 설정</a></li>
-  <li><a href="#원하는-버전-설치" id="toc-원하는-버전-설치" class="nav-link" data-scroll-target="#원하는-버전-설치"><span class="header-section-number">3.4</span> 원하는 버전 설치</a></li>
-  <li><a href="#설치-확인-1" id="toc-설치-확인-1" class="nav-link" data-scroll-target="#설치-확인-1"><span class="header-section-number">3.5</span> 설치 확인</a></li>
+  <li><a href="#기존-pyenv-삭제" id="toc-기존-pyenv-삭제" class="nav-link" data-scroll-target="#기존-pyenv-삭제"><span class="header-section-number">3.2</span> 기존 pyenv 삭제</a></li>
+  <li><a href="#pyenv-설치" id="toc-pyenv-설치" class="nav-link" data-scroll-target="#pyenv-설치"><span class="header-section-number">3.3</span> pyenv 설치</a></li>
+  <li><a href="#pyenv-환경변수-설정" id="toc-pyenv-환경변수-설정" class="nav-link" data-scroll-target="#pyenv-환경변수-설정"><span class="header-section-number">3.4</span> pyenv 환경변수 설정</a></li>
+  <li><a href="#원하는-버전-설치" id="toc-원하는-버전-설치" class="nav-link" data-scroll-target="#원하는-버전-설치"><span class="header-section-number">3.5</span> 원하는 버전 설치</a></li>
+  <li><a href="#설치-확인-1" id="toc-설치-확인-1" class="nav-link" data-scroll-target="#설치-확인-1"><span class="header-section-number">3.6</span> 설치 확인</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -505,54 +506,68 @@ Python이 올바르게 설치되었는지 확인하려면,
 </div>
 </div>
 </section>
-<section id="pyenv-설치" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="pyenv-설치"><span class="header-section-number">3.2</span> pyenv 설치</h3>
+<section id="기존-pyenv-삭제" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="기존-pyenv-삭제"><span class="header-section-number">3.2</span> 기존 pyenv 삭제</h3>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>bash</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>curl https<span class="sc">:</span><span class="er">//</span>pyenv.run <span class="sc">|</span> bash</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rm <span class="sc">-</span>rf <span class="sc">~</span><span class="er">/</span>.pyenv</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <ul>
-<li><div class="line-block">bash의 의미는, curl이 지정한 URL에서 스크립트를 다운로드한 후 그 결과를 bash 쉘에 전달하여 바로 실행하라는 뜻입니다.</div></li>
+<li>만약에 기존에 설치된 것이 있다면 제거합니다.</li>
 </ul>
 </section>
-<section id="pyenv-환경변수-설정" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="pyenv-환경변수-설정"><span class="header-section-number">3.3</span> pyenv 환경변수 설정</h3>
+<section id="pyenv-설치" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="pyenv-설치"><span class="header-section-number">3.3</span> pyenv 설치</h3>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>bash</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>export PATH<span class="ot">=</span><span class="st">"$HOME/.pyenv/bin:$PATH"</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>eval <span class="st">"$(pyenv init --path)"</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>eval <span class="st">"$(pyenv init -)"</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>eval <span class="st">"$(pyenv virtualenv-init -)"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>curl https<span class="sc">:</span><span class="er">//</span>pyenv.run <span class="sc">|</span> bash</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<ul>
+<li><code>| bash</code>의 의미는, curl이 지정한 URL에서 스크립트를 다운로드한 후 그 결과를 bash 쉘에 전달하여 바로 실행하라는 뜻입니다.</li>
+</ul>
+</section>
+<section id="pyenv-환경변수-설정" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="pyenv-환경변수-설정"><span class="header-section-number">3.4</span> pyenv 환경변수 설정</h3>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>export PATH<span class="ot">=</span><span class="st">"$HOME/.pyenv/bin:$PATH"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>eval <span class="st">"$(pyenv init --path)"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>eval <span class="st">"$(pyenv init -)"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>eval <span class="st">"$(pyenv virtualenv-init -)"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
-<section id="원하는-버전-설치" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="원하는-버전-설치"><span class="header-section-number">3.4</span> 원하는 버전 설치</h3>
+<section id="원하는-버전-설치" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="원하는-버전-설치"><span class="header-section-number">3.5</span> 원하는 버전 설치</h3>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>bash</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pyenv install <span class="dv">3</span>.<span class="fl">12.6</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pyenv global <span class="dv">3</span>.<span class="fl">12.6</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pyenv install <span class="dv">3</span>.<span class="fl">12.6</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pyenv global <span class="dv">3</span>.<span class="fl">12.6</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
-<section id="설치-확인-1" class="level3" data-number="3.5">
-<h3 data-number="3.5" class="anchored" data-anchor-id="설치-확인-1"><span class="header-section-number">3.5</span> 설치 확인</h3>
+<section id="설치-확인-1" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="설치-확인-1"><span class="header-section-number">3.6</span> 설치 확인</h3>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>bash</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>python <span class="sc">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>python <span class="sc">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 
