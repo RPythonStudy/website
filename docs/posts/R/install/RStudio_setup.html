@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="RPythonStudyGroup feat. ChatGPT">
+<meta name="author" content="BenKorea feat. ChatGPT">
 <meta name="description" content="RStudio 설치 및 설정">
 
 <title>RStudio – RPythonStudy</title>
@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">저자</div>
       <div class="quarto-title-meta-contents">
-               <p>RPythonStudyGroup feat. ChatGPT </p>
+               <p>BenKorea feat. ChatGPT </p>
             </div>
     </div>
       
@@ -228,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">2025년 3월 31일</p>
+        <p class="date-modified">2025년 5월 12일</p>
       </div>
     </div>
       
@@ -401,34 +401,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#r-통합개발환경-선택" id="toc-r-통합개발환경-선택" class="nav-link active" data-scroll-target="#r-통합개발환경-선택"><span class="header-section-number">1</span> R 통합개발환경 선택</a></li>
-  <li><a href="#rstudio-설치안내문서" id="toc-rstudio-설치안내문서" class="nav-link" data-scroll-target="#rstudio-설치안내문서"><span class="header-section-number">2</span> RStudio 설치안내문서</a></li>
-  <li><a href="#rstudio-설치파일" id="toc-rstudio-설치파일" class="nav-link" data-scroll-target="#rstudio-설치파일"><span class="header-section-number">3</span> RStudio 설치파일</a>
+  <li><a href="#window-환경에서의-설치" id="toc-window-환경에서의-설치" class="nav-link" data-scroll-target="#window-환경에서의-설치"><span class="header-section-number">2</span> Window 환경에서의 설치</a>
   <ul class="collapse">
-  <li><a href="#window-운영체제-설치경로" id="toc-window-운영체제-설치경로" class="nav-link" data-scroll-target="#window-운영체제-설치경로"><span class="header-section-number">3.1</span> Window 운영체제 설치경로</a></li>
-  <li><a href="#macos-폴더구조" id="toc-macos-폴더구조" class="nav-link" data-scroll-target="#macos-폴더구조"><span class="header-section-number">3.2</span> MacOS 폴더구조</a></li>
-  <li><a href="#macos-설치-경로" id="toc-macos-설치-경로" class="nav-link" data-scroll-target="#macos-설치-경로"><span class="header-section-number">3.3</span> MacOS 설치 경로</a></li>
+  <li><a href="#실행파일-다운로드" id="toc-실행파일-다운로드" class="nav-link" data-scroll-target="#실행파일-다운로드"><span class="header-section-number">2.1</span> 실행파일 다운로드</a></li>
+  <li><a href="#설치경로" id="toc-설치경로" class="nav-link" data-scroll-target="#설치경로"><span class="header-section-number">2.2</span> 설치경로</a></li>
   </ul></li>
-  <li><a href="#rstudio-설정" id="toc-rstudio-설정" class="nav-link" data-scroll-target="#rstudio-설정"><span class="header-section-number">4</span> RStudio 설정</a>
+  <li><a href="#window환경에서의-고유설정" id="toc-window환경에서의-고유설정" class="nav-link" data-scroll-target="#window환경에서의-고유설정"><span class="header-section-number">3</span> Window환경에서의 고유설정</a>
   <ul class="collapse">
-  <li><a href="#r-경로" id="toc-r-경로" class="nav-link" data-scroll-target="#r-경로"><span class="header-section-number">4.1</span> R 경로</a></li>
-  <li><a href="#rstudio-작업폴더" id="toc-rstudio-작업폴더" class="nav-link" data-scroll-target="#rstudio-작업폴더"><span class="header-section-number">4.2</span> RStudio 작업폴더</a></li>
+  <li><a href="#r-경로설정" id="toc-r-경로설정" class="nav-link" data-scroll-target="#r-경로설정"><span class="header-section-number">3.1</span> R 경로설정</a></li>
+  <li><a href="#r-버전변경" id="toc-r-버전변경" class="nav-link" data-scroll-target="#r-버전변경"><span class="header-section-number">3.2</span> R 버전변경</a></li>
+  <li><a href="#rstudio-작업폴더" id="toc-rstudio-작업폴더" class="nav-link" data-scroll-target="#rstudio-작업폴더"><span class="header-section-number">3.3</span> RStudio 작업폴더</a></li>
   </ul></li>
-  <li><a href="#매뉴얼" id="toc-매뉴얼" class="nav-link" data-scroll-target="#매뉴얼"><span class="header-section-number">5</span> 매뉴얼</a>
+  <li><a href="#ubuntuwsl2-환경에서-rstudio-server-설치" id="toc-ubuntuwsl2-환경에서-rstudio-server-설치" class="nav-link" data-scroll-target="#ubuntuwsl2-환경에서-rstudio-server-설치"><span class="header-section-number">4</span> Ubuntu/WSL2 환경에서 RStudio Server 설치</a>
   <ul class="collapse">
-  <li><a href="#version-control-interface" id="toc-version-control-interface" class="nav-link" data-scroll-target="#version-control-interface"><span class="header-section-number">5.1</span> Version Control Interface</a></li>
+  <li><a href="#주의사항" id="toc-주의사항" class="nav-link" data-scroll-target="#주의사항"><span class="header-section-number">4.1</span> 주의사항</a></li>
+  <li><a href="#설치안내" id="toc-설치안내" class="nav-link" data-scroll-target="#설치안내"><span class="header-section-number">4.2</span> 설치안내</a></li>
+  <li><a href="#rstudio-server-고유설정" id="toc-rstudio-server-고유설정" class="nav-link" data-scroll-target="#rstudio-server-고유설정"><span class="header-section-number">4.3</span> RStudio server 고유설정</a></li>
   </ul></li>
-  <li><a href="#패키지-종속성-관리를-위한-renv" id="toc-패키지-종속성-관리를-위한-renv" class="nav-link" data-scroll-target="#패키지-종속성-관리를-위한-renv"><span class="header-section-number">6</span> <strong>패키지 종속성 관리를 위한</strong> <code>renv</code></a></li>
-  <li><a href="#r-rstudio-프로젝트-폴더관리" id="toc-r-rstudio-프로젝트-폴더관리" class="nav-link" data-scroll-target="#r-rstudio-프로젝트-폴더관리"><span class="header-section-number">7</span> R &amp; RStudio 프로젝트 폴더관리</a>
+  <li><a href="#macos환경에서의-설치" id="toc-macos환경에서의-설치" class="nav-link" data-scroll-target="#macos환경에서의-설치"><span class="header-section-number">5</span> macOS환경에서의 설치</a>
   <ul class="collapse">
-  <li><a href="#윈도우" id="toc-윈도우" class="nav-link" data-scroll-target="#윈도우"><span class="header-section-number">7.1</span> 윈도우</a></li>
-  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos"><span class="header-section-number">7.2</span> MacOS</a></li>
+  <li><a href="#macos-폴더구조" id="toc-macos-폴더구조" class="nav-link" data-scroll-target="#macos-폴더구조"><span class="header-section-number">5.1</span> MacOS 폴더구조</a></li>
+  <li><a href="#macos-설치-경로" id="toc-macos-설치-경로" class="nav-link" data-scroll-target="#macos-설치-경로"><span class="header-section-number">5.2</span> macOS 설치 경로</a></li>
+  <li><a href="#작업폴더-설정-1" id="toc-작업폴더-설정-1" class="nav-link" data-scroll-target="#작업폴더-설정-1"><span class="header-section-number">5.3</span> 작업폴더 설정</a></li>
   </ul></li>
-  <li><a href="#rstudio-프로젝트-관리" id="toc-rstudio-프로젝트-관리" class="nav-link" data-scroll-target="#rstudio-프로젝트-관리"><span class="header-section-number">8</span> RStudio 프로젝트 관리</a>
+  <li><a href="#os-공통-rstudio-설정" id="toc-os-공통-rstudio-설정" class="nav-link" data-scroll-target="#os-공통-rstudio-설정"><span class="header-section-number">6</span> OS 공통 RStudio 설정</a>
   <ul class="collapse">
-  <li><a href="#rstudio-프로젝트의-필요성과-활용" id="toc-rstudio-프로젝트의-필요성과-활용" class="nav-link" data-scroll-target="#rstudio-프로젝트의-필요성과-활용"><span class="header-section-number">8.1</span> RStudio 프로젝트의 필요성과 활용</a></li>
-  <li><a href="#rstudio-프로젝트-생성-방법" id="toc-rstudio-프로젝트-생성-방법" class="nav-link" data-scroll-target="#rstudio-프로젝트-생성-방법"><span class="header-section-number">8.2</span> RStudio 프로젝트 생성 방법</a></li>
-  <li><a href="#rstudio-프로젝트의-활용" id="toc-rstudio-프로젝트의-활용" class="nav-link" data-scroll-target="#rstudio-프로젝트의-활용"><span class="header-section-number">8.3</span> RStudio 프로젝트의 활용</a></li>
+  <li><a href="#version-control-interface" id="toc-version-control-interface" class="nav-link" data-scroll-target="#version-control-interface"><span class="header-section-number">6.1</span> Version Control Interface</a></li>
   </ul></li>
+  <li><a href="#독립적-패키지관리-renv" id="toc-독립적-패키지관리-renv" class="nav-link" data-scroll-target="#독립적-패키지관리-renv"><span class="header-section-number">7</span> 독립적 패키지관리: <code>renv</code></a></li>
+  <li><a href="#r-rstudio-프로젝트-폴더관리" id="toc-r-rstudio-프로젝트-폴더관리" class="nav-link" data-scroll-target="#r-rstudio-프로젝트-폴더관리"><span class="header-section-number">8</span> R &amp; RStudio 프로젝트 폴더관리</a>
+  <ul class="collapse">
+  <li><a href="#윈도우" id="toc-윈도우" class="nav-link" data-scroll-target="#윈도우"><span class="header-section-number">8.1</span> 윈도우</a></li>
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos"><span class="header-section-number">8.2</span> MacOS</a></li>
+  </ul></li>
+  <li><a href="#rstudio-프로젝트-관리" id="toc-rstudio-프로젝트-관리" class="nav-link" data-scroll-target="#rstudio-프로젝트-관리"><span class="header-section-number">9</span> RStudio 프로젝트 관리</a>
+  <ul class="collapse">
+  <li><a href="#rstudio-프로젝트의-필요성과-활용" id="toc-rstudio-프로젝트의-필요성과-활용" class="nav-link" data-scroll-target="#rstudio-프로젝트의-필요성과-활용"><span class="header-section-number">9.1</span> RStudio 프로젝트의 필요성과 활용</a></li>
+  <li><a href="#rstudio-프로젝트-생성-방법" id="toc-rstudio-프로젝트-생성-방법" class="nav-link" data-scroll-target="#rstudio-프로젝트-생성-방법"><span class="header-section-number">9.2</span> RStudio 프로젝트 생성 방법</a></li>
+  <li><a href="#rstudio-프로젝트의-활용" id="toc-rstudio-프로젝트의-활용" class="nav-link" data-scroll-target="#rstudio-프로젝트의-활용"><span class="header-section-number">9.3</span> RStudio 프로젝트의 활용</a></li>
+  </ul></li>
+  <li><a href="#매뉴얼" id="toc-매뉴얼" class="nav-link" data-scroll-target="#매뉴얼"><span class="header-section-number">10</span> 매뉴얼</a></li>
   </ul>
 </nav>
     </div>
@@ -441,18 +453,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="r-통합개발환경-선택" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="r-통합개발환경-선택"><span class="header-section-number">1</span> R 통합개발환경 선택</h2>
-<p>RStudio와 VS Code는 모두 각자의 특징을 가진 R 프로그래밍을 위한(할수 있는) 통합 개발 환경(IDE)입니다. RStudio는 R 코딩에 전용화된 통합개발환경으로 R 언어와 관련된 다양한 기능을 직관적으로 제공하며, R 코드 작성, 데이터 시각화, 리포팅 등에 최적화되어 있습니다. 반면에 VS Code는 다양한 프로그래밍 언어를 지원하며, Marketplace에서 제공하는 확장 기능을 통해 개발자가 필요한 기능을 추가할 수 있는 유연성을 가지고 있습니다. VS Code는 경량화된 성능과 통합 터미널 기능을 제공하여 다양한 개발 환경에서 활용될 수 있지만, R에 특화된 기능은 상대적으로 부족할 수 있습니다.</p>
+<p>RStudio와 VS Code는 모두 각자의 특징을 가진 R 프로그래밍을 위한(할수 있는) 통합 개발 환경(IDE)입니다.</p>
+<p>RStudio는 R 코딩에 전용화된 통합개발환경으로 R 언어와 관련된 다양한 기능을 직관적으로 제공하며, R 코드 작성, 데이터 시각화, 리포팅 등에 최적화되어 있습니다.</p>
+<p>반면에 VS Code는 다양한 프로그래밍 언어를 지원하며, Marketplace에서 제공하는 확장 기능을 통해 개발자가 필요한 기능을 추가할 수 있는 유연성을 가지고 있습니다. VS Code는 경량화된 성능과 통합 터미널 기능을 제공하여 다양한 개발 환경에서 활용될 수 있지만, R에 특화된 기능은 상대적으로 부족할 수 있습니다.</p>
 <p>연구회에서는 RStudio를 우선 추천합니다.</p>
 </section>
-<section id="rstudio-설치안내문서" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="rstudio-설치안내문서"><span class="header-section-number">2</span> RStudio 설치안내문서</h2>
-<p>RStudio 공식사이트 (<a href="https://posit.co/" class="uri">https://posit.co/</a>)에 설치에 대한 공식문서는 없어 보입니다. 그러나 설치는 어렵지 않으며 아래의 요약을 참고하여 설치 하셔도 됩니다.</p>
+<section id="window-환경에서의-설치" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="window-환경에서의-설치"><span class="header-section-number">2</span> Window 환경에서의 설치</h2>
+<section id="실행파일-다운로드" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="실행파일-다운로드"><span class="header-section-number">2.1</span> 실행파일 다운로드</h3>
+<p>최신버전의 RStudio 실행파일을 [공식 다운로드 사이트](<a href="https://posit.co/downloads/" class="uri">https://posit.co/downloads/</a>){target=“_blank”}에서 다운로드 후 설치합니다.</p>
 </section>
-<section id="rstudio-설치파일" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="rstudio-설치파일"><span class="header-section-number">3</span> RStudio 설치파일</h2>
-<p>자신의 운영체제( (Windows 10+, macOS 13+, and Linux)에 맞는 최신버전의 RStudio를 아래의 공식 다운로드 사이트(<a href="https://posit.co/downloads/" class="uri">https://posit.co/downloads/</a>)에서 다운로드 후 (2024년 12월 16일 release된 원도우데스크탑용의 최신설치파일은 RStudio-2024.12.0+467.exe입니다.) 설치합니다.</p>
-<section id="window-운영체제-설치경로" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="window-운영체제-설치경로"><span class="header-section-number">3.1</span> Window 운영체제 설치경로</h3>
+<section id="설치경로" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="설치경로"><span class="header-section-number">2.2</span> 설치경로</h3>
 <ol type="1">
 <li>프로그램 설치 폴더 <code>C:\Program Files\RStudio</code> RStudio의 실행 파일 및 주요 프로그램 파일이 저장되는 위치입니다. 프로그램 업데이트 시 이 폴더 내의 파일이 변경됩니다.</li>
 <li>사용자별 설정 폴더 <code>C:\Users\사용자명\AppData\Local\RStudio</code> 개별 사용자의 RStudio 설정을 저장합니다. UI 레이아웃, 최근 사용한 프로젝트, 마지막으로 연 코드 파일 등의 정보를 포함합니다.</li>
@@ -460,11 +473,174 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>전역 설정 폴더 (모든 사용자 적용) <code>C:\ProgramData\RStudio</code></li>
 </ol>
 </section>
-<section id="macos-폴더구조" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="macos-폴더구조"><span class="header-section-number">3.2</span> MacOS 폴더구조</h3>
+</section>
+<section id="window환경에서의-고유설정" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="window환경에서의-고유설정"><span class="header-section-number">3</span> Window환경에서의 고유설정</h2>
+<section id="r-경로설정" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="r-경로설정"><span class="header-section-number">3.1</span> R 경로설정</h3>
+<p>설치 이후 RStudio을 실행한 후 상단의 탭매뉴 중 Tools 메뉴 &gt; Global Options… &gt; R General &gt; Basic 탭에서 아래의 예시와 같이 설치하신 최신버전의 R 실행경로를 선택해 주시면 됩니다.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R version: example</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">64</span><span class="sc">-</span>bit] C<span class="sc">:</span>\R\R<span class="dv">-4</span>.<span class="fl">4.3</span><span class="er">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="r-버전변경" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="r-버전변경"><span class="header-section-number">3.2</span> R 버전변경</h3>
+<p>지난 버전의 R의 만든 프로젝트를 해당 버전으로 실행하고 싶다면 위의 R 경로설정 메뉴에서 해당 버전의 R 실행파일의 경로를 지정해주시면 됩니다.)</p>
+</section>
+<section id="rstudio-작업폴더" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="rstudio-작업폴더"><span class="header-section-number">3.3</span> RStudio 작업폴더</h3>
+<p>Default working directory (when not in a project)지정은 아래의 예시와 같이 프로젝트를 관리하는 상위 폴더를 추천 드립니다.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Default working directory: example</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Projects<span class="er">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="ubuntuwsl2-환경에서-rstudio-server-설치" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="ubuntuwsl2-환경에서-rstudio-server-설치"><span class="header-section-number">4</span> Ubuntu/WSL2 환경에서 RStudio Server 설치</h2>
+<section id="주의사항" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="주의사항"><span class="header-section-number">4.1</span> 주의사항</h3>
+<ul>
+<li>Ubuntu와는 다르게 WSL2에 설치된 우분투는 원칙적으로 GUI를 지원하지 않습니다. 따라서 RStudio Desktop을 설치하여도 정상작동이 되지 않으며, WSL2에서 GUI가 가능하도록 설정하기가 어려워 보이고 사양에 따라서는 사실상 불가능해 보이기도 합니다.</li>
+<li>따라서 연구회에서는 RStudio server를 설치하여 웹 브라우저를 통해 접속하는 것을 추천합니다. (단 한번에 하나의 server만 구동되는 제한이 있으며 유료버전에서는 가능하다 하지만 이것 때문에 구매할 필요는 없어 보입니다.)</li>
+</ul>
+</section>
+<section id="설치안내" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="설치안내"><span class="header-section-number">4.2</span> 설치안내</h3>
+<p><a href="https://posit.co/download/rstudio-server/" target="_blank">공식사이트</a>를 참고하였습니다.</p>
+<section id="deb-형태의-설치파일을-위한-gdebi-설치" class="level4" data-number="4.2.1">
+<h4 data-number="4.2.1" class="anchored" data-anchor-id="deb-형태의-설치파일을-위한-gdebi-설치"><span class="header-section-number">4.2.1</span> deb 형태의 설치파일을 위한 gdebi 설치</h4>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Ubuntu Bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="sc">-</span>get install gdebi<span class="sc">-</span>core</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="rstudio-server-설치파일-다운로드" class="level4" data-number="4.2.2">
+<h4 data-number="4.2.2" class="anchored" data-anchor-id="rstudio-server-설치파일-다운로드"><span class="header-section-number">4.2.2</span> RStudio server 설치파일 다운로드</h4>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Ubuntu Bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wget https<span class="sc">:</span><span class="er">//</span>download2.rstudio.org<span class="sc">/</span>server<span class="sc">/</span>jammy<span class="sc">/</span>amd64<span class="sc">/</span>rstudio<span class="sc">-</span>server<span class="dv">-2024</span>.<span class="fl">12.1</span><span class="dv">-563</span><span class="sc">-</span>amd64.deb</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="rstudio-server-설치" class="level4" data-number="4.2.3">
+<h4 data-number="4.2.3" class="anchored" data-anchor-id="rstudio-server-설치"><span class="header-section-number">4.2.3</span> RStudio server 설치</h4>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Ubuntu Bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sudo gdebi rstudio<span class="sc">-</span>server<span class="dv">-2024</span>.<span class="fl">12.1</span><span class="dv">-563</span><span class="sc">-</span>amd64.deb</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="rstudio-server-실행" class="level4" data-number="4.2.4">
+<h4 data-number="4.2.4" class="anchored" data-anchor-id="rstudio-server-실행"><span class="header-section-number">4.2.4</span> RStudio server 실행</h4>
+<ul>
+<li>GUI를 사용하지 않고 웹브라우저로 실행하게 됩니다.</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>인터넷창</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>http<span class="sc">:</span><span class="er">//</span>localhost<span class="sc">:</span><span class="dv">8787</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="로그인-정보" class="level4" data-number="4.2.5">
+<h4 data-number="4.2.5" class="anchored" data-anchor-id="로그인-정보"><span class="header-section-number">4.2.5</span> 로그인 정보</h4>
+<ul>
+<li>WSL2 Ubuntu의 사용자명과 비밀번호로 로그인하도록 미리 설정되어 있습니다.
+<ul>
+<li>사용자명: 현재 Ubuntu 사용자명 (예: ben)</li>
+<li>비밀번호: WSL2 Ubuntu 로그인 비밀번호</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="rstudio-server-고유설정" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="rstudio-server-고유설정"><span class="header-section-number">4.3</span> RStudio server 고유설정</h3>
+<section id="작업폴더-설정" class="level4" data-number="4.3.1">
+<h4 data-number="4.3.1" class="anchored" data-anchor-id="작업폴더-설정"><span class="header-section-number">4.3.1</span> 작업폴더 설정</h4>
+<p>설치 이후 RStudio server를 실행한 후 상단의 탭매뉴 중 Tools 메뉴 &gt; Global Options… &gt; R General &gt; Basic 탭에서 default working directory (when not in a project)지정은 아래의 예시와 같이 프로젝트를 관리하는 상위 폴더를 추천 드립니다.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Default working directory: example</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">~</span><span class="er">/</span>projects</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<ul>
+<li>~의 의미는 사용자 홈 디렉토리를 의미합니다.</li>
+</ul>
+</section>
+<section id="github-copilot-활성화-방법" class="level4" data-number="4.3.2">
+<h4 data-number="4.3.2" class="anchored" data-anchor-id="github-copilot-활성화-방법"><span class="header-section-number">4.3.2</span> Github Copilot 활성화 방법</h4>
+<ul>
+<li>rstudio server 환경에서 github copilot 을 사용하려고 보니 아래처럼 Github Copilot integration has been disabled by the administrator 라는 문구가 떴있습니다.</li>
+<li>만약 Copilot 유로구독을 하시고 있다면, Rstudio Server나 Posit Workbench에서는 관리자 설정 이후 사용이 가능하다고 합니다.</li>
+</ul>
+<section id="설정파일이-있는-폴더로-이동" class="level5" data-number="4.3.2.1">
+<h5 data-number="4.3.2.1" class="anchored" data-anchor-id="설정파일이-있는-폴더로-이동"><span class="header-section-number">4.3.2.1</span> <strong>설정파일이 있는 폴더로 이동</strong></h5>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cd <span class="sc">/</span>etc<span class="sc">/</span>rstudio<span class="sc">/</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="설정파일을-nano-편집기로-열기" class="level5" data-number="4.3.2.2">
+<h5 data-number="4.3.2.2" class="anchored" data-anchor-id="설정파일을-nano-편집기로-열기"><span class="header-section-number">4.3.2.2</span> 설정파일을 nano 편집기로 열기</h5>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sudo nano rsession.conf</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="설정파일에-아래의-내용-추가" class="level5" data-number="4.3.2.3">
+<h5 data-number="4.3.2.3" class="anchored" data-anchor-id="설정파일에-아래의-내용-추가"><span class="header-section-number">4.3.2.3</span> 설정파일에 아래의 내용 추가</h5>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>rsession.conf</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>copilot<span class="sc">-</span>enabled<span class="ot">=</span><span class="dv">1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="macos환경에서의-설치" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="macos환경에서의-설치"><span class="header-section-number">5</span> macOS환경에서의 설치</h2>
+<section id="macos-폴더구조" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="macos-폴더구조"><span class="header-section-number">5.1</span> MacOS 폴더구조</h3>
 <ul>
 <li>저자는 MacOS를 사용하지 않아서 아래의 내용을 오류가 없는지 사용자가 직접 확인해 보시길 권장합니다.</li>
-<li>MacOS의 일반적인 폴더구조는 아래와 같습니다.</li>
+<li>macOS의 일반적인 폴더구조는 아래와 같습니다.</li>
 </ul>
 <div id="fig-DirectoryStructureMacOS" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -485,13 +661,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 └── opt              # 서드파티 소프트웨어 패키지 (예: Homebrew 설치 파일)</code></pre>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-DirectoryStructureMacOS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;1: MacOS의 디렉토리 구조
+그림&nbsp;1: macOS의 디렉토리 구조
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="macos-설치-경로" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="macos-설치-경로"><span class="header-section-number">3.3</span> MacOS 설치 경로</h3>
+<section id="macos-설치-경로" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="macos-설치-경로"><span class="header-section-number">5.2</span> macOS 설치 경로</h3>
 <ol type="1">
 <li>프로그램 설치폴더 <code>/Applications/RStudio.app</code> 일반적인 macOS 애플리케이션처럼 응용 프로그램 폴더 (/Applications) 에 설치됩니다. RStudio를 실행하려면 이 폴더 내의 RStudio.app을 실행하면 됩니다.</li>
 <li>사용자별 설정 폴더 <code>~/Library/Application Support/RStudio</code> 개별 사용자의 RStudio 설정을 저장합니다. UI 레이아웃, 최근 사용한 프로젝트, 마지막으로 연 코드 파일 등의 정보를 포함합니다.</li>
@@ -499,54 +675,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>로그 파일 <code>~/Library/Logs/RStudio</code> RStudio의 로그 파일이 저장되는 위치입니다. 이 폴더에는 RStudio의 실행 로그가 저장됩니다. 5. 전역 설정 폴더 (모든 사용자 적용) <code>/Library/Application Support/RStudio</code> 모든 사용자에게 적용되는 RStudio 설정을 저장합니다. 이 폴더에는 RStudio의 전역 설정 파일이 저장됩니다.</li>
 </ol>
 </section>
-</section>
-<section id="rstudio-설정" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="rstudio-설정"><span class="header-section-number">4</span> RStudio 설정</h2>
-<section id="r-경로" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="r-경로"><span class="header-section-number">4.1</span> R 경로</h3>
-<p>설치 이후 RStudio을 실행한 후 상단의 탭매뉴 중 Tools 메뉴 &gt; Global Options… &gt; R General &gt; Basic 탭에서 아래의 예시와 같이 설치하신 최신버전의 R 실행경로를 선택해 주시면 됩니다. (드물게 지난 버전의 R의 만든 프로젝트를 지난 버전으로 실행하고 싶다면 이 메뉴에서 과거 버전의 R 실행파일의 경로를 지정해주시고 해당 프로젝트를 열어서 사용하시면 됩니다.)</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>R version: example</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">64</span><span class="sc">-</span>bit] C<span class="sc">:</span>\R\R<span class="dv">-4</span>.<span class="fl">4.1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section>
-<section id="rstudio-작업폴더" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="rstudio-작업폴더"><span class="header-section-number">4.2</span> RStudio 작업폴더</h3>
-<p>Default working directory (when not in a project)지정은 아래의 예시와 같이 프로젝트를 관리하는 상위 폴더를 추천 드립니다.</p>
-<section id="window-예시" class="level4" data-number="4.2.1">
-<h4 data-number="4.2.1" class="anchored" data-anchor-id="window-예시"><span class="header-section-number">4.2.1</span> Window 예시</h4>
+<section id="작업폴더-설정-1" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="작업폴더-설정-1"><span class="header-section-number">5.3</span> 작업폴더 설정</h3>
+<p>설치 이후 RStudio를 실행한 후 상단의 탭매뉴 중 Tools 메뉴 &gt; Global Options… &gt; R General &gt; Basic 탭에서 default working directory (when not in a project)지정은 아래의 예시와 같이 프로젝트를 관리하는 상위 폴더를 추천 드립니다.</p>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Default working directory: example</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Projects</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section>
-<section id="macos-예시" class="level4" data-number="4.2.2">
-<h4 data-number="4.2.2" class="anchored" data-anchor-id="macos-예시"><span class="header-section-number">4.2.2</span> MacOS 예시</h4>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Default working directory: example</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>Users<span class="sc">/</span>사용자명<span class="sc">/</span>Projects<span class="sc">/</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>Users<span class="sc">/</span>사용자명<span class="sc">/</span>Projects<span class="sc">/</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 </section>
-</section>
-<section id="매뉴얼" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="매뉴얼"><span class="header-section-number">5</span> 매뉴얼</h2>
-<p>RStudio 매뉴얼은 개발사인 posit이 만든 <a href="https://docs.posit.co/ide/user/" class="uri">https://docs.posit.co/ide/user/</a>을 참고하시길 바랍니다.</p>
-<p>개발자들은 R을 command line interface로 사용하기 보다는 RStudio로 사용한다고 생각됩니다. 그러한 측면에서 R 사용법과 RStudio 사용법은 밀접하게 연계된 셈이며, 사용법에 대한 자료는 RStudio를 개발한 posit에서 만든 RSudio에 내장된 Tutorials가 있습니다. 링크를 타고들어가보면 Beginners, Intermediates, Experts 과정들이 있으므로 상황에 맞는 과정들을 선택해서 시작하면 좋습니다.</p>
-<section id="version-control-interface" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="version-control-interface"><span class="header-section-number">5.1</span> Version Control Interface</h3>
+<section id="os-공통-rstudio-설정" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="os-공통-rstudio-설정"><span class="header-section-number">6</span> OS 공통 RStudio 설정</h2>
+<section id="version-control-interface" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="version-control-interface"><span class="header-section-number">6.1</span> Version Control Interface</h3>
 <p>(RStudio에서는 아래의 <a href="#fig-GitConfiguration" class="quarto-xref">그림&nbsp;2</a> 과 같이 git와 같은 version control interface 사용여부에 대한 설정이 있으며 이를 check 해야 새로운 프로젝트를 만들 때 git 사용여부가 옵션으로 선택이 가능해집니다. )</p>
 <div id="fig-GitConfiguration" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -560,16 +705,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="패키지-종속성-관리를-위한-renv" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="패키지-종속성-관리를-위한-renv"><span class="header-section-number">6</span> <strong>패키지 종속성 관리를 위한</strong> <code>renv</code></h2>
+<section id="독립적-패키지관리-renv" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="독립적-패키지관리-renv"><span class="header-section-number">7</span> 독립적 패키지관리: <code>renv</code></h2>
 <p>원래 R에서 패키지는 해당버전 R의 설치폴더 하부의 library 폴더에 설치됩니다. <code>renv</code>는 R 프로젝트에서 패키지 의존성을 관리하기 위해 설계된 도구로써, renv를 설치하고 활성화하면 해당 프로젝트 폴더 하부에 renv 폴더가 만들어지고, 그 하부에 패키지를 설치하게 됩니다. 또한 설치된 패키지들의 정보를 renv.lock 파일에 관리하게 됩니다. 이러한 방법으로 R에서는 프로젝트별로 패키지를 관리할 수 있으므로 필자를 이를 추천합니다.</p>
 <p>RStudio에서 새로운 프로젝트를 생성할 때 renv 사용여부를 check하면 자동으로 설정됩니다.</p>
 <p>사용법에 대해서는 <a href="https://rstudio.github.io/renv/articles/renv.html" class="uri">https://rstudio.github.io/renv/articles/renv.html</a> 참고하시길 바랍니다.</p>
 </section>
-<section id="r-rstudio-프로젝트-폴더관리" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="r-rstudio-프로젝트-폴더관리"><span class="header-section-number">7</span> R &amp; RStudio 프로젝트 폴더관리</h2>
-<section id="윈도우" class="level3" data-number="7.1">
-<h3 data-number="7.1" class="anchored" data-anchor-id="윈도우"><span class="header-section-number">7.1</span> 윈도우</h3>
+<section id="r-rstudio-프로젝트-폴더관리" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="r-rstudio-프로젝트-폴더관리"><span class="header-section-number">8</span> R &amp; RStudio 프로젝트 폴더관리</h2>
+<section id="윈도우" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="윈도우"><span class="header-section-number">8.1</span> 윈도우</h3>
 <p>윈도우의 경우 Project 폴더를 <code>C:\Projects</code> 하위폴더에 R 버전과 프로젝트명을 폴더명으로 하여 관리하는 것을 추천합니다.</p>
 <div id="fig-ProjectDirectory" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -583,8 +728,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </section>
-<section id="macos" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="macos"><span class="header-section-number">7.2</span> MacOS</h3>
+<section id="macos" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="macos"><span class="header-section-number">8.2</span> MacOS</h3>
 <p>MacOS의 경우 Project 폴더를 <code>/Users/사용자명/Projects</code> 하위폴더에 R 버전과 프로젝트명을 폴더명으로 하여 관리하는 것을 추천합니다.</p>
 <div id="fig-ProjectDirectoryMacOS" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -599,27 +744,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="rstudio-프로젝트-관리" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="rstudio-프로젝트-관리"><span class="header-section-number">8</span> RStudio 프로젝트 관리</h2>
-<section id="rstudio-프로젝트의-필요성과-활용" class="level3" data-number="8.1">
-<h3 data-number="8.1" class="anchored" data-anchor-id="rstudio-프로젝트의-필요성과-활용"><span class="header-section-number">8.1</span> RStudio 프로젝트의 필요성과 활용</h3>
+<section id="rstudio-프로젝트-관리" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="rstudio-프로젝트-관리"><span class="header-section-number">9</span> RStudio 프로젝트 관리</h2>
+<section id="rstudio-프로젝트의-필요성과-활용" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="rstudio-프로젝트의-필요성과-활용"><span class="header-section-number">9.1</span> RStudio 프로젝트의 필요성과 활용</h3>
 <p>프로젝트를 폴더별로 정리하면 매우 유용하지만, 한발 더 나아가 <strong>RStudio에서 인지하는 프로젝트</strong>가 되면 많은 작업들에서 생산성을 높일 수 있습니다. 프로젝트 기능을 활용하면 <strong>작업 환경을 독립적으로 유지</strong>하고, <strong>자동으로 세션을 저장 및 복원</strong>할 수 있으며, <strong>경로 충돌 없이 데이터와 코드를 관리</strong>할 수 있습니다.</p>
 </section>
-<section id="rstudio-프로젝트-생성-방법" class="level3" data-number="8.2">
-<h3 data-number="8.2" class="anchored" data-anchor-id="rstudio-프로젝트-생성-방법"><span class="header-section-number">8.2</span> RStudio 프로젝트 생성 방법</h3>
+<section id="rstudio-프로젝트-생성-방법" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="rstudio-프로젝트-생성-방법"><span class="header-section-number">9.2</span> RStudio 프로젝트 생성 방법</h3>
 <p>RStudio 실행 → File → New Project…<br>
 저장할 폴더 선택<br>
 - 새 폴더에 프로젝트 생성 (New Directory) - 기존 폴더에서 프로젝트 생성 (Existing Directory) - GitHub에서 프로젝트 가져오기 (Version Control)<br>
 프로젝트 이름 지정 후 Create Project 클릭<br>
 프로젝트를 생성하면 .Rproj 파일이 포함된 새로운 작업 환경이 설정됩니다.</p>
 </section>
-<section id="rstudio-프로젝트의-활용" class="level3" data-number="8.3">
-<h3 data-number="8.3" class="anchored" data-anchor-id="rstudio-프로젝트의-활용"><span class="header-section-number">8.3</span> RStudio 프로젝트의 활용</h3>
+<section id="rstudio-프로젝트의-활용" class="level3" data-number="9.3">
+<h3 data-number="9.3" class="anchored" data-anchor-id="rstudio-프로젝트의-활용"><span class="header-section-number">9.3</span> RStudio 프로젝트의 활용</h3>
 <ul>
-<li>RStudio에서 프로젝트를 열면, 해당 폴더가 자동으로 작업 디렉토리(Working Directory) 가 됩니다.</li>
-<li>프로젝트를 닫으면 현재 열려 있는 파일, 변수 환경 등이 자동 저장됩니다.</li>
-<li>다시 열면 이전 상태가 그대로 복원되어 작업을 중단했다가 쉽게 이어갈 수 있음.</li>
-<li>RStudio가 어떤 프로젝트를 열고 있는지 혹은 어떤 프로젝트도 열고 있지 않은지는 좌측 상단에 표시됩니다. (<code>R442-RPythonStudy_Website - dev - RStudio</code>라고 표시되어 있으며 dev는 Git 버전관리시스템에서 사용할 목적으로 작성자가 부여한 branch 이름입니다.)</li>
+<li><p>RStudio에서 프로젝트를 열면, 해당 폴더가 자동으로 작업 디렉토리(Working Directory) 가 됩니다.</p></li>
+<li><p>프로젝트를 닫으면 현재 열려 있는 파일, 변수 환경 등이 자동 저장됩니다.</p></li>
+<li><p>다시 열면 이전 상태가 그대로 복원되어 작업을 중단했다가 쉽게 이어갈 수 있음.</p></li>
+<li><p>RStudio가 어떤 프로젝트를 열고 있는지 혹은 어떤 프로젝트도 열고 있지 않은지는 좌측 상단에 표시됩니다. (<code>R442-RPythonStudy_Website - dev - RStudio</code>라고 표시되어 있으며 dev는 Git 버전관리시스템에서 사용할 목적으로 작성자가 부여한 branch 이름입니다.)</p></li>
 <li><div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/clipboard-3076892332.png" class="img-fluid figure-img"></p>
@@ -627,9 +772,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div></li>
 </ul>
-
-
 </section>
+</section>
+<section id="매뉴얼" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="매뉴얼"><span class="header-section-number">10</span> 매뉴얼</h2>
+<p>RStudio 매뉴얼은 개발사인 posit이 만든 <a href="https://docs.posit.co/ide/user/" class="uri">https://docs.posit.co/ide/user/</a>을 참고하시길 바랍니다.</p>
+<p>개발자들은 R을 command line interface로 사용하기 보다는 RStudio로 사용한다고 생각됩니다. 그러한 측면에서 R 사용법과 RStudio 사용법은 밀접하게 연계된 셈이며, 사용법에 대한 자료는 RStudio를 개발한 posit에서 만든 RSudio에 내장된 Tutorials가 있습니다. 링크를 타고들어가보면 Beginners, Intermediates, Experts 과정들이 있으므로 상황에 맞는 과정들을 선택해서 시작하면 좋습니다.</p>
+
+
 </section>
 
 </main> <!-- /main -->
