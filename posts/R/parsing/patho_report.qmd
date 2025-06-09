@@ -11,4 +11,4 @@ categories: [R, Regular Expression]
 
 -   아래의 링크를 클릭하면 2025-06-09 강의록 PDF 파일이 열립니다.
 
--   [R Basics](/archive/pathology.pdf)
+-   [pathology](/archive/pathology.pdf)
