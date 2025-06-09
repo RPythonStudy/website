@@ -66,6 +66,9 @@ website:
           contents:          
             - posts/R/shiny/shiny_example.qmd
             - posts/R/shiny/Hands_on_Shiny_website.qmd
+        - section: "병리보고서파싱"
+          contents:          
+            - posts/R/parsing/patho_report.qmd
     - title: "Python"
       contents:
         - posts/Python/introduction_to_Python.qmd

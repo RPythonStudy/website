@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/R/parsing/patho_report.html",
       "/posts/R/preprocessing/outlier_detection.html",
       "/posts/R/install/RStudio_setup.html",
       "/posts/R/install/R_setup.html",
