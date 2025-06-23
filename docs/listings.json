@@ -2,13 +2,13 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Python/install/Python_setup.html",
       "/posts/R/parsing/patho_report.html",
       "/posts/R/preprocessing/outlier_detection.html",
       "/posts/R/install/RStudio_setup.html",
       "/posts/R/install/R_setup.html",
       "/posts/Quarto/Functions/tooltip.html",
       "/posts/Quarto/install/Quarto_setup.html",
-      "/posts/Python/install/Python_setup.html",
       "/posts/Python/install/VSCode_setup.html",
       "/posts/tools/git/hands_on_git_push.html",
       "/posts/tools/git/git_install.html",

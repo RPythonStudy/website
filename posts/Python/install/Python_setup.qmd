@@ -108,6 +108,32 @@ C:\Python\Python-x.y.z\     # existing Python installation directory
 Python customize Installation with new release and Directory Structure
 :::
 
+### pyenv-win 설치
+저자는 리눅스경험이 없지만 약간의 wsl2 ubuntu 경험으로 볼 때 파이썬 개발환경은 리눅스가 first choice이고 wsl2가 second choice이다. 하지만 여건상 원도우를 사용해야 한다면 window에서도 여러버전의 Python 관리가 필요하게 될 것이며 이럴 경우 pyenv-win으로 관리할 것을 추천합니다.
+
+```{r pyenv-win-clone, eval=FALSE, filename="관리자: Windows PowerShell"}
+git clone https://github.com/pyenv-win/pyenv-win.git "$HOME\.pyenv"
+```
+다음 경로를 시스템 또는 사용자 환경변수에 추가해야 합니다:
+```{r pyenv-win-env, eval=FALSE, filename="환경변수"}
+%USERPROFILE%\.pyenv\pyenv-win\bin
+%USERPROFILE%\.pyenv\pyenv-win\shims
+```
+때로는 %somethiong% 오류가 발생하면 절대경로를 사용하면 됩니다.
+
+시스템 환경변수 설정하기
+```{r pyenv-win-clone, eval=FALSE, filename="관리자: Windows PowerShell"}
+[System.Environment]::SetEnvironmentVariable("PYENV", "C:\Users\Administrator\.pyenv\pyenv-win", "Machine")
+[System.Environment]::SetEnvironmentVariable("PYENV_ROOT", "C:\Users\Administrator\.pyenv\pyenv-win", "Machine")
+[System.Environment]::SetEnvironmentVariable("PYENV_HOME", "C:\Users\Administrator\.pyenv\pyenv-win", "Machine")
+```
+검증은 새로운 PS 창에서 버전을 확인하시면 됩니다.
+
+
+```{r pyenv-win-version, eval=FALSE, filename="관리자: Windows PowerShell"}
+pyenv --version
+```
+
 ## WSL2 Ubuntu 운영체제에서의 설치
 
 ### 필수 패키지 설치
