@@ -1,0 +1,45 @@
+---
+title: "Introduction to Concepts"
+description: "코딩 시 알아야할 개념들에 대한 설명입니다."
+author: "BenKorea feat. ChatGPT"
+date: "2025-07-31"
+date-modified: Last-modified
+categories:
+  - introduction
+---
+
+## API
+
+**API(Application Programming Interface)**는 서로 다른 소프트웨어 구성 요소들이 서로 통신할 수 있도록 해주는 인터페이스입니다.
+
+### API의 유형
+
+#### 1. Web API (REST API)
+- HTTP 프로토콜을 사용하여 웹상에서 데이터를 주고받음
+- JSON 형식으로 데이터 교환이 일반적
+- 예: 소셜미디어 API, 날씨 정보 API, 결제 시스템 API
+
+#### 2. Library/Framework API
+- 프로그래밍 언어나 라이브러리에서 제공하는 함수들의 집합
+- 예: Python의 pandas API, R의 dplyr API
+
+#### 3. Operating System API
+- 운영체제가 제공하는 시스템 기능들에 접근하는 인터페이스
+- 예: 파일 시스템 접근, 메모리 관리 등
+
+
+
+### API 문서화의 중요성
+
+API를 효과적으로 사용하려면 다음과 같은 정보가 포함된 문서가 필요합니다:
+
+- **엔드포인트**: API 호출 주소
+- **HTTP 메서드**: GET, POST, PUT, DELETE 등
+- **매개변수**: 필수/선택 매개변수와 데이터 타입
+- **응답 형식**: 반환되는 데이터의 구조
+- **에러 코드**: 가능한 오류 상황과 대응 방법
+- **사용 예시**: 실제 코드 예제
+
+### 정리
+
+API는 현대 프로그래밍에서 필수적인 개념으로, 서로 다른 시스템 간의 효율적인 데이터 교환을 가능하게 합니다. 코딩을 할 때 API를 잘 이해하고 활용하면 더 강력하고 유연한 애플리케이션을 개발할 수 있습니다.

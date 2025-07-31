@@ -31,8 +31,8 @@ website:
         href: posts/Resources/introduction_to_resources.qmd
       - text: "Tools"      
         href: posts/tools/introduction_to_tools.qmd
-      - text: "IT"      
-        href: posts/IT/introduction_to_IT.qmd
+      - text: "Concepts"      
+        href: posts/Concepts/introduction_to_Concepts.qmd
       - text: "About"      
         href: posts/about/about.qmd    
         
