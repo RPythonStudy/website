@@ -1,0 +1,14 @@
+---
+title: "병리보고서파싱"
+description:  "이해원회장님의 25.06.09 강의록이 PDF로 첨부되어 있습니다."
+author: "Haewon LEE"
+date: "2025-06-09"
+date-modified: last-modified
+categories: [R, Regular Expression]
+---
+
+### 병리보고서 파싱
+
+-   아래의 링크를 클릭하면 2025-06-09 강의록 PDF 파일이 열립니다.
+
+-   [pathology](/archive/pathology.pdf)

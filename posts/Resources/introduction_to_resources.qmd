@@ -1,0 +1,18 @@
+---
+title: "Introduction to Resources"
+description: "Introducing medical (big) data resources that are helpful for research"
+author: "RPythonStudyGroup feat. ChatGPT"
+date: "2024-08-31"
+date-modified: "2024-09-27"
+categories:
+  - introduction
+---
+
+
+::: {.content-visible when-profile="ko"}
+연구회에 도움이 되는 medical (big) data resource들을 소개합니다.
+:::
+
+::: {.content-visible when-profile="en"}
+Introducing medical (big) data resources that are helpful for research.
+:::

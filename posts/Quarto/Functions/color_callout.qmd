@@ -1,0 +1,23 @@
+---
+title: "callout with background color"
+description: "callout 기능구현시 배경색상을 지정하는 방법을 설명합니다."
+author: "RPythonStudy"
+date: "2025-02-03"
+date-modified: "2025-02-03"
+categories: [Quarto, callout, color]
+toc-depth: 4
+---
+
+### Callout with color
+-   아래의 예시와 같이 style 속성을 사용하여 배경색상을 지정할 수 있습니다.
+-   HTML 문법에 맞게 작성되어야 하며, 코드의 가독성 때문에 줄바꿈은 사용하면 작동하지 않으므로 주의해야 합니다.
+
+````markdown
+::: {.callout-note title="제53조의2(방사선안전관리자)" style="background-color: #f0f8ff" collapse="open" appearance="minimal"}
+① 허가사용자 및 신고사용자는 방사선 안전관리에 관한 다음 각 호의 업무를 수행하기 위하여 대통령령으로 정하는 바에 따라 방사선안전관리자를 선임하여 방사성동위원소등의 사용개시 전에 이를 위원회에 신고하여야 한다. 신고한 사항을 변경하려는 때에도 또한 같다.
+:::
+````
+
+::: {.callout-note title="제53조의2(방사선안전관리자)" style="background-color: #d5e6ed" collapse="open" appearance="minimal"}
+① 허가사용자 및 신고사용자는 방사선 안전관리에 관한 다음 각 호의 업무를 수행하기 위하여 대통령령으로 정하는 바에 따라 방사선안전관리자를 선임하여 방사성동위원소등의 사용개시 전에 이를 위원회에 신고하여야 한다. 신고한 사항을 변경하려는 때에도 또한 같다.
+:::

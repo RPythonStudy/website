@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="BenKorea feat. ChatGPT">
+<meta name="description" content="사용에 앞서 도움이 되는 핵심개념을 정리하였습니다.">
+
+<title>Git 핵심개념 – RPythonStudy</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-c8a01258441097d17a999774078ed729.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../RPythonStudy_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">RPythonStudy</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/R/introduction_to_R.html"> 
+<span class="menu-text">R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Python/introduction_to_Python.html"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Quarto/introduction_to_Quarto.html"> 
+<span class="menu-text">Quarto</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/statistics/introduction_to_statistics.html"> 
+<span class="menu-text">Statistics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rpythonstudy.shinyapps.io/Quiz/"> 
+<span class="menu-text">Quiz</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Resources/introduction_to_resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../posts/tools/introduction_to_tools.html" aria-current="page"> 
+<span class="menu-text">Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Concepts/introduction_to_Concepts.html"> 
+<span class="menu-text">Concepts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/about/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../.././en"> 
+<span class="menu-text">English</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/RPythonStudy/website" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git</a></li><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git 핵심개념</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git</a></li><li class="breadcrumb-item"><a href="../../../posts/tools/git/git_concept.html">Git 핵심개념</a></li></ol></nav>
+      <h1 class="title">Git 핵심개념</h1>
+                  <div>
+        <div class="description">
+          사용에 앞서 도움이 되는 핵심개념을 정리하였습니다.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Git</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">저자</div>
+      <div class="quarto-title-meta-contents">
+               <p>BenKorea feat. ChatGPT </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">공개</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2024년 5월 6일</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">2025년 9월 3일</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tools/introduction_to_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Git</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tools/git/git_concept.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Git 핵심개념</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tools/git/github.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Github 가입</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tools/git/git_install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git 설치</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tools/git/git_configuration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git 설정</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tools/git/ssh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OpenSSH</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tools/git/hands_on_git_push.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hands-on git push</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/tools/git/hands_on_git_clone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hands-on git clone</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#prologue" id="toc-prologue" class="nav-link active" data-scroll-target="#prologue"><span class="header-section-number">1</span> Prologue</a></li>
+  <li><a href="#git-버전관리" id="toc-git-버전관리" class="nav-link" data-scroll-target="#git-버전관리"><span class="header-section-number">2</span> Git 버전관리</a></li>
+  <li><a href="#git-branch-관리" id="toc-git-branch-관리" class="nav-link" data-scroll-target="#git-branch-관리"><span class="header-section-number">3</span> Git branch 관리</a></li>
+  <li><a href="#git-원격저장소" id="toc-git-원격저장소" class="nav-link" data-scroll-target="#git-원격저장소"><span class="header-section-number">4</span> Git 원격저장소</a></li>
+  <li><a href="#핵심개념-이외의-사항들" id="toc-핵심개념-이외의-사항들" class="nav-link" data-scroll-target="#핵심개념-이외의-사항들"><span class="header-section-number">5</span> 핵심개념 이외의 사항들</a></li>
+  <li><a href="#추가로-공부하면-좋은-사이트" id="toc-추가로-공부하면-좋은-사이트" class="nav-link" data-scroll-target="#추가로-공부하면-좋은-사이트"><span class="header-section-number">6</span> 추가로 공부하면 좋은 사이트</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="prologue" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="prologue"><span class="header-section-number">1</span> Prologue</h2>
+<p>Git은 PC에서 개인 프로젝트의 버전을 단순히 관리하는 것을 넘어, 분산 환경에서 로컬(자신의 PC)과 원격 저장소(예: GitHub)를 활용하여 협업을 지원하는 오픈소스 분산형 버전 관리 시스템입니다. 그 결과, Git은 개발자에게 필수적인 도구가 됩니다.</p>
+<p>하지만 초보자에게는 사용법이 다소 복잡해 보일 수 있습니다. 제 경험에 따르면, 초보자분들은 개인 프로젝트를 로컬 백업하고 GitHub 클라우드에 백업한다는 마음가짐으로 최소한의 기능만 사용해도 충분합니다.</p>
+<p>물론, 때때로 최소한의 기능조차 원활하게 작동하지 않는 상황이 발생할 수 있습니다. 그러나 그런 경우 ChatGPT에 오류 메시지를 입력해 해결 방법을 찾아보는 과정을 통해 문제를 쉽게 해결할 수 있을 것입니다.</p>
+<p>이 글은 Git의 설치, 설정, 기초 사용법, 그리고 Hands-on 실습에 앞서 Git의 핵심 개념을 이해하는 데 도움을 드리고자 작성되었습니다.</p>
+</section>
+<section id="git-버전관리" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="git-버전관리"><span class="header-section-number">2</span> Git 버전관리</h2>
+<p>Git 버전관리는 다양한 방식으로 구현될 수 있지만, 대표적인 방법은 각 버전을 기록하는 데이터베이스를 구성하는 것입니다. 여기서 **스냅샷(snapshot)**이라는 개념은, 특정 시점의 파일 전체 상태를 한 장의 사진처럼 기록하는 것을 의미합니다. Git은 빠른 개발 속도를 목표로 하므로, 각 버전의 파일 전체를 데이터베이스에 보관하되, 이전 버전과 중복되는 부분은 링크 등을 통해 재사용하여 최종 버전의 상태를 구성하는 방식을 채택했습니다. 이러한 재사용 메커니즘 덕분에 저장 공간이 절약되고, 작업 속도 또한 효율적으로 향상됩니다.</p>
+<p>구체적으로, 버전 관리 대상으로 지정된 파일들의 스냅샷이 프로젝트 디렉토리 하부의 <strong>.git</strong> 숨김 디렉토리 내부의 <strong>objects</strong> 디렉토리에 저장됩니다. 이때 각 파일의 버전 이름은 SHA-1 해시값으로 생성되어, 이를 통해 파일의 버전이 식별되고 관리됩니다.</p>
+<p>Git 버전관리의 특징 중 하나는 버전 관리를 위해 몇 가지 가상적인 단계를 도입했다는 점입니다. 일반적으로 개발자들은 프로젝트를 디렉토리 단위로 관리하며, Git 역시 디렉토리 단위로 작동합니다. 다만, 프로젝트의 모든 파일을 버전 관리 대상으로 포함하는 것이 아니라, 지정한 파일들만 관리합니다. 이를 구분하기 위해 Git은 <strong>working directory</strong>와 <strong>staging area</strong>라는 개념을 사용합니다.</p>
+<ul>
+<li><p><strong>Working Directory:</strong> 현재 프로젝트 파일들이 실제로 위치한 물리적 디렉토리를 의미합니다.</p></li>
+<li><p><strong>Staging Area:</strong> 버전 관리 대상으로 지정된 파일들의 가상적인 집합 공간입니다. 즉, 파일을 버전 관리 대상으로 지정하면 해당 파일들이 staging area로 옮겨진다고 표현할 수 있습니다.</p></li>
+</ul>
+<p>Git의 <strong>.git 디렉토리</strong> 개념은 다음과 같이 이해할 수 있습니다. Staging area에 버전 관리 대상으로 지정된 파일들이 실제로 수정 작업이 완료되면, 개발자는 이를 버전 관리하기로 결정하고 해당 파일들의 스냅샷을 물리적으로 별도의 저장소로 옮깁니다.</p>
+<ul>
+<li><strong>.git 디렉토리:</strong> 버전 관리 시점과 각 버전에 대한 설명 등 메타데이터와 함께 버전들의 스냅샷이 저장되는 물리적인 디렉토리입니다. 이 과정은 마치 데이터베이스처럼 각 파일의 상태와 변경 이력을 체계적으로 관리하는 역할을 하며, 이를 저장소(repository)라는 이름으로도 부릅니다.</li>
+</ul>
+<p>이러한 가상적인 단계들로 옮겨가기 위해 사용하는 Git 명령어들은 다음과 같습니다.</p>
+<ul>
+<li><strong><code>git add &lt;file&gt;</code></strong><br>
+Working Directory에 있는 변경된 파일들을 Staging Area로 옮겨, 버전 관리 대상으로 지정하는 명령어입니다.</li>
+<li><strong><code>git commit -m "메시지"</code></strong><br>
+Staging Area에 있는 파일들을 스냅샷으로 기록하여, .git 디렉토리 내의 objects 디렉토리에 저장하는 명령어입니다. 이때 메시지를 통해 해당 버전에 대한 설명을 추가할 수 있습니다.</li>
+</ul>
+<p><a href="https://geo-python-site.readthedocs.io/en/2018.1/lessons/L2/git-basics.html"><img src="images/git_local.png" class="img-fluid"></a></p>
+</section>
+<section id="git-branch-관리" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="git-branch-관리"><span class="header-section-number">3</span> Git branch 관리</h2>
+<p>Git은 여러 개발자들이 동시에 프로젝트를 진행할 수 있도록 지원하는 도구입니다. 이를 위해 Git은 <strong>branch</strong>라는 개념을 도입했습니다. 첨부된 그림을 보면, 메인 개발 흐름을 담당하는 <strong>main branch</strong>에서 특정 기능만 추가로 개발하기 위해 <strong>feature branch</strong>가 파생되고 있습니다.</p>
+<ul>
+<li><p><strong>main branch</strong>는 기존 흐름대로 계속 개발을 진행합니다.</p></li>
+<li><p><strong>feature branch</strong>에서는 특정 기능을 독립적으로 개발할 수 있습니다.</p></li>
+<li><p>필요하다면 <strong>hotfix commit</strong>처럼 main branch에서 긴급 수정이 이뤄지기도 합니다.</p></li>
+<li><p>이후 기능 개발이 완료되면, feature branch를 <strong>merge</strong>하여 main branch에 변경 사항을 통합합니다.</p></li>
+</ul>
+<p>그림 속 빨간 화살표(<strong>before merge</strong>)는 병합 전의 시점을 나타냅니다. 이처럼 Git의 branch 구조를 활용하면, 여러 명이 동시에 다른 작업을 진행해도 충돌을 최소화하며 각각의 작업을 독립적으로 수행하고, 최종적으로 main branch로 병합하여 전체 프로젝트에 반영할 수 있습니다.</p>
+<p><a href="https://www.reddit.com/r/git/comments/ziqpcs/merge_best_practices/"><img src="images/merge-best-practices-v0-yo6f0hx3m95a1.webp" class="img-fluid"></a></p>
+<p>이러한 branch들이 파생시키고 main으로 병합하는 Git 명령어들은 다음과 같습니다.</p>
+<p>이러한 branch들을 파생시키고 main으로 병합하기 위해서는, 보통 <strong><code>git branch</code></strong>, <strong><code>git checkout</code></strong>, <strong><code>git merge</code></strong> 등의 명령어가 사용됩니다. 예를 들어, **<code>git branch feature</code>**를 통해 새 브랜치를 생성하고, **<code>git checkout feature</code>**로 해당 브랜치로 전환하여 작업한 뒤, 작업이 완료되면 **<code>git checkout main</code>**으로 돌아와 **<code>git merge feature</code>**를 통해 main 브랜치로 병합할 수 있습니다.</p>
+</section>
+<section id="git-원격저장소" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="git-원격저장소"><span class="header-section-number">4</span> Git 원격저장소</h2>
+<p>신입 연구회 회원 여러분도 이제 Git 저장소의 기본 개념을 이해하셨으리라 생각합니다. 다음 단계로는 원격 저장소(Remote Repository)의 개념을 익히는 것이 중요합니다. 협업을 위해서는 클라우드 상에 프로젝트 파일이 공유되어야 하는데, 이는 여러분의 로컬에 있는 <strong>.git 디렉토리</strong>와 유사한 저장소가 중앙에 위치해 있다고 생각하면 이해하기 쉽습니다.</p>
+<p>예를 들어, GitHub, GitLab, Bitbucket과 같은 플랫폼이 대표적인 원격 저장소입니다. 이들 플랫폼은 로컬 저장소에서 작업한 내용을 중앙 저장소에 업로드(<strong>git push</strong>)하거나, 다른 사람이 작업한 최신 변경 사항을 다운로드(<strong>git pull</strong>)하는 방식으로 협업을 지원합니다.</p>
+<p><a href="https://geo-python-site.readthedocs.io/en/2018.1/lessons/L2/git-basics.html"><img src="images/Git_illustration.webp" class="img-fluid"></a></p>
+<p>이처럼 원격 저장소는 개인의 <strong>.git 디렉토리</strong>와 동일한 기능을 수행하는 중앙 저장소 역할을 하며, 협업 환경에서 필수적인 도구로 활용됩니다. 초보자들은 협업의 기회가 사실상 없겠지만, 원격저장소는 최소한 클라우드 백업 역할도 하게 됩니다. (저자의 경우는 연구실 PC와 노트북을 오가며 RStudio 프로젝트를 진행하고 있는데, 동기화를 원격저장소를 거쳐서 하고 있습니다.)<br>
+</p>
+</section>
+<section id="핵심개념-이외의-사항들" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="핵심개념-이외의-사항들"><span class="header-section-number">5</span> 핵심개념 이외의 사항들</h2>
+<p>실제 Git을 사용하다 보면, 핵심 개념에서 다룬 명령어들만으로 모든 상황을 해결할 수 없다는 점을 당연히 경험하게 됩니다. 예를 들어, 로컬 저장소와 원격 저장소 간의 파일 버전이 일치하지 않아 강제로 동기화해야 하는 경우가 발생할 수 있고, branch의 히스토리가 달라 병합이 원활하게 이루어지지 않는 상황도 종종 있습니다.</p>
+<p>이러한 문제들에 직면했을 때는, 기본 개념을 넘어 추가적인 학습이 필요하며, ChatGPT와 같은 도구를 활용하여 문제 해결 방법을 찾아보시는 것을 추천드립니다.</p>
+</section>
+<section id="추가로-공부하면-좋은-사이트" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="추가로-공부하면-좋은-사이트"><span class="header-section-number">6</span> 추가로 공부하면 좋은 사이트</h2>
+<p>Git 초기 설정에 앞서 Git에서 사용되는 개념과 용어를 이해하는 것이 좋습니다. Git 공식사이트의 한글매뉴얼(<a href="https://git-scm.com/book/ko/v2/%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0-Git-%ea%b8%b0%ec%b4%88" class="uri">https://git-scm.com/book/ko/v2/%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0-Git-%ea%b8%b0%ec%b4%88</a>)을 학습하시길 추천합니다.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script src="https://utteranc.es/client.js" repo="BenKorea/utterances-comments" issue-term="pathname" theme="preferred-color-scheme" crossorigin="anonymous" async="">
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

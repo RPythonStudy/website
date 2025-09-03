@@ -1,0 +1,11 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  navbar:
+    right:
+      - href: ./en
+        text: English
+
+lang: ko-KR

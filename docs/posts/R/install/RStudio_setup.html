@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="BenKorea feat. ChatGPT">
+<meta name="description" content="RStudio 설치 및 설정">
+
+<title>RStudio – RPythonStudy</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-c8a01258441097d17a999774078ed729.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../RPythonStudy_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">RPythonStudy</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../posts/R/introduction_to_R.html" aria-current="page"> 
+<span class="menu-text">R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Python/introduction_to_Python.html"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Quarto/introduction_to_Quarto.html"> 
+<span class="menu-text">Quarto</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/statistics/introduction_to_statistics.html"> 
+<span class="menu-text">Statistics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rpythonstudy.shinyapps.io/Quiz/"> 
+<span class="menu-text">Quiz</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Resources/introduction_to_resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/tools/introduction_to_tools.html"> 
+<span class="menu-text">Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Concepts/introduction_to_Concepts.html"> 
+<span class="menu-text">Concepts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/about/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../.././en"> 
+<span class="menu-text">English</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/RPythonStudy/website" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/R/install/R_setup.html">설치</a></li><li class="breadcrumb-item"><a href="../../../posts/R/install/RStudio_setup.html">RStudio</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/R/install/R_setup.html">설치</a></li><li class="breadcrumb-item"><a href="../../../posts/R/install/RStudio_setup.html">RStudio</a></li></ol></nav>
+      <h1 class="title">RStudio</h1>
+                  <div>
+        <div class="description">
+          RStudio 설치 및 설정
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">RStudio</div>
+                <div class="quarto-category">install</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">저자</div>
+      <div class="quarto-title-meta-contents">
+               <p>BenKorea feat. ChatGPT </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">공개</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2024년 5월 6일</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">2025년 9월 3일</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/introduction_to_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduciton</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">설치</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/install/R_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 설치</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/install/Rtools_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rtools 설치</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/install/RStudio_setup.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">RStudio</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">문법</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/syntax/R_syntax.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 문법</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/syntax/RegEx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RegEx</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/syntax/regular_expression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regular Expression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/syntax/basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Basics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">전처리</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/preprocessing/outlier_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">연속형변수에서 이상치검출</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">데이터셋</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/dataset/built_in_dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Built-in Data sets in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">함수</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/function/Chi_square_test_in_R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chi-square test in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://rpythongroup.github.io/Survival_Exercise/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R 생존분석 연습</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Shiny</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/shiny/shiny_example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Shiny Application Example</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/shiny/Hands_on_Shiny_website.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hands-on Shiny API Application</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">병리보고서파싱</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/R/parsing/patho_report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">병리보고서파싱</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#r-통합개발환경-선택" id="toc-r-통합개발환경-선택" class="nav-link active" data-scroll-target="#r-통합개발환경-선택"><span class="header-section-number">1</span> R 통합개발환경 선택</a></li>
+  <li><a href="#window-환경에서의-설치" id="toc-window-환경에서의-설치" class="nav-link" data-scroll-target="#window-환경에서의-설치"><span class="header-section-number">2</span> Window 환경에서의 설치</a>
+  <ul class="collapse">
+  <li><a href="#실행파일-다운로드" id="toc-실행파일-다운로드" class="nav-link" data-scroll-target="#실행파일-다운로드"><span class="header-section-number">2.1</span> 실행파일 다운로드</a></li>
+  <li><a href="#설치경로" id="toc-설치경로" class="nav-link" data-scroll-target="#설치경로"><span class="header-section-number">2.2</span> 설치경로</a></li>
+  </ul></li>
+  <li><a href="#window환경에서의-고유설정" id="toc-window환경에서의-고유설정" class="nav-link" data-scroll-target="#window환경에서의-고유설정"><span class="header-section-number">3</span> Window환경에서의 고유설정</a>
+  <ul class="collapse">
+  <li><a href="#r-경로설정" id="toc-r-경로설정" class="nav-link" data-scroll-target="#r-경로설정"><span class="header-section-number">3.1</span> R 경로설정</a></li>
+  <li><a href="#r-버전변경" id="toc-r-버전변경" class="nav-link" data-scroll-target="#r-버전변경"><span class="header-section-number">3.2</span> R 버전변경</a></li>
+  <li><a href="#rstudio-작업폴더" id="toc-rstudio-작업폴더" class="nav-link" data-scroll-target="#rstudio-작업폴더"><span class="header-section-number">3.3</span> RStudio 작업폴더</a></li>
+  </ul></li>
+  <li><a href="#ubuntuwsl2-환경에서-rstudio-server-설치" id="toc-ubuntuwsl2-환경에서-rstudio-server-설치" class="nav-link" data-scroll-target="#ubuntuwsl2-환경에서-rstudio-server-설치"><span class="header-section-number">4</span> Ubuntu/WSL2 환경에서 RStudio Server 설치</a>
+  <ul class="collapse">
+  <li><a href="#주의사항" id="toc-주의사항" class="nav-link" data-scroll-target="#주의사항"><span class="header-section-number">4.1</span> 주의사항</a></li>
+  <li><a href="#설치안내" id="toc-설치안내" class="nav-link" data-scroll-target="#설치안내"><span class="header-section-number">4.2</span> 설치안내</a></li>
+  <li><a href="#rstudio-server-고유설정" id="toc-rstudio-server-고유설정" class="nav-link" data-scroll-target="#rstudio-server-고유설정"><span class="header-section-number">4.3</span> RStudio server 고유설정</a></li>
+  </ul></li>
+  <li><a href="#macos환경에서의-설치" id="toc-macos환경에서의-설치" class="nav-link" data-scroll-target="#macos환경에서의-설치"><span class="header-section-number">5</span> macOS환경에서의 설치</a>
+  <ul class="collapse">
+  <li><a href="#macos-폴더구조" id="toc-macos-폴더구조" class="nav-link" data-scroll-target="#macos-폴더구조"><span class="header-section-number">5.1</span> MacOS 폴더구조</a></li>
+  <li><a href="#macos-설치-경로" id="toc-macos-설치-경로" class="nav-link" data-scroll-target="#macos-설치-경로"><span class="header-section-number">5.2</span> macOS 설치 경로</a></li>
+  <li><a href="#작업폴더-설정-1" id="toc-작업폴더-설정-1" class="nav-link" data-scroll-target="#작업폴더-설정-1"><span class="header-section-number">5.3</span> 작업폴더 설정</a></li>
+  </ul></li>
+  <li><a href="#os-공통-rstudio-설정" id="toc-os-공통-rstudio-설정" class="nav-link" data-scroll-target="#os-공통-rstudio-설정"><span class="header-section-number">6</span> OS 공통 RStudio 설정</a>
+  <ul class="collapse">
+  <li><a href="#version-control-interface" id="toc-version-control-interface" class="nav-link" data-scroll-target="#version-control-interface"><span class="header-section-number">6.1</span> Version Control Interface</a></li>
+  </ul></li>
+  <li><a href="#독립적-패키지관리-renv" id="toc-독립적-패키지관리-renv" class="nav-link" data-scroll-target="#독립적-패키지관리-renv"><span class="header-section-number">7</span> 독립적 패키지관리: <code>renv</code></a></li>
+  <li><a href="#r-rstudio-프로젝트-폴더관리" id="toc-r-rstudio-프로젝트-폴더관리" class="nav-link" data-scroll-target="#r-rstudio-프로젝트-폴더관리"><span class="header-section-number">8</span> R &amp; RStudio 프로젝트 폴더관리</a>
+  <ul class="collapse">
+  <li><a href="#윈도우" id="toc-윈도우" class="nav-link" data-scroll-target="#윈도우"><span class="header-section-number">8.1</span> 윈도우</a></li>
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos"><span class="header-section-number">8.2</span> MacOS</a></li>
+  </ul></li>
+  <li><a href="#rstudio-프로젝트-관리" id="toc-rstudio-프로젝트-관리" class="nav-link" data-scroll-target="#rstudio-프로젝트-관리"><span class="header-section-number">9</span> RStudio 프로젝트 관리</a>
+  <ul class="collapse">
+  <li><a href="#rstudio-프로젝트의-필요성과-활용" id="toc-rstudio-프로젝트의-필요성과-활용" class="nav-link" data-scroll-target="#rstudio-프로젝트의-필요성과-활용"><span class="header-section-number">9.1</span> RStudio 프로젝트의 필요성과 활용</a></li>
+  <li><a href="#rstudio-프로젝트-생성-방법" id="toc-rstudio-프로젝트-생성-방법" class="nav-link" data-scroll-target="#rstudio-프로젝트-생성-방법"><span class="header-section-number">9.2</span> RStudio 프로젝트 생성 방법</a></li>
+  <li><a href="#rstudio-프로젝트의-활용" id="toc-rstudio-프로젝트의-활용" class="nav-link" data-scroll-target="#rstudio-프로젝트의-활용"><span class="header-section-number">9.3</span> RStudio 프로젝트의 활용</a></li>
+  </ul></li>
+  <li><a href="#매뉴얼" id="toc-매뉴얼" class="nav-link" data-scroll-target="#매뉴얼"><span class="header-section-number">10</span> 매뉴얼</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="r-통합개발환경-선택" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="r-통합개발환경-선택"><span class="header-section-number">1</span> R 통합개발환경 선택</h2>
+<p>RStudio와 VS Code는 모두 각자의 특징을 가진 R 프로그래밍을 위한(할수 있는) 통합 개발 환경(IDE)입니다.</p>
+<p>RStudio는 R 코딩에 전용화된 통합개발환경으로 R 언어와 관련된 다양한 기능을 직관적으로 제공하며, R 코드 작성, 데이터 시각화, 리포팅 등에 최적화되어 있습니다.</p>
+<p>반면에 VS Code는 다양한 프로그래밍 언어를 지원하며, Marketplace에서 제공하는 확장 기능을 통해 개발자가 필요한 기능을 추가할 수 있는 유연성을 가지고 있습니다. VS Code는 경량화된 성능과 통합 터미널 기능을 제공하여 다양한 개발 환경에서 활용될 수 있지만, R에 특화된 기능은 상대적으로 부족할 수 있습니다.</p>
+<p>연구회에서는 RStudio를 우선 추천합니다.</p>
+</section>
+<section id="window-환경에서의-설치" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="window-환경에서의-설치"><span class="header-section-number">2</span> Window 환경에서의 설치</h2>
+<section id="실행파일-다운로드" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="실행파일-다운로드"><span class="header-section-number">2.1</span> 실행파일 다운로드</h3>
+<p>최신버전의 RStudio 실행파일을 [공식 다운로드 사이트](<a href="https://posit.co/downloads/" class="uri">https://posit.co/downloads/</a>){target=“_blank”}에서 다운로드 후 설치합니다.</p>
+</section>
+<section id="설치경로" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="설치경로"><span class="header-section-number">2.2</span> 설치경로</h3>
+<ol type="1">
+<li>프로그램 설치 폴더 <code>C:\Program Files\RStudio</code> RStudio의 실행 파일 및 주요 프로그램 파일이 저장되는 위치입니다. 프로그램 업데이트 시 이 폴더 내의 파일이 변경됩니다.</li>
+<li>사용자별 설정 폴더 <code>C:\Users\사용자명\AppData\Local\RStudio</code> 개별 사용자의 RStudio 설정을 저장합니다. UI 레이아웃, 최근 사용한 프로젝트, 마지막으로 연 코드 파일 등의 정보를 포함합니다.</li>
+<li>로그 파일 <code>C:\Users\사용자명\AppData\Local\RStudio\log</code> RStudio의 로그 파일이 저장되는 위치입니다. 이 폴더에는 RStudio의 실행 로그가 저장됩니다.</li>
+<li>전역 설정 폴더 (모든 사용자 적용) <code>C:\ProgramData\RStudio</code></li>
+</ol>
+</section>
+</section>
+<section id="window환경에서의-고유설정" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="window환경에서의-고유설정"><span class="header-section-number">3</span> Window환경에서의 고유설정</h2>
+<section id="r-경로설정" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="r-경로설정"><span class="header-section-number">3.1</span> R 경로설정</h3>
+<p>설치 이후 RStudio을 실행한 후 상단의 탭매뉴 중 Tools 메뉴 &gt; Global Options… &gt; R General &gt; Basic 탭에서 아래의 예시와 같이 설치하신 최신버전의 R 실행경로를 선택해 주시면 됩니다.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R version: example</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">64</span><span class="sc">-</span>bit] C<span class="sc">:</span>\R\R<span class="dv">-4</span>.<span class="fl">4.3</span><span class="er">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="r-버전변경" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="r-버전변경"><span class="header-section-number">3.2</span> R 버전변경</h3>
+<p>지난 버전의 R의 만든 프로젝트를 해당 버전으로 실행하고 싶다면 위의 R 경로설정 메뉴에서 해당 버전의 R 실행파일의 경로를 지정해주시면 됩니다.)</p>
+</section>
+<section id="rstudio-작업폴더" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="rstudio-작업폴더"><span class="header-section-number">3.3</span> RStudio 작업폴더</h3>
+<p>Default working directory (when not in a project)지정은 아래의 예시와 같이 프로젝트를 관리하는 상위 폴더를 추천 드립니다.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Default working directory: example</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Projects<span class="er">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="ubuntuwsl2-환경에서-rstudio-server-설치" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="ubuntuwsl2-환경에서-rstudio-server-설치"><span class="header-section-number">4</span> Ubuntu/WSL2 환경에서 RStudio Server 설치</h2>
+<section id="주의사항" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="주의사항"><span class="header-section-number">4.1</span> 주의사항</h3>
+<ul>
+<li>Ubuntu와는 다르게 WSL2에 설치된 우분투는 원칙적으로 GUI를 지원하지 않습니다. 따라서 RStudio Desktop을 설치하여도 정상작동이 되지 않으며, WSL2에서 GUI가 가능하도록 설정하기가 어려워 보이고 사양에 따라서는 사실상 불가능해 보이기도 합니다.</li>
+<li>따라서 연구회에서는 RStudio server를 설치하여 웹 브라우저를 통해 접속하는 것을 추천합니다. (단 한번에 하나의 server만 구동되는 제한이 있으며 유료버전에서는 가능하다 하지만 이것 때문에 구매할 필요는 없어 보입니다.)</li>
+</ul>
+</section>
+<section id="설치안내" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="설치안내"><span class="header-section-number">4.2</span> 설치안내</h3>
+<p><a href="https://posit.co/download/rstudio-server/" target="_blank">공식사이트</a>를 참고하였습니다.</p>
+<section id="deb-형태의-설치파일을-위한-gdebi-설치" class="level4" data-number="4.2.1">
+<h4 data-number="4.2.1" class="anchored" data-anchor-id="deb-형태의-설치파일을-위한-gdebi-설치"><span class="header-section-number">4.2.1</span> deb 형태의 설치파일을 위한 gdebi 설치</h4>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Ubuntu Bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="sc">-</span>get install gdebi<span class="sc">-</span>core</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="rstudio-server-설치파일-다운로드" class="level4" data-number="4.2.2">
+<h4 data-number="4.2.2" class="anchored" data-anchor-id="rstudio-server-설치파일-다운로드"><span class="header-section-number">4.2.2</span> RStudio server 설치파일 다운로드</h4>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Ubuntu Bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wget https<span class="sc">:</span><span class="er">//</span>download2.rstudio.org<span class="sc">/</span>server<span class="sc">/</span>jammy<span class="sc">/</span>amd64<span class="sc">/</span>rstudio<span class="sc">-</span>server<span class="dv">-2024</span>.<span class="fl">12.1</span><span class="dv">-563</span><span class="sc">-</span>amd64.deb</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="rstudio-server-설치" class="level4" data-number="4.2.3">
+<h4 data-number="4.2.3" class="anchored" data-anchor-id="rstudio-server-설치"><span class="header-section-number">4.2.3</span> RStudio server 설치</h4>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Ubuntu Bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sudo gdebi rstudio<span class="sc">-</span>server<span class="dv">-2024</span>.<span class="fl">12.1</span><span class="dv">-563</span><span class="sc">-</span>amd64.deb</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="rstudio-server-실행" class="level4" data-number="4.2.4">
+<h4 data-number="4.2.4" class="anchored" data-anchor-id="rstudio-server-실행"><span class="header-section-number">4.2.4</span> RStudio server 실행</h4>
+<ul>
+<li>GUI를 사용하지 않고 웹브라우저로 실행하게 됩니다.</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>인터넷창</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>http<span class="sc">:</span><span class="er">//</span>localhost<span class="sc">:</span><span class="dv">8787</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="로그인-정보" class="level4" data-number="4.2.5">
+<h4 data-number="4.2.5" class="anchored" data-anchor-id="로그인-정보"><span class="header-section-number">4.2.5</span> 로그인 정보</h4>
+<ul>
+<li>WSL2 Ubuntu의 사용자명과 비밀번호로 로그인하도록 미리 설정되어 있습니다.
+<ul>
+<li>사용자명: 현재 Ubuntu 사용자명 (예: ben)</li>
+<li>비밀번호: WSL2 Ubuntu 로그인 비밀번호</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="rstudio-server-고유설정" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="rstudio-server-고유설정"><span class="header-section-number">4.3</span> RStudio server 고유설정</h3>
+<section id="작업폴더-설정" class="level4" data-number="4.3.1">
+<h4 data-number="4.3.1" class="anchored" data-anchor-id="작업폴더-설정"><span class="header-section-number">4.3.1</span> 작업폴더 설정</h4>
+<p>설치 이후 RStudio server를 실행한 후 상단의 탭매뉴 중 Tools 메뉴 &gt; Global Options… &gt; R General &gt; Basic 탭에서 default working directory (when not in a project)지정은 아래의 예시와 같이 프로젝트를 관리하는 상위 폴더를 추천 드립니다.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Default working directory: example</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">~</span><span class="er">/</span>projects</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<ul>
+<li>~의 의미는 사용자 홈 디렉토리를 의미합니다.</li>
+</ul>
+</section>
+<section id="github-copilot-활성화-방법" class="level4" data-number="4.3.2">
+<h4 data-number="4.3.2" class="anchored" data-anchor-id="github-copilot-활성화-방법"><span class="header-section-number">4.3.2</span> Github Copilot 활성화 방법</h4>
+<ul>
+<li>rstudio server 환경에서 github copilot 을 사용하려고 보니 아래처럼 Github Copilot integration has been disabled by the administrator 라는 문구가 떴있습니다.</li>
+<li>만약 Copilot 유로구독을 하시고 있다면, Rstudio Server나 Posit Workbench에서는 관리자 설정 이후 사용이 가능하다고 합니다.</li>
+</ul>
+<section id="설정파일이-있는-폴더로-이동" class="level5" data-number="4.3.2.1">
+<h5 data-number="4.3.2.1" class="anchored" data-anchor-id="설정파일이-있는-폴더로-이동"><span class="header-section-number">4.3.2.1</span> <strong>설정파일이 있는 폴더로 이동</strong></h5>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cd <span class="sc">/</span>etc<span class="sc">/</span>rstudio<span class="sc">/</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="설정파일을-nano-편집기로-열기" class="level5" data-number="4.3.2.2">
+<h5 data-number="4.3.2.2" class="anchored" data-anchor-id="설정파일을-nano-편집기로-열기"><span class="header-section-number">4.3.2.2</span> 설정파일을 nano 편집기로 열기</h5>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>bash</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sudo nano rsession.conf</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="설정파일에-아래의-내용-추가" class="level5" data-number="4.3.2.3">
+<h5 data-number="4.3.2.3" class="anchored" data-anchor-id="설정파일에-아래의-내용-추가"><span class="header-section-number">4.3.2.3</span> 설정파일에 아래의 내용 추가</h5>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>rsession.conf</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>copilot<span class="sc">-</span>enabled<span class="ot">=</span><span class="dv">1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="macos환경에서의-설치" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="macos환경에서의-설치"><span class="header-section-number">5</span> macOS환경에서의 설치</h2>
+<section id="macos-폴더구조" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="macos-폴더구조"><span class="header-section-number">5.1</span> MacOS 폴더구조</h3>
+<ul>
+<li>저자는 MacOS를 사용하지 않아서 아래의 내용을 오류가 없는지 사용자가 직접 확인해 보시길 권장합니다.</li>
+<li>macOS의 일반적인 폴더구조는 아래와 같습니다.</li>
+</ul>
+<div id="fig-DirectoryStructureMacOS" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-DirectoryStructureMacOS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-DirectoryStructureMacOS"><code>/
+├── Applications     # 애플리케이션 폴더
+├── Library          # 시스템 전역 라이브러리 및 설정
+├── System           # 운영체제 핵심 파일
+├── Users            # 사용자 계정 폴더
+├── Volumes          # 마운트된 외장 디스크 및 네트워크 드라이브
+├── bin              # 기본 명령어 실행 파일 (예: ls, cp, mv)
+├── sbin             # 관리자용 명령어 실행 파일 (예: shutdown, reboot)
+├── etc              # 시스템 설정 파일
+├── dev              # 장치 파일 (예: 디스크, USB, 터미널)
+├── tmp              # 임시 파일 저장 폴더
+├── var              # 로그 및 캐시 파일
+├── usr              # 추가 명령어 및 라이브러리
+└── opt              # 서드파티 소프트웨어 패키지 (예: Homebrew 설치 파일)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-DirectoryStructureMacOS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: macOS의 디렉토리 구조
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="macos-설치-경로" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="macos-설치-경로"><span class="header-section-number">5.2</span> macOS 설치 경로</h3>
+<ol type="1">
+<li>프로그램 설치폴더 <code>/Applications/RStudio.app</code> 일반적인 macOS 애플리케이션처럼 응용 프로그램 폴더 (/Applications) 에 설치됩니다. RStudio를 실행하려면 이 폴더 내의 RStudio.app을 실행하면 됩니다.</li>
+<li>사용자별 설정 폴더 <code>~/Library/Application Support/RStudio</code> 개별 사용자의 RStudio 설정을 저장합니다. UI 레이아웃, 최근 사용한 프로젝트, 마지막으로 연 코드 파일 등의 정보를 포함합니다.</li>
+<li>설정 및 환경 변수 파일 <code>~/.config/rstudio</code> RStudio의 설정 파일이 저장되는 위치입니다. 이 폴더에는 RStudio의 환경 변수 및 사용자 지정 설정이 저장됩니다.</li>
+<li>로그 파일 <code>~/Library/Logs/RStudio</code> RStudio의 로그 파일이 저장되는 위치입니다. 이 폴더에는 RStudio의 실행 로그가 저장됩니다. 5. 전역 설정 폴더 (모든 사용자 적용) <code>/Library/Application Support/RStudio</code> 모든 사용자에게 적용되는 RStudio 설정을 저장합니다. 이 폴더에는 RStudio의 전역 설정 파일이 저장됩니다.</li>
+</ol>
+</section>
+<section id="작업폴더-설정-1" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="작업폴더-설정-1"><span class="header-section-number">5.3</span> 작업폴더 설정</h3>
+<p>설치 이후 RStudio를 실행한 후 상단의 탭매뉴 중 Tools 메뉴 &gt; Global Options… &gt; R General &gt; Basic 탭에서 default working directory (when not in a project)지정은 아래의 예시와 같이 프로젝트를 관리하는 상위 폴더를 추천 드립니다.</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Default working directory: example</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>Users<span class="sc">/</span>사용자명<span class="sc">/</span>Projects<span class="sc">/</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="os-공통-rstudio-설정" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="os-공통-rstudio-설정"><span class="header-section-number">6</span> OS 공통 RStudio 설정</h2>
+<section id="version-control-interface" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="version-control-interface"><span class="header-section-number">6.1</span> Version Control Interface</h3>
+<p>(RStudio에서는 아래의 <a href="#fig-GitConfiguration" class="quarto-xref">그림&nbsp;2</a> 과 같이 git와 같은 version control interface 사용여부에 대한 설정이 있으며 이를 check 해야 새로운 프로젝트를 만들 때 git 사용여부가 옵션으로 선택이 가능해집니다. )</p>
+<div id="fig-GitConfiguration" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-GitConfiguration-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/git설정.JPG" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-GitConfiguration-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: RStudio에서 git 사용여부 설정
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="독립적-패키지관리-renv" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="독립적-패키지관리-renv"><span class="header-section-number">7</span> 독립적 패키지관리: <code>renv</code></h2>
+<p>원래 R에서 패키지는 해당버전 R의 설치폴더 하부의 library 폴더에 설치됩니다. <code>renv</code>는 R 프로젝트에서 패키지 의존성을 관리하기 위해 설계된 도구로써, renv를 설치하고 활성화하면 해당 프로젝트 폴더 하부에 renv 폴더가 만들어지고, 그 하부에 패키지를 설치하게 됩니다. 또한 설치된 패키지들의 정보를 renv.lock 파일에 관리하게 됩니다. 이러한 방법으로 R에서는 프로젝트별로 패키지를 관리할 수 있으므로 필자를 이를 추천합니다.</p>
+<p>RStudio에서 새로운 프로젝트를 생성할 때 renv 사용여부를 check하면 자동으로 설정됩니다.</p>
+<p>사용법에 대해서는 <a href="https://rstudio.github.io/renv/articles/renv.html" class="uri">https://rstudio.github.io/renv/articles/renv.html</a> 참고하시길 바랍니다.</p>
+</section>
+<section id="r-rstudio-프로젝트-폴더관리" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="r-rstudio-프로젝트-폴더관리"><span class="header-section-number">8</span> R &amp; RStudio 프로젝트 폴더관리</h2>
+<section id="윈도우" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="윈도우"><span class="header-section-number">8.1</span> 윈도우</h3>
+<p>윈도우의 경우 Project 폴더를 <code>C:\Projects</code> 하위폴더에 R 버전과 프로젝트명을 폴더명으로 하여 관리하는 것을 추천합니다.</p>
+<div id="fig-ProjectDirectory" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ProjectDirectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-ProjectDirectory"><code>C:\Projects\
+      └─ Rxyz-Project_Name</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ProjectDirectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3: Recommended nomenclautue for Project directory name on Windows
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="macos" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="macos"><span class="header-section-number">8.2</span> MacOS</h3>
+<p>MacOS의 경우 Project 폴더를 <code>/Users/사용자명/Projects</code> 하위폴더에 R 버전과 프로젝트명을 폴더명으로 하여 관리하는 것을 추천합니다.</p>
+<div id="fig-ProjectDirectoryMacOS" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ProjectDirectoryMacOS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-ProjectDirectoryMacOS"><code>/Users/사용자명/Projects/
+                    └─ Rxyz-Project_Name</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ProjectDirectoryMacOS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;4: Recommended nomenclautue for Project directory name on MacOS
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="rstudio-프로젝트-관리" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="rstudio-프로젝트-관리"><span class="header-section-number">9</span> RStudio 프로젝트 관리</h2>
+<section id="rstudio-프로젝트의-필요성과-활용" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="rstudio-프로젝트의-필요성과-활용"><span class="header-section-number">9.1</span> RStudio 프로젝트의 필요성과 활용</h3>
+<p>프로젝트를 폴더별로 정리하면 매우 유용하지만, 한발 더 나아가 <strong>RStudio에서 인지하는 프로젝트</strong>가 되면 많은 작업들에서 생산성을 높일 수 있습니다. 프로젝트 기능을 활용하면 <strong>작업 환경을 독립적으로 유지</strong>하고, <strong>자동으로 세션을 저장 및 복원</strong>할 수 있으며, <strong>경로 충돌 없이 데이터와 코드를 관리</strong>할 수 있습니다.</p>
+</section>
+<section id="rstudio-프로젝트-생성-방법" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="rstudio-프로젝트-생성-방법"><span class="header-section-number">9.2</span> RStudio 프로젝트 생성 방법</h3>
+<p>RStudio 실행 → File → New Project…<br>
+저장할 폴더 선택<br>
+- 새 폴더에 프로젝트 생성 (New Directory) - 기존 폴더에서 프로젝트 생성 (Existing Directory) - GitHub에서 프로젝트 가져오기 (Version Control)<br>
+프로젝트 이름 지정 후 Create Project 클릭<br>
+프로젝트를 생성하면 .Rproj 파일이 포함된 새로운 작업 환경이 설정됩니다.</p>
+</section>
+<section id="rstudio-프로젝트의-활용" class="level3" data-number="9.3">
+<h3 data-number="9.3" class="anchored" data-anchor-id="rstudio-프로젝트의-활용"><span class="header-section-number">9.3</span> RStudio 프로젝트의 활용</h3>
+<ul>
+<li><p>RStudio에서 프로젝트를 열면, 해당 폴더가 자동으로 작업 디렉토리(Working Directory) 가 됩니다.</p></li>
+<li><p>프로젝트를 닫으면 현재 열려 있는 파일, 변수 환경 등이 자동 저장됩니다.</p></li>
+<li><p>다시 열면 이전 상태가 그대로 복원되어 작업을 중단했다가 쉽게 이어갈 수 있음.</p></li>
+<li><p>RStudio가 어떤 프로젝트를 열고 있는지 혹은 어떤 프로젝트도 열고 있지 않은지는 좌측 상단에 표시됩니다. (<code>R442-RPythonStudy_Website - dev - RStudio</code>라고 표시되어 있으며 dev는 Git 버전관리시스템에서 사용할 목적으로 작성자가 부여한 branch 이름입니다.)</p></li>
+<li><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-3076892332.png" class="img-fluid figure-img"></p>
+<figcaption>RStudio 열린 프로젝트 표시</figcaption>
+</figure>
+</div></li>
+</ul>
+</section>
+</section>
+<section id="매뉴얼" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="매뉴얼"><span class="header-section-number">10</span> 매뉴얼</h2>
+<p>RStudio 매뉴얼은 개발사인 posit이 만든 <a href="https://docs.posit.co/ide/user/" class="uri">https://docs.posit.co/ide/user/</a>을 참고하시길 바랍니다.</p>
+<p>개발자들은 R을 command line interface로 사용하기 보다는 RStudio로 사용한다고 생각됩니다. 그러한 측면에서 R 사용법과 RStudio 사용법은 밀접하게 연계된 셈이며, 사용법에 대한 자료는 RStudio를 개발한 posit에서 만든 RSudio에 내장된 Tutorials가 있습니다. 링크를 타고들어가보면 Beginners, Intermediates, Experts 과정들이 있으므로 상황에 맞는 과정들을 선택해서 시작하면 좋습니다.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script src="https://utteranc.es/client.js" repo="BenKorea/utterances-comments" issue-term="pathname" theme="preferred-color-scheme" crossorigin="anonymous" async="">
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

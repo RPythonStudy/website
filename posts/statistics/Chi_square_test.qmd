@@ -1,0 +1,130 @@
+---
+title: "Chi-Square Test"
+description: "Statistics concept of Chi-Square test"
+author: "RPythonStudyGroup feat. ChatGPT"
+date: "October 04, 2024"
+date-modified: "October 04, 2024"
+categories:
+  - statistics
+  - Chi-Square
+  - Categoical Data
+---
+::: {.content-visible when-profile="ko"}
+## 역사
+
+카이제곱 검정(Chi-Square Test)은 영국의 통계학자 **칼 피어슨(Karl Pearson)**에 의해 1900년에 개발되었으며, **범주형 데이터**의 **관찰된 빈도**와 **기대되는 빈도** 간의 차이를 분석하여 두 변수 간에 **독립성** 또는 데이터가 특정 **이론적 분포에 적합한지**를 검증하는 통계적 방법입니다.
+
+## 통계량
+
+피어슨은 검정 통계량으로 각 셀에서 **관찰된 빈도**와 **기대값**의 차이를 구하고, 그 차이를 제곱하여 **절대값을 반영**했습니다. 그런 다음, **상대적인 비교**를 위해 이를 **기대값으로 나누어** 검정 통계량을 계산했습니다 @eq-ChiSquareStatistics.
+:::
+
+::: {.content-visible when-profile="en"}
+## History
+
+The Chi-Square Test was developed by the British statistician **Karl Pearson** in 1900. It is a statistical method that analyzes the difference between **observed frequencies** and **expected frequencies** of **categorical data** to test for **independence** between two variables or to determine if the data fits a specific **theoretical distribution**.
+
+## Statistics
+
+Pearson calculated the test statistic by taking the **difference** between the **observed frequency** and the **expected value** in each cell, **squaring** this difference to **reflect absolute values**, and then dividing it by the **expected value** to calculate the test statistic @eq-ChiSquareStatistics.
+:::
+
+$$
+\chi^2 = \sum \frac{(O_{ij} - E_{ij})^2}{E_{ij}}
+$$ {#eq-ChiSquareStatistics}
+
+::: {.content-visible when-profile="ko"}
+## 확률밀도함수 및 분포
+이로부터 유도된 확률밀도함수 @eq-Chi-Square-probability-density-function 및 그래프 @fig-ChiSquareDistribution 는 **자유도**에 따라 **다양한 형태**를 가지며, **자유도가 증가할수록** **정규분포**에 **근사**됩니다.
+:::
+
+::: {.content-visible when-profile="en"}
+## Probability Density Function and Distribution
+The derived probability density function @eq-Chi-Square-probability-density-function and the graph @fig-ChiSquareDistribution exhibit **various shapes** depending on the **degrees of freedom**, and as the **degrees of freedom increase**, it **approximates** the **normal distribution**.
+:::
+
+$$ f(x; k) = \frac{1}{2^{k/2} \Gamma(k/2)} x^{(k/2) - 1} e^{-x/2}, \quad x > 0 $$ {#eq-Chi-Square-probability-density-function}
+
+-   $k$ : degrees of freedom
+-   $Γ(k/2)$ : Gamma function
+-   $x$ : the value of the Chi-Square statistic
+-   $e$ : the base of the natural logarithm, approximately equal to 2.718.
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| label: fig-ChiSquareDistribution
+#| fig-cap: Comparison of Normal and Chi-Square Distributions with Different degrees of freedom
+#| 
+
+library(ggplot2)
+
+# x 값의 범위 설정
+x_vals <- seq(-4, 4, length.out = 1000)  # Z 분포에 사용할 x 값 (-4부터 4까지)
+x_vals_positive <- seq(0, 10, length.out = 1000)  # 카이제곱 분포에 사용할 x 값 (0부터 10까지)
+
+# Z 분포 (표준 정규분포)의 밀도 계산
+z_density <- dnorm(x_vals, mean = 0, sd = 1)
+
+# 자유도 1, 2, 3인 카이제곱 분포의 밀도 계산
+chisq1_density <- dchisq(x_vals_positive, df = 1)
+chisq2_density <- dchisq(x_vals_positive, df = 2)
+chisq3_density <- dchisq(x_vals_positive, df = 3)
+
+# 데이터프레임 생성 (Z 분포와 자유도 1, 2, 3인 카이제곱 분포)
+data <- data.frame(
+  x = c(x_vals, rep(x_vals_positive, 3)),  # Z 분포에는 x_vals 사용, 나머지에는 x_vals_positive 사용
+  density = c(z_density, chisq1_density, chisq2_density, chisq3_density),
+  Distribution = factor(rep(c("Z Distribution", "Chi-Square (df = 1)", 
+                              "Chi-Square (df = 2)", "Chi-Square (df = 3)"), 
+                            each = 1000))
+)
+
+# ggplot으로 분포 그리기
+ggplot(data, aes(x = x, y = density, color = Distribution)) +
+  geom_line(size = 1) +
+  labs(title = "Z and Chi-Square Distributions",
+       x = "x",
+       y = "Density") +
+  theme_minimal() +
+  ylim(0, 1) +  # Y축을 1까지만 제한
+  xlim(-4, 10) +  # X축을 -4에서 10까지 제한 (Z 분포는 음수와 양수, 나머지는 양수만 포함)
+  scale_color_manual(values = c("blue", "red", "green", "purple"))
+```
+::: {.content-visible when-profile="ko"}
+## 통계적 활용
+
+### 전제조건
+각 셀의 예상 빈도가 5 이상일 때 사용할 수 있습니다. 예상 빈도가 낮을 경우 카이제곱 검정의 근사치가 정확하지 않을 수 있습니다.
+
+### 독립성 검정
+
+카이제곱 검정은 **독립성 검정**에 널리 사용됩니다. 예를 들어, 두 변수 간의 관계가 **독립적**인지 여부를 확인하거나, **통계적으로 유의한 관계**가 있는지를 확인할 때 사용됩니다.
+
+### 적합도 검정
+
+카이제곱 검정은 **적합도 검정**에도 사용됩니다. 이는 **관측된 데이터**가 **이론적 분포**와 **일치하는지**를 확인하는 데 사용됩니다. 예를 들어, 주사위를 60번 던졌을 때 각 숫자가 나오는 빈도가 **균일한지**를 확인할 수 있습니다.
+
+## R에서의 카이스퀘어 검정
+
+아래의 림크를 참조하시길 바랍니다.
+:::
+
+::: {.content-visible when-profile="en"}
+## Statistical Applications
+
+### Assumptions
+
+The Chi-Square Test can be used when the **expected frequency** in each cell is **greater than or equal to 5**. If the expected frequency is low, the approximation of the Chi-Square Test may not be accurate.
+
+### Test of Independence
+
+The Chi-Square Test is widely used for **testing independence**. It is used to determine whether the relationship between two variables is **independent** or to ascertain if there is a **statistically significant relationship**.
+
+### Goodness of Fit Test
+
+The Chi-Square Test is also used for **goodness of fit tests**. This is used to determine if the **observed data** fits a **theoretical distribution**. For example, it can be used to check if the frequencies of each number when a die is rolled 60 times are **uniform**.
+
+## Chi-Square Test in R
+
+Please refer to the following link for more information.
+:::

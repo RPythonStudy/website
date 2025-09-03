@@ -1,0 +1,122 @@
+---
+title: "Chi-square test in R"
+description: "Brief introduction on basic statistics functions in R"
+author: "RPythonStudyGroup feat. ChatGPT"
+date: "July 17, 2024"
+date-modified: "October 14, 2024"
+categories:
+  - R
+  - Chi-square
+---
+
+:::: {.content-visible when-profile="ko"}
+## chisq.test
+
+### 설명
+
+-   Package stats version 4.4.1 
+-   R에서 chisq.test는 카이제곱(chi-squared) 교차표 검정과 적합성 검정(goodness-of-fit)을 모두 수행할 수 있도록 구현되어 있습니다. 이 함수의 R에서의 사용법은 매뉴얼(= ?chisq.test)를 통해 학습할 것을 추천합니다.
+-   다만 아래는 차후 기억을 위해 기록한 것임을 참고하시길 바랍니다.
+
+### 사용법
+
+-   chisq.test(x, y = NULL, correct = TRUE, p = rep(1/length(x), length(x)), rescale.p = FALSE, simulate.p.value = FALSE, B = 2000)
+
+### 인자 (Argument)
+
+-   x: 숫자형 벡터 또는 행렬. x와 y는 모두 factor로 지정할 수도 있습니다.
+-   y: 숫자형 벡터; x가 행렬인 경우 무시됩니다. x가 factor인 경우, y는 같은 길이의 factor이어야 합니다.
+-   correct: 논리값으로, 2x2 테이블에서 검정 통계량을 계산할 때 연속성 수정을 적용할지 여부를 나타냅니다. 연속성 수정은 모든 \|O - E\| 차이에서 1/2을 뺍니다. simulate.p.value = TRUE인 경우에는 수정이 적용되지 않습니다.
+
+::: {.callout-important title="연속성 수정의 적용기준은..." collapse="true" appearance="minimal"}
+-   과거에는 2x2 분할표에서 셀의 기대값이 5보다 작을 경우 Yates의 연속성 수정(Yates' continuity correction)을 적용했습니다.
+- 하지만, 최근에는 작은 셀 빈도에 대해 Fisher의 정확 검정(Fisher's exact test)을 주로 적용하고 있습니다.
+:::
+
+-   p: x와 같은 길이의 확률 벡터입니다. p의 어떤 항목이라도 음수일 경우 오류가 발생합니다.
+
+::: {.callout-note title="p 인자는 적합성 검정에 사용되며 ..." collapse="true" appearance="minimal"} 
+-   p 인자는 적합성 검정(goodness-of-fit test)을 수행할 때 기대 확률을 지정하는 데 사용됩니다.
+-   기본적으로 p는 주어지지 않으면, 각 범주가 동일한 확률을 가진다고 가정합니다. 
+-   즉, 기본값은 rep(1/length(x), length(x))로 설정되어, 모든 범주에 동일한 확률을 할당합니다.
+-   만약 각 범주가 서로 다른 이론적 확률을 가진다고 가정할 때, 해당 확률을 벡터로 명시해야 합니다. 
+-   예를 들어, 범주 A, B, C가 각각 40%, 30%, 30%의 확률을 가진다고 가정한다면, p = c(0.4, 0.3, 0.3)로 설정할 수 있습니다. 
+:::
+
+-   rescale.p: 논리 스칼라; TRUE인 경우 p가 1로 합계될 수 있도록 재조정됩니다. FALSE이고 p의 합이 1이 아닌 경우 오류가 발생합니다.
+
+::: {.callout-note title="p 인자의 합이 1이 되도록 ..." collapse="true" appearance="minimal"}
+-   p 확률인자는 원칙적으로 합이 1이 되어야 합니다. 
+-   만약 사용자가 입력한 p 값의 합이 1이 아니고 rescale.p를 TRUE로 설정하였다면 p 값을 재조정하여 합이 1이 되도록 합니다.
+:::
+
+-   simulate.p.value: 논리값으로, p-값을 몬테카를로 시뮬레이션으로 계산할지 여부를 나타냅니다.
+
+-   B: 몬테카를로 검정에서 사용할 복제 횟수를 지정하는 정수입니다.
+
+::: {.callout-note title="몬테카를로 시뮬레이션 하는 이유는..." collapse="true" appearance="minimal"}
+-   몬테카를로 시뮬레이션을 통해 p-값을 계산할 수 있도록 하는 옵션입니다. 
+-   이 옵션은 기본적으로 FALSE로 설정되어 있지만, TRUE로 설정하면 p-값을 직접적으로 계산하는 대신 랜덤 샘플링을 통해 추정하게 됩니다. 
+-   몬테카를로 시뮬레이션은 무작위로 데이터를 샘플링하고, 각 샘플에 대해 카이제곱 검정 통계량을 계산하여 추정된 분포를 기반으로 p-값을 산출합니다. 
+-   시뮬레이션에서 사용할 복제 수를 지정하는 정수입니다. 기본값은 2000이며, 더 높은 정확도를 원할 경우 복제 수를 증가시킬 수 있습니다. 
+-   예를 들어, B = 10000으로 설정하면 더 정밀한 p-값을 얻을 수 있습니다. 
+-   몬테카를로 시뮬레이션은 계산 비용이 크므로 매우 큰 데이터셋에서 사용하면 시간이 오래 걸릴 수 있습니다.
+:::
+::::
+
+:::: {.content-visible when-profile="en"}
+
+## chisq.test
+
+### Description
+
+-   Package stats version 4.4.1
+-   In R, chisq.test is implemented to perform both chi-squared contingency table tests and goodness-of-fit tests. It is recommended to learn how to use this function in R through the manual (= ?chisq.test).
+-   However, the following is recorded for future reference.
+
+### Usage
+
+-   chisq.test(x, y = NULL, correct = TRUE, p = rep(1/length(x), length(x)), rescale.p = FALSE, simulate.p.value = FALSE, B = 2000)
+
+### Arguments
+
+-   x: a numeric vector or matrix. Both x and y can be specified as factors.
+-   y: a numeric vector; ignored if x is a matrix. If x is a factor, y must be a factor of the same length.
+-   correct: a logical indicating whether to apply continuity correction when calculating the test statistic for a 2x2 table. Continuity correction subtracts 1/2 from all \|O - E\| differences. If simulate.p.value = TRUE, no correction is applied.
+
+::: {.callout-important title="Criteria for applying continuity correction" collapse="true" appearance="minimal"}
+-   In the past, Yates' continuity correction was applied when the expected value of a cell in a 2x2 contingency table was less than 5.
+-   However, recently, Fisher's exact test is mainly applied for small cell frequencies.
+:::
+
+-   p: a probability vector of the same length as x. If any element of p is negative, an error occurs.
+
+::: {.callout-note title="The p argument is used for goodness-of-fit tests and ..." collapse="true" appearance="minimal"}
+-   The p argument is used to specify the expected probabilities when performing a goodness-of-fit test.
+-   By default, if p is not given, it assumes that each category has the same probability.
+-   That is, the default value is set to rep(1/length(x), length(x)), which assigns equal probabilities to all categories.
+-   If you assume that each category has different theoretical probabilities, you must specify these probabilities as a vector.
+-   For example, if you assume that categories A, B, and C have probabilities of 40%, 30%, and 30%, respectively, you can set p = c(0.4, 0.3, 0.3).
+:::
+
+-   rescale.p: a logical scalar; if TRUE, p is rescaled so that it can sum to 1. If FALSE and the sum of p is not 1, an error occurs.
+
+::: {.callout-note title="Ensuring that the sum of p is 1 ..." collapse="true" appearance="minimal"}
+-   The p probability factor should ideally sum to 1.
+-   If the sum of the user-input p values is not 1 and rescale.p is set to TRUE, the p values are readjusted to sum to 1.
+:::
+
+-   simulate.p.value: a logical indicating whether to calculate the p-value by Monte Carlo simulation.
+
+-   B: an integer specifying the number of replicates to use in the Monte Carlo test.
+
+::: {.callout-note title="The reason for Monte Carlo simulation ..." collapse="true" appearance="minimal"}
+-   The Monte Carlo simulation option allows you to calculate the p-value.
+-   This option is set to FALSE by default, but if set to TRUE, it estimates the p-value through random sampling instead of directly calculating it.
+-   Monte Carlo simulation randomly samples data and calculates the chi-squared test statistic for each sample to estimate the distribution and derive the p-value.
+-   It is an option to estimate the p-value. The integer specifies the number of replicates to use in the Monte Carlo test. The default value is 2000, and you can increase the number of replicates for more accuracy.
+-   For example, setting B = 10000 will give you a more precise p-value.
+-   Monte Carlo simulation is computationally expensive, so using it on very large datasets may take a long time.
+:::
+::::
+
