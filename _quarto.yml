@@ -21,8 +21,10 @@ website:
     left:
       - text: "Blog"
         href: index.qmd
+      - text: "개발환경구축"
+        href: posts/DE/introduction_to_DE.qmd
       - text: "R"
-        href: posts/R/introduction_to_R.qmd
+        href: posts/R/introduction_to_R.qmd        
       - text: "Python"
         href: posts/Python/introduction_to_Python.qmd
       - text: "Quarto"

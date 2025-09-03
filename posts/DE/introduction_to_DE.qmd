@@ -1,0 +1,70 @@
+---
+title: "개발환경구축"
+description: "개발환경 구축 시 고려사항들에 대한 안내입니다."
+author: "BenKorea feat. ChatGPT"
+date: "2025-09-03"
+date-modified: last-modified
+categories:
+  - introduction
+---
+
+## WSL2
+
+### Ubntu
+```
+lsb_release -a
+```
+24.04.2 LTS
+
+### Docker
+- 현재: Docker version 28.3.3, build 980b856
+- 기존의 버전 모두 제거
+```
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+```
+- GPG 키 추가
+```
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+```
+- 저장소 등록
+```
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+```
+- 최신버전 설치
+```
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+- 특정버전 설치
+apt-cache madison docker-ce
+VERSION_STRING=5:28.3.3-1~ubuntu.24.04~noble
+sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-buildx-plugin docker-compose-plugin
+```
+- 설치확인
+```
+sudo docker run hello-world
+```
+- 로그가 무제한 누적되는 문제가 있으니 순환방식 고려해야 함
+
+### docker compose
+```
+docker compose version
+```
+Docker Compose version v2.39.1
+
+### 버전 고정
+```
+sudo apt-mark hold docker-ce docker-ce-cli docker-compose-plugin containerd.io
+```
+- 상태확인
+```
+apt-mark showhold
+```
+
