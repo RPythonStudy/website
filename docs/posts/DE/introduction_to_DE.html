@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="RPythonStudy">
-<meta name="description" content="callout 기능구현시 배경색상을 지정하는 방법을 설명합니다.">
+<meta name="author" content="BenKorea feat. ChatGPT">
+<meta name="description" content="개발환경 구축 시 고려사항들에 대한 안내입니다.">
 
-<title>callout with background color – RPythonStudy</title>
+<title>개발환경구축 – RPythonStudy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,59 +22,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-c8a01258441097d17a999774078ed729.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c8a01258441097d17a999774078ed729.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -103,21 +69,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../../../styles/styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles/styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../RPythonStudy_logo.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../RPythonStudy_logo.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">RPythonStudy</span>
     </a>
   </div>
@@ -128,27 +123,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/DE/introduction_to_DE.html"> 
+    <a class="nav-link active" href="../../posts/DE/introduction_to_DE.html" aria-current="page"> 
 <span class="menu-text">개발환경구축</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/R/introduction_to_R.html"> 
+    <a class="nav-link" href="../../posts/R/introduction_to_R.html"> 
 <span class="menu-text">R</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/Python/introduction_to_Python.html"> 
+    <a class="nav-link" href="../../posts/Python/introduction_to_Python.html"> 
 <span class="menu-text">Python</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../posts/Quarto/introduction_to_Quarto.html" aria-current="page"> 
+    <a class="nav-link" href="../../posts/Quarto/introduction_to_Quarto.html"> 
 <span class="menu-text">Quarto</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/statistics/introduction_to_statistics.html"> 
+    <a class="nav-link" href="../../posts/statistics/introduction_to_statistics.html"> 
 <span class="menu-text">Statistics</span></a>
   </li>  
   <li class="nav-item">
@@ -156,25 +151,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Quiz</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/Resources/introduction_to_resources.html"> 
+    <a class="nav-link" href="../../posts/Resources/introduction_to_resources.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/tools/introduction_to_tools.html"> 
+    <a class="nav-link" href="../../posts/tools/introduction_to_tools.html"> 
 <span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/Concepts/introduction_to_Concepts.html"> 
+    <a class="nav-link" href="../../posts/Concepts/introduction_to_Concepts.html"> 
 <span class="menu-text">Concepts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/about/about.html"> 
+    <a class="nav-link" href="../../posts/about/about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../.././en"> 
+    <a class="nav-link" href="../.././en"> 
 <span class="menu-text">English</span></a>
   </li>  
 </ul>
@@ -184,31 +179,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/Quarto/Functions/tooltip.html">기능구현</a></li><li class="breadcrumb-item"><a href="../../../posts/Quarto/Functions/color_callout.html">callout with background color</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/Quarto/Functions/tooltip.html">기능구현</a></li><li class="breadcrumb-item"><a href="../../../posts/Quarto/Functions/color_callout.html">callout with background color</a></li></ol></nav>
-      <h1 class="title">callout with background color</h1>
+    <div class="quarto-title column-body">
+      <h1 class="title">개발환경구축</h1>
                   <div>
         <div class="description">
-          callout 기능구현시 배경색상을 지정하는 방법을 설명합니다.
+          개발환경 구축 시 고려사항들에 대한 안내입니다.
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Quarto</div>
-                <div class="quarto-category">callout</div>
-                <div class="quarto-category">color</div>
+                <div class="quarto-category">introduction</div>
               </div>
                   </div>
   </div>
@@ -219,21 +202,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">저자</div>
       <div class="quarto-title-meta-contents">
-               <p>RPythonStudy </p>
+               <p>BenKorea feat. ChatGPT </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">공개</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2025년 2월 3일</p>
+        <p class="date">2025년 9월 3일</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">2025년 2월 3일</p>
+        <p class="date-modified">2025년 9월 3일</p>
       </div>
     </div>
       
@@ -242,100 +225,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/Quarto/introduction_to_Quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Quarto</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">설치</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/Quarto/install/Quarto_setup.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quarto 설치</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Websites</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/Quarto/Website/Hands_on_Quarto_Website.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Hands-on Quarto Website</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Manuscripts</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/Quarto/Manuscript/manuscript_example.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Manuscript Example</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">기능구현</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/Quarto/Functions/tooltip.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tooltip</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../posts/Quarto/Functions/color_callout.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">callout with background color</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#callout-with-color" id="toc-callout-with-color" class="nav-link active" data-scroll-target="#callout-with-color"><span class="header-section-number">0.1</span> Callout with color</a></li>
+  <li><a href="#wsl2" id="toc-wsl2" class="nav-link active" data-scroll-target="#wsl2"><span class="header-section-number">1</span> WSL2</a>
+  <ul class="collapse">
+  <li><a href="#ubntu" id="toc-ubntu" class="nav-link" data-scroll-target="#ubntu"><span class="header-section-number">1.1</span> Ubntu</a></li>
+  <li><a href="#docker" id="toc-docker" class="nav-link" data-scroll-target="#docker"><span class="header-section-number">1.2</span> Docker</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -346,33 +246,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="callout-with-color" class="level3" data-number="0.1">
-<h3 data-number="0.1" class="anchored" data-anchor-id="callout-with-color"><span class="header-section-number">0.1</span> Callout with color</h3>
+<section id="wsl2" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="wsl2"><span class="header-section-number">1</span> WSL2</h2>
+<section id="ubntu" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="ubntu"><span class="header-section-number">1.1</span> Ubntu</h3>
+<pre><code>lsb_release -a</code></pre>
+<p>24.04.2 LTS</p>
+</section>
+<section id="docker" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="docker"><span class="header-section-number">1.2</span> Docker</h3>
 <ul>
-<li>아래의 예시와 같이 style 속성을 사용하여 배경색상을 지정할 수 있습니다.</li>
-<li>HTML 문법에 맞게 작성되어야 하며, 코드의 가독성 때문에 줄바꿈은 사용하면 작동하지 않으므로 주의해야 합니다.</li>
+<li>현재: Docker version 28.3.3, build 980b856</li>
+<li>기존의 버전 모두 제거</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>::: {.callout-note title="제53조의2(방사선안전관리자)" style="background-color: #f0f8ff" collapse="open" appearance="minimal"}</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>① 허가사용자 및 신고사용자는 방사선 안전관리에 관한 다음 각 호의 업무를 수행하기 위하여 대통령령으로 정하는 바에 따라 방사선안전관리자를 선임하여 방사성동위원소등의 사용개시 전에 이를 위원회에 신고하여야 한다. 신고한 사항을 변경하려는 때에도 또한 같다.</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="제53조의2(방사선안전관리자)" style="background-color: #d5e6ed">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-제53조의2(방사선안전관리자)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<p>① 허가사용자 및 신고사용자는 방사선 안전관리에 관한 다음 각 호의 업무를 수행하기 위하여 대통령령으로 정하는 바에 따라 방사선안전관리자를 선임하여 방사성동위원소등의 사용개시 전에 이를 위원회에 신고하여야 한다. 신고한 사항을 변경하려는 때에도 또한 같다.</p>
-</div>
-</div>
-</div>
+<pre><code>for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done</code></pre>
+<ul>
+<li>GPG 키 추가</li>
+</ul>
+<pre><code>sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc</code></pre>
+<ul>
+<li>저장소 등록</li>
+</ul>
+<pre><code>echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release &amp;&amp; echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+sudo apt-get update</code></pre>
+<ul>
+<li>최신버전 설치</li>
+</ul>
+<pre><code>sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</code></pre>
+<ul>
+<li>특정버전 설치 apt-cache madison docker-ce VERSION_STRING=5:28.3.3-1<sub>ubuntu.24.04</sub>noble sudo apt-get install docker-ce=<span class="math inline">\(VERSION_STRING docker-ce-cli=\)</span>VERSION_STRING containerd.io docker-buildx-plugin docker-compose-plugin</li>
+</ul>
+<pre><code>- 설치확인</code></pre>
+<p>sudo docker run hello-world</p>
+<pre><code>- 로그가 무제한 누적되는 문제가 있으니 순환방식 고려해야 함
+
+### docker compose</code></pre>
+<p>docker compose version</p>
+<pre><code>Docker Compose version v2.39.1
+
+### 버전 고정</code></pre>
+<p>sudo apt-mark hold docker-ce docker-ce-cli docker-compose-plugin containerd.io</p>
+<pre><code>- 상태확인</code></pre>
+<p>apt-mark showhold ```</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

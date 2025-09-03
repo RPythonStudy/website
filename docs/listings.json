@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/DE/introduction_to_DE.html",
       "/posts/Concepts/introduction_to_Concepts.html",
       "/posts/Python/install/Python_setup.html",
       "/posts/Python/install/VSCode_setup.html",
