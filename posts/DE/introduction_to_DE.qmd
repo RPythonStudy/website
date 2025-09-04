@@ -11,19 +11,21 @@ categories:
 ## WSL2
 
 ### Ubntu
-```
+```bash
 lsb_release -a
 ```
 24.04.2 LTS
 
 ### Docker
+- 디몬으로 실행되어야 하기 때문에 시스템에 설치
+- 설치폴더: /var/lib/docker
 - 현재: Docker version 28.3.3, build 980b856
 - 기존의 버전 모두 제거
-```
+```bash
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
 ```
 - GPG 키 추가
-```
+```bash
 sudo apt-get update
 sudo apt-get install ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -31,7 +33,7 @@ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyring
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 ```
 - 저장소 등록
-```
+```bash
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
@@ -39,32 +41,61 @@ echo \
 sudo apt-get update
 ```
 - 최신버전 설치
-```
+```bash
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 - 특정버전 설치
+```bash
 apt-cache madison docker-ce
 VERSION_STRING=5:28.3.3-1~ubuntu.24.04~noble
 sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 - 설치확인
-```
+```bash
 sudo docker run hello-world
 ```
 - 로그가 무제한 누적되는 문제가 있으니 순환방식 고려해야 함
 
 ### docker compose
-```
+```bash
 docker compose version
 ```
 Docker Compose version v2.39.1
 
 ### 버전 고정
-```
+```bash
 sudo apt-mark hold docker-ce docker-ce-cli docker-compose-plugin containerd.io
 ```
 - 상태확인
-```
+```bash
 apt-mark showhold
 ```
+
+## rig
+- R 배포판 패키지의 실행파일은 /usr/bin/R에 설치된다.
+- rig는 apt 패키지 관리자로 설치됨에도 불구하고 /usr/local/bin/rig에 설치되며, 이를 통해 시스템에 설치된 R과 경로 충돌을 피하게 된다.
+- 설치방법은 연구회웹사이트를 참고 https://rpythonstudy.github.io/website/posts/R/install/R_setup.html
+- 현재 설치된 버전은 `0.7.1`이다.
+```bash
+rig --version
+```
+RIG -- The R Installation Manager 0.7.1   
+
+## R 4.4.3 버전 설치
+```bash
+rig add 4.4.3
+rig list
+rig default 4.4.3
+```
+
+## RStudio Server
+- 설치방법은 연구회웹페이지를 참고
+- 기본설정대로 진행하면 /usr/sbin/rstudio-server에 설치된다.
+- version 관리는 엄격하지 않아도 큰 문제 없어 보인다.
+- version에 ubuntu mammy라고 하지만 설치 사이트는 ubuntu 24로 선택하는 것이 있어 별 무리 없어 보인다.
+- copilot 설정을 해야한다.
+```bash
+sudo nano /etc/rstudio/rsessioin.conf
+```
+
 
