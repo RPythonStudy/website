@@ -10,4 +10,4 @@ categories: [R, Syntax]
 ###  Meta-analysis in Medical Reseasch
 - 아래의 링크를 클릭하면 2025-09-01 강의록 PDF 파일이 열립니다.
 
--   [Meta-analysis in Medical Reseasch](/archive/Meta-analysis Medical Research1.0.pdf)
+-   [Meta-analysis in Medical Reseasch](/archive/Meta-analysis_Medical_Research1.0.pdf)
