@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="BenKorea feat. ChatGPT">
-<meta name="description" content="Quarto 설치안내">
+<meta name="author" content="Haewon LEE">
+<meta name="description" content="이해원회장님의 25.09.01 강의록이 PDF로 첨부되어 있습니다.">
 
-<title>Quarto 설치 – RPythonStudy</title>
+<title>Meta-analysis in Medical Reseasch – RPythonStudy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,59 +22,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -104,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../../../styles/styles.css">
+<link rel="stylesheet" href="../../styles/styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -114,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../RPythonStudy_logo.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../RPythonStudy_logo.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">RPythonStudy</span>
     </a>
   </div>
@@ -128,27 +94,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/DE/introduction_to_DE.html"> 
+    <a class="nav-link" href="../../posts/DE/introduction_to_DE.html"> 
 <span class="menu-text">개발환경구축</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/R/introduction_to_R.html"> 
+    <a class="nav-link" href="../../posts/R/introduction_to_R.html"> 
 <span class="menu-text">R</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/Python/introduction_to_Python.html"> 
+    <a class="nav-link" href="../../posts/Python/introduction_to_Python.html"> 
 <span class="menu-text">Python</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../posts/Quarto/introduction_to_Quarto.html" aria-current="page"> 
+    <a class="nav-link" href="../../posts/Quarto/introduction_to_Quarto.html"> 
 <span class="menu-text">Quarto</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/statistics/introduction_to_statistics.html"> 
+    <a class="nav-link active" href="../../posts/statistics/introduction_to_statistics.html" aria-current="page"> 
 <span class="menu-text">Statistics</span></a>
   </li>  
   <li class="nav-item">
@@ -156,25 +122,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Quiz</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/Resources/introduction_to_resources.html"> 
+    <a class="nav-link" href="../../posts/Resources/introduction_to_resources.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/tools/introduction_to_tools.html"> 
+    <a class="nav-link" href="../../posts/tools/introduction_to_tools.html"> 
 <span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/Concepts/introduction_to_Concepts.html"> 
+    <a class="nav-link" href="../../posts/Concepts/introduction_to_Concepts.html"> 
 <span class="menu-text">Concepts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts/about/about.html"> 
+    <a class="nav-link" href="../../posts/about/about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../.././en"> 
+    <a class="nav-link" href="../.././en"> 
 <span class="menu-text">English</span></a>
   </li>  
 </ul>
@@ -189,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/Quarto/install/Quarto_setup.html">설치</a></li><li class="breadcrumb-item"><a href="../../../posts/Quarto/install/Quarto_setup.html">Quarto 설치</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/statistics/meta_analysis.html">Meta-analysis in Medical Reseasch</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -198,16 +164,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/Quarto/install/Quarto_setup.html">설치</a></li><li class="breadcrumb-item"><a href="../../../posts/Quarto/install/Quarto_setup.html">Quarto 설치</a></li></ol></nav>
-      <h1 class="title">Quarto 설치</h1>
+    <div class="quarto-title column-body">
+      <h1 class="title">Meta-analysis in Medical Reseasch</h1>
                   <div>
         <div class="description">
-          Quarto 설치안내
+          이해원회장님의 25.09.01 강의록이 PDF로 첨부되어 있습니다.
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Quarto</div>
-                <div class="quarto-category">setup</div>
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">Syntax</div>
               </div>
                   </div>
   </div>
@@ -218,14 +184,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">저자</div>
       <div class="quarto-title-meta-contents">
-               <p>BenKorea feat. ChatGPT </p>
+               <p>Haewon LEE </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">공개</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2024년 10월 24일</p>
+        <p class="date">2025년 9월 1일</p>
       </div>
     </div>
     
@@ -246,84 +212,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Quarto/introduction_to_Quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Quarto</span></a>
+  <a href="../../posts/statistics/introduction_to_statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to statistics</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">설치</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Quarto/install/Quarto_setup.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Quarto 설치</span></a>
+  <a href="../../posts/statistics/basic_statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic statistics functions</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Websites</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Quarto/Website/Hands_on_Quarto_Website.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Hands-on Quarto Website</span></a>
+  <a href="../../posts/statistics/survival_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Survival analysis</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Manuscripts</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Quarto/Manuscript/manuscript_example.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Manuscript Example</span></a>
+  <a href="../../posts/statistics/group_comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Group comparison in continuous variables</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">기능구현</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="토글 섹션">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Quarto/Functions/tooltip.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tooltip</span></a>
+  <a href="../../posts/statistics/Chi_square_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chi-Square Test</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../posts/Quarto/Functions/color_callout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">callout with background color</span></a>
+  <a href="../../posts/statistics/meta_analysis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Meta-analysis in Medical Reseasch</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -334,20 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#설치안내문서" id="toc-설치안내문서" class="nav-link active" data-scroll-target="#설치안내문서"><span class="header-section-number">1</span> 설치안내문서</a></li>
-  <li><a href="#window환경에서의-설치" id="toc-window환경에서의-설치" class="nav-link" data-scroll-target="#window환경에서의-설치"><span class="header-section-number">2</span> Window환경에서의 설치</a>
-  <ul class="collapse">
-  <li><a href="#설치경로" id="toc-설치경로" class="nav-link" data-scroll-target="#설치경로"><span class="header-section-number">2.1</span> 설치경로</a></li>
-  <li><a href="#설치-확인" id="toc-설치-확인" class="nav-link" data-scroll-target="#설치-확인"><span class="header-section-number">2.2</span> 설치 확인</a></li>
-  </ul></li>
-  <li><a href="#wsl2ubuntu-환경에서의-설치" id="toc-wsl2ubuntu-환경에서의-설치" class="nav-link" data-scroll-target="#wsl2ubuntu-환경에서의-설치"><span class="header-section-number">3</span> WSL2/Ubuntu 환경에서의 설치</a>
-  <ul class="collapse">
-  <li><a href="#버전확인" id="toc-버전확인" class="nav-link" data-scroll-target="#버전확인"><span class="header-section-number">3.1</span> 버전확인</a></li>
-  <li><a href="#최신버전-다운로드" id="toc-최신버전-다운로드" class="nav-link" data-scroll-target="#최신버전-다운로드"><span class="header-section-number">3.2</span> 최신버전 다운로드</a></li>
-  <li><a href="#설치-및-업데이트" id="toc-설치-및-업데이트" class="nav-link" data-scroll-target="#설치-및-업데이트"><span class="header-section-number">3.3</span> 설치 및 업데이트</a></li>
-  <li><a href="#필요시-의존성-해결" id="toc-필요시-의존성-해결" class="nav-link" data-scroll-target="#필요시-의존성-해결"><span class="header-section-number">3.4</span> 필요시 의존성 해결</a></li>
-  <li><a href="#설치-확인-1" id="toc-설치-확인-1" class="nav-link" data-scroll-target="#설치-확인-1"><span class="header-section-number">3.5</span> 설치 확인</a></li>
-  </ul></li>
+  <li><a href="#meta-analysis-in-medical-reseasch" id="toc-meta-analysis-in-medical-reseasch" class="nav-link active" data-scroll-target="#meta-analysis-in-medical-reseasch"><span class="header-section-number">0.1</span> Meta-analysis in Medical Reseasch</a></li>
   </ul>
 </nav>
     </div>
@@ -358,118 +267,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="설치안내문서" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="설치안내문서"><span class="header-section-number">1</span> 설치안내문서</h2>
-<p>Quarto 공식사이트에서 제공하는 공식문서(<a href="https://quarto.org/docs/get-started/" class="uri">https://quarto.org/docs/get-started/</a>)를 참고하는 것이 이상적이겠지만, 아래의 요약을 참고하여 설치 하셔도 됩니다.</p>
-</section>
-<section id="window환경에서의-설치" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="window환경에서의-설치"><span class="header-section-number">2</span> Window환경에서의 설치</h2>
-<p>공식 Python 웹사이트(<a href="https://quarto.org/docs/get-started/" class="uri">https://quarto.org/docs/get-started/</a>)에서 운영체제에 적합한 최신 Quarto 설치파일을 다운로드하고 설치합니다. 이글은 <code>quarto-1.6.39-win.msi</code> 설치파일(2024년 11월 28일 release)로 작성되었습니다.</p>
-<section id="설치경로" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="설치경로"><span class="header-section-number">2.1</span> 설치경로</h3>
-<p>윈도우의 경우 기본 설치경로인 <code>C:\Program Files\Quarto\</code>를 추천합니다. 사용하거나 사용자가 원하는 경로를 선택할 수 있습니다. (시스템의 환경 변수(PATH) 등록은 자동으로 이루어 집니다.)</p>
-</section>
-<section id="설치-확인" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="설치-확인"><span class="header-section-number">2.2</span> 설치 확인</h3>
-<div class="callout callout-style-simple callout-note no-icon callout-titled" title="Quarto가 올바르게 설치되었는지 확인하려면,">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Quarto가 올바르게 설치되었는지 확인하려면,
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Win + R을 눌러 실행 대화창을 열고 <code>cmd</code>를 입력하여 명령 프롬프트를 실행합니다.</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Command Prompt</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cmd</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<p>명령 프롬프트에서 다음 명령을 입력하여 설치된 quarto 버전이 예상 버전과 일치하는지 확인합니다.</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Command Prompt</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>quarto <span class="sc">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="wsl2ubuntu-환경에서의-설치" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="wsl2ubuntu-환경에서의-설치"><span class="header-section-number">3</span> WSL2/Ubuntu 환경에서의 설치</h2>
-<section id="버전확인" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="버전확인"><span class="header-section-number">3.1</span> 버전확인</h3>
-<p>WSL2/Ubuntu 환경에서 R과 RStudio Server를 설치했다면 Quarto가 이미 설치되어 있습니다. 설치된 버전을 확인할려면 아래의 명령을 이용하시면 됩니다.</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>bash</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>quarto <span class="sc">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section>
-<section id="최신버전-다운로드" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="최신버전-다운로드"><span class="header-section-number">3.2</span> 최신버전 다운로드</h3>
-<p>Quarto는 apt 저장소에 등록되어 있지 않기 때문에, 공식 웹사이트에서 최신 .deb 패키지를 다운로드하여 수동 업데이트해야 합니다.</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>bash</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wget https<span class="sc">:</span><span class="er">//</span>quarto.org<span class="sc">/</span>download<span class="sc">/</span>latest<span class="sc">/</span>quarto<span class="sc">-</span>linux<span class="sc">-</span>amd64.deb</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section>
-<section id="설치-및-업데이트" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="설치-및-업데이트"><span class="header-section-number">3.3</span> 설치 및 업데이트</h3>
-<p>기존에 설치된 Quarto가 있더라도, .deb 패키지를 다시 설치하면 자동으로 업데이트됩니다.</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>bash</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sudo dpkg <span class="sc">-</span>i quarto<span class="sc">-</span>linux<span class="sc">-</span>amd64.deb</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section>
-<section id="필요시-의존성-해결" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="필요시-의존성-해결"><span class="header-section-number">3.4</span> 필요시 의존성 해결</h3>
-<p>만약 설치 중 의존성 문제가 발생한다면, 아래의 명령을 실행하여 의존성을 해결합니다.</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>bash</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="sc">-</span>get install <span class="sc">-</span>f</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section>
-<section id="설치-확인-1" class="level3" data-number="3.5">
-<h3 data-number="3.5" class="anchored" data-anchor-id="설치-확인-1"><span class="header-section-number">3.5</span> 설치 확인</h3>
-<p>다음 명령을 실행하여 설치된 Quarto 버전을 확인합니다.</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>bash</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>quarto <span class="sc">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<section id="meta-analysis-in-medical-reseasch" class="level3" data-number="0.1">
+<h3 data-number="0.1" class="anchored" data-anchor-id="meta-analysis-in-medical-reseasch"><span class="header-section-number">0.1</span> Meta-analysis in Medical Reseasch</h3>
+<ul>
+<li><p>아래의 링크를 클릭하면 2025-09-01 강의록 PDF 파일이 열립니다.</p></li>
+<li><p><a href="../../archive/Meta-analysis Medical Research1.0.pdf">Meta-analysis in Medical Reseasch</a></p></li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

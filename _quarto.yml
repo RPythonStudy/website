@@ -109,6 +109,7 @@ website:
         - posts/statistics/survival_analysis.qmd
         - posts/statistics/group_comparison.qmd
         - posts/statistics/Chi_square_test.qmd
+        - posts/statistics/meta_analysis.qmd        
     - title: "Resources"
       contents:
         - posts/Resources/introduction_to_resources.qmd

@@ -1,0 +1,13 @@
+---
+title: "Meta-analysis in Medical Reseasch"
+description:  "이해원회장님의 25.09.01 강의록이 PDF로 첨부되어 있습니다."
+author: "Haewon LEE"
+date: "2025-09-01"
+date-modified: last-modified
+categories: [R, Syntax]
+---
+
+###  Meta-analysis in Medical Reseasch
+- 아래의 링크를 클릭하면 2025-09-01 강의록 PDF 파일이 열립니다.
+
+-   [Meta-analysis in Medical Reseasch](/archive/Meta-analysis Medical Research1.0.pdf)
