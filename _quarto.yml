@@ -38,7 +38,7 @@ website:
       - text: "Tools"      
         href: posts/tools/introduction_to_tools.qmd
       - text: "Concepts"      
-        href: posts/Concepts/introduction_to_Concepts.qmd
+        href: posts/Concepts/introduction_to_concepts.qmd
       - text: "About"      
         href: posts/about/about.qmd    
         
@@ -128,7 +128,15 @@ website:
             - posts/tools/git/git_configuration.qmd
             - posts/tools/git/ssh.qmd            
             - posts/tools/git/hands_on_git_push.qmd
-            - posts/tools/git/hands_on_git_clone.qmd            
+            - posts/tools/git/hands_on_git_clone.qmd    
+    - title: "Concepts"
+      contents:
+        - posts/Concepts/introduction_to_concepts.qmd
+        - section: "Concepts"
+          contents:
+            - posts/Concepts/user/user.qmd     
+            - posts/Concepts/env_path/env_path.qmd   
+            - posts/Concepts/api/api.qmd              
 
 
 execute: 

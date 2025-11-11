@@ -1,7 +1,7 @@
 ---
-title: "Introduction to Concepts"
-description: "코딩 시 알아야할 개념들에 대한 설명입니다."
-author: "BenKorea feat. ChatGPT"
+title: "API"
+description: "API 대한 설명입니다."
+author: "BenKorea"
 date: "2025-07-31"
 date-modified: last-modified
 categories:
@@ -9,6 +9,9 @@ categories:
 ---
 
 ## API
+
+**API(Application Programming Interface)**는 서로 다른 소프트웨어 구성 요소들이 서로 통신할 수 있도록 해주는 인터페이스입니다.
+
 
 **API(Application Programming Interface)**는 서로 다른 소프트웨어 구성 요소들이 서로 통신할 수 있도록 해주는 인터페이스입니다.
 

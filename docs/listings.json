@@ -2,8 +2,11 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Concepts/env_path/env_path.html",
+      "/posts/Concepts/user/user.html",
+      "/posts/Concepts/introduction_to_concepts.html",
+      "/posts/Concepts/api/api.html",
       "/posts/statistics/meta_analysis.html",
-      "/posts/Concepts/introduction_to_Concepts.html",
       "/posts/DE/introduction_to_DE.html",
       "/posts/Python/introduction_to_Python.html",
       "/posts/R/parsing/patho_report.html",

@@ -1,0 +1,10 @@
+---
+title: "Introduction to Concepts"
+description: "코딩 시 알아야할 개념들에 대한 설명입니다."
+author: "BenKorea feat. ChatGPT"
+date: "2025-07-31"
+date-modified: last-modified
+categories:
+  - introduction
+---
+
