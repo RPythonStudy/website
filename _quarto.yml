@@ -43,6 +43,16 @@ website:
         href: posts/about/about.qmd    
         
   sidebar:
+    - title: "개발환경구축"
+      contents:
+        - posts/DE/introduction_to_DE.qmd
+        - section: "Windows"
+          contents:
+            - posts/DE/windows/setup.qmd
+            - posts/R/install/Rtools_setup.qmd
+            - posts/R/install/RStudio_setup.qmd
+
+  
     - title: "R"
       contents:
         - posts/R/introduction_to_R.qmd

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="BenKorea feat. ChatGPT">
-<meta name="description" content="개발환경 구축 시 고려사항들에 대한 안내입니다.">
+<meta name="description" content="R/Python 개발환경 구축에 대한 안내입니다.">
 
 <title>개발환경구축 – RPythonStudy</title>
 <style>
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -107,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles/styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -184,6 +150,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/DE/introduction_to_DE.html">개발환경구축</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
@@ -192,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <h1 class="title">개발환경구축</h1>
                   <div>
         <div class="description">
-          개발환경 구축 시 고려사항들에 대한 안내입니다.
+          R/Python 개발환경 구축에 대한 안내입니다.
         </div>
       </div>
                           <div class="quarto-categories">
@@ -214,14 +190,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">공개</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2025년 9월 3일</p>
+        <p class="date">2025년 12월 1일</p>
       </div>
     </div>
     
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">2025년 9월 15일</p>
+        <p class="date-modified">2025년 12월 1일</p>
       </div>
     </div>
       
@@ -230,24 +206,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">목차</h2>
-   
-  <ul>
-  <li><a href="#wsl2" id="toc-wsl2" class="nav-link active" data-scroll-target="#wsl2"><span class="header-section-number">1</span> WSL2</a>
-  <ul class="collapse">
-  <li><a href="#ubntu" id="toc-ubntu" class="nav-link" data-scroll-target="#ubntu"><span class="header-section-number">1.1</span> Ubntu</a></li>
-  <li><a href="#docker" id="toc-docker" class="nav-link" data-scroll-target="#docker"><span class="header-section-number">1.2</span> Docker</a></li>
-  <li><a href="#docker-compose" id="toc-docker-compose" class="nav-link" data-scroll-target="#docker-compose"><span class="header-section-number">1.3</span> docker compose</a></li>
-  <li><a href="#버전-고정" id="toc-버전-고정" class="nav-link" data-scroll-target="#버전-고정"><span class="header-section-number">1.4</span> 버전 고정</a></li>
-  </ul></li>
-  <li><a href="#rig" id="toc-rig" class="nav-link" data-scroll-target="#rig"><span class="header-section-number">2</span> rig</a></li>
-  <li><a href="#r-4.4.3-버전-설치" id="toc-r-4.4.3-버전-설치" class="nav-link" data-scroll-target="#r-4.4.3-버전-설치"><span class="header-section-number">3</span> R 4.4.3 버전 설치</a></li>
-  <li><a href="#rstudio-server" id="toc-rstudio-server" class="nav-link" data-scroll-target="#rstudio-server"><span class="header-section-number">4</span> RStudio Server</a></li>
-  </ul>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DE/introduction_to_DE.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">개발환경구축</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Windows</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">posts/DE/windows/setup.qmd</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/R/install/Rtools_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rtools 설치</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/R/install/RStudio_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RStudio</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -256,100 +256,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="wsl2" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="wsl2"><span class="header-section-number">1</span> WSL2</h2>
-<section id="ubntu" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="ubntu"><span class="header-section-number">1.1</span> Ubntu</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lsb_release</span> <span class="at">-a</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>24.04.2 LTS</p>
-</section>
-<section id="docker" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="docker"><span class="header-section-number">1.2</span> Docker</h3>
 <ul>
-<li>디몬으로 실행되어야 하기 때문에 시스템에 설치</li>
-<li>설치폴더: /var/lib/docker</li>
-<li>현재: Docker version 28.3.3, build 980b856</li>
-<li>기존의 버전 모두 제거</li>
+<li>이 문서는 R과 Python 개발환경구축을 위해서 단순히 R/Python을 설치하는 것이 아닌, 관련되었거나 미리 설치가 필요한 프로그램들의 설치까지 안내합니다.</li>
+<li>아직은 Python 설치와 관련된 일부만 있지만 앞으로 다른 내용도 추가될 예정입니다.</li>
+<li>이는 RPython연구회에서 Github에 만들어둔 특정 프로젝트를 로컬로 clone할 때에도 도움이 될 것입니다.</li>
+<li>사이드메뉴에는 운영체제별로 개발환경을 구축하는 안내를 게시하도록 하였으니 아직 미완성입니다.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc<span class="kw">;</span> <span class="cf">do</span> <span class="fu">sudo</span> apt-get remove <span class="va">$pkg</span><span class="kw">;</span> <span class="cf">done</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>GPG 키 추가</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install ca-certificates curl</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> install <span class="at">-m</span> 0755 <span class="at">-d</span> /etc/apt/keyrings</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> curl <span class="at">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg <span class="at">-o</span> /etc/apt/keyrings/docker.asc</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod a+r /etc/apt/keyrings/docker.asc</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>저장소 등록</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="dt">\</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"deb [arch=</span><span class="va">$(</span><span class="ex">dpkg</span> <span class="at">--print-architecture</span><span class="va">)</span><span class="st"> signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu </span><span class="dt">\</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">  </span><span class="va">$(</span><span class="bu">.</span> /etc/os-release <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"</span><span class="va">${UBUNTU_CODENAME</span><span class="op">:-</span><span class="va">$VERSION_CODENAME}</span><span class="st">"</span><span class="va">)</span><span class="st"> stable"</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sudo</span> tee /etc/apt/sources.list.d/docker.list <span class="op">&gt;</span> /dev/null</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>최신버전 설치</li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>특정버전 설치</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-cache</span> madison docker-ce</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">VERSION_STRING</span><span class="op">=</span>5:28.3.3-1~ubuntu.24.04~noble</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install docker-ce=<span class="va">$VERSION_STRING</span> docker-ce-cli=<span class="va">$VERSION_STRING</span> containerd.io docker-buildx-plugin docker-compose-plugin</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>설치확인</li>
-</ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker run hello-world</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>로그가 무제한 누적되는 문제가 있으니 순환방식 고려해야 함</li>
-</ul>
-</section>
-<section id="docker-compose" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="docker-compose"><span class="header-section-number">1.3</span> docker compose</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Docker Compose version v2.39.1</p>
-</section>
-<section id="버전-고정" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="버전-고정"><span class="header-section-number">1.4</span> 버전 고정</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-mark hold docker-ce docker-ce-cli docker-compose-plugin containerd.io</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>상태확인</li>
-</ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apt-mark</span> showhold</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="rig" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="rig"><span class="header-section-number">2</span> rig</h2>
-<ul>
-<li>R 배포판 패키지의 실행파일은 /usr/bin/R에 설치된다.</li>
-<li>rig는 apt 패키지 관리자로 설치됨에도 불구하고 /usr/local/bin/rig에 설치되며, 이를 통해 시스템에 설치된 R과 경로 충돌을 피하게 된다.</li>
-<li>설치방법은 연구회웹사이트를 참고 https://rpythonstudy.github.io/website/posts/R/install/R_setup.html</li>
-<li>현재 설치된 버전은 <code>0.7.1</code>이다.</li>
-</ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>RIG – The R Installation Manager 0.7.1</p>
-</section>
-<section id="r-4.4.3-버전-설치" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="r-4.4.3-버전-설치"><span class="header-section-number">3</span> R 4.4.3 버전 설치</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> add 4.4.3</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> list</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> default 4.4.3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="rstudio-server" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="rstudio-server"><span class="header-section-number">4</span> RStudio Server</h2>
-<ul>
-<li>설치방법은 연구회웹페이지를 참고</li>
-<li>기본설정대로 진행하면 /usr/sbin/rstudio-server에 설치된다.</li>
-<li>version 관리는 엄격하지 않아도 큰 문제 없어 보인다.</li>
-<li>version에 ubuntu mammy라고 하지만 설치 사이트는 ubuntu 24로 선택하는 것이 있어 별 무리 없어 보인다.</li>
-<li>copilot 설정을 해야한다.</li>
-</ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/rstudio/rsessioin.conf</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script src="https://utteranc.es/client.js" repo="BenKorea/utterances-comments" issue-term="pathname" theme="preferred-color-scheme" crossorigin="anonymous" async="">
