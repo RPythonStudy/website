@@ -1,0 +1,490 @@
+---
+title: "표준사용자 & WSL2 개발환경구축"
+description: "이 지침은 Windows 표준사용자와 WSL2의 개발환경구축 지침입니다. 2025-11-24 정기모임 이후부터는 연구회에는 Windows 관리자계정의 사용을 권장하는 셈이므로 이 지침은 관심있는 회원들을 위한 것으로 일반회원들은 참고용으로만 활용하시길 바랍니다."
+author: "BenKorea"
+date: "2025-10-27"
+date-modified: last-modified
+categories:
+  - introduction
+---
+
+- 이 문서는 RPython연구회에서 Github에 만들어둔 특정 프로젝트를 로컬로 clone하고, 실행 전에 준비하는 공통되는 과정에서 필요한 전제조건에 해당하는 환경을 어떻게 구축하지를 안내합니다.   
+- 즉 연구회에서 만든 프로젝트의 실헹환경 구축방법을 안내합니다. (이는 개발환경구축과 같다고 생각합니다.)         
+- 현재 연구회 회원분들은 다양한 OS를 사용하고 계십니다. Windows(native), WSL2, macOS가 사용됩니다. 이 문서의 지침은 Windows와 WSL2에서 테스트되었으며, macOS에서는 아직 검증하지 못했습니다. 하지만 macOS 사용자는 동일한 기능의 앱을 설치하면 같은 기능의 환경을 구축할 수 있다록 기대됩니다.   
+- 개발환경구축에서 어려운 선택은 Windows(native)를 계속 사용할 것인지, WSL2로 전환할 것인지입니다. 저자의 경험상 처음으로 개발환경을 구축하는 시점이라면, WSL2 전환을 고려하는 것이 바람직하다고 판단됩니다. 그래서 이 문서에서는 Windows(native) 보다 WSL2 환경 구축 지침을 먼저 다룹니다.   
+- 또한 WSL2도 Windows의 하부시스템이자 계정에 따라 보안권한이 다릅니다. 이 문서에서는 아직 검증은 불충분하지만 Windows 표준사용자 계정에서 WSL2 개발환경을 구축하는 지침을 우선 다룹니다. (관리자권한 계정에서 WSL2 개발환경구축도 가능하지만, 보안상 취약해질 수 다 합니다.)   
+
+# 계정과 권한 이해하기
+환경 구축의 첫 단계는 어떤 계정을 사용할지를 정하는 것입니다.
+
+## Windows
+
+### Built-in Administrator 계정
+Windows 시스템에서 최상위 권한을 가지며, 보안상 기본적으로 비활성화해 두는 것이 원칙입니다. 이 계정은 긴급 복구 상황에서만 사용하시는 것이 바람직하며, 일반적인 운영이나 개발환경 구축에서는 사용하지 않으시는 것이 원칙입니다.
+
+### 로컬 Administrators 그룹에 속한 사용자 계정(이하 관리자권한 계정)
+소프트웨어 설치, 장치 드라이버 관리, 보안 정책 설정 등 시스템 관리 작업을 수행할 수 있도록 설계되어 있습니다. 개발환경 구축에서는 Built-in Administrator 계정보다는 안전하게 필요한 권한을 제공하므로, 관리 작업이나 초기 설정 계정으로 활용하는 것이 바람직합니다.
+
+### 관리자권한이 없는 표준사용자 계정(이하 표준사용자 계정)
+시스템 설정 변경이나 시스템에 소프트웨어 설치는 할 수 없지만, 자신의 계정 하부의 폴더에 소프트웨어 설치는 가능하며, 또한 문서 작성, 코딩, 인터넷 사용 등 일상적인 작업에는 이 계정을 사용하는 것이 권장됩니다.
+
+저자의 경우 계정과 권한의 구조를 이해하지 못한 채 관리자권한 계정만으로 Windows를 사용해 왔었는데, 이는 사용은 편리했지만, 보안상 취약해져 프로그램 삭제가 완전하지 않거나 악성코드가 침투하는 문제가 생길 수 있음을 다소 이해하게 되었습니다.   
+그래서 이 지침에서는 Windows에서 개발환경을 구축하고자 하신다면, Docker와 같이 시스템서비스가 필요한 서비스들은 관리자권한 계정에서 관리자권한으로 설치한 후 표준사용자 계정에서 이를 사용하도록 제안합니다. 일반적인 개발환경구축에 필요한 앱들은 표준사용자계정에서 표준사용자 폴더에 설치하도록 제안합니다.
+
+## WSL2
+
+### root 계정
+Linux 환경의 최상위 권한 계정입니다. 보안상 직접 사용하지 않는 것이 원칙입니다.
+
+### sudo 권한 계정
+WSL2 설치 시 기본으로 생성되는 계정입니다. 이 계정은 sudo 명령을 통해 root 권한을 일시적으로 사용할 수 있습니다. 개발환경 구축 시 가장 적합합니다.
+
+### 일반 사용자 계정
+sudo 권한이 없는 계정입니다. 소프트웨어 설치는 제한되지만, 프로젝트 실행·테스트에는 적합합니다.
+
+## macOS
+
+### root 계정
+기본적으로 비활성화되어 있으며, 보안상 직접 사용하지 않습니다.
+
+### sudo 권한 계정
+macOS 최초 설치 시 생성되는 계정입니다. 기본적으로 sudo를 통해 root 권한을 일시적으로 사용할 수 있으며, 개발환경 구축에는 이 계정을 사용합니다.
+
+### 일반 사용자 계정
+sudo 권한이 없는 계정으로, 시스템 변경은 불가하지만 프로젝트 실행이나 코드 작성은 가능합니다.
+
+# WSL2 개발환경구축
+
+## 현재 계정 권한확인
+현재 로그인된 Windows의 계정이 어떠한 권한인지 확인부터 진행해봅니다.
+* Windows 설정/계정/사용자 정보   
+에서 현재 로그인한 계정의 권한을 확인할 수 있습니다. 관리자라고 되어 있으면 관리자권한 사용자 계정입니다.
+
+## 표준사용자 계정 생성
+(관리자권한 계정으로 개발환경구축을 원하시는 사용자는 해당사항이 없습니다.)
+* Windows 설정/계정/다른 사용자/다른 사용자 추가 기능   
+으로 추가할 수 있습니다.
+* Window 10의 경우
+  - 로컬 사용자 및 그룹이라는 창이 뜨면
+  - 좌축 컬럼의 사용자를 선택하고, 가장 우측 컬럼의 기타작업으로 들어가서, 새 사용자를 선택하여 진행합니다.
+  - 사용자 이름을 지정하시고, 암호를 지정하시면 됩니다. (다음 로그온 시 사용자가 반드시 암호를 변경해야 함은 선택을 해제하시는 것이 편리합니다.)
+* Windows 11의 경우 
+  - `이 사람이 어떻게 로그인을 합니까?`에서 `이사람의 로그인 정보를 가지고 있지 않습니다`를 선택합니다. 이는 Microsoft 계정 없이 로컬 계정을 생성하기 위함입니다.
+  - 개인정보제공을 동의합니다.
+  - 계정만들기 단계에서는 `Microsoft 계정없이 사용자 추가`로 진행합니다.
+  - 이 PC의 사용자만들기 단계에서는 사용자이름과 암호를 설정하시면 완료됩니다.
+  - 계정유형변경 메뉴에서 확인해보면 `관리자`가 아닌 `표준 사용자`라고 나옵니다.
+* 이제부터는 윈도우버튼으로 로그인한 계정이 보이게 하여 클릭하면  로그아웃 옆의 점3개를 클릭하면 생성된 표준 사용자명이 나오며 이를 클릭해서 전환할 수도 있습니다.
+* 처음 로그인하는 과정에서는 몇가지 설정을 하게 되며 다소 시간이 소요됩니다.
+
+## Windows Terminal 설치
+반드시 필요한 것은 아니지만 일반적인 터미널창에 붙여넣기가 질 호환되지 않는 문제가 있고, WSL2의 bash 터미널을 띄우기가 편리하기 때문에 일반적으로 설치가 권장됩니다.
+- Microsoft Store에서 Windows Terminal을 검색해서 설치   
+하시면 관리자계정에 설치가 됩니다. 이 앱은 관리자 계정에 설치하고 표준사용자 계정에서도 설치하면 이 때는 중복설치가 아니라 링크처럼 실행하게 됩니다. 그런데 표준사용자 계정에서만 설치하는 방법은 지원되지 않으므로 관리자권한 계정에서 먼저 설치합니다.   
+이하 아래의 Powershell을 사용하실 때 붙여넣기가 호환이 잘 될 것입니다.
+
+
+## WSL2 설치 설정
+- Window10 2014 (Build 19041) 이상   
+에서는 Windows 하부 시스템으로써의 Linux를 안정적으로 사용할 수 있습니다. 
+- systeminfo   
+자신의 윈도우 운영체저 성능은 Powershell에서 `systeminfo`라는 명령으로 간단히 확인할 수 있습니다.
+- CPU의 가상화 지원여부   
+`Ctrl`+`Shift`+`Esc` 키를 사용하여 작업관리자로 진입하고 성능/CPU에서 가상화:  사용/사용안함 무엇인지 확인
+- BIOS Virtualization Technology   
+Windows 운영체제는 가능한데 CPU에 가상화: 사용안함으로 되어 있다면 BIOS에 들어가서 Virtualization Technology(Intel VT-x / AMD SVM) 항목을 직접 찾아 Enabled로 바꿔야 합니다.   
+하드웨어적 점검 완료 후 소프트웨어적 설정 점검을 진행합니다.
+- Powershell 관리자권한: WSL과 Virtual 옵션상태를 알아봅니다.
+```powershell
+Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+Get-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+```
+- 만약에 disabled 상태 등이라면 아래의 명령으로 필요한 파일들을 추가로 설치하여 enabled 상태로 변경하시면 됩니다.
+```powershell
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+- 설치과정 등의 문제로 삭제 후 다시 설치하고 싶다면 아래의 제거를 진행 후 위의 설치를 다시 실행합니다.
+```powershell
+dism.exe /online /disable-feature /featurename:VirtualMachinePlatform /norestart
+dism.exe /online /disable-feature /featurename:Microsoft-Windows-Subsystem-Linux /norestart
+```
+- 설치든 제거든 부팅이 필요합니다.
+- WSL2 버전 지정이 필요합니다. 
+```powershell
+wsl --set-default-version 2
+```
+
+## WSL2 환경 설정
+몇가지 주요설정을 wsl.config 파일을 통해 이루어지는데 문제는 Window11에서만 systemd 설정이 가능하다.
+
+### WSL 전역설정 구성
+C:\Users\<UserName>\.wslconfig
+
+### WSL 배포판별 구성
+- 위치: /etc/wsl.conf   
+- rstduio-server를 자동실행하는 예제이다.
+```powershell
+[boot]
+command="bash -c '/usr/local/bin/start-rstudio'"
+```
+
+
+**표준사용자 계정으로 로그인**   
+다음 단계부터는 표준사용자 계정으로 연계하여 진행합니다.
+
+## Ubuntu 설치
+표준사용자 계정으로 로그인 되었다고 가정합니다. (관리자계정으로 진행하시는 분들도 진해 가능합니다.)
+아래의 명령은 Powershell에서 실행시킵니다. 이 때 관리자권한이 아닌 일반계정으로 Powerwhell을 열어야 합니다. 그래야 C:\사용자\<표준사용자명> 에서시작하게 됩니다.
+(버전은 프로젝트의 개발환경버전과 일치시켰습니다.)
+```powershell
+wsl --install -d Ubuntu-24.04
+```
+cf) 만약에 설치할 수 없다는 출력된다면, 차선책으로 Mcirosoft Store에서 Ubuntu 24.04.01 LTS를 설치하시면 됩니다.   
+- default Unix user accout   
+은 원하시는데로 설정하기고
+- password   
+로 설장하시면 됩니다.
+- 검증은 설치된 창에서 아래의 명령으로 설치된 버전을 확인하시면 됩니다.
+```powershell
+lsb_release -a
+```
+- 설치 후 시스템에 반영을 위해서는 wsl를 재부팅하는 개념을 적용해야 합니다. 새로운 관리자권한의 Powershell을 열어서 아래의 명령을 실행합니다.
+```powershell
+wsl --shutdown
+```
+- Window Terminal (WT)로 다시 시작   
+다시 시작은  WT를 실행하여 시작합니다. 만약에 WT가 표준사용자계정에서 보이지 않는다면 앞서의 방법대로 표준사용자에서도 다시 설치 해주면 됩니다.
+- WT 목록에서 Ubuntu 시작하기   
+를 하시면 Ubuntu의 bash 터미널이 열리고 사용가능한 상태가 됩니다.
+
+## Ubuntu 패키지설치 이해하기
+* **apt** 개념   
+   - 리눅스에서는 윈도우처럼 프로그램 설치 파일을 직접 내려받아 실행하기보다는, 패키지 관리 시스템을 통해 설치와 업데이트를 합니다.
+   - 패키지 저장소(repository): 인터넷에 있는 프로그램 모음집.
+   - 패키지 메타데이터: 어떤 버전, 의존성(함께 필요한 다른 패키지), 설치 방법 등이 적혀 있는 정보.
+   - 로컬 저장소 목록: 내 PC가 어떤 저장소를 참조할지 기록한 파일.
+   - apt는 이 목록을 참고해 프로그램을 설치·삭제·업데이트합니다.
+   - 이때 시스템 전체에 영향을 주는 작업이므로 관리자 권한이 필요합니다. 그래서 명령 앞에 sudo(super user do)를 붙입니다.
+* **update와 upgrade의 차이**
+   - apt update   
+     저장소에서 최신 패키지 메타데이터를 내 PC로 가져옵니다.
+     쉽게 말해 “업데이트가 있는지 목록을 새로고침하는 것”입니다.
+     실제 프로그램이 설치되거나 바뀌지는 않습니다.
+   - apt upgrade   
+     apt update로 가져온 목록과 현재 내 PC의 상태를 비교합니다.
+     새 버전이 있으면 인터넷에서 내려받아 설치합니다.
+     즉, “목록을 보고 실제로 프로그램들을 최신 버전으로 교체하는 것”입니다.
+
+## git 설치
+- git는 프로젝트 버전관리에 필요하고 github에 프로젝트 소스를 clone 할 때도 사용   
+하므로 반드시 필요합니다.
+- Ubuntu에도 stable 버전의 git는 설치되어 있지만, 저자의 경우 노트북과 PC의 개발환경을 동일하게 유지하게 위해 버전을 동일하게 유지하고 있습니다. 그래서 ubuntu를 설치할 때도 버전을 지정하여 설치합니다.
+- git의 설치파일의 저장소는 ubuntu apt에 없기 때문에 아래의 명령으로 apt 목록에 추가한후 목록을 최신화합니다.
+```bash
+sudo add-apt-repository ppa:git-core/ppa
+```
+이 때 아무런 출력없이 다소 시간이 걸리니 잠시만 기다려 주세요.   
+성공하면 다음단계로   
+```bash
+sudo apt update
+```
+- 원하는 버전을 지정해서 설치합니다.
+```bash
+sudo apt install git=1:2.51.0-0ppa2~ubuntu24.04.1
+```
+- 검증은 버전을 확인하시면 됩니다.
+```bash
+git --version
+```
+
+## pyenv 설치
+- 프로젝트마다 파이썬의 버전을 다르게   
+  적용하는데 도움이 되는 앱입니다.
+- 소스를 직접 빌드   
+  하기 때문에 관련된 패키지들을 먼저 많이 설치해야 합니다.
+```bash
+sudo apt update
+sudo apt install -y build-essential libssl-dev zlib1g-dev \
+    libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+    libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+```
+- 설치명령 다운로드 후 실행   
+  을 위해 아래의 명령을 실행합니다.
+```bash
+curl https://pyenv.run | bash
+```
+- pyenv의 경로설정   
+  을 위해 사용자별 부팅시 자동화스크립트에 해당하는 ~/.bashrc 파일을 아래의 명령으로 편집상태로 만듭니다.   
+```bash
+sudo nano ~/.bashrc
+```
+- pyenv 명령어 자체의 경로, 심볼릭링크 경로, shell 통합기능, 가상환경 자동 활성 등을 위해 아래의 스크립트를 제일 마지막에 추가합니다.
+```bash
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+```
+- `CTRL+O`, `ENTER`, `CTRL+X` 순으로 진행하면 저장이 됩니다.
+- 완성할려면 shell을 다시 실행해야 합니다.
+```bash
+source ~/.bashrc
+```
+
+- 검증은 버전으로 하시면 됩니다. (pyenv 2.6.7)
+```bash
+pyenv --version
+```
+`pyenv 2.6.7` 출력되면 정상입니다.
+
+
+## Python 설치
+- 원하는 버전 설치   
+   는 아래의 버전만 지정하는 간단한 명령에도 잘 설치됩니다.
+```bash
+pyenv install 3.12.10
+```
+- 검증   
+  은 현재 설치된 파이썬들이 버전들을 조회해보면 좋습니다.   
+```bash
+pyenv versions
+```
+- 기본버전 지정   
+  을 아래의 명령으로 합니다.
+```bash
+pyenv global 3.12.10
+```
+
+
+## VS Code + WSL2 Extension
+- code server라고 리눅스환경에서 사용하는 IDE가 있지만 WSL2에서는 Windows에 설치된 VS Code에 WSL2 Extension을 설치해서 양측을 모두 사용하는 것이 추천됩니다.
+- Windows 개발환경구축에서 scoop, git, VS Code 설치를 진행하시길 추천드립니다.
+- VS Code 설치 후에는 Python과 WSL 확장을 설치만 하면 사용 가능합니다. 
+
+## rig 설치
+- rig는 R 언어를 버전별로 관리해 주는 툴입니다. 
+```bash
+`which sudo` curl -L https://rig.r-pkg.org/deb/rig.gpg -o /etc/apt/trusted.gpg.d/rig.gpg
+`which sudo` sh -c 'echo "deb http://rig.r-pkg.org/deb rig main" > /etc/apt/sources.list.d/rig.list'
+`which sudo` apt update
+`which sudo` apt install r-rig
+```
+- 설치 후 검증은 버전으로 진행합니다.
+```bash
+rig --version
+```
+
+## R 설치
+- rig 가 설치된 상태에서는 매우 쉽습니다. add 명령만 사용하면 됩니다.
+```bash
+rig add 4.4.3
+```
+- 기본값 지정   
+  은 아래의 명령어로 진행하며 pyenv와 약간 다르므로 주의를 요합니다.
+```bash
+rig default 4.4.3
+```
+
+## rstudio-server 설치
+- Windows 10 하부시스템오로써의 WSL2는 GUI (Graphic User Interface)를 지원 RStudio 서버처럼 GUI를 지원하지 못합니다. 그래서 browse에서 작동하는 rstudio-server를 설치합니다.
+```bash
+sudo apt-get install gdebi-core
+wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.12.1-563-amd64.deb
+sudo gdebi rstudio-server-2024.12.1-563-amd64.deb
+```
+- 설치완료 후에는 브라우져에 아래의 주소를 입력해서 접속합니다. (폐이지를 추가하는 것이 좋습니다.)
+```bash
+http://localhost:8787
+```
+
+## quarto 설치
+- Quarto 문서를 렌더링 등에 필요합니다.
+- 1.6.42 버전에서는 RPythonStudy/website 렌더링시에 오류가 없었으나 이후의 버전에서 오류가 발생하였습니다.
+- 그래서 이 프로잭트에서는 오류가 없었던 버전을 지정해서 아래와 같이 설치하였습니다.
+```bash
+QUARTO_VERSION=1.6.42
+wget https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.tar.gz
+tar -xzf quarto-${QUARTO_VERSION}-linux-amd64.tar.gz
+sudo mv quarto-${QUARTO_VERSION} /opt/quarto-${QUARTO_VERSION}
+sudo ln -sfn /opt/quarto-${QUARTO_VERSION}/bin/quarto /usr/local/bin/quarto
+```
+
+## make 설치
+- 자동화 도구이며 다수의 프로젝트에서 사용되었기 때문에 설치 사용하시면 편리합니다.
+```bash
+sudo apt update
+sudo apt install build-essential
+```
+- 검증은
+```bash
+make --version
+```
+
+
+# Windows 개발환경구축
+
+## Scoop 설치
+Windows용 command-line 패키지 설치 매니저입니다.
+* 이를 사용하지 않고 표준사용자 계정으로 설치를 진행해도 버전관리에 불편함에 있을 뿐이므로 원치 않으시면 패스하셔도 됩니다.
+* 또한 일부 패키지들은 native와 달리 원하는 버전이 아직 update되지 않아서 그냥 표준사용자 계정으로 설치하는 경우도 있습니다.
+* Docker Desktop처럼 부팅이후에 시스템서비스로 항상 구동되어야 하는 경우 관리자권한 사용자게정에서 시스템에 설치가 필요합니다. 따라서 이 경우도 scoop로 설치하지 않습니다.
+* 이미 많은 앱들이 설치된 표준사용자계정이라면 모두 scoop로 재설치하는 것보다 scoop 없이 진행할 수 있습니다.
+- 설치는 아래를 따라서 진행합니다.
+   - `Win+X` 핫키를 이용해서 Windows PowerShell 터미널을 관리자권한이 아닌 상태로 엽니다. (표준사용자 계정에서는 어차피 관리자권한으로 열리지는 않을 것 같습니다.)
+   - 아래의 명령으로 Powershell이 다운로드한 파일도 실행할수 있도록 실행권한을 재설정합니다.
+   
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+   - 아래의 명령으로 scoop를 설치합니다.
+   
+```powershell
+irm get.scoop.sh | iex
+```
+- 보안과 관련하여 PowerShell을 관리자권한으로 열면 오류가 발생하니 주의를 요합니다.
+- 설치검증은 버전을 확인합니다.
+
+```powershell
+scoop --version
+```
+- v0.5.3 - Released at 2025-08-11
+
+## 표준사용자 Git 설치
+프로젝트 버전관리 및 clone을 위해서는 필수적이므로 반드시 설치하셔야 합니다.
+- Scoop를 통하지 않는 일반적인 설치는 연구회 웹사이트를 참고하세요. (https://rpythonstudy.github.io/website/posts/tools/git/git_install.html)
+- Scoop를 통한 설치는 아래 명령을 실행하시면 됩니다. 
+
+```powershell
+scoop install git
+```
+- 설치 검증은 버전으로 하시면 됩니다.
+```powershell
+git --version
+```
+- git version 2.51.0.windows.1
+
+## 표준사용자 pyenv 설치
+- 파이썬 버전관리 툴입니다. 특정 프로젝트를 클론 한 후에 지정된 파이썬 버전을 지정할 때 필요합니다.
+- scoop로 pyenv를 설치하고 싶었으나 scoop를 통한 방식은 pyenv update가 너무 늦어 아직은 python 3.12.10을 설치할 수 없는 상태였습니다.
+- 따라서 scoop 방식이 아닌 아래의 clone 방식으로 표준사용자 환경에 설치 진행하였습니다.
+- 관리자권한 사용자의 경우도 pyenv는 같은 방식으로 설치하시길 바랍니다.
+- 혹시라도 이전 설치를 확인할려면 아래의 명령을 실행해 봅니다.
+
+```powershell
+Get-Command pyenv -ErrorAction SilentlyContinue
+```
+- 설치 중 문제가 발생한다던지 등의 상황에서 이전설치 제거하고자 하신다면 설치폴더 제거하면 됩니다.
+
+```powershell
+Remove-Item -Recurse -Force $HOME\.pyenv
+```
+- 설치제거 시 환경변수에서 제거가 필요하시면 수동으로 제거하시길 바랍니다.
+- 설치는 Windows PowerShell에서 아래의 명령을 실행합니다. (C:\Users\<사용자명>\.pyenv\로 진행됩니다.)
+```powershell
+Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
+```
+- 오류가 발생하면 chatGPT를 활용해서 해결하시길 바랍니다.
+- 설치 검증은 버전으로 하시면 됩니다.
+```powershell
+pyenv --version
+```
+- pyenv 3.1.1
+
+
+## 표준사용자 python 설치
+- 기존의 system에 설치된 python이 있더라도 pyenv의 경로가 우선되기 때문에 꼭 시스템 설치를 제거하지 않더라도 사용 가능합니다.
+- 관리자권한 사용자도 같은 방식으로 설치가 가능합니다.
+- pyenv를 이용한 설치는 아래의 명령으로 원하는 버전의 파이썬을 설치합니다.
+```powershell
+pyenv install 3.12.10
+```
+- pyenv는 사용자전역의 default 버전을 지정하도록 되어 있습니다. 아래의 명령을 실행한 후 가용한 버전을 확인합니다.
+```powershell
+pyenv global 3.12.10
+pyenv versions
+```
+- * 3.12.10 (set by C:\Users\dev\.pyenv\pyenv-win\version)
+
+
+## 표준사용자 VS Code 설치
+- 일반적인 방법은 연구회 웹사이트를 참고하시길 바랍니다. (https://rpythonstudy.github.io/website/posts/Python/install/VSCode_setup.html)
+- 표준사용자는 아래의 scoop를 통한 설치를 추천합니다.
+- scoop를 통한 설치는 먼저 아래의 명령을 실행합니다. 
+```powershell
+scoop bucket add extras
+scoop install vscode
+```
+- 첫번째 명령은 scoop의 extras bucket을 추가하는 명령입니다. scoop의 기본 bucket에는 VS Code가 없기 때문입니다.
+- 'vscode' (1.103.2) was installed successfully!
+- 실행은 PowerShell에서 아래의 명령을 실행합니다.
+```powershell
+code
+```
+
+## 표준사용자 make 설치
+- 다양한 스크립트를 자동화하기 위해 사용됩니다.
+- 특히 Windows, macOS, Linux 모든 환경에서 사용할 수 있어 유용합니다.
+- 이 프로젝트에서는 clone 된 프로젝트를 사용할 수 있도록 준비하는 과정 상당부분을 make로 자동화하였습니다.
+- 따라서 clone 된 프로젝트를 편리하게 설정을 마무리할려면 설치하는 것이 좋습니다.
+- 설치는 아래의 명령으로 설치하시면 됩니다.
+```powershell
+scoop install make
+```
+- 설치검증은 버전을 확인하시면 됩니다.
+```powershell
+make --version
+```
+- GNU Make 4.4.1
+
+## rig 설치는 비추천
+- R 언어 자체의 버전 관리를 위해 사용됩니다.
+- 그러나 rig는 설치 시 관리자 권한이 필요하므로 이 개발환경구축의 정책과 일치하지 않으므로 진행하지 않았습니다.
+
+## 표준사용자 R 직접 설치
+- scoop로 R을 설치할 수도 있습니다만 레지스트리에 등록되지 않아서 RStudio에서 R 경로를 인식하지 못하는 제한점이 있습니다.
+- 그래서 CRAN으로부터 윈도우용 설치파일을 다운로드하여 표준사용자 폴더에 직접 설치하는 방법으로 진행하였습니다.
+```powershell
+C:\Users\<사용자명>\AppData\Local\Programs\R\4.4.3\
+```
+- 버전별로 설치가 가능합니다.
+
+## 표준사용자 Rtools 설치 (옵션)
+- Rtools는 R이 단순 스크립트 언어로만 쓰이지 않고, C/C++/Fortran 확장 패키지를 Windows에서 문제없이 빌드할 수 있게 해주는 컴파일러·빌드 환경입니다.
+- 차후에 필요시 설치를 해도 무방합니다.
+- CRAN으로부터 설치파일을 다운도르하여 표준사용자 폴더 C:\Users\<사용자명>\에 직접 설치를 진행하였습니다. 
+- 설치 후 경로를 설정해야 하는데 앞서 이 프로젝트에서는 make란 자동화도구를 사용했는데, 이것이 이름이 같기 때문에 단순히 경로를 설정하면 앞서의 make가 호출되는 문제가 발생합니다. 이 문제를 극복하기 위해 표준사용자 환경변수에 rtools 경로를 주입하는 아래의 방법으로 진행하였습니다.
+- C:\Users\<사용자명>\.Renviron 파일을 생성하고, 아래의 경로를 설정해 줍니다.
+```powershell
+PATH="C:/Users/<사용자명>/rtools44/usr/bin;${PATH}"
+```
+- .Renviron 파일은 이 위치에 있으면 사용자전역으로 환경설정을 하여 R session이 시작될 때, 인식하게 됩니다.
+
+## 표준사용자 RStudio 설치
+- scoop로 RStudio를 설치하면 최신 R과 같이 설치되는데 다른 버전의 R로 변경이 되지 않는 제한점이 있습니다.
+- 그래서 scoop로 설치하지 않고 윈도우용 설치파일을 다운로드하여 표준사용자 폴더에 직접 설치를 진행하였습니다. 
+```powershell
+C:\Users\<사용자명>\AppData\Local\Programs\RStudio\
+```
+- 설치 후 `Global options/R sessions/R version`에서 경로가 적절히 설정된 것을 확인할 수 있습니다.
+- R console에서 아래의 명령으로 rtools의 경로가 나타나면 rtools 경로도 .Renviron으로 잘 주입된 것을 알 수 있습니다.
+```powershell
+Sys.which("make")
+```
+
+## 표준사용자 quarto 설치
+- Quarto 문서를 렌더링 등에 필요합니다.
+- 1.6.42 버전에서는 RPythonStudy/website 렌더링시에 오류가 없었으나 이후의 버전에서 오류가 발생하였습니다.
+- 이 프로잭트에서는 Quarto 버전을 아래와 같이 표준사용자 환경에 설치하였습니다.
+```powershell
+scoop install quarto@1.6.42
+```
+- 설치 검증은 버전으로 하시면 됩니다.
+```powershell
+quarto --version
+```
+
+
+
+
+

@@ -1,14 +1,19 @@
 ---
 title: "개발환경구축"
-description: "R/Python 개발환경 구축에 대한 안내입니다."
-author: "BenKorea feat. ChatGPT"
+description: "연구회 강의록이나 회원이 작성한 구축지침입니다."
+author: "BenKorea"
 date: "2025-12-01"
 date-modified: last-modified
 categories:
   - introduction
 ---
 
--   이 문서는 R과 Python 개발환경구축을 위해서 단순히 R/Python을 설치하는 것이 아닌, 관련되었거나 미리 설치가 필요한 프로그램들의 설치까지 안내합니다.
--   아직은 Python 설치와 관련된 일부만 있지만 앞으로 다른 내용도 추가될 예정입니다.
--   이는 RPython연구회에서 Github에 만들어둔 특정 프로젝트를 로컬로 clone할 때에도 도움이 될 것입니다.
--   사이드메뉴에는 운영체제별로 개발환경을 구축하는 안내를 게시하도록 하였으니 아직 미완성입니다.
+-   Windows∙macOS/파이썬 설치 - RPython 강의록:
+
+    -   2025-11-24 이병철과장님 강의
+
+-   Windows∙WSL2/표준사용자 & WSL2 개발환경구축:
+
+    -   2025-11-24 정기모임에서 연구회는 Windows 관리자계정을 권장
+
+    -   따라서 이 지침은 관심있는 회원들만을 위한 것으로 다른 회원들은 건너띄거나 참고만 하셔도 됩니다."

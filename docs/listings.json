@@ -2,9 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/DE/windows/setup.html",
-      "/posts/DE/windows/powershell.html",
+      "/posts/DE/windows_macos/python.html",
       "/posts/DE/introduction_to_DE.html",
+      "/posts/DE/windows_wsl2/develop_environment.html",
       "/posts/about/about.html",
       "/posts/Concepts/env_path/env_path.html",
       "/posts/Concepts/user/user.html",

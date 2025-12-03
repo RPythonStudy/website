@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="BenKorea">
+<meta name="description" content="이 지침은 Windows 표준사용자와 WSL2의 개발환경구축 지침입니다. 2025-11-24 정기모임 이후부터는 연구회에는 Windows 관리자계정의 사용을 권장하는 셈이므로 이 지침은 관심있는 회원들을 위한 것으로 일반회원들은 참고용으로만 활용하시길 바랍니다.">
+
+<title>표준사용자 &amp; WSL2 개발환경구축 – RPythonStudy</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles/styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../RPythonStudy_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">RPythonStudy</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../posts/DE/introduction_to_DE.html" aria-current="page"> 
+<span class="menu-text">개발환경구축</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/R/introduction_to_R.html"> 
+<span class="menu-text">R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Python/introduction_to_Python.html"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Quarto/introduction_to_Quarto.html"> 
+<span class="menu-text">Quarto</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/statistics/introduction_to_statistics.html"> 
+<span class="menu-text">Statistics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rpythonstudy.shinyapps.io/Quiz/"> 
+<span class="menu-text">Quiz</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Resources/introduction_to_resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/tools/introduction_to_tools.html"> 
+<span class="menu-text">Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/Concepts/introduction_to_concepts.html"> 
+<span class="menu-text">Concepts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts/about/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../.././en"> 
+<span class="menu-text">English</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/RPythonStudy/website" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/DE/windows_wsl2/develop_environment.html">Windows∙WSL2</a></li><li class="breadcrumb-item"><a href="../../../posts/DE/windows_wsl2/develop_environment.html">표준사용자 &amp; WSL2 개발환경구축</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../posts/DE/windows_wsl2/develop_environment.html">Windows∙WSL2</a></li><li class="breadcrumb-item"><a href="../../../posts/DE/windows_wsl2/develop_environment.html">표준사용자 &amp; WSL2 개발환경구축</a></li></ol></nav>
+      <h1 class="title">표준사용자 &amp; WSL2 개발환경구축</h1>
+                  <div>
+        <div class="description">
+          이 지침은 Windows 표준사용자와 WSL2의 개발환경구축 지침입니다. 2025-11-24 정기모임 이후부터는 연구회에는 Windows 관리자계정의 사용을 권장하는 셈이므로 이 지침은 관심있는 회원들을 위한 것으로 일반회원들은 참고용으로만 활용하시길 바랍니다.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">introduction</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">저자</div>
+      <div class="quarto-title-meta-contents">
+               <p>BenKorea </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">공개</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2025년 10월 27일</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">2025년 12월 3일</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/DE/introduction_to_DE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">개발환경구축</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Windows∙macOS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/DE/windows_macos/python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">파이썬 설치 - RPython 강의록</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Windows∙WSL2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../posts/DE/windows_wsl2/develop_environment.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">표준사용자 &amp; WSL2 개발환경구축</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#계정과-권한-이해하기" id="toc-계정과-권한-이해하기" class="nav-link active" data-scroll-target="#계정과-권한-이해하기"><span class="header-section-number">1</span> 계정과 권한 이해하기</a>
+  <ul class="collapse">
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="header-section-number">1.1</span> Windows</a>
+  <ul class="collapse">
+  <li><a href="#built-in-administrator-계정" id="toc-built-in-administrator-계정" class="nav-link" data-scroll-target="#built-in-administrator-계정"><span class="header-section-number">1.1.1</span> Built-in Administrator 계정</a></li>
+  <li><a href="#로컬-administrators-그룹에-속한-사용자-계정이하-관리자권한-계정" id="toc-로컬-administrators-그룹에-속한-사용자-계정이하-관리자권한-계정" class="nav-link" data-scroll-target="#로컬-administrators-그룹에-속한-사용자-계정이하-관리자권한-계정"><span class="header-section-number">1.1.2</span> 로컬 Administrators 그룹에 속한 사용자 계정(이하 관리자권한 계정)</a></li>
+  <li><a href="#관리자권한이-없는-표준사용자-계정이하-표준사용자-계정" id="toc-관리자권한이-없는-표준사용자-계정이하-표준사용자-계정" class="nav-link" data-scroll-target="#관리자권한이-없는-표준사용자-계정이하-표준사용자-계정"><span class="header-section-number">1.1.3</span> 관리자권한이 없는 표준사용자 계정(이하 표준사용자 계정)</a></li>
+  </ul></li>
+  <li><a href="#wsl2" id="toc-wsl2" class="nav-link" data-scroll-target="#wsl2"><span class="header-section-number">1.2</span> WSL2</a>
+  <ul class="collapse">
+  <li><a href="#root-계정" id="toc-root-계정" class="nav-link" data-scroll-target="#root-계정"><span class="header-section-number">1.2.1</span> root 계정</a></li>
+  <li><a href="#sudo-권한-계정" id="toc-sudo-권한-계정" class="nav-link" data-scroll-target="#sudo-권한-계정"><span class="header-section-number">1.2.2</span> sudo 권한 계정</a></li>
+  <li><a href="#일반-사용자-계정" id="toc-일반-사용자-계정" class="nav-link" data-scroll-target="#일반-사용자-계정"><span class="header-section-number">1.2.3</span> 일반 사용자 계정</a></li>
+  </ul></li>
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos"><span class="header-section-number">1.3</span> macOS</a>
+  <ul class="collapse">
+  <li><a href="#root-계정-1" id="toc-root-계정-1" class="nav-link" data-scroll-target="#root-계정-1"><span class="header-section-number">1.3.1</span> root 계정</a></li>
+  <li><a href="#sudo-권한-계정-1" id="toc-sudo-권한-계정-1" class="nav-link" data-scroll-target="#sudo-권한-계정-1"><span class="header-section-number">1.3.2</span> sudo 권한 계정</a></li>
+  <li><a href="#일반-사용자-계정-1" id="toc-일반-사용자-계정-1" class="nav-link" data-scroll-target="#일반-사용자-계정-1"><span class="header-section-number">1.3.3</span> 일반 사용자 계정</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#wsl2-개발환경구축" id="toc-wsl2-개발환경구축" class="nav-link" data-scroll-target="#wsl2-개발환경구축"><span class="header-section-number">2</span> WSL2 개발환경구축</a>
+  <ul class="collapse">
+  <li><a href="#현재-계정-권한확인" id="toc-현재-계정-권한확인" class="nav-link" data-scroll-target="#현재-계정-권한확인"><span class="header-section-number">2.1</span> 현재 계정 권한확인</a></li>
+  <li><a href="#표준사용자-계정-생성" id="toc-표준사용자-계정-생성" class="nav-link" data-scroll-target="#표준사용자-계정-생성"><span class="header-section-number">2.2</span> 표준사용자 계정 생성</a></li>
+  <li><a href="#windows-terminal-설치" id="toc-windows-terminal-설치" class="nav-link" data-scroll-target="#windows-terminal-설치"><span class="header-section-number">2.3</span> Windows Terminal 설치</a></li>
+  <li><a href="#wsl2-설치-설정" id="toc-wsl2-설치-설정" class="nav-link" data-scroll-target="#wsl2-설치-설정"><span class="header-section-number">2.4</span> WSL2 설치 설정</a></li>
+  <li><a href="#wsl2-환경-설정" id="toc-wsl2-환경-설정" class="nav-link" data-scroll-target="#wsl2-환경-설정"><span class="header-section-number">2.5</span> WSL2 환경 설정</a>
+  <ul class="collapse">
+  <li><a href="#wsl-전역설정-구성" id="toc-wsl-전역설정-구성" class="nav-link" data-scroll-target="#wsl-전역설정-구성"><span class="header-section-number">2.5.1</span> WSL 전역설정 구성</a></li>
+  <li><a href="#wsl-배포판별-구성" id="toc-wsl-배포판별-구성" class="nav-link" data-scroll-target="#wsl-배포판별-구성"><span class="header-section-number">2.5.2</span> WSL 배포판별 구성</a></li>
+  </ul></li>
+  <li><a href="#ubuntu-설치" id="toc-ubuntu-설치" class="nav-link" data-scroll-target="#ubuntu-설치"><span class="header-section-number">2.6</span> Ubuntu 설치</a></li>
+  <li><a href="#ubuntu-패키지설치-이해하기" id="toc-ubuntu-패키지설치-이해하기" class="nav-link" data-scroll-target="#ubuntu-패키지설치-이해하기"><span class="header-section-number">2.7</span> Ubuntu 패키지설치 이해하기</a></li>
+  <li><a href="#git-설치" id="toc-git-설치" class="nav-link" data-scroll-target="#git-설치"><span class="header-section-number">2.8</span> git 설치</a></li>
+  <li><a href="#pyenv-설치" id="toc-pyenv-설치" class="nav-link" data-scroll-target="#pyenv-설치"><span class="header-section-number">2.9</span> pyenv 설치</a></li>
+  <li><a href="#python-설치" id="toc-python-설치" class="nav-link" data-scroll-target="#python-설치"><span class="header-section-number">2.10</span> Python 설치</a></li>
+  <li><a href="#vs-code-wsl2-extension" id="toc-vs-code-wsl2-extension" class="nav-link" data-scroll-target="#vs-code-wsl2-extension"><span class="header-section-number">2.11</span> VS Code + WSL2 Extension</a></li>
+  <li><a href="#rig-설치" id="toc-rig-설치" class="nav-link" data-scroll-target="#rig-설치"><span class="header-section-number">2.12</span> rig 설치</a></li>
+  <li><a href="#r-설치" id="toc-r-설치" class="nav-link" data-scroll-target="#r-설치"><span class="header-section-number">2.13</span> R 설치</a></li>
+  <li><a href="#rstudio-server-설치" id="toc-rstudio-server-설치" class="nav-link" data-scroll-target="#rstudio-server-설치"><span class="header-section-number">2.14</span> rstudio-server 설치</a></li>
+  <li><a href="#quarto-설치" id="toc-quarto-설치" class="nav-link" data-scroll-target="#quarto-설치"><span class="header-section-number">2.15</span> quarto 설치</a></li>
+  <li><a href="#make-설치" id="toc-make-설치" class="nav-link" data-scroll-target="#make-설치"><span class="header-section-number">2.16</span> make 설치</a></li>
+  </ul></li>
+  <li><a href="#windows-개발환경구축" id="toc-windows-개발환경구축" class="nav-link" data-scroll-target="#windows-개발환경구축"><span class="header-section-number">3</span> Windows 개발환경구축</a>
+  <ul class="collapse">
+  <li><a href="#scoop-설치" id="toc-scoop-설치" class="nav-link" data-scroll-target="#scoop-설치"><span class="header-section-number">3.1</span> Scoop 설치</a></li>
+  <li><a href="#표준사용자-git-설치" id="toc-표준사용자-git-설치" class="nav-link" data-scroll-target="#표준사용자-git-설치"><span class="header-section-number">3.2</span> 표준사용자 Git 설치</a></li>
+  <li><a href="#표준사용자-pyenv-설치" id="toc-표준사용자-pyenv-설치" class="nav-link" data-scroll-target="#표준사용자-pyenv-설치"><span class="header-section-number">3.3</span> 표준사용자 pyenv 설치</a></li>
+  <li><a href="#표준사용자-python-설치" id="toc-표준사용자-python-설치" class="nav-link" data-scroll-target="#표준사용자-python-설치"><span class="header-section-number">3.4</span> 표준사용자 python 설치</a></li>
+  <li><a href="#표준사용자-vs-code-설치" id="toc-표준사용자-vs-code-설치" class="nav-link" data-scroll-target="#표준사용자-vs-code-설치"><span class="header-section-number">3.5</span> 표준사용자 VS Code 설치</a></li>
+  <li><a href="#표준사용자-make-설치" id="toc-표준사용자-make-설치" class="nav-link" data-scroll-target="#표준사용자-make-설치"><span class="header-section-number">3.6</span> 표준사용자 make 설치</a></li>
+  <li><a href="#rig-설치는-비추천" id="toc-rig-설치는-비추천" class="nav-link" data-scroll-target="#rig-설치는-비추천"><span class="header-section-number">3.7</span> rig 설치는 비추천</a></li>
+  <li><a href="#표준사용자-r-직접-설치" id="toc-표준사용자-r-직접-설치" class="nav-link" data-scroll-target="#표준사용자-r-직접-설치"><span class="header-section-number">3.8</span> 표준사용자 R 직접 설치</a></li>
+  <li><a href="#표준사용자-rtools-설치-옵션" id="toc-표준사용자-rtools-설치-옵션" class="nav-link" data-scroll-target="#표준사용자-rtools-설치-옵션"><span class="header-section-number">3.9</span> 표준사용자 Rtools 설치 (옵션)</a></li>
+  <li><a href="#표준사용자-rstudio-설치" id="toc-표준사용자-rstudio-설치" class="nav-link" data-scroll-target="#표준사용자-rstudio-설치"><span class="header-section-number">3.10</span> 표준사용자 RStudio 설치</a></li>
+  <li><a href="#표준사용자-quarto-설치" id="toc-표준사용자-quarto-설치" class="nav-link" data-scroll-target="#표준사용자-quarto-설치"><span class="header-section-number">3.11</span> 표준사용자 quarto 설치</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<ul>
+<li>이 문서는 RPython연구회에서 Github에 만들어둔 특정 프로젝트를 로컬로 clone하고, 실행 전에 준비하는 공통되는 과정에서 필요한 전제조건에 해당하는 환경을 어떻게 구축하지를 안내합니다.<br>
+</li>
+<li>즉 연구회에서 만든 프로젝트의 실헹환경 구축방법을 안내합니다. (이는 개발환경구축과 같다고 생각합니다.)<br>
+</li>
+<li>현재 연구회 회원분들은 다양한 OS를 사용하고 계십니다. Windows(native), WSL2, macOS가 사용됩니다. 이 문서의 지침은 Windows와 WSL2에서 테스트되었으며, macOS에서는 아직 검증하지 못했습니다. 하지만 macOS 사용자는 동일한 기능의 앱을 설치하면 같은 기능의 환경을 구축할 수 있다록 기대됩니다.<br>
+</li>
+<li>개발환경구축에서 어려운 선택은 Windows(native)를 계속 사용할 것인지, WSL2로 전환할 것인지입니다. 저자의 경험상 처음으로 개발환경을 구축하는 시점이라면, WSL2 전환을 고려하는 것이 바람직하다고 판단됩니다. 그래서 이 문서에서는 Windows(native) 보다 WSL2 환경 구축 지침을 먼저 다룹니다.<br>
+</li>
+<li>또한 WSL2도 Windows의 하부시스템이자 계정에 따라 보안권한이 다릅니다. 이 문서에서는 아직 검증은 불충분하지만 Windows 표준사용자 계정에서 WSL2 개발환경을 구축하는 지침을 우선 다룹니다. (관리자권한 계정에서 WSL2 개발환경구축도 가능하지만, 보안상 취약해질 수 다 합니다.)</li>
+</ul>
+<section id="계정과-권한-이해하기" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> 계정과 권한 이해하기</h1>
+<p>환경 구축의 첫 단계는 어떤 계정을 사용할지를 정하는 것입니다.</p>
+<section id="windows" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="windows"><span class="header-section-number">1.1</span> Windows</h2>
+<section id="built-in-administrator-계정" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="built-in-administrator-계정"><span class="header-section-number">1.1.1</span> Built-in Administrator 계정</h3>
+<p>Windows 시스템에서 최상위 권한을 가지며, 보안상 기본적으로 비활성화해 두는 것이 원칙입니다. 이 계정은 긴급 복구 상황에서만 사용하시는 것이 바람직하며, 일반적인 운영이나 개발환경 구축에서는 사용하지 않으시는 것이 원칙입니다.</p>
+</section>
+<section id="로컬-administrators-그룹에-속한-사용자-계정이하-관리자권한-계정" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="로컬-administrators-그룹에-속한-사용자-계정이하-관리자권한-계정"><span class="header-section-number">1.1.2</span> 로컬 Administrators 그룹에 속한 사용자 계정(이하 관리자권한 계정)</h3>
+<p>소프트웨어 설치, 장치 드라이버 관리, 보안 정책 설정 등 시스템 관리 작업을 수행할 수 있도록 설계되어 있습니다. 개발환경 구축에서는 Built-in Administrator 계정보다는 안전하게 필요한 권한을 제공하므로, 관리 작업이나 초기 설정 계정으로 활용하는 것이 바람직합니다.</p>
+</section>
+<section id="관리자권한이-없는-표준사용자-계정이하-표준사용자-계정" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="관리자권한이-없는-표준사용자-계정이하-표준사용자-계정"><span class="header-section-number">1.1.3</span> 관리자권한이 없는 표준사용자 계정(이하 표준사용자 계정)</h3>
+<p>시스템 설정 변경이나 시스템에 소프트웨어 설치는 할 수 없지만, 자신의 계정 하부의 폴더에 소프트웨어 설치는 가능하며, 또한 문서 작성, 코딩, 인터넷 사용 등 일상적인 작업에는 이 계정을 사용하는 것이 권장됩니다.</p>
+<p>저자의 경우 계정과 권한의 구조를 이해하지 못한 채 관리자권한 계정만으로 Windows를 사용해 왔었는데, 이는 사용은 편리했지만, 보안상 취약해져 프로그램 삭제가 완전하지 않거나 악성코드가 침투하는 문제가 생길 수 있음을 다소 이해하게 되었습니다.<br>
+그래서 이 지침에서는 Windows에서 개발환경을 구축하고자 하신다면, Docker와 같이 시스템서비스가 필요한 서비스들은 관리자권한 계정에서 관리자권한으로 설치한 후 표준사용자 계정에서 이를 사용하도록 제안합니다. 일반적인 개발환경구축에 필요한 앱들은 표준사용자계정에서 표준사용자 폴더에 설치하도록 제안합니다.</p>
+</section>
+</section>
+<section id="wsl2" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="wsl2"><span class="header-section-number">1.2</span> WSL2</h2>
+<section id="root-계정" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="root-계정"><span class="header-section-number">1.2.1</span> root 계정</h3>
+<p>Linux 환경의 최상위 권한 계정입니다. 보안상 직접 사용하지 않는 것이 원칙입니다.</p>
+</section>
+<section id="sudo-권한-계정" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="sudo-권한-계정"><span class="header-section-number">1.2.2</span> sudo 권한 계정</h3>
+<p>WSL2 설치 시 기본으로 생성되는 계정입니다. 이 계정은 sudo 명령을 통해 root 권한을 일시적으로 사용할 수 있습니다. 개발환경 구축 시 가장 적합합니다.</p>
+</section>
+<section id="일반-사용자-계정" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="일반-사용자-계정"><span class="header-section-number">1.2.3</span> 일반 사용자 계정</h3>
+<p>sudo 권한이 없는 계정입니다. 소프트웨어 설치는 제한되지만, 프로젝트 실행·테스트에는 적합합니다.</p>
+</section>
+</section>
+<section id="macos" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="macos"><span class="header-section-number">1.3</span> macOS</h2>
+<section id="root-계정-1" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="root-계정-1"><span class="header-section-number">1.3.1</span> root 계정</h3>
+<p>기본적으로 비활성화되어 있으며, 보안상 직접 사용하지 않습니다.</p>
+</section>
+<section id="sudo-권한-계정-1" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="sudo-권한-계정-1"><span class="header-section-number">1.3.2</span> sudo 권한 계정</h3>
+<p>macOS 최초 설치 시 생성되는 계정입니다. 기본적으로 sudo를 통해 root 권한을 일시적으로 사용할 수 있으며, 개발환경 구축에는 이 계정을 사용합니다.</p>
+</section>
+<section id="일반-사용자-계정-1" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="일반-사용자-계정-1"><span class="header-section-number">1.3.3</span> 일반 사용자 계정</h3>
+<p>sudo 권한이 없는 계정으로, 시스템 변경은 불가하지만 프로젝트 실행이나 코드 작성은 가능합니다.</p>
+</section>
+</section>
+</section>
+<section id="wsl2-개발환경구축" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> WSL2 개발환경구축</h1>
+<section id="현재-계정-권한확인" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="현재-계정-권한확인"><span class="header-section-number">2.1</span> 현재 계정 권한확인</h2>
+<p>현재 로그인된 Windows의 계정이 어떠한 권한인지 확인부터 진행해봅니다. * Windows 설정/계정/사용자 정보<br>
+에서 현재 로그인한 계정의 권한을 확인할 수 있습니다. 관리자라고 되어 있으면 관리자권한 사용자 계정입니다.</p>
+</section>
+<section id="표준사용자-계정-생성" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="표준사용자-계정-생성"><span class="header-section-number">2.2</span> 표준사용자 계정 생성</h2>
+<p>(관리자권한 계정으로 개발환경구축을 원하시는 사용자는 해당사항이 없습니다.) * Windows 설정/계정/다른 사용자/다른 사용자 추가 기능<br>
+으로 추가할 수 있습니다. * Window 10의 경우 - 로컬 사용자 및 그룹이라는 창이 뜨면 - 좌축 컬럼의 사용자를 선택하고, 가장 우측 컬럼의 기타작업으로 들어가서, 새 사용자를 선택하여 진행합니다. - 사용자 이름을 지정하시고, 암호를 지정하시면 됩니다. (다음 로그온 시 사용자가 반드시 암호를 변경해야 함은 선택을 해제하시는 것이 편리합니다.) * Windows 11의 경우 - <code>이 사람이 어떻게 로그인을 합니까?</code>에서 <code>이사람의 로그인 정보를 가지고 있지 않습니다</code>를 선택합니다. 이는 Microsoft 계정 없이 로컬 계정을 생성하기 위함입니다. - 개인정보제공을 동의합니다. - 계정만들기 단계에서는 <code>Microsoft 계정없이 사용자 추가</code>로 진행합니다. - 이 PC의 사용자만들기 단계에서는 사용자이름과 암호를 설정하시면 완료됩니다. - 계정유형변경 메뉴에서 확인해보면 <code>관리자</code>가 아닌 <code>표준 사용자</code>라고 나옵니다. * 이제부터는 윈도우버튼으로 로그인한 계정이 보이게 하여 클릭하면 로그아웃 옆의 점3개를 클릭하면 생성된 표준 사용자명이 나오며 이를 클릭해서 전환할 수도 있습니다. * 처음 로그인하는 과정에서는 몇가지 설정을 하게 되며 다소 시간이 소요됩니다.</p>
+</section>
+<section id="windows-terminal-설치" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="windows-terminal-설치"><span class="header-section-number">2.3</span> Windows Terminal 설치</h2>
+<p>반드시 필요한 것은 아니지만 일반적인 터미널창에 붙여넣기가 질 호환되지 않는 문제가 있고, WSL2의 bash 터미널을 띄우기가 편리하기 때문에 일반적으로 설치가 권장됩니다. - Microsoft Store에서 Windows Terminal을 검색해서 설치<br>
+하시면 관리자계정에 설치가 됩니다. 이 앱은 관리자 계정에 설치하고 표준사용자 계정에서도 설치하면 이 때는 중복설치가 아니라 링크처럼 실행하게 됩니다. 그런데 표준사용자 계정에서만 설치하는 방법은 지원되지 않으므로 관리자권한 계정에서 먼저 설치합니다.<br>
+이하 아래의 Powershell을 사용하실 때 붙여넣기가 호환이 잘 될 것입니다.</p>
+</section>
+<section id="wsl2-설치-설정" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="wsl2-설치-설정"><span class="header-section-number">2.4</span> WSL2 설치 설정</h2>
+<ul>
+<li>Window10 2014 (Build 19041) 이상<br>
+에서는 Windows 하부 시스템으로써의 Linux를 안정적으로 사용할 수 있습니다.</li>
+<li>systeminfo<br>
+자신의 윈도우 운영체저 성능은 Powershell에서 <code>systeminfo</code>라는 명령으로 간단히 확인할 수 있습니다.</li>
+<li>CPU의 가상화 지원여부<br>
+<code>Ctrl</code>+<code>Shift</code>+<code>Esc</code> 키를 사용하여 작업관리자로 진입하고 성능/CPU에서 가상화: 사용/사용안함 무엇인지 확인</li>
+<li>BIOS Virtualization Technology<br>
+Windows 운영체제는 가능한데 CPU에 가상화: 사용안함으로 되어 있다면 BIOS에 들어가서 Virtualization Technology(Intel VT-x / AMD SVM) 항목을 직접 찾아 Enabled로 바꿔야 합니다.<br>
+하드웨어적 점검 완료 후 소프트웨어적 설정 점검을 진행합니다.</li>
+<li>Powershell 관리자권한: WSL과 Virtual 옵션상태를 알아봅니다.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Get-WindowsOptionalFeature <span class="op">-</span>Online <span class="op">-</span>FeatureName Microsoft-Windows-Subsystem-Linux</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Get-WindowsOptionalFeature <span class="op">-</span>Online <span class="op">-</span>FeatureName VirtualMachinePlatform</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>만약에 disabled 상태 등이라면 아래의 명령으로 필요한 파일들을 추가로 설치하여 enabled 상태로 변경하시면 됩니다.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>enable-feature <span class="op">/</span>featurename<span class="op">:</span>Microsoft-Windows-Subsystem-Linux <span class="op">/</span>all <span class="op">/</span>norestart</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>enable-feature <span class="op">/</span>featurename<span class="op">:</span>VirtualMachinePlatform <span class="op">/</span>all <span class="op">/</span>norestart</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>설치과정 등의 문제로 삭제 후 다시 설치하고 싶다면 아래의 제거를 진행 후 위의 설치를 다시 실행합니다.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>disable-feature <span class="op">/</span>featurename<span class="op">:</span>VirtualMachinePlatform <span class="op">/</span>norestart</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dism<span class="op">.</span><span class="fu">exe</span> <span class="op">/</span>online <span class="op">/</span>disable-feature <span class="op">/</span>featurename<span class="op">:</span>Microsoft-Windows-Subsystem-Linux <span class="op">/</span>norestart</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>설치든 제거든 부팅이 필요합니다.</li>
+<li>WSL2 버전 지정이 필요합니다.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>set-default-version <span class="dv">2</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="wsl2-환경-설정" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="wsl2-환경-설정"><span class="header-section-number">2.5</span> WSL2 환경 설정</h2>
+<p>몇가지 주요설정을 wsl.config 파일을 통해 이루어지는데 문제는 Window11에서만 systemd 설정이 가능하다.</p>
+<section id="wsl-전역설정-구성" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="wsl-전역설정-구성"><span class="header-section-number">2.5.1</span> WSL 전역설정 구성</h3>
+<p>C:&lt;UserName&gt;.wslconfig</p>
+</section>
+<section id="wsl-배포판별-구성" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="wsl-배포판별-구성"><span class="header-section-number">2.5.2</span> WSL 배포판별 구성</h3>
+<ul>
+<li>위치: /etc/wsl.conf<br>
+</li>
+<li>rstduio-server를 자동실행하는 예제이다.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>boot<span class="op">]</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>command<span class="op">=</span><span class="st">"bash -c '/usr/local/bin/start-rstudio'"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>표준사용자 계정으로 로그인</strong><br>
+다음 단계부터는 표준사용자 계정으로 연계하여 진행합니다.</p>
+</section>
+</section>
+<section id="ubuntu-설치" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="ubuntu-설치"><span class="header-section-number">2.6</span> Ubuntu 설치</h2>
+<p>표준사용자 계정으로 로그인 되었다고 가정합니다. (관리자계정으로 진행하시는 분들도 진해 가능합니다.) 아래의 명령은 Powershell에서 실행시킵니다. 이 때 관리자권한이 아닌 일반계정으로 Powerwhell을 열어야 합니다. 그래야 C:&lt;표준사용자명&gt; 에서시작하게 됩니다. (버전은 프로젝트의 개발환경버전과 일치시켰습니다.)</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install <span class="op">-</span>d Ubuntu-24<span class="op">.</span><span class="dv">04</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>cf) 만약에 설치할 수 없다는 출력된다면, 차선책으로 Mcirosoft Store에서 Ubuntu 24.04.01 LTS를 설치하시면 됩니다.<br>
+- default Unix user accout<br>
+은 원하시는데로 설정하기고 - password<br>
+로 설장하시면 됩니다. - 검증은 설치된 창에서 아래의 명령으로 설치된 버전을 확인하시면 됩니다.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lsb_release <span class="op">-</span>a</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>설치 후 시스템에 반영을 위해서는 wsl를 재부팅하는 개념을 적용해야 합니다. 새로운 관리자권한의 Powershell을 열어서 아래의 명령을 실행합니다.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>shutdown</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Window Terminal (WT)로 다시 시작<br>
+다시 시작은 WT를 실행하여 시작합니다. 만약에 WT가 표준사용자계정에서 보이지 않는다면 앞서의 방법대로 표준사용자에서도 다시 설치 해주면 됩니다.</li>
+<li>WT 목록에서 Ubuntu 시작하기<br>
+를 하시면 Ubuntu의 bash 터미널이 열리고 사용가능한 상태가 됩니다.</li>
+</ul>
+</section>
+<section id="ubuntu-패키지설치-이해하기" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="ubuntu-패키지설치-이해하기"><span class="header-section-number">2.7</span> Ubuntu 패키지설치 이해하기</h2>
+<ul>
+<li><strong>apt</strong> 개념
+<ul>
+<li>리눅스에서는 윈도우처럼 프로그램 설치 파일을 직접 내려받아 실행하기보다는, 패키지 관리 시스템을 통해 설치와 업데이트를 합니다.</li>
+<li>패키지 저장소(repository): 인터넷에 있는 프로그램 모음집.</li>
+<li>패키지 메타데이터: 어떤 버전, 의존성(함께 필요한 다른 패키지), 설치 방법 등이 적혀 있는 정보.</li>
+<li>로컬 저장소 목록: 내 PC가 어떤 저장소를 참조할지 기록한 파일.</li>
+<li>apt는 이 목록을 참고해 프로그램을 설치·삭제·업데이트합니다.</li>
+<li>이때 시스템 전체에 영향을 주는 작업이므로 관리자 권한이 필요합니다. 그래서 명령 앞에 sudo(super user do)를 붙입니다.</li>
+</ul></li>
+<li><strong>update와 upgrade의 차이</strong>
+<ul>
+<li>apt update<br>
+저장소에서 최신 패키지 메타데이터를 내 PC로 가져옵니다. 쉽게 말해 “업데이트가 있는지 목록을 새로고침하는 것”입니다. 실제 프로그램이 설치되거나 바뀌지는 않습니다.</li>
+<li>apt upgrade<br>
+apt update로 가져온 목록과 현재 내 PC의 상태를 비교합니다. 새 버전이 있으면 인터넷에서 내려받아 설치합니다. 즉, “목록을 보고 실제로 프로그램들을 최신 버전으로 교체하는 것”입니다.</li>
+</ul></li>
+</ul>
+</section>
+<section id="git-설치" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="git-설치"><span class="header-section-number">2.8</span> git 설치</h2>
+<ul>
+<li>git는 프로젝트 버전관리에 필요하고 github에 프로젝트 소스를 clone 할 때도 사용<br>
+하므로 반드시 필요합니다.</li>
+<li>Ubuntu에도 stable 버전의 git는 설치되어 있지만, 저자의 경우 노트북과 PC의 개발환경을 동일하게 유지하게 위해 버전을 동일하게 유지하고 있습니다. 그래서 ubuntu를 설치할 때도 버전을 지정하여 설치합니다.</li>
+<li>git의 설치파일의 저장소는 ubuntu apt에 없기 때문에 아래의 명령으로 apt 목록에 추가한후 목록을 최신화합니다.</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository ppa:git-core/ppa</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>이 때 아무런 출력없이 다소 시간이 걸리니 잠시만 기다려 주세요.<br>
+성공하면 다음단계로</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>원하는 버전을 지정해서 설치합니다.</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install git=1:2.51.0-0ppa2~ubuntu24.04.1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>검증은 버전을 확인하시면 됩니다.</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pyenv-설치" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="pyenv-설치"><span class="header-section-number">2.9</span> pyenv 설치</h2>
+<ul>
+<li>프로젝트마다 파이썬의 버전을 다르게<br>
+적용하는데 도움이 되는 앱입니다.</li>
+<li>소스를 직접 빌드<br>
+하기 때문에 관련된 패키지들을 먼저 많이 설치해야 합니다.</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> build-essential libssl-dev zlib1g-dev <span class="dt">\</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm <span class="dt">\</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>설치명령 다운로드 후 실행<br>
+을 위해 아래의 명령을 실행합니다.</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> https://pyenv.run <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>pyenv의 경로설정<br>
+을 위해 사용자별 부팅시 자동화스크립트에 해당하는 ~/.bashrc 파일을 아래의 명령으로 편집상태로 만듭니다.<br>
+</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano ~/.bashrc</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>pyenv 명령어 자체의 경로, 심볼릭링크 경로, shell 통합기능, 가상환경 자동 활성 등을 위해 아래의 스크립트를 제일 마지막에 추가합니다.</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"</span><span class="va">$HOME</span><span class="st">/.pyenv/bin:</span><span class="va">$PATH</span><span class="st">"</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="ex">pyenv</span> init <span class="at">--path</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="ex">pyenv</span> init <span class="at">-</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="ex">pyenv</span> virtualenv-init <span class="at">-</span><span class="va">)</span><span class="st">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>CTRL+O</code>, <code>ENTER</code>, <code>CTRL+X</code> 순으로 진행하면 저장이 됩니다.</li>
+<li>완성할려면 shell을 다시 실행해야 합니다.</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>검증은 버전으로 하시면 됩니다. (pyenv 2.6.7)</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pyenv</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>pyenv 2.6.7</code> 출력되면 정상입니다.</p>
+</section>
+<section id="python-설치" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="python-설치"><span class="header-section-number">2.10</span> Python 설치</h2>
+<ul>
+<li>원하는 버전 설치<br>
+는 아래의 버전만 지정하는 간단한 명령에도 잘 설치됩니다.</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pyenv</span> install 3.12.10</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>검증<br>
+은 현재 설치된 파이썬들이 버전들을 조회해보면 좋습니다.<br>
+</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pyenv</span> versions</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>기본버전 지정<br>
+을 아래의 명령으로 합니다.</li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pyenv</span> global 3.12.10</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="vs-code-wsl2-extension" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="vs-code-wsl2-extension"><span class="header-section-number">2.11</span> VS Code + WSL2 Extension</h2>
+<ul>
+<li>code server라고 리눅스환경에서 사용하는 IDE가 있지만 WSL2에서는 Windows에 설치된 VS Code에 WSL2 Extension을 설치해서 양측을 모두 사용하는 것이 추천됩니다.</li>
+<li>Windows 개발환경구축에서 scoop, git, VS Code 설치를 진행하시길 추천드립니다.</li>
+<li>VS Code 설치 후에는 Python과 WSL 확장을 설치만 하면 사용 가능합니다.</li>
+</ul>
+</section>
+<section id="rig-설치" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="rig-설치"><span class="header-section-number">2.12</span> rig 설치</h2>
+<ul>
+<li>rig는 R 언어를 버전별로 관리해 주는 툴입니다.</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">`</span><span class="fu">which</span> sudo<span class="kw">`</span> curl <span class="at">-L</span> https://rig.r-pkg.org/deb/rig.gpg <span class="at">-o</span> /etc/apt/trusted.gpg.d/rig.gpg</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">`</span><span class="fu">which</span> sudo<span class="kw">`</span> sh <span class="at">-c</span> <span class="st">'echo "deb http://rig.r-pkg.org/deb rig main" &gt; /etc/apt/sources.list.d/rig.list'</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">`</span><span class="fu">which</span> sudo<span class="kw">`</span> apt update</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="kw">`</span><span class="fu">which</span> sudo<span class="kw">`</span> apt install r-rig</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>설치 후 검증은 버전으로 진행합니다.</li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="r-설치" class="level2" data-number="2.13">
+<h2 data-number="2.13" class="anchored" data-anchor-id="r-설치"><span class="header-section-number">2.13</span> R 설치</h2>
+<ul>
+<li>rig 가 설치된 상태에서는 매우 쉽습니다. add 명령만 사용하면 됩니다.</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> add 4.4.3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>기본값 지정<br>
+은 아래의 명령어로 진행하며 pyenv와 약간 다르므로 주의를 요합니다.</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> default 4.4.3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="rstudio-server-설치" class="level2" data-number="2.14">
+<h2 data-number="2.14" class="anchored" data-anchor-id="rstudio-server-설치"><span class="header-section-number">2.14</span> rstudio-server 설치</h2>
+<ul>
+<li>Windows 10 하부시스템오로써의 WSL2는 GUI (Graphic User Interface)를 지원 RStudio 서버처럼 GUI를 지원하지 못합니다. 그래서 browse에서 작동하는 rstudio-server를 설치합니다.</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install gdebi-core</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.12.1-563-amd64.deb</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi rstudio-server-2024.12.1-563-amd64.deb</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>설치완료 후에는 브라우져에 아래의 주소를 입력해서 접속합니다. (폐이지를 추가하는 것이 좋습니다.)</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">http://localhost:8787</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="quarto-설치" class="level2" data-number="2.15">
+<h2 data-number="2.15" class="anchored" data-anchor-id="quarto-설치"><span class="header-section-number">2.15</span> quarto 설치</h2>
+<ul>
+<li>Quarto 문서를 렌더링 등에 필요합니다.</li>
+<li>1.6.42 버전에서는 RPythonStudy/website 렌더링시에 오류가 없었으나 이후의 버전에서 오류가 발생하였습니다.</li>
+<li>그래서 이 프로잭트에서는 오류가 없었던 버전을 지정해서 아래와 같이 설치하였습니다.</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="va">QUARTO_VERSION</span><span class="op">=</span>1.6.42</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/quarto-dev/quarto-cli/releases/download/v<span class="va">${QUARTO_VERSION}</span>/quarto-<span class="va">${QUARTO_VERSION}</span>-linux-amd64.tar.gz</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> quarto-<span class="va">${QUARTO_VERSION}</span>-linux-amd64.tar.gz</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv quarto-<span class="va">${QUARTO_VERSION}</span> /opt/quarto-<span class="va">${QUARTO_VERSION}</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> ln <span class="at">-sfn</span> /opt/quarto-<span class="va">${QUARTO_VERSION}</span>/bin/quarto /usr/local/bin/quarto</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="make-설치" class="level2" data-number="2.16">
+<h2 data-number="2.16" class="anchored" data-anchor-id="make-설치"><span class="header-section-number">2.16</span> make 설치</h2>
+<ul>
+<li>자동화 도구이며 다수의 프로젝트에서 사용되었기 때문에 설치 사용하시면 편리합니다.</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install build-essential</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>검증은</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> <span class="at">--version</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="windows-개발환경구축" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Windows 개발환경구축</h1>
+<section id="scoop-설치" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="scoop-설치"><span class="header-section-number">3.1</span> Scoop 설치</h2>
+<p>Windows용 command-line 패키지 설치 매니저입니다. * 이를 사용하지 않고 표준사용자 계정으로 설치를 진행해도 버전관리에 불편함에 있을 뿐이므로 원치 않으시면 패스하셔도 됩니다. * 또한 일부 패키지들은 native와 달리 원하는 버전이 아직 update되지 않아서 그냥 표준사용자 계정으로 설치하는 경우도 있습니다. * Docker Desktop처럼 부팅이후에 시스템서비스로 항상 구동되어야 하는 경우 관리자권한 사용자게정에서 시스템에 설치가 필요합니다. 따라서 이 경우도 scoop로 설치하지 않습니다. * 이미 많은 앱들이 설치된 표준사용자계정이라면 모두 scoop로 재설치하는 것보다 scoop 없이 진행할 수 있습니다. - 설치는 아래를 따라서 진행합니다. - <code>Win+X</code> 핫키를 이용해서 Windows PowerShell 터미널을 관리자권한이 아닌 상태로 엽니다. (표준사용자 계정에서는 어차피 관리자권한으로 열리지는 않을 것 같습니다.) - 아래의 명령으로 Powershell이 다운로드한 파일도 실행할수 있도록 실행권한을 재설정합니다.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Set-ExecutionPolicy</span> <span class="op">-</span>ExecutionPolicy RemoteSigned <span class="op">-</span>Scope CurrentUser</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>아래의 명령으로 scoop를 설치합니다.</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">irm</span> get<span class="op">.</span><span class="fu">scoop</span><span class="op">.</span><span class="fu">sh</span> <span class="op">|</span> <span class="fu">iex</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>보안과 관련하여 PowerShell을 관리자권한으로 열면 오류가 발생하니 주의를 요합니다.</li>
+<li>설치검증은 버전을 확인합니다.</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>scoop <span class="op">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>v0.5.3 - Released at 2025-08-11</li>
+</ul>
+</section>
+<section id="표준사용자-git-설치" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="표준사용자-git-설치"><span class="header-section-number">3.2</span> 표준사용자 Git 설치</h2>
+<p>프로젝트 버전관리 및 clone을 위해서는 필수적이므로 반드시 설치하셔야 합니다. - Scoop를 통하지 않는 일반적인 설치는 연구회 웹사이트를 참고하세요. (https://rpythonstudy.github.io/website/posts/tools/git/git_install.html) - Scoop를 통한 설치는 아래 명령을 실행하시면 됩니다.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>scoop install git</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>설치 검증은 버전으로 하시면 됩니다.</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>git <span class="op">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>git version 2.51.0.windows.1</li>
+</ul>
+</section>
+<section id="표준사용자-pyenv-설치" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="표준사용자-pyenv-설치"><span class="header-section-number">3.3</span> 표준사용자 pyenv 설치</h2>
+<ul>
+<li>파이썬 버전관리 툴입니다. 특정 프로젝트를 클론 한 후에 지정된 파이썬 버전을 지정할 때 필요합니다.</li>
+<li>scoop로 pyenv를 설치하고 싶었으나 scoop를 통한 방식은 pyenv update가 너무 늦어 아직은 python 3.12.10을 설치할 수 없는 상태였습니다.</li>
+<li>따라서 scoop 방식이 아닌 아래의 clone 방식으로 표준사용자 환경에 설치 진행하였습니다.</li>
+<li>관리자권한 사용자의 경우도 pyenv는 같은 방식으로 설치하시길 바랍니다.</li>
+<li>혹시라도 이전 설치를 확인할려면 아래의 명령을 실행해 봅니다.</li>
+</ul>
+<div class="sourceCode" id="cb36"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Get-Command</span> pyenv <span class="op">-</span>ErrorAction SilentlyContinue</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>설치 중 문제가 발생한다던지 등의 상황에서 이전설치 제거하고자 하신다면 설치폴더 제거하면 됩니다.</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Remove-Item</span> <span class="op">-</span>Recurse <span class="op">-</span>Force <span class="va">$HOME</span>\<span class="op">.</span><span class="fu">pyenv</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>설치제거 시 환경변수에서 제거가 필요하시면 수동으로 제거하시길 바랍니다.</li>
+<li>설치는 Windows PowerShell에서 아래의 명령을 실행합니다. (C:&lt;사용자명&gt;.pyenv진행됩니다.)</li>
+</ul>
+<div class="sourceCode" id="cb38"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Invoke-WebRequest</span> <span class="op">-</span>UseBasicParsing <span class="op">-</span>Uri <span class="st">"https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1"</span> <span class="op">-</span>OutFile <span class="st">"./install-pyenv-win.ps1"</span><span class="op">;</span> <span class="op">&amp;</span><span class="st">"./install-pyenv-win.ps1"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>오류가 발생하면 chatGPT를 활용해서 해결하시길 바랍니다.</li>
+<li>설치 검증은 버전으로 하시면 됩니다.</li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>pyenv <span class="op">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>pyenv 3.1.1</li>
+</ul>
+</section>
+<section id="표준사용자-python-설치" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="표준사용자-python-설치"><span class="header-section-number">3.4</span> 표준사용자 python 설치</h2>
+<ul>
+<li>기존의 system에 설치된 python이 있더라도 pyenv의 경로가 우선되기 때문에 꼭 시스템 설치를 제거하지 않더라도 사용 가능합니다.</li>
+<li>관리자권한 사용자도 같은 방식으로 설치가 가능합니다.</li>
+<li>pyenv를 이용한 설치는 아래의 명령으로 원하는 버전의 파이썬을 설치합니다.</li>
+</ul>
+<div class="sourceCode" id="cb40"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>pyenv install <span class="dv">3.12</span><span class="op">.</span><span class="dv">10</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>pyenv는 사용자전역의 default 버전을 지정하도록 되어 있습니다. 아래의 명령을 실행한 후 가용한 버전을 확인합니다.</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>pyenv global <span class="dv">3.12</span><span class="op">.</span><span class="dv">10</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="dt">pyenv</span> versions</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><ul>
+<li>3.12.10 (set by C:.pyenv-win)</li>
+</ul></li>
+</ul>
+</section>
+<section id="표준사용자-vs-code-설치" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="표준사용자-vs-code-설치"><span class="header-section-number">3.5</span> 표준사용자 VS Code 설치</h2>
+<ul>
+<li>일반적인 방법은 연구회 웹사이트를 참고하시길 바랍니다. (https://rpythonstudy.github.io/website/posts/Python/install/VSCode_setup.html)</li>
+<li>표준사용자는 아래의 scoop를 통한 설치를 추천합니다.</li>
+<li>scoop를 통한 설치는 먼저 아래의 명령을 실행합니다.</li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>scoop bucket add extras</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>scoop install vscode</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>첫번째 명령은 scoop의 extras bucket을 추가하는 명령입니다. scoop의 기본 bucket에는 VS Code가 없기 때문입니다.</li>
+<li>‘vscode’ (1.103.2) was installed successfully!</li>
+<li>실행은 PowerShell에서 아래의 명령을 실행합니다.</li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>code</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="표준사용자-make-설치" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="표준사용자-make-설치"><span class="header-section-number">3.6</span> 표준사용자 make 설치</h2>
+<ul>
+<li>다양한 스크립트를 자동화하기 위해 사용됩니다.</li>
+<li>특히 Windows, macOS, Linux 모든 환경에서 사용할 수 있어 유용합니다.</li>
+<li>이 프로젝트에서는 clone 된 프로젝트를 사용할 수 있도록 준비하는 과정 상당부분을 make로 자동화하였습니다.</li>
+<li>따라서 clone 된 프로젝트를 편리하게 설정을 마무리할려면 설치하는 것이 좋습니다.</li>
+<li>설치는 아래의 명령으로 설치하시면 됩니다.</li>
+</ul>
+<div class="sourceCode" id="cb44"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>scoop install make</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>설치검증은 버전을 확인하시면 됩니다.</li>
+</ul>
+<div class="sourceCode" id="cb45"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>make <span class="op">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>GNU Make 4.4.1</li>
+</ul>
+</section>
+<section id="rig-설치는-비추천" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="rig-설치는-비추천"><span class="header-section-number">3.7</span> rig 설치는 비추천</h2>
+<ul>
+<li>R 언어 자체의 버전 관리를 위해 사용됩니다.</li>
+<li>그러나 rig는 설치 시 관리자 권한이 필요하므로 이 개발환경구축의 정책과 일치하지 않으므로 진행하지 않았습니다.</li>
+</ul>
+</section>
+<section id="표준사용자-r-직접-설치" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="표준사용자-r-직접-설치"><span class="header-section-number">3.8</span> 표준사용자 R 직접 설치</h2>
+<ul>
+<li>scoop로 R을 설치할 수도 있습니다만 레지스트리에 등록되지 않아서 RStudio에서 R 경로를 인식하지 못하는 제한점이 있습니다.</li>
+<li>그래서 CRAN으로부터 윈도우용 설치파일을 다운로드하여 표준사용자 폴더에 직접 설치하는 방법으로 진행하였습니다.</li>
+</ul>
+<div class="sourceCode" id="cb46"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>C<span class="op">:</span>\Users\<span class="op">&lt;</span>사용자명<span class="op">&gt;</span>\AppData\Local\Programs\<span class="fu">R</span>\<span class="dv">4.4</span><span class="op">.</span><span class="dv">3</span>\</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>버전별로 설치가 가능합니다.</li>
+</ul>
+</section>
+<section id="표준사용자-rtools-설치-옵션" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="표준사용자-rtools-설치-옵션"><span class="header-section-number">3.9</span> 표준사용자 Rtools 설치 (옵션)</h2>
+<ul>
+<li>Rtools는 R이 단순 스크립트 언어로만 쓰이지 않고, C/C++/Fortran 확장 패키지를 Windows에서 문제없이 빌드할 수 있게 해주는 컴파일러·빌드 환경입니다.</li>
+<li>차후에 필요시 설치를 해도 무방합니다.</li>
+<li>CRAN으로부터 설치파일을 다운도르하여 표준사용자 폴더 C:&lt;사용자명&gt;직접 설치를 진행하였습니다.</li>
+<li>설치 후 경로를 설정해야 하는데 앞서 이 프로젝트에서는 make란 자동화도구를 사용했는데, 이것이 이름이 같기 때문에 단순히 경로를 설정하면 앞서의 make가 호출되는 문제가 발생합니다. 이 문제를 극복하기 위해 표준사용자 환경변수에 rtools 경로를 주입하는 아래의 방법으로 진행하였습니다.</li>
+<li>C:&lt;사용자명&gt;.Renviron 파일을 생성하고, 아래의 경로를 설정해 줍니다.</li>
+</ul>
+<div class="sourceCode" id="cb47"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>PATH<span class="op">=</span><span class="st">"C:/Users/&lt;사용자명&gt;/rtools44/usr/bin;</span><span class="pp">${</span><span class="va">PATH</span><span class="pp">}</span><span class="st">"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>.Renviron 파일은 이 위치에 있으면 사용자전역으로 환경설정을 하여 R session이 시작될 때, 인식하게 됩니다.</li>
+</ul>
+</section>
+<section id="표준사용자-rstudio-설치" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="표준사용자-rstudio-설치"><span class="header-section-number">3.10</span> 표준사용자 RStudio 설치</h2>
+<ul>
+<li>scoop로 RStudio를 설치하면 최신 R과 같이 설치되는데 다른 버전의 R로 변경이 되지 않는 제한점이 있습니다.</li>
+<li>그래서 scoop로 설치하지 않고 윈도우용 설치파일을 다운로드하여 표준사용자 폴더에 직접 설치를 진행하였습니다.</li>
+</ul>
+<div class="sourceCode" id="cb48"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>C<span class="op">:</span>\Users\<span class="op">&lt;</span>사용자명<span class="op">&gt;</span>\AppData\Local\Programs\RStudio\</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>설치 후 <code>Global options/R sessions/R version</code>에서 경로가 적절히 설정된 것을 확인할 수 있습니다.</li>
+<li>R console에서 아래의 명령으로 rtools의 경로가 나타나면 rtools 경로도 .Renviron으로 잘 주입된 것을 알 수 있습니다.</li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>Sys<span class="op">.</span><span class="fu">which</span><span class="op">(</span><span class="st">"make"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="표준사용자-quarto-설치" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="표준사용자-quarto-설치"><span class="header-section-number">3.11</span> 표준사용자 quarto 설치</h2>
+<ul>
+<li>Quarto 문서를 렌더링 등에 필요합니다.</li>
+<li>1.6.42 버전에서는 RPythonStudy/website 렌더링시에 오류가 없었으나 이후의 버전에서 오류가 발생하였습니다.</li>
+<li>이 프로잭트에서는 Quarto 버전을 아래와 같이 표준사용자 환경에 설치하였습니다.</li>
+</ul>
+<div class="sourceCode" id="cb50"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>scoop install quarto@<span class="dv">1.6</span><span class="op">.</span><span class="dv">42</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>설치 검증은 버전으로 하시면 됩니다.</li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>quarto <span class="op">--</span>version</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script src="https://utteranc.es/client.js" repo="BenKorea/utterances-comments" issue-term="pathname" theme="preferred-color-scheme" crossorigin="anonymous" async="">
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

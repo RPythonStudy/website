@@ -46,11 +46,12 @@ website:
     - title: "개발환경구축"
       contents:
         - posts/DE/introduction_to_DE.qmd
-        - section: "Windows"
+        - section: "Windows∙macOS"
           contents:
-            - posts/DE/windows/setup.qmd
-            - posts/R/install/Rtools_setup.qmd
-            - posts/R/install/RStudio_setup.qmd
+            - posts/DE/windows_macos/python.qmd
+        - section: "Windows∙WSL2"
+          contents:
+            - posts/DE/windows_wsl2/develop_environment.qmd
 
   
     - title: "R"
