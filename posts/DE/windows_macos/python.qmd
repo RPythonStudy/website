@@ -173,7 +173,7 @@ python -m venv .venv
 
 - 가상환경 활성화 (윈도우와 다른 점)
 ```zsh
-./.venv/bin/activate
+source ./.venv/bin/activate
 ```
 
 - 파이썬 실행 파일이 어디있나? (윈도우와 다른점)
